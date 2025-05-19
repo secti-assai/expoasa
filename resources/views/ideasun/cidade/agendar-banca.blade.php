@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Banca - IDEASUN</title>
+    
+    <!-- PLUGINS CSS STYLE -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/plugins/themefisher-font/style.css" rel="stylesheet">
+    <link href="/plugins/font-awsome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+    
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Estilos do card principal */
+        .banca-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(94, 8, 2, 0.95), rgba(0, 0, 0, 0.9));
+            min-height: 100vh;
+            position: relative;
+            z-index: 0;
+        }
+        
+        .banca-section::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/assets/img/ideasun.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .banca-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .banca-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #9c27b0;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .banca-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .banca-header h2 {
+            color: #333;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .banca-header h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #9c27b0;
+            margin: 15px auto 20px;
+        }
+        
+        /* Estilos específicos para a seleção de datas */
+        .calendario-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: none;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #9c27b0;
+            box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.15);
+        }
+        
+        /* Estilos para os horários */
+        .horarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .horario-option {
+            position: relative;
+        }
+        
+        .horario-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .horario-option label {
+            display: block;
+            padding: 15px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .horario-option input[type="radio"]:checked + label {
+            background-color: rgba(156, 39, 176, 0.1);
+            border-color: #9c27b0;
+            box-shadow: 0 5px 10px rgba(156, 39, 176, 0.1);
+        }
+        
+        .horario-option label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Estilos para o botão de agendar */
+        .btn-primary {
+            background-color: #9c27b0;
+            border-color: #9c27b0;
+            border-radius: 50px;
+            padding: 12px 35px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #7b1fa2;
+            border-color: #7b1fa2;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(156, 39, 176, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            background-color: #d5a6e6;
+            border-color: #d5a6e6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Animação de loading */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(156, 39, 176, 0.2);
+            border-radius: 50%;
+            border-top-color: #9c27b0;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Nota informativa */
+        .nota-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        /* Estilos para alertas */
+        .alert {
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        
+        /* Informações da cidade */
+        .cidade-info {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .equipes-container {
+            margin-bottom: 30px;
+        }
+        
+        .equipe-item {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .equipe-item h5 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .badge {
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        
+        .badge-primary {
+            background-color: #9c27b0;
+        }
+    </style>
+</head>
+<body class="body-wrapper">
+
+    @include('ideasun.partials.navbar')
+
+    <section class="banca-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="banca-card">
+                        <div class="banca-header">
+                            <h2>Agendamento de Banca</h2>
+                            <p>Agende a apresentação de pitches das suas equipes</p>
+                        </div>
+                        
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                <i class="fa fa-check-circle mr-2"></i> {{ session('success') }}
+                            </div>
+                        @endif
+                        
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                <i class="fa fa-exclamation-circle mr-2"></i> {{ session('error') }}
+                            </div>
+                        @endif
+                        
+                        <div class="cidade-info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5><i class="fa fa-building mr-2"></i>{{ $cidade->nome }} - {{ $cidade->estado }}</h5>
+                                    <p><strong>Responsável:</strong> {{ $cidade->representante_nome }}</p>
+                                </div>
+                                <div class="col-md-6 text-md-end">
+                                    <p><strong>Equipes registradas:</strong> {{ count($cidade->equipes) }}</p>
+                                    <p><strong>ID da Cidade:</strong> {{ $cidade->cidade_id }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="equipes-container">
+                            <h4 class="mb-3"><i class="fa fa-users mr-2"></i>Suas Equipes</h4>
+                            
+                            @if(count($cidade->equipes) > 0)
+                                <div class="row">
+                                    @foreach($cidade->equipes as $equipe)
+                                        <div class="col-md-6 mb-3">
+                                            <div class="equipe-item">
+                                                <h5>{{ $equipe->nome }}</h5>
+                                                <p class="mb-1"><span class="badge badge-primary">{{ ucfirst(str_replace('_', ' ', $equipe->modalidade)) }}</span></p>
+                                                <small class="text-muted">{{ $equipe->instituicao }}</small>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="alert alert-warning">
+                                    <i class="fa fa-exclamation-triangle mr-2"></i> Você ainda não possui equipes registradas. Registre suas equipes antes de agendar a banca.
+                                </div>
+                            @endif
+                        </div>
+                        
+                        @if(count($cidade->equipes) > 0)
+                            @if($cidade->banca_agendada)
+                                <div class="alert alert-success">
+                                    <h5 class="mb-2"><i class="fa fa-calendar-check-o mr-2"></i>Banca Já Agendada</h5>
+                                    <p class="mb-1"><strong>Data:</strong> {{ \Carbon\Carbon::parse($cidade->banca_agendada)->format('d/m/Y') }}</p>
+                                    <p class="mb-1"><strong>Horário:</strong> {{ \Carbon\Carbon::parse($cidade->banca_agendada)->format('H:i') }}</p>
+                                    <p class="mb-0"><strong>Local:</strong> Auditório Principal - CEEP - R. Edgar Bardal, s/n - Assaí, PR, 86220-000</p>
+                                    
+                                    <div class="mt-3">
+                                        <form action="{{ route('ideasun.cidade.cancelar-banca') }}" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar o agendamento da banca?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger">
+                                                <i class="fa fa-calendar-times-o mr-2"></i>Cancelar Agendamento
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @else
+                                <form action="{{ route('ideasun.cidade.salvar-banca') }}" method="POST" id="formBanca">
+                                    @csrf
+                                    <div class="calendario-container">
+                                        <h4 class="mb-3"><i class="fa fa-calendar mr-2"></i>Selecione uma Data</h4>
+                                        
+                                        <div class="form-group">
+                                            <label for="data_banca">Data para Apresentação</label>
+                                            <select class="form-control" id="data_banca" name="data_banca" required>
+                                                <option value="">Selecione uma data</option>
+                                                @foreach($diasDisponiveis as $data => $label)
+                                                    <option value="{{ $data }}">{{ $label }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        
+                                        <div id="horarios_container">
+                                            <div class="text-center text-muted py-4">
+                                                <i class="fa fa-calendar-o fa-3x mb-3"></i>
+                                                <p>Selecione uma data para ver os horários disponíveis</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-agendar" id="btnAgendar" disabled>
+                                            <i class="fa fa-calendar-check-o mr-2"></i>Confirmar Agendamento
+                                        </button>
+                                    </div>
+                                </form>
+                                
+                                <div class="calendario-container mt-4">
+                                    <h4 class="mb-3"><i class="fa fa-users mr-2"></i>Cadastro de Avaliadores</h4>
+                                    <p>Informe os dados de 3 avaliadores que representarão sua cidade na banca de avaliação de outra cidade:</p>
+                                    
+                                    @for($i = 1; $i <= 3; $i++)
+                                        <div class="card mb-4">
+                                            <div class="card-header bg-light">
+                                                <h5 class="mb-0">Avaliador {{ $i }}</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="avaliador_nome_{{ $i }}">Nome Completo <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" id="avaliador_nome_{{ $i }}" 
+                                                                   name="avaliadores[{{ $i }}][nome]" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="avaliador_cpf_{{ $i }}">CPF <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control cpf-mask" id="avaliador_cpf_{{ $i }}" 
+                                                                   name="avaliadores[{{ $i }}][cpf]" placeholder="000.000.000-00" required>
+                                                            <small class="form-text text-muted">A senha inicial será os 6 primeiros dígitos do CPF.</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endfor
+                                    
+                                    <div class="alert alert-info">
+                                        <i class="fa fa-info-circle mr-2"></i>
+                                        <strong>Importante:</strong> Os avaliadores cadastrados receberão acesso ao sistema para avaliar os projetos de outra cidade. A senha inicial será os 6 primeiros dígitos do CPF informado.
+                                    </div>
+                                </div>
+                                
+                                <div class="nota-info">
+                                    <h5 class="mb-2"><i class="fa fa-info-circle mr-2"></i>Informações Importantes</h5>
+                                    <ul class="mb-0">
+                                        <li>O agendamento da banca é obrigatório para todas as cidades participantes.</li>
+                                        <li>Cada cidade terá um período de aproximadamente 4 horas para apresentação de todas as suas equipes.</li>
+                                        <li>Certifique-se de que todas as suas equipes tenham enviado suas apresentações antes do prazo: 23 de maio.</li>
+                                        <li>Em caso de atraso, a cidade poderá perder sua vez e sua vaga na Ideasun.</li>
+                                    </ul>
+                                </div>
+                            @endif
+                        @else
+                            <div class="text-center mt-4">
+                                <a href="{{ route('ideasun.equipe.gerenciar') }}" class="btn btn-primary">
+                                    <i class="fa fa-users mr-2"></i>Registrar Equipes
+                                </a>
+                            </div>
+                        @endif
+                        
+                        <div class="text-center mt-4">
+                            <a href="{{ route('ideasun.cidade.dashboard') }}" class="btn btn-secondary">
+                                <i class="fa fa-arrow-left mr-2"></i>Voltar ao Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @include('ideasun.partials.footer')
+
+    <!-- JAVASCRIPTS -->
+    <script src="/plugins/jquery/jquery.js"></script>
+    <script src="/plugins/popper/popper.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/smoothscroll/SmoothScroll.min.js"></script>
+    <script src="/js/custom.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Quando uma data for selecionada
+            $('#data_banca').change(function() {
+                var data = $(this).val();
+                if (!data) {
+                    $('#horarios_container').html('<div class="text-center text-muted py-4"><i class="fa fa-calendar-o fa-3x mb-3"></i><p>Selecione uma data para ver os horários disponíveis</p></div>');
+                    $('#btnAgendar').prop('disabled', true);
+                    return;
+                }
+                
+                // Mostrar indicador de carregamento
+                $('#horarios_container').html('<div class="loading-container"><div class="loading-spinner"></div></div>');
+                $('#btnAgendar').prop('disabled', true);
+                
+                // Fazer requisição AJAX para obter horários disponíveis
+                $.ajax({
+                    url: '{{ route("ideasun.cidade.banca-horarios") }}',
+                    type: 'GET',
+                    data: { data: data },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.horarios && response.horarios.length > 0) {
+                            var html = '<div class="horarios-grid">';
+                            
+                            response.horarios.forEach(function(opcao) {
+                                var horario = opcao.horario;
+                                var periodo = opcao.periodo;
+                                
+                                html += '<div class="horario-option">';
+                                html += '<input type="radio" name="horario" id="horario_' + 
+                                        horario.replace(/[\s:-]/g, '') + '" value="' + 
+                                        horario + '" required>';
+                                html += '<label for="horario_' + horario.replace(/[\s:-]/g, '') + '">' + 
+                                        horario + '<small class="d-block mt-2 text-muted">' + 
+                                        periodo + '</small></label>';
+                                html += '</div>';
+                            });
+                            
+                            html += '</div>';
+                            $('#horarios_container').html(html);
+                            
+                            // Habilitar o botão de agendamento quando um horário for selecionado
+                            $('input[name="horario"]').change(function() {
+                                $('#btnAgendar').prop('disabled', false);
+                            });
+                        } else {
+                            $('#horarios_container').html('<div class="alert alert-warning"><i class="fa fa-exclamation-triangle mr-2"></i>Não há horários disponíveis para esta data.</div>');
+                            $('#btnAgendar').prop('disabled', true);
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#horarios_container').html('<div class="alert alert-danger"><i class="fa fa-times-circle mr-2"></i>Erro ao carregar horários. Por favor, tente novamente.</div>');
+                        $('#btnAgendar').prop('disabled', true);
+                    }
+                });
+            });
+            
+            // Aplicar máscara aos campos de CPF
+            $('.cpf-mask').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                if (value.length > 11) {
+                    value = value.substr(0, 11);
+                }
+                
+                if (value.length > 9) {
+                    $(this).val(value.substr(0, 3) + '.' + value.substr(3, 3) + '.' + value.substr(6, 3) + '-' + value.substr(9));
+                } else if (value.length > 6) {
+                    $(this).val(value.substr(0, 3) + '.' + value.substr(3, 3) + '.' + value.substr(6));
+                } else if (value.length > 3) {
+                    $(this).val(value.substr(0, 3) + '.' + value.substr(3));
+                } else {
+                    $(this).val(value);
+                }
+            });
+            
+            // Validar formulário antes de enviar
+            $('#formBanca').on('submit', function(e) {
+                if (!$('input[name="horario"]:checked').val()) {
+                    e.preventDefault();
+                    alert('Por favor, selecione um horário para o agendamento.');
+                    return false;
+                }
+                
+                // Verificação dos avaliadores
+                let avaliadoresValid = true;
+                
+                for (let i = 1; i <= 3; i++) {
+                    const nome = $(`#avaliador_nome_${i}`).val().trim();
+                    const cpf = $(`#avaliador_cpf_${i}`).val().replace(/\D/g, '');
+                    
+                    if (!nome || cpf.length !== 11) {
+                        avaliadoresValid = false;
+                        break;
+                    }
+                }
+                
+                if (!avaliadoresValid) {
+                    e.preventDefault();
+                    alert('Por favor, preencha corretamente os dados dos 3 avaliadores.');
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
