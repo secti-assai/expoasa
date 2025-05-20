@@ -1004,43 +1004,87 @@ class IdeasunController extends Controller
      */
     public function cidadeSalvarBanca(Request $request)
     {
+        \Log::info('Iniciando processamento de cidadeSalvarBanca', $request->all());
+        
         $request->validate([
             'data_banca' => 'required|date',
             'horario' => 'required|string',
+            'avaliadores' => 'required|array|size:5', // Alterado de 3 para 5
+            'avaliadores.*.nome' => 'required|string|max:255',
+            'avaliadores.*.cpf' => 'required|string',
+            'avaliadores.*.telefone' => 'required|string|max:20',
         ]);
         
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
         
+        \Log::info('Cidade encontrada:', ['id' => $cidade->id, 'nome' => $cidade->nome]);
+        
         // Extrair apenas o primeiro horário da string (antes do "às")
         $horarioPartes = explode(' às ', $request->horario);
         $horarioInicio = trim($horarioPartes[0]);
         
-        // Criar a data/hora completa com o horário de início apenas
-        $dataHora = $request->data_banca . ' ' . $horarioInicio . ':00';
+        // Combinar data e hora
+        $dataHora = \Carbon\Carbon::parse($request->data_banca . ' ' . $horarioInicio);
         
-        // Verificar se já não existe outro agendamento no mesmo horário/data
-        $existeAgendamento = Cidade::whereDate('banca_agendada', $request->data_banca)
-            ->whereRaw("to_char(banca_agendada, 'HH24:MI') = ?", [$horarioInicio])
-            ->exists();
-        
-        if ($existeAgendamento) {
-            return redirect()->back()->with('error', 'Este horário já foi reservado. Por favor, escolha outro horário.');
+        try {
+            // Salvar o agendamento
+            $cidade->banca_agendada = $dataHora;
+            $cidade->save();
+            
+            \Log::info('Banca agendada com sucesso:', [
+                'cidade_id' => $cidade->id, 
+                'data_hora' => $dataHora->format('Y-m-d H:i:s')
+            ]);
+            
+            // Processar os avaliadores
+            foreach ($request->avaliadores as $index => $avaliadorData) {
+                // Limpar o CPF
+                $cpfLimpo = preg_replace('/[^0-9]/', '', $avaliadorData['cpf']);
+                $senha = substr($cpfLimpo, 0, 6); // Primeiros 6 dígitos do CPF como senha
+                
+                // Criar o avaliador
+                $avaliador = new \App\Models\Avaliador();
+                $avaliador->nome = $avaliadorData['nome'];
+                $avaliador->cpf = $cpfLimpo;
+                $avaliador->telefone = $avaliadorData['telefone'];
+                $avaliador->senha = bcrypt($senha);
+                $avaliador->cidade_id = $cidade->id;
+                $avaliador->nivel = 1;
+                $avaliador->tipo = 'municipal';
+                $avaliador->ativo = true;
+                $avaliador->save();
+                
+                \Log::info('Avaliador cadastrado:', [
+                    'id' => $avaliador->id,
+                    'nome' => $avaliador->nome,
+                    'cpf' => $avaliador->cpf,
+                    'cidade_id' => $avaliador->cidade_id
+                ]);
+            }
+            
+            // Formatar o horário para exibição
+            $horarioExibicao = $horarioInicio;
+            if (isset($horarioPartes[1])) {
+                $horarioExibicao .= ' às ' . trim($horarioPartes[1]);
+            }
+            
+            return redirect()->route('ideasun.cidade.dashboard')
+                ->with('success', 'Agendamento de banca realizado com sucesso para ' . 
+                       \Carbon\Carbon::parse($dataHora)->format('d/m/Y') . ' - ' . $horarioExibicao . 
+                       '. Seus 5 avaliadores foram cadastrados.');
+    
+        } catch (\Exception $e) {
+            \Log::error('Erro ao agendar banca:', [
+                'erro' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'request' => $request->all()
+            ]);
+            
+            return redirect()->back()->with('error', 'Erro ao agendar banca: ' . $e->getMessage());
         }
-        
-        // Salvar o agendamento
-        $cidade->update([
-            'banca_agendada' => $dataHora
-        ]);
-        
-        // Para exibição na mensagem de sucesso, mantenha o formato completo
-        $horarioExibicao = $request->horario;
-        
-        return redirect()->route('ideasun.cidade.dashboard')
-            ->with('success', 'Agendamento de banca realizado com sucesso para ' . 
-                   \Carbon\Carbon::parse($dataHora)->format('d/m/Y') . ' - ' . $horarioExibicao);
     }
-
+    
     /**
      * Cancelar agendamento de banca
      */
@@ -1055,107 +1099,25 @@ class IdeasunController extends Controller
         
         $dataHoraAntiga = \Carbon\Carbon::parse($cidade->banca_agendada)->format('d/m/Y \à\s H:i');
         
-        $cidade->update([
-            'banca_agendada' => null
-        ]);
-        
-        return redirect()->route('ideasun.cidade.dashboard')
-            ->with('success', 'Agendamento de banca para ' . $dataHoraAntiga . ' foi cancelado com sucesso.');
-    }
-    
-    /**
-     * Retorna o status atual da apresentação de uma equipe
-     */
-    public function equipeApresentacaoStatus($equipe_id)
-    {
-        $equipe = Equipe::findOrFail($equipe_id);
-        
-        // Verificar se a cidade logada tem permissão para gerenciar esta equipe
-        $cidade_id = Session::get('cidade_id_para_equipe');
-        if ($equipe->cidade_id != $cidade_id) {
-            return response()->json([
-                'success' => false,
-                'error' => 'Você não tem permissão para acessar esta equipe.'
+        try {
+            // Remover os avaliadores associados à cidade
+            \App\Models\Avaliador::where('cidade_id', $cidade->id)->delete();
+            \Log::info('Avaliadores removidos para a cidade ' . $cidade->id);
+            
+            // Remover agendamento
+            $cidade->update([
+                'banca_agendada' => null
             ]);
-        }
-        
-        if (!$equipe->apresentacao_path) {
-            return response()->json([
-                'success' => true,
-                'has_presentation' => false
+            
+            return redirect()->route('ideasun.cidade.dashboard')
+                ->with('success', 'Agendamento de banca para ' . $dataHoraAntiga . ' cancelado com sucesso.');
+        } catch (\Exception $e) {
+            \Log::error('Erro ao cancelar banca:', [
+                'erro' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
             ]);
+            
+            return redirect()->back()->with('error', 'Erro ao cancelar agendamento: ' . $e->getMessage());
         }
-        
-        // Extrair informações do arquivo
-        $file_path = $equipe->apresentacao_path;
-        $file_name = basename($file_path);
-        $file_size = file_exists(public_path($file_path)) ? 
-            $this->formatFileSize(filesize(public_path($file_path))) : 'N/A';
-        $file_extension = pathinfo($file_path, PATHINFO_EXTENSION);
-        
-        // Obter a data de upload do arquivo (data de modificação)
-        $upload_date = file_exists(public_path($file_path)) ? 
-            date('d/m/Y H:i', filemtime(public_path($file_path))) : 'N/A';
-        
-        return response()->json([
-            'success' => true,
-            'has_presentation' => true,
-            'equipe_id' => $equipe->id,
-            'file_path' => asset($file_path),
-            'file_name' => $file_name,
-            'file_size' => $file_size,
-            'file_extension' => $file_extension,
-            'upload_date' => $upload_date
-        ]);
-    }
-
-    /**
-     * Formata o tamanho do arquivo para exibição
-     */
-    private function formatFileSize($size)
-    {
-        if ($size < 1024) {
-            return $size . ' bytes';
-        } elseif ($size < 1024 * 1024) {
-            return round($size / 1024, 2) . ' KB';
-        } else {
-            return round($size / (1024 * 1024), 2) . ' MB';
-        }
-    }
-    
-    /**
-     * Exclui uma equipe
-     */
-    public function equipeExcluir($id)
-    {
-        $equipe = Equipe::findOrFail($id);
-        
-        // Verificar se a cidade logada tem permissão para gerenciar esta equipe
-        $cidade_id = Session::get('cidade_id_para_equipe');
-        if ($equipe->cidade_id != $cidade_id) {
-            return redirect()->back()->with('error', 'Você não tem permissão para excluir esta equipe.');
-        }
-        
-        // Excluir todos os membros associados a esta equipe
-        $equipe->membros()->delete();
-        
-        // Excluir a apresentação se existir
-        if ($equipe->apresentacao_path && file_exists(public_path($equipe->apresentacao_path))) {
-            unlink(public_path($equipe->apresentacao_path));
-        }
-        
-        // Excluir os documentos do responsável se existirem
-        $docPaths = ['doc_termo_aceite_path', 'doc_termo_dados_path', 'doc_termo_imagem_path'];
-        foreach ($docPaths as $docPath) {
-            if ($equipe->$docPath && file_exists(public_path($equipe->$docPath))) {
-                unlink(public_path($equipe->$docPath));
-            }
-        }
-        
-        // Excluir a equipe
-        $equipe->delete();
-        
-        return redirect()->route('ideasun.equipe.gerenciar')
-            ->with('success', 'Equipe excluída com sucesso!');
     }
 }

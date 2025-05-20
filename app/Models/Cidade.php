@@ -46,6 +46,14 @@ class Cidade extends Model
         return $this->hasMany(Equipe::class);
     }
     
+    /**
+     * Retorna os avaliadores da cidade
+     */
+    public function avaliadores()
+    {
+        return $this->hasMany(Avaliador::class);
+    }
+
     // Método para obter dias disponíveis com base na categoria de distância
     public function getDiasDisponiveis()
     {

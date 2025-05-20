@@ -206,7 +206,7 @@
         
         /* Nota informativa */
         .nota-info {
-            background-color: #f8f9fa;
+            background-color: #f8f9f9;
             border-left: 4px solid #9c27b0;
             padding: 20px;
             border-radius: 5px;
@@ -346,16 +346,63 @@
                                     <p class="mb-1"><strong>Data:</strong> {{ \Carbon\Carbon::parse($cidade->banca_agendada)->format('d/m/Y') }}</p>
                                     <p class="mb-1"><strong>Horário:</strong> {{ \Carbon\Carbon::parse($cidade->banca_agendada)->format('H:i') }}</p>
                                     <p class="mb-0"><strong>Local:</strong> Auditório Principal - CEEP - R. Edgar Bardal, s/n - Assaí, PR, 86220-000</p>
+                                </div>
+                                
+                                <!-- Exibir avaliadores cadastrados -->
+                                <div class="calendario-container mt-4">
+                                    <h4 class="mb-3"><i class="fa fa-users mr-2"></i>Avaliadores Cadastrados</h4>
                                     
-                                    <div class="mt-3">
-                                        <form action="{{ route('ideasun.cidade.cancelar-banca') }}" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar o agendamento da banca?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger">
-                                                <i class="fa fa-calendar-times-o mr-2"></i>Cancelar Agendamento
-                                            </button>
-                                        </form>
-                                    </div>
+                                    @if($cidade->avaliadores->count() > 0)
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>Nome</th>
+                                                        <th>CPF</th>
+                                                        <th>Telefone</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($cidade->avaliadores as $avaliador)
+                                                        <tr>
+                                                            <td>{{ $avaliador->nome }}</td>
+                                                            <td>{{ substr($avaliador->cpf, 0, 3) . '.' . substr($avaliador->cpf, 3, 3) . '.' . substr($avaliador->cpf, 6, 3) . '-' . substr($avaliador->cpf, 9, 2) }}</td>
+                                                            <td>{{ $avaliador->telefone }}</td>
+                                                            <td>
+                                                                @if($avaliador->ativo)
+                                                                    <span class="badge badge-success">Ativo</span>
+                                                                @else
+                                                                    <span class="badge badge-danger">Inativo</span>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <div class="alert alert-info mt-3">
+                                            <i class="fa fa-info-circle mr-2"></i>
+                                            <strong>Informação:</strong> Os avaliadores acima terão acesso ao sistema para avaliar projetos de outras cidades. 
+                                            A senha inicial é os 6 primeiros dígitos do CPF.
+                                        </div>
+                                    @else
+                                        <div class="alert alert-warning">
+                                            <i class="fa fa-exclamation-triangle mr-2"></i>
+                                            Nenhum avaliador cadastrado. Entre em contato com o suporte.
+                                        </div>
+                                    @endif
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <form action="{{ route('ideasun.cidade.cancelar-banca') }}" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar o agendamento da banca? Isso também removerá os avaliadores cadastrados.');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger">
+                                            <i class="fa fa-calendar-times-o mr-2"></i>Cancelar Agendamento
+                                        </button>
+                                    </form>
                                 </div>
                             @else
                                 <form action="{{ route('ideasun.cidade.salvar-banca') }}" method="POST" id="formBanca">
@@ -380,49 +427,63 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="text-center">
+                                
+                                    <div class="calendario-container mt-4">
+                                        <h4 class="mb-3"><i class="fa fa-users mr-2"></i>Cadastro de Avaliadores</h4>
+                                        <p>Informe os dados de 5 avaliadores que representarão sua cidade na banca de avaliação de outra cidade:</p>
+                                        
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <div class="card mb-4">
+                                                <div class="card-header bg-light">
+                                                    <h5 class="mb-0">Avaliador {{ $i }}</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="avaliador_nome_{{ $i }}">Nome Completo <span class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control" id="avaliador_nome_{{ $i }}" 
+                                                                       name="avaliadores[{{ $i-1 }}][nome]" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="avaliador_cpf_{{ $i }}">CPF <span class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control cpf-mask" id="avaliador_cpf_{{ $i }}" 
+                                                                       name="avaliadores[{{ $i-1 }}][cpf]" placeholder="000.000.000-00" required>
+                                                                <small class="form-text text-muted">A senha inicial será os 6 primeiros dígitos do CPF.</small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="avaliador_telefone_{{ $i }}">Telefone <span class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control telefone-mask" id="avaliador_telefone_{{ $i }}" 
+                                                                       name="avaliadores[{{ $i-1 }}][telefone]" placeholder="(00) 00000-0000" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endfor
+                                        
+                                        <div class="alert alert-info">
+                                            <i class="fa fa-info-circle mr-2"></i>
+                                            <strong>Importante:</strong> Os avaliadores cadastrados receberão acesso ao sistema para avaliar os projetos de outra cidade. A senha inicial será os 6 primeiros dígitos do CPF informado.
+                                        </div>
+                                    </div>
+
+                                    <!-- Botão de agendamento movido para cá, depois dos avaliadores -->
+                                    <div class="text-center mt-4 mb-4">
                                         <button type="submit" class="btn btn-primary btn-agendar" id="btnAgendar" disabled>
                                             <i class="fa fa-calendar-check-o mr-2"></i>Confirmar Agendamento
                                         </button>
                                     </div>
                                 </form>
                                 
-                                <div class="calendario-container mt-4">
-                                    <h4 class="mb-3"><i class="fa fa-users mr-2"></i>Cadastro de Avaliadores</h4>
-                                    <p>Informe os dados de 3 avaliadores que representarão sua cidade na banca de avaliação de outra cidade:</p>
-                                    
-                                    @for($i = 1; $i <= 3; $i++)
-                                        <div class="card mb-4">
-                                            <div class="card-header bg-light">
-                                                <h5 class="mb-0">Avaliador {{ $i }}</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="avaliador_nome_{{ $i }}">Nome Completo <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" id="avaliador_nome_{{ $i }}" 
-                                                                   name="avaliadores[{{ $i }}][nome]" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="avaliador_cpf_{{ $i }}">CPF <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control cpf-mask" id="avaliador_cpf_{{ $i }}" 
-                                                                   name="avaliadores[{{ $i }}][cpf]" placeholder="000.000.000-00" required>
-                                                            <small class="form-text text-muted">A senha inicial será os 6 primeiros dígitos do CPF.</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endfor
-                                    
-                                    <div class="alert alert-info">
-                                        <i class="fa fa-info-circle mr-2"></i>
-                                        <strong>Importante:</strong> Os avaliadores cadastrados receberão acesso ao sistema para avaliar os projetos de outra cidade. A senha inicial será os 6 primeiros dígitos do CPF informado.
-                                    </div>
+                                <div class="alert alert-info mt-3">
+                                    <i class="fa fa-info-circle mr-2"></i>
+                                    <strong>Verificação:</strong> Ao clicar em "Confirmar Agendamento", todos os 5 avaliadores serão cadastrados.
+                                    Certifique-se de que todas as informações estão corretas.
                                 </div>
                                 
                                 <div class="nota-info">
@@ -505,9 +566,9 @@
                             html += '</div>';
                             $('#horarios_container').html(html);
                             
-                            // Habilitar o botão de agendamento quando um horário for selecionado
+                            // Quando um horário for selecionado, verifica todos os campos para habilitar o botão
                             $('input[name="horario"]').change(function() {
-                                $('#btnAgendar').prop('disabled', false);
+                                verificarFormulario();
                             });
                         } else {
                             $('#horarios_container').html('<div class="alert alert-warning"><i class="fa fa-exclamation-triangle mr-2"></i>Não há horários disponíveis para esta data.</div>');
@@ -537,6 +598,98 @@
                 } else {
                     $(this).val(value);
                 }
+                
+                // Verificar se o botão deve ser habilitado depois de editar CPF
+                verificarFormulario();
+            });
+            
+            // Aplicar máscara aos campos de telefone
+            $('.telefone-mask').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                
+                if (value.length > 11) {
+                    value = value.substr(0, 11);
+                }
+                
+                var formatted = '';
+                
+                if (value.length > 0) {
+                    formatted = '(' + value.substring(0, 2);
+                    
+                    if (value.length > 2) {
+                        if (value.length > 7) {
+                            // Formato (XX) XXXXX-XXXX para celular
+                            formatted += ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+                        } else {
+                            // Formato (XX) XXXX-XXXX para telefone fixo
+                            formatted += ') ' + value.substring(2, 6) + '-' + value.substring(6, 10);
+                        }
+                    } else {
+                        formatted += ')';
+                    }
+                }
+                
+                $(this).val(formatted);
+                
+                // Verificar se o botão deve ser habilitado depois de editar telefone
+                verificarFormulario();
+            });
+            
+            // Verificar campos quando os nomes forem editados
+            $('input[id^="avaliador_nome_"]').on('input', function() {
+                verificarFormulario();
+            });
+            
+            // Modificar a função de verificação do formulário
+            function verificarFormulario() {
+                console.log('Verificando formulário...');
+                
+                let horarioSelecionado = $('input[name="horario"]:checked').val() ? true : false;
+                console.log('Horário selecionado:', horarioSelecionado);
+                
+                let avaliadoresValid = true;
+                
+                // Verificar os 5 avaliadores
+                for (let i = 1; i <= 5; i++) {
+                    const nome = $(`#avaliador_nome_${i}`).val() || '';
+                    const cpf = $(`#avaliador_cpf_${i}`).val() || '';
+                    const telefone = $(`#avaliador_telefone_${i}`).val() || '';
+                    
+                    console.log(`Avaliador ${i}:`, { nome, cpf, telefone });
+                    
+                    if (!nome.trim() || cpf.replace(/\D/g, '').length !== 11 || telefone.replace(/\D/g, '').length < 10) {
+                        avaliadoresValid = false;
+                        console.log(`Avaliador ${i} inválido`);
+                        break;
+                    }
+                }
+                
+                console.log('Avaliadores válidos:', avaliadoresValid);
+                
+                // Habilitar ou desabilitar o botão
+                $('#btnAgendar').prop('disabled', !(horarioSelecionado && avaliadoresValid));
+            }
+            
+            // Adicionar submit handler com debug
+            $('#formBanca').on('submit', function(e) {
+                console.log('Formulário enviado');
+                
+                // Coletar todos os valores para debug
+                const formData = {
+                    data_banca: $('#data_banca').val(),
+                    horario: $('input[name="horario"]:checked').val(),
+                    avaliadores: []
+                };
+                
+                for (let i = 1; i <= 5; i++) {
+                    formData.avaliadores.push({
+                        nome: $(`#avaliador_nome_${i}`).val(),
+                        cpf: $(`#avaliador_cpf_${i}`).val(),
+                        telefone: $(`#avaliador_telefone_${i}`).val()
+                    });
+                }
+                
+                console.log('Dados do formulário:', formData);
             });
             
             // Validar formulário antes de enviar
@@ -550,11 +703,12 @@
                 // Verificação dos avaliadores
                 let avaliadoresValid = true;
                 
-                for (let i = 1; i <= 3; i++) {
+                for (let i = 1; i <= 5; i++) {
                     const nome = $(`#avaliador_nome_${i}`).val().trim();
                     const cpf = $(`#avaliador_cpf_${i}`).val().replace(/\D/g, '');
+                    const telefone = $(`#avaliador_telefone_${i}`).val().replace(/\D/g, '');
                     
-                    if (!nome || cpf.length !== 11) {
+                    if (!nome || cpf.length !== 11 || telefone.length < 10) {
                         avaliadoresValid = false;
                         break;
                     }
@@ -562,7 +716,7 @@
                 
                 if (!avaliadoresValid) {
                     e.preventDefault();
-                    alert('Por favor, preencha corretamente os dados dos 3 avaliadores.');
+                    alert('Por favor, preencha corretamente os dados dos 5 avaliadores (nome, CPF e telefone).');
                     return false;
                 }
             });
