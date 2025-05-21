@@ -109,7 +109,9 @@ Route::middleware(['ideasun.equipe.auth'])->group(function () {
     Route::get('/ideasun/equipe/apresentacao/status/{equipe_id}', [IdeasunController::class, 'equipeApresentacaoStatus'])->name('ideasun.equipe.apresentacao.status');
     
     // Adicionar rota para excluir equipe
-    Route::delete('/ideasun/equipe/excluir/{id}', [IdeasunController::class, 'equipeExcluir'])->name('ideasun.equipe.excluir');
+    Route::delete('/ideasun/equipe/excluir/{id}', [IdeasunController::class, 'equipeExcluir'])
+        ->name('ideasun.equipe.excluir')
+        ->middleware('ideasun.equipe.auth');
 });
 
 // Admin routes

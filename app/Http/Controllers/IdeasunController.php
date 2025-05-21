@@ -239,13 +239,13 @@ class IdeasunController extends Controller
         }
 
         // Debug para verificar se a data está chegando corretamente
-        \Log::info("Solicitando períodos para a data: " . $data);
+        \Illuminate\Support\Facades\Log::info("Solicitando períodos para a data: " . $data);
 
         $treinamentoService = new TreinamentoService();
         $periodos = $treinamentoService->getPeriodosDisponiveis($data);
 
         // Debug para verificar os períodos retornados
-        \Log::info("Períodos disponíveis: ", $periodos);
+        \Illuminate\Support\Facades\Log::info("Períodos disponíveis: ", $periodos);
 
         return response()->json(['periodos' => $periodos]);
     }
@@ -591,7 +591,7 @@ class IdeasunController extends Controller
                             throw new \RuntimeException(sprintf('Não foi possível criar o diretório "%s"', $directory));
                         }
                     } catch (\Exception $e) {
-                        \Log::error('Erro ao criar diretório: ' . $e->getMessage());
+                        \Illuminate\Support\Facades\Log::error('Erro ao criar diretório: ' . $e->getMessage());
                         return redirect()->back()->with('error', 'Erro ao processar upload. Por favor, tente novamente.');
                     }
                 }
@@ -774,7 +774,7 @@ class IdeasunController extends Controller
                             throw new \RuntimeException(sprintf('Não foi possível criar o diretório "%s"', $directory));
                         }
                     } catch (\Exception $e) {
-                        \Log::error('Erro ao criar diretório: ' . $e->getMessage());
+                        \Illuminate\Support\Facades\Log::error('Erro ao criar diretório: ' . $e->getMessage());
                         return redirect()->back()->with('error', 'Erro ao processar upload. Por favor, tente novamente.');
                     }
                 }
@@ -966,7 +966,7 @@ class IdeasunController extends Controller
     public function getBancaHorariosDisponiveis(Request $request)
     {
         // Adicionar log para debug
-        \Log::info('getBancaHorariosDisponiveis - data recebida:', ['data' => $request->input('data')]);
+        \Illuminate\Support\Facades\Log::info('getBancaHorariosDisponiveis - data recebida:', ['data' => $request->input('data')]);
 
         try {
             $request->validate([
@@ -1010,7 +1010,7 @@ class IdeasunController extends Controller
             ]);
         } catch (\Exception $e) {
             // Registrar erro e retornar resposta de erro
-            \Log::error('Erro ao obter horários disponíveis: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Erro ao obter horários disponíveis: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'error' => 'Erro ao processar a solicitação: ' . $e->getMessage(),
@@ -1024,7 +1024,7 @@ class IdeasunController extends Controller
      */
     public function cidadeSalvarBanca(Request $request)
     {
-        \Log::info('Iniciando processamento de cidadeSalvarBanca', $request->all());
+        \Illuminate\Support\Facades\Log::info('Iniciando processamento de cidadeSalvarBanca', $request->all());
 
         $request->validate([
             'data_banca' => 'required|date',
@@ -1038,7 +1038,7 @@ class IdeasunController extends Controller
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
 
-        \Log::info('Cidade encontrada:', ['id' => $cidade->id, 'nome' => $cidade->nome]);
+        \Illuminate\Support\Facades\Log::info('Cidade encontrada:', ['id' => $cidade->id, 'nome' => $cidade->nome]);
 
         // Extrair apenas o primeiro horário da string (antes do "às")
         $horarioPartes = explode(' às ', $request->horario);
@@ -1099,7 +1099,7 @@ class IdeasunController extends Controller
             $cidade->banca_agendada = $dataHora;
             $cidade->save();
 
-            \Log::info('Banca agendada com sucesso:', [
+            \Illuminate\Support\Facades\Log::info('Banca agendada com sucesso:', [
                 'cidade_id' => $cidade->id,
                 'data_hora' => $dataHora->format('Y-m-d H:i:s')
             ]);
@@ -1122,7 +1122,7 @@ class IdeasunController extends Controller
                 $avaliador->ativo = true;
                 $avaliador->save();
 
-                \Log::info('Avaliador cadastrado:', [
+                \Illuminate\Support\Facades\Log::info('Avaliador cadastrado:', [
                     'id' => $avaliador->id,
                     'cidade_id' => $avaliador->cidade_id
                 ]);
@@ -1140,7 +1140,7 @@ class IdeasunController extends Controller
                        '. Seus 5 avaliadores foram cadastrados.');
 
         } catch (\Exception $e) {
-            \Log::error('Erro ao agendar banca:', [
+            \Illuminate\Support\Facades\Log::error('Erro ao agendar banca:', [
                 'erro' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
                 'request' => $request->all()
@@ -1173,12 +1173,12 @@ class IdeasunController extends Controller
             // Depois, excluir todas as avaliações feitas por estes avaliadores
             if (!empty($avaliadorIds)) {
                 \App\Models\Avaliacao::whereIn('avaliador_id', $avaliadorIds)->delete();
-                \Log::info('Avaliações removidas para os avaliadores: ' . implode(', ', $avaliadorIds));
+                \Illuminate\Support\Facades\Log::info('Avaliações removidas para os avaliadores: ' . implode(', ', $avaliadorIds));
             }
 
             // Agora é seguro remover os avaliadores
             \App\Models\Avaliador::where('cidade_id', $cidade->id)->delete();
-            \Log::info('Avaliadores removidos para a cidade ' . $cidade->id);
+            \Illuminate\Support\Facades\Log::info('Avaliadores removidos para a cidade ' . $cidade->id);
 
             // Remover agendamento
             $cidade->update([
@@ -1188,7 +1188,7 @@ class IdeasunController extends Controller
             return redirect()->route('ideasun.cidade.dashboard')
                 ->with('success', 'Agendamento de banca para ' . $dataHoraAntiga . ' cancelado com sucesso.');
         } catch (\Exception $e) {
-            \Log::error('Erro ao cancelar banca:', [
+            \Illuminate\Support\Facades\Log::error('Erro ao cancelar banca:', [
                 'erro' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
@@ -1292,5 +1292,61 @@ class IdeasunController extends Controller
             'success' => true,
             'horarios' => $horarios
         ]);
+    }
+
+    /**
+     * Exclui uma equipe
+     * 
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function equipeExcluir($id)
+    {
+        try {
+            // Verificar se a cidade logada tem permissão para gerenciar esta equipe
+            $cidade_id = Session::get('cidade_id_para_equipe');
+            $equipe = Equipe::findOrFail($id);
+            
+            if ($equipe->cidade_id != $cidade_id) {
+                return redirect()->back()->with('error', 'Você não tem permissão para excluir esta equipe.');
+            }
+            
+            // Primeiro remover membros associados à equipe
+            $equipe->membros()->delete();
+            
+            // Excluir arquivo de apresentação se existir
+            if ($equipe->apresentacao_path && file_exists(public_path($equipe->apresentacao_path))) {
+                unlink(public_path($equipe->apresentacao_path));
+            }
+            
+            // Excluir documentos da equipe se existirem
+            $documentos = [
+                $equipe->doc_termo_aceite_path,
+                $equipe->doc_termo_dados_path, 
+                $equipe->doc_termo_imagem_path
+            ];
+            
+            foreach ($documentos as $doc) {
+                if ($doc && file_exists(public_path($doc))) {
+                    unlink(public_path($doc));
+                }
+            }
+            
+            // Remover avaliações relacionadas à equipe
+            if (method_exists($equipe, 'avaliacoes')) {
+                $equipe->avaliacoes()->delete();
+            }
+            
+            // Finalmente, excluir a equipe
+            $equipe->delete();
+            
+            return redirect()->route('ideasun.equipe.gerenciar')
+                ->with('success', 'Equipe excluída com sucesso.');
+                
+        } catch (\Exception $e) {
+            Log::error('Erro ao excluir equipe: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Erro ao excluir equipe: ' . $e->getMessage());
+        }
     }
 }

@@ -20,31 +20,31 @@ class BancaController extends Controller
             'cpf' => 'required|string',
             'senha' => 'required|string',
         ]);
-        
+
         // Limpar o CPF para formato somente números
         $cpf = preg_replace('/[^0-9]/', '', $request->cpf);
-        
+
         // Buscar avaliador pelo CPF
         $avaliador = Avaliador::where('cpf', $cpf)->first();
-        
+
         if ($avaliador && Hash::check($request->senha, $avaliador->senha)) {
             // Se autenticado com sucesso, guarda o avaliador_id na sessão
             Session::put('avaliador_id', $avaliador->id);
-            
-            \Log::info('Avaliador autenticado:', [
+
+            \Illuminate\Support\Facades\Log::info('Avaliador autenticado:', [
                 'id' => $avaliador->id,
                 'nome' => $avaliador->nome,
                 'cidade_id' => $avaliador->cidade_id
             ]);
-            
+
             return redirect()->route('ideasun.banca.dashboard');
         }
-        
+
         return redirect()->route('ideasun.login')
             ->with('error', 'CPF ou senha inválidos. Por favor, tente novamente.')
             ->withInput($request->except('senha'));
     }
-    
+
     /**
      * Dashboard da Banca
      */
@@ -67,7 +67,7 @@ class BancaController extends Controller
         // Carregar as equipes para cada cidade e verificar se já foram avaliadas
         foreach ($cidadesParaAvaliar as $cidadeAvaliar) {
             $cidadeAvaliar->equipes = $cidadeAvaliar->equipes->map(function ($equipe) use ($avaliador) {
-                $equipe->ja_avaliada = \DB::table('avaliacoes')
+                $equipe->ja_avaliada = \Illuminate\Support\Facades\DB::table('avaliacoes')
                     ->where('avaliador_id', $avaliador->id)
                     ->where('equipe_id', $equipe->id)
                     ->exists();
@@ -77,7 +77,7 @@ class BancaController extends Controller
 
         return view('ideasun.banca.dashboard', compact('avaliador', 'cidade', 'cidadesParaAvaliar'));
     }
-    
+
     /**
      * Página para avaliar uma equipe específica
      */
@@ -96,7 +96,7 @@ class BancaController extends Controller
             }
 
             // Verificar se o avaliador já avaliou esta equipe
-            $jaAvaliada = \DB::table('avaliacoes')
+            $jaAvaliada = \Illuminate\Support\Facades\DB::table('avaliacoes')
                 ->where('avaliador_id', $avaliador->id)
                 ->where('equipe_id', $equipe_id)
                 ->exists();
@@ -107,7 +107,7 @@ class BancaController extends Controller
             }
 
             // Obter avaliações realizadas pelo avaliador atual (para a tabela de avaliações)
-            $avaliacoes = \DB::table('avaliacoes')
+            $avaliacoes = \Illuminate\Support\Facades\DB::table('avaliacoes')
                 ->where('avaliador_id', $avaliador->id)
                 ->join('equipes', 'avaliacoes.equipe_id', '=', 'equipes.id')
                 ->join('cidades', 'equipes.cidade_id', '=', 'cidades.id')
@@ -139,7 +139,7 @@ class BancaController extends Controller
             return redirect()->route('ideasun.banca.avaliar', ['equipe_id' => $equipe->id]);
         }
     }
-    
+
     /**
      * Salvar avaliação de uma equipe
      */
@@ -153,28 +153,28 @@ class BancaController extends Controller
             'D_aderencia_ODS' => 'required|integer|min:0|max:25',
             'comentarios' => 'nullable|string|max:1000',
         ]);
-        
+
         $avaliador = $this->getAvaliadorFromSession();
-        
+
         // Verificar se já avaliou esta equipe
-        $avaliacaoExistente = \DB::table('avaliacoes')
+        $avaliacaoExistente = \Illuminate\Support\Facades\DB::table('avaliacoes')
             ->where('avaliador_id', $avaliador->id)
             ->where('equipe_id', $request->equipe_id)
             ->exists();
-        
+
         if ($avaliacaoExistente) {
             return redirect()->route('ideasun.banca.dashboard')
                 ->with('error', 'Você já avaliou esta equipe anteriormente.');
         }
-        
+
         // Calcular a nota total (soma dos 4 critérios)
-        $notaTotal = $request->A_criatividade_inovacao + 
-                    $request->B_qualidade_apresentacao + 
+        $notaTotal = $request->A_criatividade_inovacao +
+                    $request->B_qualidade_apresentacao +
                     $request->C_impacto_sociedade +
                     $request->D_aderencia_ODS;
-        
+
         // Criar registro de avaliação
-        \DB::table('avaliacoes')->insert([
+        \Illuminate\Support\Facades\DB::table('avaliacoes')->insert([
             'avaliador_id' => $avaliador->id,
             'equipe_id' => $request->equipe_id,
             'A_criatividade_inovacao' => $request->A_criatividade_inovacao,
@@ -186,20 +186,20 @@ class BancaController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
+
         return redirect()->route('ideasun.banca.dashboard')
             ->with('success', 'Avaliação registrada com sucesso!');
     }
-    
+
     /**
      * Visualizar resultados das avaliações realizadas
      */
     public function resultados()
     {
         $avaliador = $this->getAvaliadorFromSession();
-        
+
         // Buscar todas as avaliações feitas por este avaliador
-        $avaliacoes = \DB::table('avaliacoes')
+        $avaliacoes = \Illuminate\Support\Facades\DB::table('avaliacoes')
             ->where('avaliador_id', $avaliador->id)
             ->join('equipes', 'avaliacoes.equipe_id', '=', 'equipes.id')
             ->join('cidades', 'equipes.cidade_id', '=', 'cidades.id')
@@ -211,10 +211,10 @@ class BancaController extends Controller
             )
             ->orderBy('avaliacoes.created_at', 'desc')
             ->get();
-        
+
         return view('ideasun.banca.resultados', compact('avaliador', 'avaliacoes'));
     }
-    
+
     /**
      * Logout do avaliador
      */
@@ -224,7 +224,7 @@ class BancaController extends Controller
         return redirect()->route('ideasun.login')
             ->with('success', 'Você saiu do sistema com sucesso.');
     }
-    
+
     /**
      * Utilitário para obter o avaliador da sessão
      */
