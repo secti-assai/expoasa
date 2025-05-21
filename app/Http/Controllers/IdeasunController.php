@@ -6,9 +6,11 @@ use App\Models\Cidade;
 use App\Models\Equipe;
 use App\Models\Material;
 use App\Models\Membro;
+use App\Models\Avaliacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Services\TreinamentoService;
@@ -32,7 +34,7 @@ class IdeasunController extends Controller
         if (Session::has('cidade_id')) {
             return redirect()->route('ideasun.cidade.dashboard');
         }
-        
+
         // Verificar se já está logado como equipe
         if (Session::has('equipe_id')) {
             $equipe = Equipe::find(Session::get('equipe_id'));
@@ -40,7 +42,7 @@ class IdeasunController extends Controller
                 return redirect()->route('ideasun.equipe.membros', ['equipe_id' => $equipe->equipe_id]);
             }
         }
-        
+
         return view('ideasun.login');
     }
 
@@ -63,7 +65,7 @@ class IdeasunController extends Controller
 
             if ($cidade && Hash::check($request->senha, $cidade->senha)) {
                 Session::put('cidade_id', $cidade->id);
-                
+
                 // Verificar se o cadastro completo já foi realizado
                 // Um cadastro completo tem pelo menos dados do representante, prefeito e secretário
                 if ($cidade->representante_nome && $cidade->prefeito_nome && $cidade->secretario_nome) {
@@ -77,11 +79,11 @@ class IdeasunController extends Controller
         } else {
             // Buscar cidade pelo cidade_id para autenticar equipe
             $cidade = Cidade::where('cidade_id', $request->identificador)->first();
-            
+
             if ($cidade && Hash::check($request->senha, $cidade->senha)) {
                 // Se autenticou com sucesso, guarda o cidade_id na sessão
                 Session::put('cidade_id_para_equipe', $cidade->id);
-                
+
                 // Redireciona para página de gerenciamento de equipes
                 return redirect()->route('ideasun.equipe.gerenciar');
             }
@@ -115,7 +117,7 @@ class IdeasunController extends Controller
             'RO' => 'Rondônia', 'RR' => 'Roraima', 'SC' => 'Santa Catarina', 'SP' => 'São Paulo',
             'SE' => 'Sergipe', 'TO' => 'Tocantins'
         ];
-        
+
         // View específica para registro, sem variáveis relacionadas a treinamento
         return view('ideasun.cidade.registro', compact('estados'));
     }
@@ -136,32 +138,32 @@ class IdeasunController extends Controller
             'modalidades.required' => 'Selecione pelo menos uma modalidade para participar.',
             'modalidades.min' => 'Selecione pelo menos uma modalidade para participar.'
         ]);
-        
+
         // Calcular categoria de distância com base no estado
         // (Aqui você pode implementar uma lógica mais sofisticada)
         $distanciaCategoria = 1; // Padrão: próxima (categoria 1)
-        
+
         // Estados de média distância
         $mediaDistancia = ['SP', 'SC', 'MS'];
         if (in_array($request->estado, $mediaDistancia)) {
             $distanciaCategoria = 2;
         }
-        
+
         // Estados de longa distância
         $longaDistancia = ['RJ', 'ES', 'MG', 'GO', 'MT', 'RS'];
         if (in_array($request->estado, $longaDistancia)) {
             $distanciaCategoria = 3;
         }
-        
+
         // Todas as modalidades disponíveis
         $todasModalidades = [
-            'educacao_especial', 
-            'fundamental_1', 
-            'fundamental_2', 
-            'medio_tecnico', 
+            'educacao_especial',
+            'fundamental_1',
+            'fundamental_2',
+            'medio_tecnico',
             'superior'
         ];
-        
+
         // Criar a cidade com todas as modalidades
         $cidade = Cidade::create([
             'nome' => $request->nome,
@@ -175,18 +177,18 @@ class IdeasunController extends Controller
             'hash_id' => Str::uuid(),
             'treinamento_requerido' => $request->has('necessita_treinamento'),
         ]);
-        
+
         // Iniciar sessão
         Session::put('cidade_id', $cidade->id);
-        
+
         // Redirecionar para página de treinamento se solicitado
         if ($cidade->treinamento_requerido) {
             return redirect()->route('ideasun.cidade.treinamento');
         }
-        
+
         return redirect()->route('ideasun.cidade.dashboard');
     }
-    
+
     /**
      * Retorna um nome amigável para a equipe baseado na modalidade
      */
@@ -199,9 +201,9 @@ class IdeasunController extends Controller
             'medio_tecnico' => 'CRIA',
             'superior' => 'AVANÇA'
         ];
-        
+
         $modalidadeNome = $nomesPorModalidade[$modalidade] ?? ucfirst(str_replace('_', ' ', $modalidade));
-        
+
         return $cidade->nome . ' - ' . $modalidadeNome;
     }
 
@@ -212,14 +214,14 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         if (!$cidade->treinamento_requerido || $cidade->treinamento_agendado) {
             return redirect()->route('ideasun.cidade.sucesso');
         }
-        
+
         $treinamentoService = new TreinamentoService();
         $diasDisponiveis = $treinamentoService->getDatasDisponiveis();
-        
+
         return view('ideasun.cidade.treinamento', compact('cidade', 'diasDisponiveis'));
     }
 
@@ -230,21 +232,21 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         $data = $request->input('data');
         if (!$data) {
             return response()->json(['error' => 'Data não informada'], 400);
         }
-        
+
         // Debug para verificar se a data está chegando corretamente
         \Log::info("Solicitando períodos para a data: " . $data);
-        
+
         $treinamentoService = new TreinamentoService();
         $periodos = $treinamentoService->getPeriodosDisponiveis($data);
-        
+
         // Debug para verificar os períodos retornados
         \Log::info("Períodos disponíveis: ", $periodos);
-        
+
         return response()->json(['periodos' => $periodos]);
     }
 
@@ -255,24 +257,24 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         $request->validate([
             'data' => 'required|date',
             'periodo' => 'required|string',
         ]);
-        
+
         $treinamentoService = new TreinamentoService();
         $agendado = $treinamentoService->agendarTreinamento(
-            $cidade, 
+            $cidade,
             $request->input('data'),
             $request->input('periodo')
         );
-        
+
         if ($agendado) {
             return redirect()->route('ideasun.cidade.dashboard')
                 ->with('success', 'Treinamento agendado com sucesso!');
         }
-        
+
         return back()
             ->with('error', 'Não foi possível agendar o treinamento. O período já está lotado ou não está disponível.')
             ->withInput();
@@ -286,7 +288,7 @@ class IdeasunController extends Controller
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
         $equipes = $cidade->equipes;
-        
+
         return view('ideasun.cidade.dashboard', compact('cidade', 'equipes'));
     }
 
@@ -298,7 +300,7 @@ class IdeasunController extends Controller
         // Obter ID da cidade da sessão
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::with('equipes')->findOrFail($cidade_id);
-        
+
         // Estados brasileiros para o dropdown
         $estados = [
             'AC' => 'Acre', 'AL' => 'Alagoas', 'AP' => 'Amapá', 'AM' => 'Amazonas', 'BA' => 'Bahia',
@@ -309,7 +311,7 @@ class IdeasunController extends Controller
             'RO' => 'Rondônia', 'RR' => 'Roraima', 'SC' => 'Santa Catarina', 'SP' => 'São Paulo',
             'SE' => 'Sergipe', 'TO' => 'Tocantins'
         ];
-        
+
         return view('ideasun.cidade.editar', compact('cidade', 'estados'));
     }
 
@@ -321,7 +323,7 @@ class IdeasunController extends Controller
         // Obter ID da cidade da sessão
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         $request->validate([
             'representante_nome' => 'required|string|max:255',
             'representante_email' => 'required|email|max:255',
@@ -332,7 +334,7 @@ class IdeasunController extends Controller
             'modalidades.required' => 'Selecione pelo menos uma modalidade para participar.',
             'modalidades.min' => 'Selecione pelo menos uma modalidade para participar.'
         ]);
-        
+
         // Atualizar apenas os dados permitidos
         $cidade->update([
             'representante_nome' => $request->representante_nome,
@@ -341,12 +343,12 @@ class IdeasunController extends Controller
             'treinamento_requerido' => $request->has('necessita_treinamento'),
             'modalidades' => $request->modalidades,
         ]);
-        
+
         // Redirecionar para página de treinamento se solicitado
         if ($cidade->treinamento_requerido && !$cidade->treinamento_agendado) {
             return redirect()->route('ideasun.cidade.treinamento');
         }
-        
+
         return redirect()->route('ideasun.cidade.dashboard');
     }
 
@@ -358,7 +360,7 @@ class IdeasunController extends Controller
         // Obter ID da cidade da sessão
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::with('equipes')->findOrFail($cidade_id);
-        
+
         return view('ideasun.cidade.dashboard', compact('cidade'));
     }
 
@@ -369,12 +371,12 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         // Se já completou o cadastro, redirecionar para dashboard
         if ($cidade->representante_nome !== null && $cidade->representante_email !== null) {
             return redirect()->route('ideasun.cidade.dashboard');
         }
-        
+
         return view('ideasun.cidade.cadastro-inicial', compact('cidade'));
     }
 
@@ -385,7 +387,7 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         $request->validate([
             'representante_nome' => 'required|string|max:255',
             'representante_email' => 'required|email|max:255',
@@ -393,7 +395,7 @@ class IdeasunController extends Controller
             'modalidades' => 'required|array|min:1',
             'modalidades.*' => 'required|string|in:educacao_especial,fundamental_1,fundamental_2,medio_tecnico,ensino_superior',
         ]);
-        
+
         // Atualizar dados da cidade
         $cidade->update([
             'representante_nome' => $request->representante_nome,
@@ -402,10 +404,10 @@ class IdeasunController extends Controller
             'modalidades' => $request->modalidades,
             'treinamento_requerido' => true // Definir treinamento como requerido por padrão
         ]);
-        
+
         // Criar equipes para cada modalidade selecionada
         $this->atualizarEquipes($cidade, $request->modalidades);
-        
+
         // Redirecionar para o dashboard com mensagem de sucesso
         return redirect()->route('ideasun.cidade.dashboard')
             ->with('success', 'Cadastro da cidade realizado com sucesso! Agora você pode agendar o treinamento necessário.');
@@ -424,10 +426,10 @@ class IdeasunController extends Controller
             'ensino_medio' => 'Ensino Médio/Técnico',
             'ensino_superior' => 'Ensino Superior',
         ];
-        
+
         // Obter modalidades que já foram registradas
         $modalidadesRegistradas = $cidade->equipes()->pluck('modalidade')->toArray();
-        
+
         return view('ideasun.equipe.registro', compact('cidade', 'modalidades', 'modalidadesRegistradas'));
     }
 
@@ -446,21 +448,21 @@ class IdeasunController extends Controller
             'responsavel_email' => 'required|email|max:255',
             'responsavel_telefone' => 'required|string|max:20',
         ]);
-        
+
         // REMOVER essa verificação para permitir múltiplas equipes
         // da mesma modalidade para uma cidade
         /*
         $existente = Equipe::where('cidade_id', $request->cidade_id)
             ->where('modalidade', $request->modalidade)
             ->exists();
-            
+
         if ($existente) {
             return redirect()->back()
                 ->with('error', 'Já existe uma equipe registrada para esta modalidade nesta cidade.')
                 ->withInput();
         }
         */
-        
+
         $equipe = Equipe::create([
             'cidade_id' => $request->cidade_id,
             'nome' => $request->nome,
@@ -471,9 +473,9 @@ class IdeasunController extends Controller
             'responsavel_telefone' => $request->responsavel_telefone,
             'hash_id' => Str::uuid(),
         ]);
-        
+
         Session::put('equipe_id', $equipe->id);
-        
+
         return redirect()->route('ideasun.equipe.membros', ['hash' => $equipe->hash_id]);
     }
 
@@ -484,7 +486,7 @@ class IdeasunController extends Controller
     {
         $equipe = Equipe::where('equipe_id', $equipe_id)->firstOrFail();
         $membros = $equipe->membros;
-        
+
         // Definir o número mínimo e máximo de membros por modalidade
         $limitesModalidade = [
             'educacao_especial' => ['min' => 3, 'max' => 4],
@@ -493,9 +495,9 @@ class IdeasunController extends Controller
             'ensino_medio' => ['min' => 4, 'max' => 5],
             'ensino_superior' => ['min' => 4, 'max' => 5],
         ];
-        
+
         $limites = $limitesModalidade[$equipe->modalidade] ?? ['min' => 3, 'max' => 5];
-        
+
         return view('ideasun.equipe.membros', compact('equipe', 'membros', 'limites'));
     }
 
@@ -505,17 +507,17 @@ class IdeasunController extends Controller
     public function equipeMembroStore(Request $request)
     {
         // Validações e outras lógicas existentes...
-        
+
         // Corrigindo o processamento do responsável pela equipe
         $responsavelEquipe = $request->has('responsavel_equipe') ? true : false;
-        
+
         // Se está marcando um novo membro como responsável, remova esse status de outros membros
         if ($responsavelEquipe) {
             // Remover o status de responsável de outros membros
             Membro::where('equipe_id', $request->equipe_id)
                 ->update(['responsavel_equipe' => false]);
         }
-        
+
         // Criar o novo membro com o status de responsável correto
         Membro::create([
             'equipe_id' => $request->equipe_id,
@@ -526,7 +528,7 @@ class IdeasunController extends Controller
             'funcao' => $request->funcao,
             'responsavel_equipe' => $responsavelEquipe
         ]);
-        
+
         // Resto do código...
     }
 
@@ -551,9 +553,9 @@ class IdeasunController extends Controller
             'doc_termo_dados.required' => 'O termo de consentimento de dados é obrigatório.',
             'doc_termo_imagem.required' => 'O termo de autorização de imagem é obrigatório.',
         ]);
-        
+
         $equipe = Equipe::findOrFail($request->equipe_id);
-        
+
         // Verificar limites de membros (código existente)
         $limitesModalidade = [
             'educacao_especial' => ['min' => 3, 'max' => 4],
@@ -562,25 +564,25 @@ class IdeasunController extends Controller
             'ensino_medio' => ['min' => 4, 'max' => 5],
             'ensino_superior' => ['min' => 4, 'max' => 5],
         ];
-        
+
         $limites = $limitesModalidade[$equipe->modalidade] ?? ['min' => 3, 'max' => 5];
-        
+
         if ($equipe->membros()->count() >= $limites['max']) {
             return redirect()->back()
                 ->with('error', 'Número máximo de membros já atingido.')
                 ->withInput();
         }
-        
+
         // Upload dos documentos
         $docPaths = [];
         $docTypes = ['doc_termo_aceite', 'doc_termo_dados', 'doc_termo_imagem'];
-        
+
         foreach ($docTypes as $docType) {
             if ($request->hasFile($docType)) {
                 $file = $request->file($docType);
                 $fileName = $docType . '_membro_' . time() . '_' . $file->getClientOriginalName();
                 $path = 'uploads/documentos/membros';
-                
+
                 // Ensure directory exists
                 $directory = public_path($path);
                 if (!file_exists($directory)) {
@@ -593,17 +595,17 @@ class IdeasunController extends Controller
                         return redirect()->back()->with('error', 'Erro ao processar upload. Por favor, tente novamente.');
                     }
                 }
-                
+
                 $file->move(public_path($path), $fileName);
                 $docPaths[$docType . '_path'] = $path . '/' . $fileName;
             }
         }
-        
+
         // Se for marcado como responsável, desmarcar os outros
         if ($request->has('responsavel_equipe')) {
             $equipe->membros()->update(['responsavel_equipe' => false]);
         }
-        
+
         $membro = Membro::create([
             'equipe_id' => $request->equipe_id,
             'nome' => $request->nome,
@@ -616,19 +618,19 @@ class IdeasunController extends Controller
             'doc_termo_dados_path' => $docPaths['doc_termo_dados_path'] ?? null,
             'doc_termo_imagem_path' => $docPaths['doc_termo_imagem_path'] ?? null,
         ]);
-        
+
         // Verificar se atingiu o número mínimo de membros
         if ($equipe->membros()->count() >= $limites['min']) {
             // Verificar se tem pelo menos um professor orientador
             $temProfessor = $equipe->membros()->where('funcao', 'professor')->exists();
-            
+
             if ($temProfessor) {
                 return redirect()->back()
                     ->with('success', 'Membro adicionado com sucesso. Você já pode finalizar a inscrição.')
                     ->with('pode_finalizar', true);
             }
         }
-        
+
         return redirect()->back()
             ->with('success', 'Membro adicionado com sucesso.');
     }
@@ -640,16 +642,16 @@ class IdeasunController extends Controller
     {
         $membro = Membro::findOrFail($id);
         $equipe = $membro->equipe;
-        
+
         // Verificar se a cidade logada tem permissão para gerenciar esta equipe
         $cidade_id = Session::get('cidade_id_para_equipe');
         if ($equipe->cidade_id != $cidade_id) {
             return redirect()->back()->with('error', 'Você não tem permissão para gerenciar esta equipe.');
         }
-        
+
         // Excluir o membro
         $membro->delete();
-        
+
         return redirect()->back()->with('success', 'Membro removido com sucesso.');
     }
 
@@ -660,7 +662,7 @@ class IdeasunController extends Controller
     {
         $equipe_id = Session::get('equipe_id');
         $equipe = Equipe::findOrFail($equipe_id);
-        
+
         return view('ideasun.equipe.sucesso', compact('equipe'));
     }
 
@@ -674,9 +676,9 @@ class IdeasunController extends Controller
             return redirect()->route('ideasun.login')
                 ->with('error', 'Você precisa estar logado para acessar os materiais.');
         }
-        
+
         $materiais = Material::orderBy('created_at', 'desc')->get();
-        
+
         return view('ideasun.materiais', compact('materiais'));
     }
 
@@ -688,7 +690,7 @@ class IdeasunController extends Controller
         $cidade_id = Session::get('cidade_id_para_equipe');
         $cidade = Cidade::findOrFail($cidade_id);
         $equipes = $cidade->equipes;
-        
+
         return view('ideasun.equipe.gerenciar', compact('cidade', 'equipes'));
     }
 
@@ -699,10 +701,10 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id_para_equipe');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         // Obter modalidades disponíveis para a cidade
         $modalidadesDisponiveis = $cidade->modalidades ?? [];
-        
+
         $modalidades = [];
         foreach ($modalidadesDisponiveis as $modalidade) {
             switch ($modalidade) {
@@ -725,7 +727,7 @@ class IdeasunController extends Controller
                     $modalidades[$modalidade] = ucfirst(str_replace('_', ' ', $modalidade));
             }
         }
-        
+
         return view('ideasun.equipe.criar', compact('cidade', 'modalidades'));
     }
 
@@ -736,7 +738,7 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id_para_equipe');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         $request->validate([
             'nome' => 'required|string|max:255',
             'modalidade' => 'required|string|in:' . implode(',', $cidade->modalidades),
@@ -749,21 +751,21 @@ class IdeasunController extends Controller
             'doc_termo_dados' => 'required|file|mimes:pdf,png,jpg,jpeg|max:5120',
             'doc_termo_imagem' => 'required|file|mimes:pdf,png,jpg,jpeg|max:5120',
         ]);
-        
+
         // Gerar um novo equipe_id
         $ultimoId = Equipe::max('equipe_id') ?? 1000;
         $novoId = $ultimoId + 1;
-        
+
         // Upload dos documentos
         $docPaths = [];
         $docTypes = ['doc_termo_aceite', 'doc_termo_dados', 'doc_termo_imagem'];
-        
+
         foreach ($docTypes as $docType) {
             if ($request->hasFile($docType)) {
                 $file = $request->file($docType);
                 $fileName = $docType . '_' . $novoId . '_' . time() . '.' . $file->getClientOriginalExtension();
                 $path = 'uploads/documentos/equipes';
-                
+
                 // Ensure directory exists
                 $directory = public_path($path);
                 if (!file_exists($directory)) {
@@ -776,12 +778,12 @@ class IdeasunController extends Controller
                         return redirect()->back()->with('error', 'Erro ao processar upload. Por favor, tente novamente.');
                     }
                 }
-                
+
                 $file->move(public_path($path), $fileName);
                 $docPaths[$docType . '_path'] = $path . '/' . $fileName;
             }
         }
-        
+
         // Create the team with the new field
         $equipe = Equipe::create([
             'cidade_id' => $cidade_id,
@@ -797,9 +799,9 @@ class IdeasunController extends Controller
             'doc_termo_dados_path' => $docPaths['doc_termo_dados_path'] ?? null,
             'doc_termo_imagem_path' => $docPaths['doc_termo_imagem_path'] ?? null,
         ]);
-        
+
         Session::put('equipe_id', $equipe->id);
-        
+
         return redirect()->route('ideasun.equipe.membros', ['equipe_id' => $equipe->equipe_id])
             ->with('success', 'Equipe criada com sucesso! Agora adicione os membros da equipe.');
     }
@@ -811,7 +813,7 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         // Estados brasileiros para o dropdown
         $estados = [
             'AC' => 'Acre', 'AL' => 'Alagoas', 'AP' => 'Amapá', 'AM' => 'Amazonas', 'BA' => 'Bahia',
@@ -822,7 +824,7 @@ class IdeasunController extends Controller
             'RO' => 'Rondônia', 'RR' => 'Roraima', 'SC' => 'Santa Catarina', 'SP' => 'São Paulo',
             'SE' => 'Sergipe', 'TO' => 'Tocantins'
         ];
-        
+
         return view('ideasun.cidade.cadastro-completo', compact('cidade', 'estados'));
     }
 
@@ -833,7 +835,7 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         $request->validate([
             'representante_nome' => 'required|string|max:255',
             'representante_email' => 'required|email|max:255',
@@ -844,7 +846,7 @@ class IdeasunController extends Controller
             'secretario_telefone' => 'nullable|string|max:20',
             // Removemos prefeito_email e prefeito_telefone
         ]);
-        
+
         // Atualizar dados da cidade
         $cidade->update([
             'representante_nome' => $request->representante_nome,
@@ -857,7 +859,7 @@ class IdeasunController extends Controller
             'secretario_email' => $request->secretario_email,
             'secretario_telefone' => $request->secretario_telefone,
         ]);
-        
+
         // Redirecionar para o dashboard com mensagem de sucesso
         return redirect()->route('ideasun.cidade.dashboard')
             ->with('success', 'Cadastro completo da cidade realizado com sucesso!');
@@ -877,40 +879,40 @@ class IdeasunController extends Controller
             'apresentacao.mimes' => 'O arquivo deve ser no formato PDF, PPT ou PPTX.',
             'apresentacao.max' => 'O tamanho máximo do arquivo é 10MB.'
         ]);
-        
+
         // Encontrar a equipe
         $equipe = Equipe::findOrFail($request->equipe_id);
-        
+
         // Verificar permissão
         $cidade_id = Session::get('cidade_id_para_equipe');
         if ($equipe->cidade_id != $cidade_id) {
             return redirect()->back()->with('error', 'Você não tem permissão para gerenciar esta equipe.');
         }
-        
+
         // Se já existe um arquivo, excluir o anterior
         if ($equipe->apresentacao_path) {
             \Illuminate\Support\Facades\File::delete(public_path($equipe->apresentacao_path));
         }
-        
+
         // Upload do novo arquivo
         $file = $request->file('apresentacao');
         $fileName = 'pitch_' . $equipe->id . '_' . time() . '.' . $file->getClientOriginalExtension();
         $path = 'uploads/apresentacoes';
-        
+
         // Garantir que o diretório existe
         if (!file_exists(public_path($path))) {
             mkdir(public_path($path), 0777, true);
         }
-        
+
         // Mover o arquivo e atualizar o banco de dados
         if ($file->move(public_path($path), $fileName)) {
             $equipe->update([
                 'apresentacao_path' => $path . '/' . $fileName
             ]);
-            
+
             return redirect()->back()->with('success', 'Apresentação enviada com sucesso!');
         }
-        
+
         return redirect()->back()->with('error', 'Ocorreu um erro ao enviar o arquivo. Tente novamente.');
     }
 
@@ -920,26 +922,26 @@ class IdeasunController extends Controller
     public function equipeApresentacaoRemover($equipe_id)
     {
         $equipe = Equipe::findOrFail($equipe_id);
-        
+
         // Verificar se a cidade logada tem permissão para gerenciar esta equipe
         $cidade_id = Session::get('cidade_id_para_equipe');
         if ($equipe->cidade_id != $cidade_id) {
             return redirect()->back()->with('error', 'Você não tem permissão para gerenciar esta equipe.');
         }
-        
+
         // Excluir o arquivo
         if ($equipe->apresentacao_path && file_exists(public_path($equipe->apresentacao_path))) {
             unlink(public_path($equipe->apresentacao_path));
         }
-        
+
         // Limpar o caminho no banco de dados
         $equipe->update([
             'apresentacao_path' => null
         ]);
-        
+
         return redirect()->back()->with('success', 'Apresentação removida com sucesso.');
     }
-    
+
     /**
      * Exibe a página de agendamento de banca
      */
@@ -947,16 +949,14 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::with('equipes')->findOrFail($cidade_id);
-        
-        // Datas disponíveis (você pode ajustar conforme necessário)
+
+        // Atualizar para mostrar apenas 28, 29 e 30 de maio de 2025
         $diasDisponiveis = [
-            '2025-05-26' => 'Segunda, 26 de Maio de 2025',
-            '2025-05-27' => 'Terça, 27 de Maio de 2025',
             '2025-05-28' => 'Quarta, 28 de Maio de 2025',
             '2025-05-29' => 'Quinta, 29 de Maio de 2025',
             '2025-05-30' => 'Sexta, 30 de Maio de 2025',
         ];
-        
+
         return view('ideasun.cidade.agendar-banca', compact('cidade', 'diasDisponiveis'));
     }
 
@@ -965,54 +965,58 @@ class IdeasunController extends Controller
      */
     public function getBancaHorariosDisponiveis(Request $request)
     {
-        $data = $request->input('data');
-        if (!$data) {
-            return response()->json(['error' => 'Data não informada'], 400);
-        }
-        
-        // Horários disponíveis para banca com período correto
-        $horariosPorDia = [
-            '2025-05-26' => [
-                ['horario' => '08:00 às 12:00', 'periodo' => 'Manhã'],
-                ['horario' => '13:00 às 17:00', 'periodo' => 'Tarde']
-            ],
-            '2025-05-27' => [
-                ['horario' => '08:00 às 12:00', 'periodo' => 'Manhã'],
-                ['horario' => '13:00 às 17:00', 'periodo' => 'Tarde']
-            ],
-            '2025-05-28' => [
-                ['horario' => '08:00 às 12:00', 'periodo' => 'Manhã'],
-                ['horario' => '13:00 às 17:00', 'periodo' => 'Tarde']
-            ],
-            '2025-05-29' => [
-                ['horario' => '08:00 às 12:00', 'periodo' => 'Manhã'],
-                ['horario' => '13:00 às 17:00', 'periodo' => 'Tarde']
-            ],
-            '2025-05-30' => [
-                ['horario' => '08:00 às 12:00', 'periodo' => 'Manhã'],
-                ['horario' => '13:00 às 17:00', 'periodo' => 'Tarde']
-            ],
-        ];
-        
-        // Verificar horários já agendados
-        $horariosAgendados = Cidade::whereNotNull('banca_agendada')
-            ->whereDate('banca_agendada', $data)
-            ->pluck('banca_agendada')
-            ->map(function($datetime) {
-                return \Carbon\Carbon::parse($datetime)->format('H:i');
-            })
-            ->toArray();
-        
-        // Filtrar horários disponíveis
-        $horariosDisponiveis = [];
-        foreach ($horariosPorDia[$data] ?? [] as $opcao) {
-            // Verificar se o horário já está agendado
-            if (!in_array(substr($opcao['horario'], 0, 5), $horariosAgendados)) {
-                $horariosDisponiveis[] = $opcao;
+        // Adicionar log para debug
+        \Log::info('getBancaHorariosDisponiveis - data recebida:', ['data' => $request->input('data')]);
+
+        try {
+            $request->validate([
+                'data' => 'required|date|date_format:Y-m-d'
+            ]);
+
+            $data = $request->input('data');
+
+            // Garantir que os horários estão definidos para TODAS as datas
+            $horariosPorDia = [
+                '2025-05-28' => [
+                    ['horario' => '09:00 às 12:00', 'periodo' => 'Manhã', 'max_bancas' => 2],
+                    ['horario' => '14:00 às 17:00', 'periodo' => 'Tarde', 'max_bancas' => 2],
+                    ['horario' => '19:00 às 22:00', 'periodo' => 'Noite', 'max_bancas' => 2]
+                ],
+                '2025-05-29' => [
+                    ['horario' => '09:00 às 12:00', 'periodo' => 'Manhã', 'max_bancas' => 2],
+                    ['horario' => '14:00 às 17:00', 'periodo' => 'Tarde', 'max_bancas' => 2],
+                    ['horario' => '19:00 às 22:00', 'periodo' => 'Noite', 'max_bancas' => 2]
+                ],
+                '2025-05-30' => [
+                    ['horario' => '09:00 às 12:00', 'periodo' => 'Manhã', 'max_bancas' => 2],
+                    ['horario' => '14:00 às 17:00', 'periodo' => 'Tarde', 'max_bancas' => 2],
+                    ['horario' => '19:00 às 22:00', 'periodo' => 'Noite', 'max_bancas' => 2]
+                ],
+            ];
+
+            // Se a data não tiver horários definidos
+            if (!isset($horariosPorDia[$data])) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Não há horários disponíveis para esta data',
+                    'horarios' => []
+                ]);
             }
+
+            // Retornar os horários disponíveis para a data selecionada
+            return response()->json([
+                'success' => true,
+                'horarios' => $horariosPorDia[$data]
+            ]);
+        } catch (\Exception $e) {
+            // Registrar erro e retornar resposta de erro
+            \Log::error('Erro ao obter horários disponíveis: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'error' => 'Erro ao processar a solicitação: ' . $e->getMessage(),
+                'horarios' => []
+            ], 500);
         }
-        
-        return response()->json(['horarios' => $horariosDisponiveis]);
     }
 
     /**
@@ -1021,7 +1025,7 @@ class IdeasunController extends Controller
     public function cidadeSalvarBanca(Request $request)
     {
         \Log::info('Iniciando processamento de cidadeSalvarBanca', $request->all());
-        
+
         $request->validate([
             'data_banca' => 'required|date',
             'horario' => 'required|string',
@@ -1030,42 +1034,42 @@ class IdeasunController extends Controller
             'avaliadores.*.cpf' => 'required|string',
             'avaliadores.*.telefone' => 'required|string|max:20',
         ]);
-        
+
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         \Log::info('Cidade encontrada:', ['id' => $cidade->id, 'nome' => $cidade->nome]);
-        
+
         // Extrair apenas o primeiro horário da string (antes do "às")
         $horarioPartes = explode(' às ', $request->horario);
         $horarioInicio = trim($horarioPartes[0]);
-        
+
         // Combinar data e hora
         $dataHora = \Carbon\Carbon::parse($request->data_banca . ' ' . $horarioInicio);
-        
+
         try {
             // Verificar CPFs duplicados dentro do formulário
             $cpfs = collect($request->avaliadores)->pluck('cpf')->map(function($cpf) {
                 return preg_replace('/[^0-9]/', '', $cpf);
             });
-            
+
             if ($cpfs->count() !== $cpfs->unique()->count()) {
                 return redirect()->back()
                     ->with('error', 'Não é permitido cadastrar avaliadores com o mesmo CPF.')
                     ->withInput();
             }
-            
+
             // Verificar telefones duplicados dentro do formulário
             $telefones = collect($request->avaliadores)->pluck('telefone')->map(function($telefone) {
                 return preg_replace('/[^0-9]/', '', $telefone);
             });
-            
+
             if ($telefones->count() !== $telefones->unique()->count()) {
                 return redirect()->back()
                     ->with('error', 'Não é permitido cadastrar avaliadores com o mesmo telefone.')
                     ->withInput();
             }
-            
+
             // Verificar se CPFs já existem no banco de dados
             foreach ($cpfs as $index => $cpf) {
                 $existingCpf = \App\Models\Avaliador::where('cpf', $cpf)->exists();
@@ -1076,7 +1080,7 @@ class IdeasunController extends Controller
                         ->withInput();
                 }
             }
-            
+
             // Verificar se telefones já existem no banco de dados
             foreach ($telefones as $index => $telefone) {
                 if (strlen($telefone) >= 10) { // Apenas verificar telefones válidos
@@ -1090,22 +1094,22 @@ class IdeasunController extends Controller
                     }
                 }
             }
-            
+
             // Salvar o agendamento
             $cidade->banca_agendada = $dataHora;
             $cidade->save();
-            
+
             \Log::info('Banca agendada com sucesso:', [
-                'cidade_id' => $cidade->id, 
+                'cidade_id' => $cidade->id,
                 'data_hora' => $dataHora->format('Y-m-d H:i:s')
             ]);
-            
+
             // Processar os avaliadores
             foreach ($request->avaliadores as $index => $avaliadorData) {
                 // Limpar o CPF
                 $cpfLimpo = preg_replace('/[^0-9]/', '', $avaliadorData['cpf']);
                 $senha = substr($cpfLimpo, 0, 6); // Primeiros 6 dígitos do CPF como senha
-                
+
                 // Criar o avaliador
                 $avaliador = new \App\Models\Avaliador();
                 $avaliador->nome = $avaliadorData['nome'];
@@ -1117,37 +1121,37 @@ class IdeasunController extends Controller
                 $avaliador->tipo = 'municipal';
                 $avaliador->ativo = true;
                 $avaliador->save();
-                
+
                 \Log::info('Avaliador cadastrado:', [
                     'id' => $avaliador->id,
                     'cidade_id' => $avaliador->cidade_id
                 ]);
             }
-            
+
             // Formatar o horário para exibição
             $horarioExibicao = $horarioInicio;
             if (isset($horarioPartes[1])) {
                 $horarioExibicao .= ' às ' . trim($horarioPartes[1]);
             }
-            
+
             return redirect()->route('ideasun.cidade.dashboard')
-                ->with('success', 'Agendamento de banca realizado com sucesso para ' . 
-                       \Carbon\Carbon::parse($dataHora)->format('d/m/Y') . ' - ' . $horarioExibicao . 
+                ->with('success', 'Agendamento de banca realizado com sucesso para ' .
+                       \Carbon\Carbon::parse($dataHora)->format('d/m/Y') . ' - ' . $horarioExibicao .
                        '. Seus 5 avaliadores foram cadastrados.');
-    
+
         } catch (\Exception $e) {
             \Log::error('Erro ao agendar banca:', [
                 'erro' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
                 'request' => $request->all()
             ]);
-            
+
             return redirect()->back()
                 ->with('error', 'Erro ao agendar banca: ' . $e->getMessage())
                 ->withInput();
         }
     }
-    
+
     /**
      * Cancelar agendamento de banca
      */
@@ -1155,23 +1159,32 @@ class IdeasunController extends Controller
     {
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::findOrFail($cidade_id);
-        
+
         if (!$cidade->banca_agendada) {
             return redirect()->back()->with('error', 'Não há agendamento para cancelar.');
         }
-        
+
         $dataHoraAntiga = \Carbon\Carbon::parse($cidade->banca_agendada)->format('d/m/Y \à\s H:i');
-        
+
         try {
-            // Remover os avaliadores associados à cidade
+            // Primeiro, obter os IDs dos avaliadores desta cidade
+            $avaliadorIds = \App\Models\Avaliador::where('cidade_id', $cidade->id)->pluck('id')->toArray();
+
+            // Depois, excluir todas as avaliações feitas por estes avaliadores
+            if (!empty($avaliadorIds)) {
+                \App\Models\Avaliacao::whereIn('avaliador_id', $avaliadorIds)->delete();
+                \Log::info('Avaliações removidas para os avaliadores: ' . implode(', ', $avaliadorIds));
+            }
+
+            // Agora é seguro remover os avaliadores
             \App\Models\Avaliador::where('cidade_id', $cidade->id)->delete();
             \Log::info('Avaliadores removidos para a cidade ' . $cidade->id);
-            
+
             // Remover agendamento
             $cidade->update([
                 'banca_agendada' => null
             ]);
-            
+
             return redirect()->route('ideasun.cidade.dashboard')
                 ->with('success', 'Agendamento de banca para ' . $dataHoraAntiga . ' cancelado com sucesso.');
         } catch (\Exception $e) {
@@ -1179,11 +1192,11 @@ class IdeasunController extends Controller
                 'erro' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
-            
+
             return redirect()->back()->with('error', 'Erro ao cancelar agendamento: ' . $e->getMessage());
         }
     }
-    
+
     /**
      * Verificar se um CPF já existe no banco de dados
      */
@@ -1191,7 +1204,7 @@ class IdeasunController extends Controller
     {
         $cpf = preg_replace('/[^0-9]/', '', $request->cpf);
         $exists = \App\Models\Avaliador::where('cpf', $cpf)->exists();
-        
+
         return response()->json(['exists' => $exists]);
     }
 
@@ -1201,10 +1214,10 @@ class IdeasunController extends Controller
     public function verificarTelefoneAvaliador(Request $request)
     {
         $telefone = preg_replace('/[^0-9]/', '', $request->telefone);
-        
+
         // Considerar apenas os dígitos para comparação
         $exists = \App\Models\Avaliador::whereRaw("REGEXP_REPLACE(telefone, '[^0-9]', '', 'g') = ?", [$telefone])->exists();
-        
+
         return response()->json(['exists' => $exists]);
     }
 
@@ -1219,19 +1232,19 @@ class IdeasunController extends Controller
         ]);
 
         $data = $request->input('data');
-        
+
         // Verificar se a data está dentro do período permitido (28 a 30 de maio de 2025)
         $dataObj = \Carbon\Carbon::parse($data);
         $dataInicio = \Carbon\Carbon::parse('2025-05-28');
         $dataFim = \Carbon\Carbon::parse('2025-05-30');
-        
+
         if ($dataObj->lt($dataInicio) || $dataObj->gt($dataFim)) {
             return response()->json([
                 'success' => false,
                 'error' => 'A data selecionada está fora do período permitido (28 a 30 de maio de 2025).'
             ], 400);
         }
-        
+
         // Definir períodos disponíveis
         $periodos = [
             [
@@ -1253,18 +1266,18 @@ class IdeasunController extends Controller
 
         // Verificar quantas bancas já estão agendadas para cada período nesta data
         $horarios = [];
-        
+
         foreach ($periodos as $periodo) {
             // Calcular o início e fim do período
             $horarioParts = explode(' às ', $periodo['horario']);
             $horarioInicio = $dataObj->copy()->setTimeFromTimeString($horarioParts[0] . ':00');
             $horarioFim = $dataObj->copy()->setTimeFromTimeString($horarioParts[1] . ':00');
-            
+
             // Contar quantas bancas já estão agendadas neste período
             $bancasAgendadas = \App\Models\Cidade::where('banca_agendada', '>=', $horarioInicio)
                 ->where('banca_agendada', '<=', $horarioFim)
                 ->count();
-            
+
             // Adicionar o horário se não atingiu o limite de bancas
             if ($bancasAgendadas < $periodo['max_bancas']) {
                 $horarios[] = [
@@ -1274,7 +1287,7 @@ class IdeasunController extends Controller
                 ];
             }
         }
-        
+
         return response()->json([
             'success' => true,
             'horarios' => $horarios
