@@ -65,18 +65,10 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'ideasun.equipe.auth' => \App\Http\Middleware\IdeasunEquipeAuth::class,
-    ];
-
-    /**
-     * The application's route middleware.
-     *
-     * @var array<string, class-string|string>
-     */
-    protected $routeMiddleware = [
         'ideasun.cidade' => \App\Http\Middleware\IdeasunCidadeAuth::class,
         'ideasun.equipe' => \App\Http\Middleware\IdeasunEquipeAuth::class,
         'ideasun.qualquer.auth' => \App\Http\Middleware\IdeasunQualquerAuth::class,
+        'ideasun.admin' => \App\Http\Middleware\AdminAuth::class,
         'ideasun.banca' => \App\Http\Middleware\BancaAuth::class,
-        'ideasun.admin' => \App\Http\Middleware\IdeasunAdminAuth::class,
     ];
 }

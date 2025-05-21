@@ -582,8 +582,16 @@ class IdeasunController extends Controller
                 $path = 'uploads/documentos/membros';
                 
                 // Ensure directory exists
-                if (!file_exists(public_path($path))) {
-                    mkdir(public_path($path), 0777, true);
+                $directory = public_path($path);
+                if (!file_exists($directory)) {
+                    try {
+                        if (!mkdir($directory, 0755, true) && !is_dir($directory)) {
+                            throw new \RuntimeException(sprintf('Não foi possível criar o diretório "%s"', $directory));
+                        }
+                    } catch (\Exception $e) {
+                        \Log::error('Erro ao criar diretório: ' . $e->getMessage());
+                        return redirect()->back()->with('error', 'Erro ao processar upload. Por favor, tente novamente.');
+                    }
                 }
                 
                 $file->move(public_path($path), $fileName);
@@ -757,8 +765,16 @@ class IdeasunController extends Controller
                 $path = 'uploads/documentos/equipes';
                 
                 // Ensure directory exists
-                if (!file_exists(public_path($path))) {
-                    mkdir(public_path($path), 0777, true);
+                $directory = public_path($path);
+                if (!file_exists($directory)) {
+                    try {
+                        if (!mkdir($directory, 0755, true) && !is_dir($directory)) {
+                            throw new \RuntimeException(sprintf('Não foi possível criar o diretório "%s"', $directory));
+                        }
+                    } catch (\Exception $e) {
+                        \Log::error('Erro ao criar diretório: ' . $e->getMessage());
+                        return redirect()->back()->with('error', 'Erro ao processar upload. Por favor, tente novamente.');
+                    }
                 }
                 
                 $file->move(public_path($path), $fileName);
@@ -872,8 +888,8 @@ class IdeasunController extends Controller
         }
         
         // Se já existe um arquivo, excluir o anterior
-        if ($equipe->apresentacao_path && file_exists(public_path($equipe->apresentacao_path))) {
-            unlink(public_path($equipe->apresentacao_path));
+        if ($equipe->apresentacao_path) {
+            \Illuminate\Support\Facades\File::delete(public_path($equipe->apresentacao_path));
         }
         
         // Upload do novo arquivo
@@ -1104,8 +1120,6 @@ class IdeasunController extends Controller
                 
                 \Log::info('Avaliador cadastrado:', [
                     'id' => $avaliador->id,
-                    'nome' => $avaliador->nome,
-                    'cpf' => $avaliador->cpf,
                     'cidade_id' => $avaliador->cidade_id
                 ]);
             }

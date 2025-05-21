@@ -156,9 +156,26 @@
             color: white;
         }
         
-        .login-option-btn i {
-            margin-right: 10px;
-            font-size: 1.2rem;
+        .login-option-btn i, 
+        .btn i, 
+        .input-group-text i {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .input-group-prepend {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
         }
         
         /* Formulários */
@@ -305,7 +322,7 @@
                                 <i class="fa fa-users"></i> Acesso para Equipes
                             </button>
                             <button class="login-option-btn" onclick="showLoginForm('banca')">
-                                <i class="fa fa-star"></i> Acesso para Banca
+                                <i class="fa fa-star mr-2" style="margin-right: 8px; vertical-align: middle;"></i> Acesso para Banca
                             </button>
                             <button class="login-option-btn" onclick="showLoginForm('admin')">
                                 <i class="fa fa-lock"></i> Administração
@@ -367,7 +384,7 @@
                                     <label for="cpf">CPF do Avaliador</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                                            <span class="input-group-text"><i class="fa fa-id-card" style="width: 16px; text-align: center;"></i></span>
                                         </div>
                                         <input type="text" class="form-control cpf-mask" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
                                     </div>
@@ -376,14 +393,14 @@
                                     <label for="senha_banca">Senha</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                            <span class="input-group-text"><i class="fa fa-lock" style="width: 16px; text-align: center;"></i></span>
                                         </div>
                                         <input type="password" class="form-control" id="senha_banca" name="senha" placeholder="Digite sua senha" required>
                                     </div>
                                     <small class="form-text text-muted">A senha inicial são os 6 primeiros dígitos do seu CPF.</small>
                                 </div>
                                 <button type="submit" class="btn btn-info btn-block">
-                                    <i class="fa fa-sign-in mr-2"></i>Acessar como Avaliador
+                                    <i class="fa fa-sign-in" style="margin-right: 8px; vertical-align: middle;"></i> Acessar como Avaliador
                                 </button>
                             </form>
                         </div>

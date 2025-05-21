@@ -5,7 +5,7 @@ if (!function_exists('getModalidadeNome')) {
      * Retorna o nome formatado da modalidade
      */
     function getModalidadeNome($modalidade) {
-        $modalidades = [
+        $nomes = [
             'educacao_especial' => 'Educação Especial',
             'fundamental_1' => 'Fundamental I',
             'fundamental_2' => 'Fundamental II',
@@ -13,6 +13,6 @@ if (!function_exists('getModalidadeNome')) {
             'superior' => 'Superior',
         ];
         
-        return $modalidades[$modalidade] ?? ucfirst(str_replace('_', ' ', $modalidade));
+        return $nomes[$modalidade] ?? ucfirst(str_replace('_', ' ', $modalidade));
     }
 }

@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Cidade;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Models\Cidade;
 
 class CidadesAdicionaisSeeder extends Seeder
 {
@@ -20,31 +20,31 @@ class CidadesAdicionaisSeeder extends Seeder
                 'nome' => 'Assaí',
                 'estado' => 'PR',
                 'distancia_categoria' => 1,
-                'senha' => 'assai123',
+                'senha' => Hash::make('assai123'),
             ],
             [
                 'nome' => 'Uraí',
                 'estado' => 'PR',
                 'distancia_categoria' => 1,
-                'senha' => 'urai123',
+                'senha' => Hash::make('urai123'),
             ],
             [
                 'nome' => 'Santa Cecília do Pavão',
                 'estado' => 'PR',
                 'distancia_categoria' => 1,
-                'senha' => 'santaceciliadopavao123',
+                'senha' => Hash::make('santaceciliadopavao123'),
             ],
             [
                 'nome' => 'Nova Santa Bárbara',
                 'estado' => 'PR',
                 'distancia_categoria' => 1,
-                'senha' => 'novasantabarbara123',
+                'senha' => Hash::make('novasantabarbara123'),
             ],
             [
                 'nome' => 'São Sebastião da Amoreira',
                 'estado' => 'PR',
                 'distancia_categoria' => 1,
-                'senha' => 'saosebastiaodaamoreira123',
+                'senha' => Hash::make('saosebastiaodaamoreira123'),
             ],
             
             // Categoria 2
@@ -52,25 +52,25 @@ class CidadesAdicionaisSeeder extends Seeder
                 'nome' => 'São Jerônimo da Serra',
                 'estado' => 'PR',
                 'distancia_categoria' => 2,
-                'senha' => 'saojeronimodaserra123',
+                'senha' => Hash::make('saojeronimodaserra123'),
             ],
             [
                 'nome' => 'Nova América da Colina',
                 'estado' => 'PR',
                 'distancia_categoria' => 2,
-                'senha' => 'novaamericadacolina123',
+                'senha' => Hash::make('novaamericadacolina123'),
             ],
             [
                 'nome' => 'Cornélio Procópio',
                 'estado' => 'PR',
                 'distancia_categoria' => 2,
-                'senha' => 'cornelioprocopio123',
+                'senha' => Hash::make('cornelioprocopio123'),
             ],
             [
                 'nome' => 'Santo Antônio do Paraíso',
                 'estado' => 'PR',
                 'distancia_categoria' => 2,
-                'senha' => 'santoantoniodoparaiso123',
+                'senha' => Hash::make('santoantoniodoparaiso123'),
             ],
             
             // Categoria 3
@@ -78,43 +78,43 @@ class CidadesAdicionaisSeeder extends Seeder
                 'nome' => 'Leópolis',
                 'estado' => 'PR',
                 'distancia_categoria' => 3,
-                'senha' => 'leopolis123',
+                'senha' => Hash::make('leopolis123'),
             ],
             [
                 'nome' => 'Santa Mariana',
                 'estado' => 'PR',
                 'distancia_categoria' => 3,
-                'senha' => 'santamariana123',
+                'senha' => Hash::make('santamariana123'),
             ],
             [
                 'nome' => 'Nova Fátima',
                 'estado' => 'PR',
                 'distancia_categoria' => 3,
-                'senha' => 'novafatima123',
+                'senha' => Hash::make('novafatima123'),
             ],
             [
                 'nome' => 'Sapopema',
                 'estado' => 'PR',
                 'distancia_categoria' => 3,
-                'senha' => 'sapopema123',
+                'senha' => Hash::make('sapopema123'),
             ],
             [
                 'nome' => 'Rancho Alegre',
                 'estado' => 'PR',
                 'distancia_categoria' => 3,
-                'senha' => 'ranchoalegre123',
+                'senha' => Hash::make('ranchoalegre123'),
             ],
             [
                 'nome' => 'Sertaneja',
                 'estado' => 'PR',
                 'distancia_categoria' => 3,
-                'senha' => 'sertaneja123',
+                'senha' => Hash::make('sertaneja123'),
             ],
             [
                 'nome' => 'Bandeirantes',
                 'estado' => 'PR',
                 'distancia_categoria' => 3,
-                'senha' => 'bandeirantes123',
+                'senha' => Hash::make('bandeirantes123'),
             ],
         ];
 
@@ -132,7 +132,7 @@ class CidadesAdicionaisSeeder extends Seeder
                 'nome' => $cidadeData['nome'],
                 'estado' => $cidadeData['estado'],
                 'distancia_categoria' => $cidadeData['distancia_categoria'],
-                'senha' => Hash::make($cidadeData['senha']),
+                'senha' => $cidadeData['senha'],
                 'hash_id' => Str::uuid(),
                 'treinamento_requerido' => true,
                 'modalidades' => $todasModalidades // Atribuir todas as modalidades por padrão

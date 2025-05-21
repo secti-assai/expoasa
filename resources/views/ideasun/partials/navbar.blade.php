@@ -52,17 +52,18 @@
 </header>
 
 <style>
-    /* Tema simplificado */
+    /* Tema atualizado para combinar com a logo e elementos vermelhos */
     .header {
-        background-color: #1a73e8;
+        background: linear-gradient(90deg, #004AAD 0%, #0E57B3 100%);
         position: sticky;
         top: 0;
         z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        border-bottom: 3px solid #CF3232; /* Linha sutil de cor vermelha para combinar com elementos do site */
     }
 
     .navbar {
-        padding: 10px 0;
+        padding: 12px 0;
     }
 
     .navbar-brand {
@@ -72,7 +73,7 @@
 
     .logo-main {
         height: 40px;
-        /* Removido o filtro para permitir a logo colorida */
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
     }
 
     .brand-text {
@@ -83,40 +84,93 @@
     }
 
     .navbar-toggler {
-        border-color: rgba(255, 255, 255, 0.5);
+        border-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
     .nav-item {
         margin: 0 5px;
+        position: relative;
     }
 
     .nav-link {
         color: rgba(255, 255, 255, 0.9);
-        padding: 8px 12px;
+        padding: 8px 15px;
         border-radius: 4px;
+        font-weight: 500;
+        transition: all 0.3s ease;
     }
 
     .nav-link:hover {
         color: #fff;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(207, 50, 50, 0.3); /* Hover com tom vermelho para combinar com o tema */
+        transform: translateY(-2px);
     }
 
     .nav-item.active .nav-link {
         color: #fff;
         font-weight: 600;
-        background-color: rgba(255, 255, 255, 0.15);
+        background-color: rgba(207, 50, 50, 0.5); /* Vermelho mais intenso para item ativo */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     }
 
-    /* Responsividade simplificada */
+    /* Efeito de destaque para item ativo */
+    .nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: -7px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 3px;
+        background-color: #FFC45D; /* Cor amarela/laranja similar ao "SUN" da logo */
+        border-radius: 10px;
+    }
+
+    /* Responsividade aprimorada */
     @media (max-width: 991.98px) {
         .navbar-collapse {
-            background-color: #1a73e8;
-            padding: 10px;
-            border-radius: 0 0 4px 4px;
+            background-color: #004AAD;
+            margin-top: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #CF3232;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-item.active::after {
+            bottom: auto;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 80%;
+        }
+        
+        .nav-item {
+            margin: 5px 0;
         }
     }
+
+    /* Animação de carregamento para elementos da navbar */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .navbar-nav .nav-item {
+        animation: fadeIn 0.4s ease forwards;
+        animation-delay: calc(0.1s * var(--animation-order, 0));
+        opacity: 0;
+    }
+    
+    .navbar-nav .nav-item:nth-child(1) { --animation-order: 1; }
+    .navbar-nav .nav-item:nth-child(2) { --animation-order: 2; }
+    .navbar-nav .nav-item:nth-child(3) { --animation-order: 3; }
+    .navbar-nav .nav-item:nth-child(4) { --animation-order: 4; }
+    .navbar-nav .nav-item:nth-child(5) { --animation-order: 5; }
 </style>

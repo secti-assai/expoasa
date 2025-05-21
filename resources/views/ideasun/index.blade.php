@@ -579,20 +579,13 @@
 
     @include('ideasun.partials.navbar')
 
-    <!-- Banner Section -->
+    <!-- Banner Section - Atualizado para ser mais impactante -->
     <section class="ideasun-banner">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    {{--
-                    Título na hero
-                    <div class="ideasun-logo-container">
-                        <img src="/assets/img/logo-expoasa.png" alt="IDEASUN 2025" class="ideasun-logo">
-                        <span class="ideasun-logo-text">IDEASUN 2025</span>
-                    </div>
-                    --}}
                     <h1>Primeiro Ideathon Inter-regional do Paraná</h1>
-                    <p class="lead">Fomentando a inovação através do estímulo ao desenvolvimento de ideias</p>
+                    <p class="lead">Transformando ideias em soluções inovadoras para os desafios da nossa região</p>
                     
                     <div class="ideasun-buttons">
                         <a href="{{ route('ideasun.login') }}" class="btn btn-primary btn-lg mx-2">
@@ -613,17 +606,18 @@
             <div class="row">
                 <div class="col-12 text-center mb-5">
                     <h2>Sobre o IDEASUN</h2>
-                    <p class="lead">Uma maratona de inovação que reúne estudantes, professores e dirigentes de instituições de educação</p>
+                    <p class="lead">Inspirando jovens talentos a criarem o futuro através da inovação</p>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-6">
-                    <p>O IDEASUN, Edição 2025, é uma maratona de inovação, que está em sua 1ª Edição, uma ideia que nasceu do HACKASUN 2024, e tem como proposta reunir estudantes, professores e dirigentes de instituições de educação, públicas e privadas, fixadas na região do Sebrae PR, pertinentes ao Núcleo Regional de Cornélio Procópio.</p>
-                    <p>O objetivo é fomentar a cultura da inovação através do estímulo de desenvolvimento de ideias para soluções de problemas relacionados a sociedade como um todo.</p>
+                    <p>O <strong>IDEASUN – Edição 2025</strong> é o primeiro <strong>Ideathon Inter-Regional do Paraná</strong>, uma maratona de ideias que nasceu como evolução do HACKASUN 2024. Reunimos estudantes, professores e gestores educacionais das cidades da região do Sebrae PR, Núcleo de Cornélio Procópio, em um ambiente de criatividade e colaboração.</p>
+                    <p>Nosso objetivo é fomentar a cultura da inovação e do empreendedorismo, desenvolvendo soluções criativas para desafios reais das comunidades locais, alinhadas aos <strong>17 Objetivos de Desenvolvimento Sustentável (ODS)</strong> da ONU.</p>
                 </div>
                 <div class="col-md-6">
-                    <p>O IDEASUN, Edição 2025, está dividido em duas etapas que ocorrerão na cidade de Assaí/PR: uma para pré-seleção da melhor ideia de cada cidade participante, na data de ___, em Assaí; e outra para seleção das 3 (três) ideias mais inovadoras da região, sendo a decisão realizada dentro da Exposição Regional de Assaí (79º Expoasa), nos dias 6, 7 e 8 de junho de 2025.</p>
+                    <p>O evento promove competências essenciais como pensamento crítico, criatividade, trabalho em equipe e compromisso social entre os participantes de todas as idades e níveis educacionais.</p>
+                    <p>Composto por etapas de pré-seleção regional e uma grande final durante a <strong>Exposição Regional de Assaí (EXPOASA)</strong>, nos dias 6 e 7 de junho de 2025, o IDEASUN premia as melhores ideias e oferece visibilidade aos projetos, contribuindo diretamente para o desenvolvimento sustentável das cidades envolvidas.</p>
                 </div>
             </div>
         </div>
@@ -709,7 +703,7 @@
             <div class="row">
                 <div class="col-12 text-center mb-5">
                     <h2>Calendário de Atividades</h2>
-                    <p class="lead">Confira as datas importantes do IDEASUN 2025</p>
+                    <p class="lead">Acompanhe as etapas do IDEASUN 2025 e prepare-se para transformar ideias em realidade</p>
                 </div>
             </div>
             
@@ -719,58 +713,63 @@
                         <table class="table table-bordered">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th><i class="fa fa-calendar-check-o mr-2"></i>Atividade</th>
-                                    <th><i class="fa fa-clock-o mr-2"></i>Data</th>
+                                    <th colspan="2" class="text-center"><i class="fa fa-flag-checkered mr-2"></i> PRIMEIRA FASE – ETAPAS REGIONAIS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Distribuição do material</td>
-                                    <td>16 de maio de 2025</td>
+                                    <td><strong>Habilitação das cidades</strong> no site do IDEASUN</td>
+                                    <td>17 a 20 de maio de 2025</td>
                                 </tr>
                                 <tr>
-                                    <td>Habilitação das cidades e Agendamento dos Treinamentos</td>
-                                    <td>16 a 20 de maio de 2025</td>
-                                </tr>
-                                <tr>
-                                    <td>Reunião online com todas as cidades</td>
+                                    <td><strong>Reunião online</strong> para esclarecimentos com dirigentes e professores</td>
                                     <td>19 de maio de 2025</td>
                                 </tr>
                                 <tr>
-                                    <td>Treinamento das Cidades e Habilitação de categorias</td>
+                                    <td><strong>Treinamento presencial</strong> das cidades habilitadas</td>
                                     <td>21 a 23 de maio de 2025</td>
                                 </tr>
                                 <tr>
-                                    <td>Cadastro das Equipes e Lançamento de Ideias</td>
+                                    <td><strong>Cadastro das equipes</strong> e submissão das ideias no portal</td>
                                     <td>21 a 27 de maio de 2025</td>
                                 </tr>
                                 <tr>
-                                    <td>Avaliação Municipal das Bancas</td>
+                                    <td><strong>Bancas Regionais</strong> para apresentação dos projetos e pré-seleção das equipes <em>(presencial no CEEP Assaí)</em></td>
                                     <td>28 a 30 de maio de 2025</td>
                                 </tr>
                                 <tr>
-                                    <td>Anúncio das Equipes habilitadas para fase regional</td>
+                                    <td><strong>Anúncio das equipes pré-selecionadas</strong>, por cidade e por categoria</td>
                                     <td>02 de junho de 2025</td>
                                 </tr>
+                            </tbody>
+                            <thead class="thead-dark">
                                 <tr>
-                                    <td>Reunião com as Equipes habilitadas</td>
+                                    <th colspan="2" class="text-center"><i class="fa fa-trophy mr-2"></i> SEGUNDA FASE – ETAPAS NA EXPOASA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Reunião online de alinhamento</strong> para a etapa final com dirigentes e líderes das equipes</td>
                                     <td>05 de junho de 2025</td>
                                 </tr>
                                 <tr>
-                                    <td>Repescagem</td>
+                                    <td>
+                                        <strong>06 de junho (manhã):</strong><br>
+                                        • Anúncio das equipes repescadas<br>
+                                        • <strong>Maratona de Ideias – Etapa Final Presencial</strong> para as equipes da Educação Básica na EXPOASA
+                                    </td>
                                     <td>06 de junho de 2025</td>
                                 </tr>
                                 <tr>
-                                    <td>Ideasun Regional - Categorias até o Ensino Médio / Técnico</td>
-                                    <td>06 de junho de 2025</td>
-                                </tr>
-                                <tr>
-                                    <td>Ideasun Regional - Ensino Superior</td>
+                                    <td>
+                                        <strong>07 de junho (manhã):</strong><br>
+                                        • <strong>Maratona de Ideias – Etapa Final Presencial</strong> para Ensino Técnico e Ensino Superior na EXPOASA
+                                    </td>
                                     <td>07 de junho de 2025</td>
                                 </tr>
                                 <tr>
-                                    <td>Divulgação dos resultados</td>
-                                    <td>07 de junho de 2025</td>
+                                    <td><strong>Cerimônia de Premiação</strong> no palco principal da EXPOASA</td>
+                                    <td>07 de junho de 2025 (11h)</td>
                                 </tr>
                             </tbody>
                         </table>

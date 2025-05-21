@@ -115,31 +115,28 @@ Route::middleware(['ideasun.equipe.auth'])->group(function () {
 // Admin routes
 Route::post('/ideasun/admin/authenticate', [AdminController::class, 'authenticate'])->name('ideasun.admin.authenticate');
 Route::get('/ideasun/admin/logout', [AdminController::class, 'logout'])->name('ideasun.admin.logout');
-Route::get('/ideasun/admin/dashboard', [AdminController::class, 'dashboard'])->name('ideasun.admin.dashboard');
-Route::get('/ideasun/admin/cidade/{id}', [AdminController::class, 'cidadeDetalhes'])->name('ideasun.admin.cidade.detalhes');
-Route::get('/ideasun/admin/equipe/{id}', [AdminController::class, 'equipeDetalhes'])->name('ideasun.admin.equipe.detalhes');
-Route::get('/ideasun/admin/export', [AdminController::class, 'export'])->name('ideasun.admin.export');
 
-// Rotas para gerenciamento de vinculação de bancas (dentro do grupo de admin)
-Route::middleware(['ideasun.admin'])->group(function () {
-    // Lista de bancas e gestão de vinculações
-    Route::get('/ideasun/admin/bancas', [AdminController::class, 'bancas'])->name('ideasun.admin.bancas');
+// Agrupar todas as outras rotas admin com middleware de autenticação
+Route::middleware(['ideasun.admin'])->prefix('ideasun/admin')->name('ideasun.admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/cidade/{id}', [AdminController::class, 'cidadeDetalhes'])->name('cidade.detalhes');
+    Route::get('/equipe/{id}', [AdminController::class, 'equipeDetalhes'])->name('equipe.detalhes');
+    Route::get('/export', [AdminController::class, 'export'])->name('export');
     
-    // Página para vincular uma banca específica
-    Route::get('/ideasun/admin/bancas/{banca_cidade_id}/vincular', [AdminController::class, 'vincularBanca'])
-        ->name('ideasun.admin.bancas.vincular');
+    // Rotas para gerenciamento de vinculação de bancas
+    Route::get('/bancas', [AdminController::class, 'bancas'])->name('bancas');
+    Route::get('/bancas/{banca_cidade_id}/vincular', [AdminController::class, 'vincularBanca'])->name('bancas.vincular');
+    Route::post('/bancas/salvar-vinculos', [AdminController::class, 'salvarVinculos'])->name('bancas.salvar-vinculos');
+    Route::delete('/bancas/remover-vinculo/{vinculo_id}', [AdminController::class, 'removerVinculo'])->name('bancas.remover-vinculo');
+    Route::get('/bancas/resultados', [AdminController::class, 'resultadosAvaliacoes'])->name('bancas.resultados');
     
-    // Salvar vinculações
-    Route::post('/ideasun/admin/bancas/salvar-vinculos', [AdminController::class, 'salvarVinculos'])
-        ->name('ideasun.admin.bancas.salvar-vinculos');
+    // Rotas para seleção de finalistas
+    Route::get('/cidade/{cidade_id}/avaliacoes', [AdminController::class, 'cidadeAvaliacoes'])->name('cidade.avaliacoes');
+    Route::post('/equipe/selecionar-finalista', [AdminController::class, 'selecionarFinalista'])->name('equipe.selecionar-finalista');
+    Route::post('/equipe/repescagem', [AdminController::class, 'repescagemEquipe'])->name('equipe.repescagem');
     
-    // Remover vinculação específica
-    Route::delete('/ideasun/admin/bancas/remover-vinculo/{vinculo_id}', [AdminController::class, 'removerVinculo'])
-        ->name('ideasun.admin.bancas.remover-vinculo');
-    
-    // Página de resultados consolidados das avaliações
-    Route::get('/ideasun/admin/bancas/resultados', [AdminController::class, 'resultadosAvaliacoes'])
-        ->name('ideasun.admin.bancas.resultados');
+    // Excluir equipe
+    Route::delete('/equipe/excluir/{id}', [AdminController::class, 'equipeExcluir'])->name('equipe.excluir');
 });
 
 // Rotas para seleção de finalistas
@@ -161,9 +158,6 @@ Route::post('/ideasun/admin/equipe/repescagem', [AdminController::class, 'repesc
 Route::middleware(['ideasun.qualquer.auth'])->group(function () {
     Route::get('/ideasun/materiais', [IdeasunController::class, 'materiais'])->name('ideasun.materiais');
 });
-
-// Adicione esta rota fora dos grupos de middleware existentes
-Route::get('/ideasun/materiais', [IdeasunController::class, 'materiais'])->name('ideasun.materiais');
 
 // Modificar a rota existente de horários para períodos
 Route::get('/cidade/periodos', [IdeasunController::class, 'getPeriodosDisponiveis'])

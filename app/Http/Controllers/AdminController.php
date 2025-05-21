@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // Adicione esta linha
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Cidade;
 use App\Models\Equipe;
 use App\Models\BancaCidadeVinculo;
@@ -17,20 +18,33 @@ class AdminController extends Controller
      */
     public function authenticate(Request $request)
     {
-        $usuario = $request->input('usuario');
-        $senha = $request->input('senha');
+        $request->validate([
+            'usuario' => 'required|string',
+            'senha' => 'required|string',
+        ]);
+
+        // Verifique se existe um admin no banco de dados
+        $admin = \App\Models\Admin::where('username', $request->usuario)
+            ->where('is_active', true)
+            ->first();
         
-        // Credenciais de administrador (idealmente, devem estar no .env ou banco de dados)
-        $adminUsuario = env('ADMIN_USER', 'admin');
-        $adminSenha = env('ADMIN_PASSWORD', 'expoasa2025');
-        
-        if ($usuario === $adminUsuario && $senha === $adminSenha) {
+        if ($admin && Hash::check($request->senha, $admin->password)) {
             // Autenticação bem-sucedida
             Session::put('admin_authenticated', true);
             return redirect()->route('ideasun.admin.dashboard');
         }
         
-        // Autenticação falhou
+        // Se não existirem admins no banco, use as credenciais do .env (temporariamente)
+        if (\App\Models\Admin::count() === 0) {
+            $adminUsuario = env('ADMIN_USER', 'admin');
+            $adminSenha = env('ADMIN_PASSWORD', 'expoasa2025');
+            
+            if ($request->usuario === $adminUsuario && $request->senha === $adminSenha) {
+                Session::put('admin_authenticated', true);
+                return redirect()->route('ideasun.admin.dashboard');
+            }
+        }
+        
         return redirect()->route('ideasun.login')
             ->with('error', 'Credenciais de administrador inválidas');
     }
@@ -49,11 +63,7 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        // Verificar se o administrador está autenticado
-        if (!Session::has('admin_authenticated')) {
-            return redirect()->route('ideasun.login')
-                ->with('error', 'Acesso restrito. Faça login como administrador.');
-        }
+        // Remova a verificação manual, o middleware já trata isso
         
         // Obter estatísticas para o dashboard
         $cidadesCount = Cidade::count();

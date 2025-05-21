@@ -621,19 +621,6 @@
                 $(`#modalidadeTabs a[href="${activeTab}"]`).tab('show');
             }
         });
-        
-        // Função para exibir nome formatado da modalidade
-        function getModalidadeNome(modalidade) {
-            const modalidades = {
-                'educacao_especial': 'Educação Especial',
-                'fundamental_1': 'Fundamental I',
-                'fundamental_2': 'Fundamental II',
-                'medio_tecnico': 'Médio/Técnico',
-                'superior': 'Superior'
-            };
-            
-            return modalidades[modalidade] || modalidade.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
-        }
     </script>
 </body>
 </html>
