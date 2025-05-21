@@ -287,22 +287,24 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="banca-card">
-                        <div class="banca-header">
-                            <h2>Agendamento de Banca</h2>
-                            <p>Agende a apresentação de pitches das suas equipes</p>
+                        <!-- Logo após o início do card da banca -->
+                        <div class="dashboard-card">
+                            <div class="dashboard-header">
+                                <h2><i class="fa fa-calendar-check-o mr-2"></i>Agendamento de Banca</h2>
+                            </div>
+                            
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    <i class="fa fa-check-circle mr-2"></i>{{ session('success') }}
+                                </div>
+                            @endif
+                            
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    <i class="fa fa-exclamation-triangle mr-2"></i>{{ session('error') }}
+                                </div>
+                            @endif
                         </div>
-                        
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                <i class="fa fa-check-circle mr-2"></i> {{ session('success') }}
-                            </div>
-                        @endif
-                        
-                        @if(session('error'))
-                            <div class="alert alert-danger">
-                                <i class="fa fa-exclamation-circle mr-2"></i> {{ session('error') }}
-                            </div>
-                        @endif
                         
                         <div class="cidade-info">
                             <div class="row">
@@ -408,6 +410,10 @@
                                 <form action="{{ route('ideasun.cidade.salvar-banca') }}" method="POST" id="formBanca">
                                     @csrf
                                     <div class="calendario-container">
+                                        <h4 class="mb-3"><i class="fa fa-calendar mr-2"></i>Data da Banca</h4>
+                                        
+                                        <div id="calendario-info"></div>
+                                        
                                         <h4 class="mb-3"><i class="fa fa-calendar mr-2"></i>Selecione uma Data</h4>
                                         
                                         <div class="form-group">
@@ -452,6 +458,7 @@
                                                                 <input type="text" class="form-control cpf-mask" id="avaliador_cpf_{{ $i }}" 
                                                                        name="avaliadores[{{ $i-1 }}][cpf]" placeholder="000.000.000-00" required>
                                                                 <small class="form-text text-muted">A senha inicial será os 6 primeiros dígitos do CPF.</small>
+                                                                <!-- A mensagem de erro será adicionada aqui pelo JavaScript -->
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -459,6 +466,7 @@
                                                                 <label for="avaliador_telefone_{{ $i }}">Telefone <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control telefone-mask" id="avaliador_telefone_{{ $i }}" 
                                                                        name="avaliadores[{{ $i-1 }}][telefone]" placeholder="(00) 00000-0000" required>
+                                                                <!-- A mensagem de erro será adicionada aqui pelo JavaScript -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -526,6 +534,27 @@
     
     <script>
         $(document).ready(function() {
+            // Configurar o datepicker para mostrar apenas as datas de 28 a 30 de maio
+            var dataMinima = new Date(2025, 4, 28); // Mês é 0-indexed (4 = maio)
+            var dataMaxima = new Date(2025, 4, 30);
+            
+            $('#data_banca').datepicker({
+                format: 'yyyy-mm-dd',
+                startDate: dataMinima,
+                endDate: dataMaxima,
+                autoclose: true,
+                language: 'pt-BR'
+            });
+            
+            // Adicionar texto informativo sobre o período de agendamento
+            $('#calendario-info').html(`
+                <div class="alert alert-info">
+                    <i class="fa fa-info-circle mr-2"></i>
+                    <strong>Período de Agendamento:</strong> As bancas estão disponíveis apenas 
+                    entre os dias 28 e 30 de maio de 2025.
+                </div>
+            `);
+            
             // Quando uma data for selecionada
             $('#data_banca').change(function() {
                 var data = $(this).val();
@@ -582,7 +611,7 @@
                 });
             });
             
-            // Aplicar máscara aos campos de CPF
+            // Funções existentes para CPF e telefone
             $('.cpf-mask').on('input', function() {
                 let value = $(this).val().replace(/\D/g, '');
                 if (value.length > 11) {
@@ -599,6 +628,8 @@
                     $(this).val(value);
                 }
                 
+                // Verificar duplicidades após editar CPF
+                verificarCpfsDuplicados();
                 // Verificar se o botão deve ser habilitado depois de editar CPF
                 verificarFormulario();
             });
@@ -631,9 +662,71 @@
                 
                 $(this).val(formatted);
                 
+                // Verificar duplicidades após editar telefone
+                verificarTelefonesDuplicados();
                 // Verificar se o botão deve ser habilitado depois de editar telefone
                 verificarFormulario();
             });
+            
+            // Nova função para verificar CPFs duplicados
+            function verificarCpfsDuplicados() {
+                const cpfs = [];
+                let duplicados = false;
+                
+                // Coletar todos os CPFs preenchidos
+                for (let i = 1; i <= 5; i++) {
+                    const cpfField = $(`#avaliador_cpf_${i}`);
+                    const cpf = cpfField.val().replace(/\D/g, '');
+                    
+                    if (cpf.length === 11) {
+                        if (cpfs.includes(cpf)) {
+                            duplicados = true;
+                            $(`#avaliador_cpf_${i}`).addClass('is-invalid');
+                            
+                            // Adicionar mensagem de erro se não existir
+                            if ($(`#cpf-error-${i}`).length === 0) {
+                                $(`#avaliador_cpf_${i}`).after(`<div id="cpf-error-${i}" class="text-danger">CPF duplicado. Cada avaliador deve ter um CPF único.</div>`);
+                            }
+                        } else {
+                            cpfs.push(cpf);
+                            $(`#avaliador_cpf_${i}`).removeClass('is-invalid');
+                            $(`#cpf-error-${i}`).remove();
+                        }
+                    }
+                }
+                
+                return !duplicados;
+            }
+            
+            // Nova função para verificar telefones duplicados
+            function verificarTelefonesDuplicados() {
+                const telefones = [];
+                let duplicados = false;
+                
+                // Coletar todos os telefones preenchidos
+                for (let i = 1; i <= 5; i++) {
+                    const telefoneField = $(`#avaliador_telefone_${i}`);
+                    const telefone = telefoneField.val().replace(/\D/g, '');
+                    
+                    if (telefone.length >= 10) {
+                        if (telefones.includes(telefone)) {
+                            duplicados = true;
+                            $(`#avaliador_telefone_${i}`).addClass('is-invalid');
+                            
+                            // Adicionar mensagem de erro se não existir
+                            if ($(`#telefone-error-${i}`).length === 0) {
+                                $(`#avaliador_telefone_${i}`).after(`<div id="telefone-error-${i}" class="text-danger">Telefone duplicado. Cada avaliador deve ter um telefone único.</div>`);
+                            }
+                        } else {
+                            telefones.push(telefone);
+                            $(`#avaliador_telefone_${i}`).removeClass('is-invalid');
+                            $(`#telefone-error-${i}`).remove();
+                        }
+                    }
+                }
+                
+                return !duplicados;
+            }
             
             // Verificar campos quando os nomes forem editados
             $('input[id^="avaliador_nome_"]').on('input', function() {
@@ -664,35 +757,19 @@
                     }
                 }
                 
+                // Verificar se há CPFs ou telefones duplicados
+                const cpfsUnicos = verificarCpfsDuplicados();
+                const telefonesUnicos = verificarTelefonesDuplicados();
+                
                 console.log('Avaliadores válidos:', avaliadoresValid);
+                console.log('CPFs únicos:', cpfsUnicos);
+                console.log('Telefones únicos:', telefonesUnicos);
                 
                 // Habilitar ou desabilitar o botão
-                $('#btnAgendar').prop('disabled', !(horarioSelecionado && avaliadoresValid));
+                $('#btnAgendar').prop('disabled', !(horarioSelecionado && avaliadoresValid && cpfsUnicos && telefonesUnicos));
             }
             
-            // Adicionar submit handler com debug
-            $('#formBanca').on('submit', function(e) {
-                console.log('Formulário enviado');
-                
-                // Coletar todos os valores para debug
-                const formData = {
-                    data_banca: $('#data_banca').val(),
-                    horario: $('input[name="horario"]:checked').val(),
-                    avaliadores: []
-                };
-                
-                for (let i = 1; i <= 5; i++) {
-                    formData.avaliadores.push({
-                        nome: $(`#avaliador_nome_${i}`).val(),
-                        cpf: $(`#avaliador_cpf_${i}`).val(),
-                        telefone: $(`#avaliador_telefone_${i}`).val()
-                    });
-                }
-                
-                console.log('Dados do formulário:', formData);
-            });
-            
-            // Validar formulário antes de enviar
+            // Modificar o handler de submit para verificar duplicidades
             $('#formBanca').on('submit', function(e) {
                 if (!$('input[name="horario"]:checked').val()) {
                     e.preventDefault();
@@ -719,7 +796,28 @@
                     alert('Por favor, preencha corretamente os dados dos 5 avaliadores (nome, CPF e telefone).');
                     return false;
                 }
+                
+                // Verificar CPFs duplicados
+                if (!verificarCpfsDuplicados()) {
+                    e.preventDefault();
+                    alert('Existem CPFs duplicados no formulário. Cada avaliador deve ter um CPF único.');
+                    return false;
+                }
+                
+                // Verificar telefones duplicados
+                if (!verificarTelefonesDuplicados()) {
+                    e.preventDefault();
+                    alert('Existem telefones duplicados no formulário. Cada avaliador deve ter um telefone único.');
+                    return false;
+                }
+                
+                return true;
             });
+            
+            // Inicialização: verificar duplicidades
+            verificarCpfsDuplicados();
+            verificarTelefonesDuplicados();
+            verificarFormulario();
         });
     </script>
 </body>

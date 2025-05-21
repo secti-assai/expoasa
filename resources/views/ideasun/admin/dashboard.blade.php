@@ -271,6 +271,11 @@
                                     <i class="fa fa-calendar"></i> Calendário
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('ideasun.admin.bancas') }}">
+                                    <i class="fa fa-users"></i> Gerenciar Bancas
+                                </a>
+                            </li>
                             <li class="nav-item mt-5">
                                 <a class="nav-link text-danger" href="{{ route('ideasun.admin.logout') }}">
                                     <i class="fa fa-sign-out"></i> Sair
@@ -453,9 +458,12 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-sm btn-info" onclick="viewCidadeDetails('{{ $cidade->cidade_id }}')">
+                                                        <button class="btn btn-sm btn-info" onclick="viewCidadeDetails('{{ $cidade->id }}')">
                                                             <i class="fa fa-eye"></i>
                                                         </button>
+                                                        <a href="{{ route('ideasun.admin.cidade.avaliacoes', $cidade->id) }}" class="btn btn-info mr-2 mb-2">
+                                                            <i class="fa fa-star mr-2"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach

@@ -23,10 +23,14 @@ class Equipe extends Model
         'doc_termo_aceite_path',
         'doc_termo_dados_path',
         'doc_termo_imagem_path',
+        'expoasa',
+        'nota_media'
     ];
 
     protected $casts = [
         'membros_dados' => 'array',
+        'expoasa' => 'boolean',
+        'nota_media' => 'decimal:2'
     ];
 
     public function cidade()
@@ -55,5 +59,29 @@ class Equipe extends Model
     public function getMembroResponsavelAttribute()
     {
         return $this->membros()->where('responsavel_equipe', true)->first();
+    }
+
+    /**
+     * As avaliações recebidas por esta equipe
+     */
+    public function avaliacoes()
+    {
+        return $this->hasMany(Avaliacao::class);
+    }
+
+    /**
+     * Obtém o nome da modalidade formatado para exibição
+     */
+    public function getModalidadeNome()
+    {
+        $modalidades = [
+            'educacao_especial' => 'Educação Especial',
+            'fundamental_1' => 'Fundamental I',
+            'fundamental_2' => 'Fundamental II',
+            'medio_tecnico' => 'Médio/Técnico',
+            'superior' => 'Superior',
+        ];
+        
+        return $modalidades[$this->modalidade] ?? ucfirst(str_replace('_', ' ', $this->modalidade));
     }
 }

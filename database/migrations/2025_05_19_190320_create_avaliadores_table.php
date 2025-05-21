@@ -17,7 +17,7 @@ class CreateAvaliadoresTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('cpf')->unique();
-            $table->string('telefone')->nullable(); // Campo de telefone adicionado
+            $table->string('telefone')->nullable(); // Campo de telefone incluído
             $table->string('senha');
             $table->unsignedBigInteger('cidade_id');
             $table->integer('nivel')->default(1);

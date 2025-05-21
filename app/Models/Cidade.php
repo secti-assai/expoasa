@@ -54,6 +54,22 @@ class Cidade extends Model
         return $this->hasMany(Avaliador::class);
     }
 
+    /**
+     * Cidades que esta cidade avalia (através de sua banca)
+     */
+    public function cidadesAvaliadas()
+    {
+        return $this->hasMany(BancaCidadeVinculo::class, 'banca_cidade_id');
+    }
+
+    /**
+     * Cidades que avaliam esta cidade (através de suas bancas)
+     */
+    public function cidadesAvaliadoras()
+    {
+        return $this->hasMany(BancaCidadeVinculo::class, 'cidade_avaliada_id');
+    }
+
     // Método para obter dias disponíveis com base na categoria de distância
     public function getDiasDisponiveis()
     {

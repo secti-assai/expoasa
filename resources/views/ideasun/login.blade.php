@@ -304,6 +304,9 @@
                             <button class="login-option-btn" onclick="showLoginForm('equipe')">
                                 <i class="fa fa-users"></i> Acesso para Equipes
                             </button>
+                            <button class="login-option-btn" onclick="showLoginForm('banca')">
+                                <i class="fa fa-star"></i> Acesso para Banca
+                            </button>
                             <button class="login-option-btn" onclick="showLoginForm('admin')">
                                 <i class="fa fa-lock"></i> Administração
                             </button>
@@ -357,6 +360,34 @@
                             </form>
                         </div>
                         
+                        <div id="bancaForm" class="login-form">
+                            <form action="{{ route('ideasun.banca.autenticar') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="cpf">CPF do Avaliador</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control cpf-mask" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="senha_banca">Senha</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" id="senha_banca" name="senha" placeholder="Digite sua senha" required>
+                                    </div>
+                                    <small class="form-text text-muted">A senha inicial são os 6 primeiros dígitos do seu CPF.</small>
+                                </div>
+                                <button type="submit" class="btn btn-info btn-block">
+                                    <i class="fa fa-sign-in mr-2"></i>Acessar como Avaliador
+                                </button>
+                            </form>
+                        </div>
+                        
                         <div id="adminForm" class="login-form">
                             <form action="{{ route('ideasun.admin.authenticate') }}" method="post">
                                 @csrf
@@ -406,6 +437,7 @@
             // Esconder todos os formulários
             document.getElementById('cidadeForm').classList.remove('active');
             document.getElementById('equipeForm').classList.remove('active');
+            document.getElementById('bancaForm').classList.remove('active');
             document.getElementById('adminForm').classList.remove('active');
             
             // Mostrar o formulário selecionado
@@ -421,6 +453,26 @@
                 event.target.classList.add('cidade');
             }
         }
+        
+        $(document).ready(function() {
+            // Adicionar máscara para o campo CPF
+            $('.cpf-mask').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                if (value.length > 11) {
+                    value = value.substr(0, 11);
+                }
+                
+                if (value.length > 9) {
+                    $(this).val(value.substr(0, 3) + '.' + value.substr(3, 3) + '.' + value.substr(6, 3) + '-' + value.substr(9));
+                } else if (value.length > 6) {
+                    $(this).val(value.substr(0, 3) + '.' + value.substr(3, 3) + '.' + value.substr(6));
+                } else if (value.length > 3) {
+                    $(this).val(value.substr(0, 3) + '.' + value.substr(3));
+                } else {
+                    $(this).val(value);
+                }
+            });
+        });
     </script>
 </body>
 </html>

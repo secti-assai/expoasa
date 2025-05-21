@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Avaliador extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'avaliadores';
-    
+
     protected $fillable = [
         'nome',
         'cpf',
@@ -21,12 +21,24 @@ class Avaliador extends Model
         'tipo',
         'ativo'
     ];
-    
+
+    protected $hidden = [
+        'senha',
+    ];
+
     /**
      * Retorna a cidade a que o avaliador pertence
      */
     public function cidade()
     {
         return $this->belongsTo(Cidade::class);
+    }
+
+    /**
+     * As avaliações feitas por este avaliador
+     */
+    public function avaliacoes()
+    {
+        return $this->hasMany(Avaliacao::class);
     }
 }

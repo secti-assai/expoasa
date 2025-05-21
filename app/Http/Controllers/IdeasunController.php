@@ -1009,7 +1009,7 @@ class IdeasunController extends Controller
         $request->validate([
             'data_banca' => 'required|date',
             'horario' => 'required|string',
-            'avaliadores' => 'required|array|size:5', // Alterado de 3 para 5
+            'avaliadores' => 'required|array|size:5',
             'avaliadores.*.nome' => 'required|string|max:255',
             'avaliadores.*.cpf' => 'required|string',
             'avaliadores.*.telefone' => 'required|string|max:20',
@@ -1028,6 +1028,53 @@ class IdeasunController extends Controller
         $dataHora = \Carbon\Carbon::parse($request->data_banca . ' ' . $horarioInicio);
         
         try {
+            // Verificar CPFs duplicados dentro do formulário
+            $cpfs = collect($request->avaliadores)->pluck('cpf')->map(function($cpf) {
+                return preg_replace('/[^0-9]/', '', $cpf);
+            });
+            
+            if ($cpfs->count() !== $cpfs->unique()->count()) {
+                return redirect()->back()
+                    ->with('error', 'Não é permitido cadastrar avaliadores com o mesmo CPF.')
+                    ->withInput();
+            }
+            
+            // Verificar telefones duplicados dentro do formulário
+            $telefones = collect($request->avaliadores)->pluck('telefone')->map(function($telefone) {
+                return preg_replace('/[^0-9]/', '', $telefone);
+            });
+            
+            if ($telefones->count() !== $telefones->unique()->count()) {
+                return redirect()->back()
+                    ->with('error', 'Não é permitido cadastrar avaliadores com o mesmo telefone.')
+                    ->withInput();
+            }
+            
+            // Verificar se CPFs já existem no banco de dados
+            foreach ($cpfs as $index => $cpf) {
+                $existingCpf = \App\Models\Avaliador::where('cpf', $cpf)->exists();
+                if ($existingCpf) {
+                    $nomeAvaliador = $request->avaliadores[$index]['nome'];
+                    return redirect()->back()
+                        ->with('error', "O CPF informado para o avaliador '{$nomeAvaliador}' já está cadastrado no sistema.")
+                        ->withInput();
+                }
+            }
+            
+            // Verificar se telefones já existem no banco de dados
+            foreach ($telefones as $index => $telefone) {
+                if (strlen($telefone) >= 10) { // Apenas verificar telefones válidos
+                    // Comparar apenas os dígitos numéricos
+                    $existingTelefone = \App\Models\Avaliador::whereRaw("REGEXP_REPLACE(telefone, '[^0-9]', '', 'g') = ?", [$telefone])->exists();
+                    if ($existingTelefone) {
+                        $nomeAvaliador = $request->avaliadores[$index]['nome'];
+                        return redirect()->back()
+                            ->with('error', "O telefone informado para o avaliador '{$nomeAvaliador}' já está cadastrado no sistema.")
+                            ->withInput();
+                    }
+                }
+            }
+            
             // Salvar o agendamento
             $cidade->banca_agendada = $dataHora;
             $cidade->save();
@@ -1081,7 +1128,9 @@ class IdeasunController extends Controller
                 'request' => $request->all()
             ]);
             
-            return redirect()->back()->with('error', 'Erro ao agendar banca: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Erro ao agendar banca: ' . $e->getMessage())
+                ->withInput();
         }
     }
     
@@ -1119,5 +1168,102 @@ class IdeasunController extends Controller
             
             return redirect()->back()->with('error', 'Erro ao cancelar agendamento: ' . $e->getMessage());
         }
+    }
+    
+    /**
+     * Verificar se um CPF já existe no banco de dados
+     */
+    public function verificarCpfAvaliador(Request $request)
+    {
+        $cpf = preg_replace('/[^0-9]/', '', $request->cpf);
+        $exists = \App\Models\Avaliador::where('cpf', $cpf)->exists();
+        
+        return response()->json(['exists' => $exists]);
+    }
+
+    /**
+     * Verificar se um telefone já existe no banco de dados
+     */
+    public function verificarTelefoneAvaliador(Request $request)
+    {
+        $telefone = preg_replace('/[^0-9]/', '', $request->telefone);
+        
+        // Considerar apenas os dígitos para comparação
+        $exists = \App\Models\Avaliador::whereRaw("REGEXP_REPLACE(telefone, '[^0-9]', '', 'g') = ?", [$telefone])->exists();
+        
+        return response()->json(['exists' => $exists]);
+    }
+
+    /**
+     * Obter horários disponíveis para agendamento de banca
+     */
+    public function bancaHorarios(Request $request)
+    {
+        // Validar data
+        $request->validate([
+            'data' => 'required|date|date_format:Y-m-d'
+        ]);
+
+        $data = $request->input('data');
+        
+        // Verificar se a data está dentro do período permitido (28 a 30 de maio de 2025)
+        $dataObj = \Carbon\Carbon::parse($data);
+        $dataInicio = \Carbon\Carbon::parse('2025-05-28');
+        $dataFim = \Carbon\Carbon::parse('2025-05-30');
+        
+        if ($dataObj->lt($dataInicio) || $dataObj->gt($dataFim)) {
+            return response()->json([
+                'success' => false,
+                'error' => 'A data selecionada está fora do período permitido (28 a 30 de maio de 2025).'
+            ], 400);
+        }
+        
+        // Definir períodos disponíveis
+        $periodos = [
+            [
+                'horario' => '09:00 às 12:00',
+                'periodo' => 'Manhã',
+                'max_bancas' => 2
+            ],
+            [
+                'horario' => '14:00 às 17:00',
+                'periodo' => 'Tarde',
+                'max_bancas' => 2
+            ],
+            [
+                'horario' => '19:00 às 22:00',
+                'periodo' => 'Noite',
+                'max_bancas' => 2
+            ]
+        ];
+
+        // Verificar quantas bancas já estão agendadas para cada período nesta data
+        $horarios = [];
+        
+        foreach ($periodos as $periodo) {
+            // Calcular o início e fim do período
+            $horarioParts = explode(' às ', $periodo['horario']);
+            $horarioInicio = $dataObj->copy()->setTimeFromTimeString($horarioParts[0] . ':00');
+            $horarioFim = $dataObj->copy()->setTimeFromTimeString($horarioParts[1] . ':00');
+            
+            // Contar quantas bancas já estão agendadas neste período
+            $bancasAgendadas = \App\Models\Cidade::where('banca_agendada', '>=', $horarioInicio)
+                ->where('banca_agendada', '<=', $horarioFim)
+                ->count();
+            
+            // Adicionar o horário se não atingiu o limite de bancas
+            if ($bancasAgendadas < $periodo['max_bancas']) {
+                $horarios[] = [
+                    'horario' => $periodo['horario'],
+                    'periodo' => $periodo['periodo'],
+                    'vagas_restantes' => $periodo['max_bancas'] - $bancasAgendadas
+                ];
+            }
+        }
+        
+        return response()->json([
+            'success' => true,
+            'horarios' => $horarios
+        ]);
     }
 }

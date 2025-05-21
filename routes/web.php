@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IdeasunController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BancaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -119,6 +120,40 @@ Route::get('/ideasun/admin/cidade/{id}', [AdminController::class, 'cidadeDetalhe
 Route::get('/ideasun/admin/equipe/{id}', [AdminController::class, 'equipeDetalhes'])->name('ideasun.admin.equipe.detalhes');
 Route::get('/ideasun/admin/export', [AdminController::class, 'export'])->name('ideasun.admin.export');
 
+// Rotas para gerenciamento de vinculação de bancas (dentro do grupo de admin)
+Route::middleware(['ideasun.admin'])->group(function () {
+    // Lista de bancas e gestão de vinculações
+    Route::get('/ideasun/admin/bancas', [AdminController::class, 'bancas'])->name('ideasun.admin.bancas');
+    
+    // Página para vincular uma banca específica
+    Route::get('/ideasun/admin/bancas/{banca_cidade_id}/vincular', [AdminController::class, 'vincularBanca'])
+        ->name('ideasun.admin.bancas.vincular');
+    
+    // Salvar vinculações
+    Route::post('/ideasun/admin/bancas/salvar-vinculos', [AdminController::class, 'salvarVinculos'])
+        ->name('ideasun.admin.bancas.salvar-vinculos');
+    
+    // Remover vinculação específica
+    Route::delete('/ideasun/admin/bancas/remover-vinculo/{vinculo_id}', [AdminController::class, 'removerVinculo'])
+        ->name('ideasun.admin.bancas.remover-vinculo');
+    
+    // Página de resultados consolidados das avaliações
+    Route::get('/ideasun/admin/bancas/resultados', [AdminController::class, 'resultadosAvaliacoes'])
+        ->name('ideasun.admin.bancas.resultados');
+});
+
+// Rotas para seleção de finalistas
+Route::get('/ideasun/admin/cidade/{cidade_id}/avaliacoes', [AdminController::class, 'cidadeAvaliacoes'])
+    ->name('ideasun.admin.cidade.avaliacoes');
+
+// Rota para selecionar uma equipe como finalista
+Route::post('/ideasun/admin/equipe/selecionar-finalista', [AdminController::class, 'selecionarFinalista'])
+    ->name('ideasun.admin.equipe.selecionar-finalista');
+
+// Rota para repescagem de equipe
+Route::post('/ideasun/admin/equipe/repescagem', [AdminController::class, 'repescagemEquipe'])
+    ->name('ideasun.admin.equipe.repescagem');
+
 // Remova ou comente esta rota duplicada
 // Route::get('/ideasun/materiais', [IdeasunController::class, 'materiais'])->name('ideasun.materiais');
 
@@ -133,3 +168,19 @@ Route::get('/ideasun/materiais', [IdeasunController::class, 'materiais'])->name(
 // Modificar a rota existente de horários para períodos
 Route::get('/cidade/periodos', [IdeasunController::class, 'getPeriodosDisponiveis'])
     ->name('ideasun.cidade.periodos');
+
+// Rotas para a banca (avaliadores)
+Route::post('/ideasun/banca/autenticar', [BancaController::class, 'autenticar'])->name('ideasun.banca.autenticar');
+
+// Rotas protegidas da banca
+Route::middleware(['ideasun.banca'])->group(function () {
+    Route::get('/ideasun/banca/dashboard', [BancaController::class, 'dashboard'])->name('ideasun.banca.dashboard');
+    Route::get('/ideasun/banca/avaliar/{equipe_id?}', [BancaController::class, 'avaliar'])->name('ideasun.banca.avaliar');
+    Route::post('/ideasun/banca/avaliar/salvar', [BancaController::class, 'salvarAvaliacao'])->name('ideasun.banca.avaliar.salvar');
+    Route::get('/ideasun/banca/resultados', [BancaController::class, 'resultados'])->name('ideasun.banca.resultados');
+    Route::get('/ideasun/banca/logout', [BancaController::class, 'logout'])->name('ideasun.banca.logout');
+});
+
+// Rotas para verificar CPF e telefone de avaliadores
+Route::get('/ideasun/cidade/verificar-cpf', [IdeasunController::class, 'verificarCpfAvaliador'])->name('ideasun.cidade.verificar-cpf');
+Route::get('/ideasun/cidade/verificar-telefone', [IdeasunController::class, 'verificarTelefoneAvaliador'])->name('ideasun.cidade.verificar-telefone');

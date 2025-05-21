@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; // Adicione esta linha
 use Illuminate\Support\Facades\Session;
 use App\Models\Cidade;
 use App\Models\Equipe;
+use App\Models\BancaCidadeVinculo;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -178,5 +180,300 @@ class AdminController extends Controller
         
         // Por enquanto, apenas retornamos uma mensagem
         return back()->with('success', 'Exportação iniciada. O arquivo será baixado em breve.');
+    }
+    
+    /**
+     * Exibir página de gerenciamento de bancas
+     */
+    public function bancas()
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        // Obter todas as cidades com bancas agendadas (avaliadores cadastrados)
+        $cidadesComBanca = Cidade::whereHas('avaliadores')
+                            ->withCount('avaliadores')
+                            ->with('cidadesAvaliadas.cidadeAvaliada')
+                            ->get();
+        
+        // Obter todos os vínculos existentes
+        $vinculos = BancaCidadeVinculo::with(['bancaCidade', 'cidadeAvaliada'])->get();
+        
+        return view('ideasun.admin.bancas', compact('cidadesComBanca', 'vinculos'));
+    }
+
+    /**
+     * Exibir página para vincular uma banca específica
+     */
+    public function vincularBanca($banca_cidade_id)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        // Obter a cidade da banca
+        $bancaCidade = Cidade::findOrFail($banca_cidade_id);
+        
+        // Verificar se a cidade tem banca (avaliadores cadastrados)
+        if ($bancaCidade->avaliadores->count() == 0) {
+            return redirect()->route('ideasun.admin.bancas')
+                ->with('error', 'Esta cidade não possui avaliadores cadastrados.');
+        }
+        
+        // Obter todas as cidades exceto a própria banca
+        $cidadesDisponiveis = Cidade::where('id', '!=', $banca_cidade_id)->get();
+        
+        // Obter os IDs das cidades já vinculadas a esta banca
+        $cidadesVinculadasIds = BancaCidadeVinculo::where('banca_cidade_id', $banca_cidade_id)
+                                            ->pluck('cidade_avaliada_id')
+                                            ->toArray();
+        
+        return view('ideasun.admin.vincular-banca', compact(
+            'bancaCidade',
+            'cidadesDisponiveis',
+            'cidadesVinculadasIds'
+        ));
+    }
+
+    /**
+     * Salvar vinculações de banca
+     */
+    public function salvarVinculos(Request $request)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        $request->validate([
+            'banca_cidade_id' => 'required|exists:cidades,id',
+            'cidades_avaliadas' => 'required|array',
+            'cidades_avaliadas.*' => 'exists:cidades,id'
+        ]);
+        
+        try {
+            $bancaCidadeId = $request->banca_cidade_id;
+            
+            // Remover vinculações existentes
+            BancaCidadeVinculo::where('banca_cidade_id', $bancaCidadeId)->delete();
+            
+            // Criar novas vinculações
+            foreach ($request->cidades_avaliadas as $cidadeAvaliadaId) {
+                BancaCidadeVinculo::create([
+                    'banca_cidade_id' => $bancaCidadeId,
+                    'cidade_avaliada_id' => $cidadeAvaliadaId
+                ]);
+            }
+            
+            // Obter nome da cidade para mensagem
+            $cidadeBanca = Cidade::find($bancaCidadeId);
+            
+            return redirect()->route('ideasun.admin.bancas')
+                ->with('success', "Vinculações da banca da cidade {$cidadeBanca->nome} salvas com sucesso.");
+                
+        } catch (\Exception $e) {
+            \Log::error('Erro ao salvar vinculações de banca:', [
+                'erro' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect()->back()
+                ->with('error', 'Erro ao salvar vinculações: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Remover vinculação específica
+     */
+    public function removerVinculo($vinculo_id)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        try {
+            $vinculo = BancaCidadeVinculo::findOrFail($vinculo_id);
+            
+            // Obter nomes para mensagem
+            $cidadeBanca = Cidade::find($vinculo->banca_cidade_id);
+            $cidadeAvaliada = Cidade::find($vinculo->cidade_avaliada_id);
+            
+            $vinculo->delete();
+            
+            return redirect()->route('ideasun.admin.bancas')
+                ->with('success', "Vinculação removida: A banca de {$cidadeBanca->nome} não avaliará mais {$cidadeAvaliada->nome}.");
+                
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Erro ao remover vinculação: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Exibir resultados das avaliações
+     */
+    public function resultadosAvaliacoes()
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        // Obter todas as equipes com suas avaliações
+        $equipes = Equipe::with(['cidade', 'avaliacoes.avaliador.cidade'])
+                        ->withCount('avaliacoes')
+                        ->get();
+        
+        // Para cada equipe, calcular a média das notas
+        foreach ($equipes as $equipe) {
+            if ($equipe->avaliacoes->count() > 0) {
+                // Calcular as médias por critério
+                $equipe->media_A = $equipe->avaliacoes->avg('A_criatividade_inovacao');
+                $equipe->media_B = $equipe->avaliacoes->avg('B_qualidade_apresentacao');
+                $equipe->media_C = $equipe->avaliacoes->avg('C_impacto_sociedade');
+                $equipe->media_D = $equipe->avaliacoes->avg('D_aderencia_ODS');
+                
+                // Calcular a média geral
+                $equipe->nota_media = $equipe->avaliacoes->avg('nota_total');
+            } else {
+                $equipe->media_A = 0;
+                $equipe->media_B = 0;
+                $equipe->media_C = 0;
+                $equipe->media_D = 0;
+                $equipe->nota_media = 0;
+            }
+        }
+        
+        return view('ideasun.admin.resultados-avaliacoes', compact('equipes'));
+    }
+
+    /**
+     * Exibir avaliações de todas as equipes de uma cidade
+     */
+    public function cidadeAvaliacoes($cidade_id)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        // Obter a cidade
+        $cidade = Cidade::findOrFail($cidade_id);
+        
+        // Obter todas as equipes da cidade com suas avaliações
+        $equipes = Equipe::where('cidade_id', $cidade_id)
+                ->with(['avaliacoes.avaliador.cidade'])
+                ->withCount('avaliacoes')
+                ->get()
+                ->groupBy('modalidade');
+    
+        // Para cada equipe, atualizar a nota média no banco se necessário
+        foreach ($equipes->flatten() as $equipe) {
+            if ($equipe->avaliacoes->count() > 0) {
+                $notaMedia = $equipe->avaliacoes->avg('nota_total');
+                
+                // Se a nota média calculada for diferente da armazenada, atualize
+                if ($equipe->nota_media != $notaMedia) {
+                    $equipe->nota_media = $notaMedia;
+                    $equipe->save();
+                }
+            }
+        }
+        
+        // Obtenha as modalidades utilizadas pela cidade
+        $modalidades = $equipes->keys()->toArray();
+    
+        return view('ideasun.admin.cidade-avaliacoes', compact('cidade', 'equipes', 'modalidades'));
+    }
+
+    /**
+     * Selecionar uma equipe como finalista para a Expoasa
+     */
+    public function selecionarFinalista(Request $request)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        $request->validate([
+            'equipe_id' => 'required|exists:equipes,id',
+            'cidade_id' => 'required|exists:cidades,id',
+            'modalidade' => 'required|string',
+        ]);
+        
+        try {
+            DB::beginTransaction();
+            
+            // Pegar a equipe selecionada
+            $equipeSelecionada = Equipe::findOrFail($request->equipe_id);
+            
+            // Marcar todas as equipes da mesma modalidade e cidade como não selecionadas
+            Equipe::where('cidade_id', $request->cidade_id)
+                ->where('modalidade', $request->modalidade)
+                ->update(['expoasa' => false]);
+            
+            // Marcar a equipe selecionada como finalista
+            $equipeSelecionada->expoasa = true;
+            $equipeSelecionada->save();
+            
+            DB::commit();
+            
+            return redirect()->back()
+                ->with('success', 'Equipe "' . $equipeSelecionada->nome . '" selecionada com sucesso como finalista da Expoasa.');
+                
+        } catch (\Exception $e) {
+            DB::rollback();
+            \Log::error('Erro ao selecionar finalista: ', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect()->back()
+                ->with('error', 'Erro ao selecionar finalista: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Repescagem de equipe (reabilitar para Expoasa)
+     */
+    public function repescagemEquipe(Request $request)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        $request->validate([
+            'equipe_id' => 'required|exists:equipes,id'
+        ]);
+        
+        try {
+            // Obter a equipe
+            $equipe = Equipe::findOrFail($request->equipe_id);
+            
+            // Marcar como selecionada para Expoasa
+            $equipe->expoasa = true;
+            $equipe->save();
+            
+            return redirect()->back()
+                ->with('success', 'Equipe "' . $equipe->nome . '" reabilitada para a Expoasa via repescagem.');
+                
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Erro ao reabilitar equipe: ' . $e->getMessage());
+        }
     }
 }

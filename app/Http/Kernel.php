@@ -76,5 +76,7 @@ class Kernel extends HttpKernel
         'ideasun.cidade' => \App\Http\Middleware\IdeasunCidadeAuth::class,
         'ideasun.equipe' => \App\Http\Middleware\IdeasunEquipeAuth::class,
         'ideasun.qualquer.auth' => \App\Http\Middleware\IdeasunQualquerAuth::class,
+        'ideasun.banca' => \App\Http\Middleware\BancaAuth::class,
+        'ideasun.admin' => \App\Http\Middleware\IdeasunAdminAuth::class,
     ];
 }
