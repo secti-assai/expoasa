@@ -84,12 +84,54 @@ class MateriaisSeeder extends Seeder
 
         Material::create([
             'titulo' => 'Termo de Consentimento de Tratamento de Dados (maiores de 18 anos)',
-            'descricao' => 'Ddocumento que formaliza a autorização para que uma instituição colete, utilize e armazene dados pessoais.',
+            'descricao' => 'Documento que formaliza a autorização para que uma instituição colete, utilize e armazene dados pessoais.',
             'url' => '/assets/materials/TERMO_DE_CONSENTIMENTO_PARA_TRATAMENTO_DE_DADOS.pdf',
             'categoria' => 'template',
             'tags' => 'consentimento,+18anos,documentos',
             'ativo' => true,
             'ordem' => 8
+        ]);
+
+        // Novos materiais adicionados
+        
+        Material::create([
+            'titulo' => 'Agendamento de Banca',
+            'descricao' => 'Guia completo sobre como realizar o agendamento de bancas avaliadoras para a Ideasun 2025, incluindo datas disponíveis e procedimentos.',
+            'url' => '/assets/materials/Agendamento_de_Banca_de_Avaliação.pdf',
+            'categoria' => 'guia',
+            'tags' => 'banca,avaliação,agendamento,guia',
+            'ativo' => true,
+            'ordem' => 9
+        ]);
+
+        Material::create([
+            'titulo' => 'Cadastro de Equipes',
+            'descricao' => 'Instruções passo a passo para cadastrar equipes na plataforma Ideasun 2025, incluindo os requisitos para cada modalidade.',
+            'url' => '/assets/materials/Cadastro_de_Equipes_Ideasun-1.pdf',
+            'categoria' => 'guia',
+            'tags' => 'cadastro,equipes,inscrição,guia',
+            'ativo' => true,
+            'ordem' => 10
+        ]);
+
+        Material::create([
+            'titulo' => 'Modelo de Pitch',
+            'descricao' => 'Template para preparação da apresentação de pitch das equipes, com estrutura recomendada e dicas para uma apresentação eficaz.',
+            'url' => '/assets/materials/Modelo_Pitch.pptx',
+            'categoria' => 'template',
+            'tags' => 'pitch,apresentação,template,slide',
+            'ativo' => true,
+            'ordem' => 11
+        ]);
+
+        Material::create([
+            'titulo' => 'Treinamento Ideasun',
+            'descricao' => 'Guia completo sobre o treinamento oferecido às cidades participantes do Ideasun 2025, incluindo conteúdo programático e metodologia.',
+            'url' => '/assets/materials/Treinamento_Ideasun_2025.pdf',
+            'categoria' => 'guia',
+            'tags' => 'treinamento,capacitação,mentor,guia',
+            'ativo' => true,
+            'ordem' => 12
         ]);
     }
 }
