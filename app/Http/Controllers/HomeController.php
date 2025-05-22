@@ -10,6 +10,10 @@ use Illuminate\Support\Str;
 class HomeController extends Controller
 {
     public function index() {
+        return view('home.landing');
+    }
+
+    public function landing2() {
         return view('home.landing2');
     }
 

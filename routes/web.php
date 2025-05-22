@@ -43,6 +43,7 @@ Route::get('/palestrante', function () {
 
 Route::get('/ideasun', [IdeasunController::class, 'index'])->name('ideasun.index');
 Route::get('/', [HomeController::class, 'index'])->name('inicio'); // Para a expoasa
+Route::get('/landing2', [HomeController::class, 'landing2'])->name('home.landing2');
 Route::get('/credenciamento', [HomeController::class, 'credenciamento'])->name('credenciamento');
 Route::post('/credenciamento', [HomeController::class, 'create'])->name('create');
 Route::get('/sorteio', [HomeController::class, 'sorteio'])->name('sorteio');

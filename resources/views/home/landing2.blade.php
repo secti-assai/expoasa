@@ -2189,7 +2189,7 @@
             </button>
 
             <div class="navbar-actions">
-                <a href="https://assai.pr.gov.br" target="_blank">
+                <a href="https://www.assai.pr.gov.br/" target="_blank">
                     <img src="/assets/img/logos/Logo_Prefeitura.jpg" alt="Prefeitura Municipal de Assaí" class="logo-prefeitura">
                 </a>
                 <a href="https://sebraepr.com.br" target="_blank">
@@ -3144,8 +3144,8 @@
                         &copy; 2025 EXPOASA - Todos os direitos reservados | Desenvolvido com ❤️ por <a href="#">VDS</a>
                     </div>
                     <div class="footer-bottom-links">
-                        <a href="#">Termos de Uso</a>
-                        <a href="#">Política de Privacidade</a>
+                        <a href="https://valedosol.assai.pr.gov.br">Vale do Sol</a>
+                        <a href="https://www.assai.pr.gov.br/">Prefeitura Municipal de Assaí</a>
                     </div>
                 </div>
             </div>
