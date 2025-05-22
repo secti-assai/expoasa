@@ -1391,6 +1391,46 @@
             color: white;
         }
 
+        /* NAVBAR MOBILE IMPROVEMENTS */
+        @media (max-width: 767px) {
+            .navbar.main-nav {
+                padding: 10px 0;
+                height: auto;
+                background-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .navbar-logos-wrapper {
+                max-width: 75%; /* Reduzir para dar mais espaço */
+            }
+            
+            .navbar-logos img {
+                height: 40px; /* Reduzir o tamanho dos logos */
+                max-height: 40px;
+            }
+            
+            .logo-brasil-japao {
+                height: 38px;
+                margin-left: 5px;
+            }
+            
+            /* Ajustar posição do botão hamburguer */
+            .navbar-toggler {
+                margin-right: 15px; /* Distância da borda direita */
+                padding: 8px;
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Melhorar o visual do menu dropdown mobile */
+            .navbar-actions.show {
+                padding: 15px;
+                border-radius: 0 0 10px 10px;
+                margin-top: 5px;
+            }
+        }
+
         /* RESPONSIVIDADE */
         @media (max-width: 991px) {
             .navbar-toggler {
@@ -1611,7 +1651,7 @@
         }
 
         @media (max-width: 991px) {
-            .logo-brasil-japao {
+            .logo-brasil_japao {
                 height: 60px;
             }
             
@@ -1621,7 +1661,7 @@
         }
 
         @media (max-width: 767px) {
-            .logo-brasil-japao {
+            .logo-brasil_japao {
                 height: 50px;
             }
             
@@ -1893,6 +1933,118 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
+/* Adicione no seu bloco de estilos: */
+
+/* Classes de visibilidade responsiva */
+.desktop-only {
+    display: inline-block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+.jp-friendship {
+    color: #a40202;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: rgba(255, 204, 0, 0.1);
+    border: 1px solid rgba(164, 2, 2, 0.2);
+}
+
+.logo-text-mobile {
+    display: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: #a40202;
+}
+
+/* Banner ajustado para evitar sobreposição com navbar */
+@media (max-width: 767px) {
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: inline-block;
+    }
+    
+    .logo-main {
+        display: none;
+    }
+    
+    .logo-text-mobile {
+        display: inline-block;
+    }
+    
+    /* Ajuste no espaçamento do banner para não cortar a logo */
+    .banner {
+        padding-top: 100px; /* Aumentar o padding superior */
+        padding-bottom: 60px;
+        background-attachment: scroll; /* Para melhor compatibilidade mobile */
+    }
+    
+    /* Ajuste no container do banner logo */
+    .banner-logo {
+        width: 180px;
+        margin-bottom: 20px;
+    }
+    
+    /* Melhoria para o contador regressivo em mobile */
+    .countdown-wrapper {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Adicione ao seu bloco de estilos: */
+
+@media (max-width: 767px) {
+    .navbar-actions.show {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: calc(100% - 30px);
+        margin: 0 15px;
+        padding: 15px;
+        border-radius: 10px;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-actions a {
+        text-align: center;
+        padding: 10px;
+        border-radius: 8px;
+        transition: all 0.3s;
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    .navbar-actions a:hover {
+        background: rgba(164, 2, 2, 0.05);
+    }
+    
+    .navbar-actions a.ticket {
+        grid-column: span 2;
+        background: #a40202;
+        color: white;
+    }
+    
+    .navbar-actions a img {
+        height: 30px;
+        display: block;
+        margin: 0 auto 5px;
+    }
+}
+
 /* Responsividade */
 @media (max-width: 991px) {
     .growth-section {
@@ -2023,9 +2175,12 @@
             <div class="navbar-logos-wrapper">
                 <div class="navbar-logos">
                     <a class="navbar-brand" href="/">
-                        <img src="/assets/img/logo_laca.png" alt="LACA">
+                        <img src="/assets/img/logo_laca.png" alt="LACA" class="logo-main">
+                        <!-- Logo menor para mobile -->
                     </a>
-                    <img src="/assets/img/brasil_japao.png" alt="130 Anos de Amizade Brasil & Japão" class="logo-brasil-japao">
+                    <!-- Nas telas maiores mostra a imagem, nas pequenas mostra texto -->
+                    <img src="/assets/img/brasil_japao.png" alt="130 Anos de Amizade Brasil & Japão" class="logo-brasil-japao desktop-only">
+                    <span class="mobile-only jp-friendship">79ª EXPOASA</span>
                 </div>
             </div>
 
@@ -2040,7 +2195,7 @@
                 <a href="https://sebraepr.com.br" target="_blank">
                     <img src="/assets/img/logos/Logo_Sebrae.png" alt="Sebrae PR" class="logo-sebrae">
                 </a>
-                <a href="#" class="ticket">
+                <a href="{{ route('ideasun.index') }}" class="ticket">
                     <img src="/assets/images/icon/ticket.png" alt="IDEASUN">
                     <span>IDEASUN 2025</span>
                 </a>
@@ -2418,7 +2573,7 @@
                         <div class="event-card-body">
                             <h3 class="event-card-title">SOBRE A NOSSA RICA GASTRONOMIA</h3>
                             <p class="event-card-desc">No eixo da gastronomia, a EXPOASA também se destaca. O evento reúne a culinária japonesa, lanches e muito churrasco. Nesta Edição 2025, teremos a renomada culinária da Hachimitsu, trazendo pâtisserie e a gastronomia japonesa para alegrar os mais de 10.000 visitantes previstos para o evento.</p>
-                            <p class="event-card-desc">A LACA não fica para trás! Anualmente, as mulheres da LACA (Fujinkai <span class="japanese-accent" style="color: #ffcc00; background-color: rgba(0, 0, 0, 0.3); padding: 2px 10px; border-radius: 4px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">婦人会</span>) preparam com muito carinho o famoso Udon (<span class="japanese-accent" style="color: #ffcc00; background-color: rgba(0, 0, 0, 0.3); padding: 2px 10px; border-radius: 4px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">饂飩</span>) – considerado um dos melhores do país. Além destas saborosas culinárias, a Edição 2025 conta com outros 12 colaboradores gastronômicos, distribuídos em lanches e churrasco texano.</p>
+                            <p class="event-card-desc">A LACA não fica para trás! Anualmente, as mulheres da LACA (Fujinkai <span class="japanese-accent" style="color: #ffcc00; background-color: rgba(0, 0, 0, 0.3); padding: 2px 10px; border-radius: 4px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">婦人会</span>) preparam com muito carinho o famoso Udon (<span class="japanese-accent" style="color: #ffcc00; background-color: rgba(0, 0, 0, 0.3); padding: 2px 10px; border-radius: 4px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">饂飩</span>) – considerado
                         </div>
                     </div>
                 </div>
@@ -2917,7 +3072,7 @@
         </div>
     </section>
 
-    <!-- MAPA / LOCALIZAÇÃO -->
+    <!-- MAPA / LOCALIZAÇÃO
     <section class="location-section">
         <div class="map-container">
             <div id="map"></div>
@@ -2957,6 +3112,7 @@
             <a href="https://maps.app.goo.gl/VMiKEB5NxdVM8ni6A" target="_blank" class="btn btn-light mt-2 w-100">Como Chegar</a>
         </div>
     </section>
+    -->
 
     <!-- CTA -->
     <section class="cta-section">
@@ -2966,11 +3122,11 @@
                 <p>A maior e mais tradicional exposição japonesa do Brasil espera por você para três dias de cultura, gastronomia, tecnologia e muito mais.</p>
                 
                 <div class="cta-buttons">
-                    <a href="#" class="btn-cta">
+                    <a href="{{ route('ideasun.index') }}" class="btn-cta">
                         <i class="fa fa-ticket"></i>
                         Inscreva-se no IDEASUN
                     </a>
-                    <a href="#" class="btn-cta outline">
+                    <a href="#schedule" class="btn-cta outline">
                         <i class="fa fa-calendar"></i>
                         Ver Programação Completa
                     </a>
@@ -2981,73 +3137,6 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="container">
-                <div class="footer-logo">
-                    <img src="/assets/img/logo_laca.png" alt="LACA">
-                    <div class="footer-tagline">
-                        A Liga das Associações Culturais de Assaí (LACA) tem orgulho de apresentar a 79ª EXPOASA - a mais tradicional exposição japonesa do Brasil.
-                    </div>
-                </div>
-
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fa fa-youtube"></i></a>
-                    <a href="#" class="social-link"><i class="fa fa-twitter"></i></a>
-                </div>
-
-                <div class="footer-columns">
-                    <div class="footer-column">
-                        <h4>Navegação</h4>
-                        <ul class="footer-menu">
-                            <li><a href="#about"><i class="fa fa-angle-right"></i> Sobre o Evento</a></li>
-                            <li><a href="#features"><i class="fa fa-angle-right"></i> Informações</a></li>
-                            <li><a href="#events"><i class="fa fa-angle-right"></i> Eventos e Atividades</a></li>
-                            <li><a href="#schedule"><i class="fa fa-angle-right"></i> Programação</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h4>Links Úteis</h4>
-                        <ul class="footer-menu">
-                            <li><a href="https://assai.pr.gov.br" target="_blank"><i class="fa fa-angle-right"></i> Prefeitura de Assaí</a></li>
-                            <li><a href="https://sebraepr.com.br" target="_blank"><i class="fa fa-angle-right"></i> Sebrae PR</a></li>
-                            <li><a href="#" target="_blank"><i class="fa fa-angle-right"></i> CREA-PR</a></li>
-                            <li><a href="#" target="_blank"><i class="fa fa-angle-right"></i> IDEASUN 2025</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column">
-                        <h4>Contato</h4>
-                        <ul class="footer-contact-info">
-                            <li>
-                                <i class="fa fa-map-marker"></i>
-                                <div>Centro de Eventos Toyosaburo Ikeda<br>Avenida Paul Harris, S/N<br>Assaí - PR, 86220-000</div>
-                            </li>
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <div>(43) 9999-9999</div>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <div>contato@expoasa.com.br</div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-column footer-newsletter">
-                        <h4>Newsletter</h4>
-                        <p>Receba as últimas novidades e atualizações da EXPOASA diretamente em seu e-mail:</p>
-                        <form class="footer-form">
-                            <input type="email" placeholder="Seu e-mail">
-                            <button type="submit"><i class="fa fa-paper-plane"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="footer-bottom">
             <div class="container">
                 <div class="footer-bottom-content">
@@ -3399,12 +3488,52 @@
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        AOS.init({
-        duration: 800,
-        once: true
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+            duration: 800,
+            once: true
+            });
         });
-    });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar.main-nav');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            
+            // Fechar o menu ao clicar em um link
+            document.querySelectorAll('.navbar-actions a').forEach(link => {
+                link.addEventListener('click', function() {
+                    const navbarActions = document.querySelector('.navbar-actions');
+                    navbarActions.classList.remove('show');
+                    navbarToggler.classList.remove('active');
+                });
+            });
+            
+            // Fechar o menu ao clicar fora dele
+            document.addEventListener('click', function(event) {
+                const isClickInsideNavbar = navbar.contains(event.target);
+                const navbarActions = document.querySelector('.navbar-actions');
+                
+                if (!isClickInsideNavbar && navbarActions.classList.contains('show')) {
+                    navbarActions.classList.remove('show');
+                    navbarToggler.classList.remove('active');
+                }
+            });
+            
+            // Ajustar altura do banner conforme altura da navbar
+            function adjustBannerPadding() {
+                const banner = document.querySelector('.banner');
+                if (banner) {
+                    const navbarHeight = navbar.offsetHeight;
+                    banner.style.paddingTop = (navbarHeight + 30) + 'px';
+                }
+            }
+            
+            // Executar no carregamento e redimensionamento
+            adjustBannerPadding();
+            window.addEventListener('resize', adjustBannerPadding);
+        });
     </script>
     </body>
 </html>
