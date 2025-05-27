@@ -594,7 +594,9 @@
             </div>
         </section>
 
-        <!-- PROGRAMAÇÃO (SCHEDULE) -->
+        <!-- Substitua a seção de PROGRAMAÇÃO (SCHEDULE) pelo código abaixo -->
+
+        <!-- PROGRAMAÇÃO (SCHEDULE) - Reorganizada por horário e categoria -->
         <section id="schedule" class="section schedule-section">
             <div class="container">
                 <div class="section-title">
@@ -617,74 +619,243 @@
                     </div>
                 </div>
 
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="ideasun">Espaço IDEASUN</button>
+                    <button class="filter-btn" data-filter="palco">Palco Principal</button>
+                    <button class="filter-btn" data-filter="arena-cultural">Arena Cultural</button>
+                    <button class="filter-btn" data-filter="arena-geek">Arena Geek</button>
+                    <button class="filter-btn" data-filter="palestras">Sala de Palestras</button>
+                    <button class="filter-btn" data-filter="universidades">Espaço Universidades</button>
+                    <button class="filter-btn" data-filter="agro">Espaço Agro</button>
+                </div>
+
                 <div class="schedule-content">
+                    <!-- DIA 1 (6 de Junho) -->
                     <div id="day1" class="schedule-day active">
                         <div class="schedule-header">
                             <div>Horário</div>
                             <div>Atividade</div>
-                            <div>Local</div>
+                            <div>Local / Categoria</div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 09:00 -->
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Abertura do IDEASUN</h4>
+                                <p>Início da maratona de ideias inter-regional do Norte do Paraná</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Quiz Pokémon</h4>
+                                <p>Atividade do Espaço Cultural Imaginação e Ação</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
                                 <h4>Abertura da Feira</h4>
                                 <p>Início das atividades e abertura dos estandes</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Centro de Eventos
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
-                        <div class="schedule-item">
-                            <div class="schedule-time">09:00</div>
+                        <!-- 09:30 -->
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">09:30</div>
                             <div class="schedule-event">
-                                <h4>Início do IDEASUN</h4>
-                                <p>Abertura da maratona de ideias inter-regional do Norte do Paraná</p>
+                                <h4>Anúncio da Repescagem</h4>
+                                <p>Divulgação dos projetos repescados para a fase final</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena do Conhecimento
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 11:00 -->
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">11:00</div>
+                            <div class="schedule-event">
+                                <h4>Banca do Ensino Especial</h4>
+                                <p>Apresentação e avaliação dos projetos do Ensino Especial</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                            </div>
+                        </div>
+
+                        <!-- 12:00 -->
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">12:00</div>
+                            <div class="schedule-event">
+                                <h4>Parada para almoço</h4>
+                                <p>Intervalo para alimentação</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                            </div>
+                        </div>
+
+                        <!-- 13:00 -->
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">13:00</div>
+                            <div class="schedule-event">
+                                <h4>Banca do Fundamental I</h4>
+                                <p>Apresentação e avaliação dos projetos do Ensino Fundamental I</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                            </div>
+                        </div>
+
+                        <!-- 14:00 -->
+                        <div class="schedule-item filter-item agro">
                             <div class="schedule-time">14:00</div>
                             <div class="schedule-event">
                                 <h4>Mostra Agrícola</h4>
                                 <p>Apresentação dos melhores produtos agrícolas da região</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Pavilhão Agrícola
+                                <i class="fa fa-map-marker"></i> Espaço Agro
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 15:00 -->
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">15:00</div>
+                            <div class="schedule-event">
+                                <h4>Banca do Fundamental II</h4>
+                                <p>Apresentação e avaliação dos projetos do Ensino Fundamental II</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                            </div>
+                        </div>
+
+                        <!-- 16:00 -->
+                        <div class="schedule-item filter-item palestras">
                             <div class="schedule-time">16:00</div>
                             <div class="schedule-event">
                                 <h4>Workshop de Inovação</h4>
                                 <p>Apresentação de projetos inovadores em parceria com o CREA-PR</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Auditório Principal
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 17:00 -->
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">17:00</div>
+                            <div class="schedule-event">
+                                <h4>Banca do Ensino Médio / Médio-Técnico</h4>
+                                <p>Apresentação e avaliação dos projetos do Ensino Médio e Médio-Técnico</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                            </div>
+                        </div>
+
+                        <!-- 18:00 -->
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">18:00</div>
+                            <div class="schedule-event">
+                                <h4>Gincana Batalha Pokémon</h4>
+                                <p>Atividade do Espaço Cultural Imaginação e Ação</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <!-- 18:30 -->
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">18:30</div>
+                            <div class="schedule-event">
+                                <h4>Brincadeiras de Baseball e Atletismo</h4>
+                                <p>Atividades esportivas para todas as idades</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">18:30</div>
+                            <div class="schedule-event">
+                                <h4>Joguinhos Tradicionais - OTEDAMA</h4>
+                                <p>Jogos tradicionais japoneses para toda a família</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">18:30</div>
+                            <div class="schedule-event">
+                                <h4>Escolinha de Origami</h4>
+                                <p>Aprenda a arte tradicional japonesa de dobrar papel</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <!-- 19:00 -->
+                        <div class="schedule-item filter-item palco highlight">
                             <div class="schedule-time">19:00</div>
                             <div class="schedule-event">
-                                <h4>Cerimônia de Abertura Oficial</h4>
-                                <p>Cerimônia oficial com autoridades e convidados especiais</p>
+                                <h4>Cerimônia de Abertura 79ª EXPOASA</h4>
+                                <p>Cerimônia oficial de abertura com autoridades e convidados especiais</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">19:00</div>
+                            <div class="schedule-event">
+                                <h4>Perguntas e respostas Pokémon</h4>
+                                <p>Atividade do Espaço Cultural Imaginação e Ação</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <!-- 20:00 -->
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">20:00</div>
+                            <div class="schedule-event">
+                                <h4>Troca de Cards e Escola Pokémon</h4>
+                                <p>Atividade do Espaço Cultural Imaginação e Ação</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <!-- 21:00 -->
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">21:00</div>
                             <div class="schedule-event">
-                                <h4>Apresentação Cultural</h4>
-                                <p>Show de taiko e dança tradicional japonesa</p>
+                                <h4>Matsuri com Grupo Assahi</h4>
+                                <p>Apresentação especial do Grupo Assahi com músicas e danças tradicionais</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Palco Principal
@@ -692,58 +863,166 @@
                         </div>
                     </div>
 
+                    <!-- DIA 2 (7 de Junho) -->
                     <div id="day2" class="schedule-day">
                         <div class="schedule-header">
                             <div>Horário</div>
                             <div>Atividade</div>
-                            <div>Local</div>
+                            <div>Local / Categoria</div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 09:00 -->
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
                                 <h4>Abertura da Feira</h4>
                                 <p>Início das atividades do segundo dia</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Centro de Eventos
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Mini Golf</h4>
+                                <p>Diversão para toda a família com mini golfe</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Joguinhos Tradicionais - OTEDAMA</h4>
+                                <p>Jogos tradicionais japoneses para toda a família</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Escolinha de Origami</h4>
+                                <p>Aprenda a arte tradicional japonesa de dobrar papel</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Brincadeiras de Baseball e Atletismo</h4>
+                                <p>Atividades esportivas para todas as idades</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Banca do Ensino Superior</h4>
+                                <p>Apresentação e avaliação dos projetos do Ensino Superior</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                            </div>
+                        </div>
+
+                        <!-- 10:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">10:00</div>
+                            <div class="schedule-event">
+                                <h4>Apresentação da Cooperativa Mirim</h4>
+                                <p>Jovens empreendedores apresentam seus projetos e iniciativas</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
                             <div class="schedule-time">10:00</div>
                             <div class="schedule-event">
                                 <h4>Seminário de Crédito</h4>
                                 <p>Apresentação de linhas de crédito e campanhas institucionais</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Sala de Conferências
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 11:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">11:00</div>
+                            <div class="schedule-event">
+                                <h4>Dança Japonesa de Palco</h4>
+                                <p>Apresentações de danças tradicionais japonesas</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <!-- 12:00 -->
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">12:00</div>
+                            <div class="schedule-event">
+                                <h4>Banca Ensino Superior</h4>
+                                <p>Apresentação e avaliação dos projetos do Ensino Superior</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
+                            </div>
+                        </div>
+
+                        <!-- 14:00 -->
+                        <div class="schedule-item filter-item ideasun">
                             <div class="schedule-time">14:00</div>
                             <div class="schedule-event">
-                                <h4>Apresentação das Cooperativas Mirins</h4>
-                                <p>Exposição de projetos das Escolas Rural Padre França e Rotary</p>
+                                <h4>Premiação do IDEASUN</h4>
+                                <p>Anúncio dos vencedores do hackathon e entrega dos prêmios</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena do Conhecimento
+                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 15:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">15:00</div>
+                            <div class="schedule-event">
+                                <h4>Workshop Taiko Yuji</h4>
+                                <p>Oficina de percussão com tambores japoneses tradicionais</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <!-- 16:00 -->
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">16:00</div>
                             <div class="schedule-event">
-                                <h4>Competição de K-Pop</h4>
-                                <p>Apresentações de grupos de dança K-Pop</p>
+                                <h4>Atividades LACA</h4>
+                                <p>Programação especial promovida pela Liga de Amigos da Colônia Assaiense</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Palco Cultural
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 19:00 -->
+                        <div class="schedule-item filter-item arena-cultural">
                             <div class="schedule-time">19:00</div>
                             <div class="schedule-event">
                                 <h4>Festival de Bon Odori</h4>
@@ -754,11 +1033,12 @@
                             </div>
                         </div>
 
-                        <div class="schedule-item">
-                            <div class="schedule-time">21:30</div>
+                        <!-- 21:00 -->
+                        <div class="schedule-item filter-item palco highlight">
+                            <div class="schedule-time">21:00</div>
                             <div class="schedule-event">
-                                <h4>Apresentação Musical</h4>
-                                <p>Show com artistas regionais</p>
+                                <h4>Concurso Cosplay</h4>
+                                <p>Competição de fantasias e caracterizações de personagens de anime e mangá</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Palco Principal
@@ -766,47 +1046,166 @@
                         </div>
                     </div>
 
+                    <!-- DIA 3 (8 de Junho) -->
                     <div id="day3" class="schedule-day">
                         <div class="schedule-header">
                             <div>Horário</div>
                             <div>Atividade</div>
-                            <div>Local</div>
+                            <div>Local / Categoria</div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 09:00 -->
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
                                 <h4>Abertura da Feira</h4>
                                 <p>Início das atividades do último dia</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Centro de Eventos
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
-                        <div class="schedule-item">
-                            <div class="schedule-time">13:00</div>
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Squid Game Round 79</h4>
+                                <p>Competição especial inspirada na famosa série</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural highlight">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>1º Campeonato de Pokémon Card</h4>
+                                <p>Competição oficial com cards do popular jogo</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Mini Golf</h4>
+                                <p>Diversão para toda a família com mini golfe</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Joguinhos Tradicionais - OTEDAMA</h4>
+                                <p>Jogos tradicionais japoneses para toda a família</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Escolinha de Origami</h4>
+                                <p>Aprenda a arte tradicional japonesa de dobrar papel</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Brincadeiras de Baseball e Atletismo</h4>
+                                <p>Atividades esportivas para todas as idades</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <!-- 10:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">10:00</div>
+                            <div class="schedule-event">
+                                <h4>Workshop Bon Odori Matsuri Dance</h4>
+                                <p>Aprenda os passos da tradicional dança do festival</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <!-- 11:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">11:00</div>
+                            <div class="schedule-event">
+                                <h4>Premiação Squid Game Round</h4>
+                                <p>Anúncio dos vencedores e entrega dos prêmios</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <!-- 12:00 -->
+                        <div class="schedule-item filter-item palco highlight">
+                            <div class="schedule-time">12:00</div>
                             <div class="schedule-event">
                                 <h4>Premiação RYOTO 2025</h4>
-                                <p>Divulgação e premiação do melhor prato do concurso gastronômico</p>
+                                <p>Anúncio dos vencedores do concurso gastronômico e entrega do prêmio</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Gastronômica
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
-                        <div class="schedule-item">
-                            <div class="schedule-time">14:30</div>
+                        <!-- 13:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">13:00</div>
                             <div class="schedule-event">
-                                <h4>Premiação do IDEASUN</h4>
-                                <p>Apresentação final e premiação dos melhores projetos do hackathon</p>
+                                <h4>Workshop Taiko Asahi Wadaiko</h4>
+                                <p>Oficina de percussão com tambores japoneses tradicionais</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena do Conhecimento
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
-                        <div class="schedule-item">
+                        <!-- 14:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">14:00</div>
+                            <div class="schedule-event">
+                                <h4>Bon Odori Cantado</h4>
+                                <p>Apresentação especial da dança tradicional com cantos</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <!-- 15:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">15:00</div>
+                            <div class="schedule-event">
+                                <h4>Karaoke</h4>
+                                <p>Encerramento com apresentações de karaokê</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <!-- 15:30 -->
+                        <div class="schedule-item filter-item palco highlight">
                             <div class="schedule-time">15:30</div>
                             <div class="schedule-event">
                                 <h4>Encerramento Oficial</h4>
@@ -816,6 +1215,16 @@
                                 <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="schedule-info">
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle"></i> <strong>Nota:</strong> A programação pode sofrer alterações. Confira as atualizações no local do evento.
+                    </div>
+                    <div class="schedule-legend">
+                        <span class="legend-item"><span class="legend-color highlight"></span> Evento em destaque</span>
+                        <span class="legend-item"><a href="{{ route('ideasun.index') }}">Programação detalhada do IDEASUN <i class="fa fa-arrow-right"></i></a></span>
                     </div>
                 </div>
             </div>

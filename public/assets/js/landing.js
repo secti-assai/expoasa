@@ -422,3 +422,26 @@ function updateCountdown() {
         $("#countdown-seconds").text(seconds < 10 ? "0" + seconds : seconds);
     }
 }
+
+// Adicione o seguinte código ao final do arquivo landing.js
+
+// Filtro para a programação do evento
+$(document).ready(function () {
+    // Filtrar itens da programação
+    $(".filter-btn").on("click", function () {
+        const filter = $(this).data("filter");
+
+        // Atualiza classe ativa
+        $(".filter-btn").removeClass("active");
+        $(this).addClass("active");
+
+        if (filter === "all") {
+            $(".filter-item").fadeIn(300);
+        } else {
+            $(".filter-item").hide();
+            $(".filter-item." + filter).fadeIn(300);
+        }
+
+        return false;
+    });
+});
