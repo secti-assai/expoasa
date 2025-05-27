@@ -250,14 +250,6 @@
                                                 <a href="{{ route('ideasun.equipe.membros', ['equipe_id' => $equipe->equipe_id]) }}" class="btn btn-sm btn-outline-primary me-2 mb-2">
                                                     <i class="fa fa-users"></i><span class="d-none d-sm-inline ml-1">Gerenciar</span>
                                                 </a>
-                                                <form action="{{ route('ideasun.equipe.excluir', ['id' => $equipe->id]) }}" method="POST" 
-                                                      onsubmit="return confirm('Tem certeza que deseja excluir esta equipe? Esta ação não pode ser desfeita.');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                        <i class="fa fa-trash"></i><span class="d-none d-sm-inline ml-1">Excluir</span>
-                                                    </button>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
