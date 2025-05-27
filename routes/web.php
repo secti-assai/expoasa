@@ -180,3 +180,13 @@ Route::middleware(['ideasun.banca'])->group(function () {
 // Rotas para verificar CPF e telefone de avaliadores
 Route::get('/ideasun/cidade/verificar-cpf', [IdeasunController::class, 'verificarCpfAvaliador'])->name('ideasun.cidade.verificar-cpf');
 Route::get('/ideasun/cidade/verificar-telefone', [IdeasunController::class, 'verificarTelefoneAvaliador'])->name('ideasun.cidade.verificar-telefone');
+
+// Rota para gerenciamento de repescagem (admin)
+Route::get('/admin/repescagem', [AdminController::class, 'repescagem'])->name('ideasun.admin.repescagem');
+Route::post('/admin/equipe/selecionar-repescagem', [AdminController::class, 'selecionarRepescagem'])->name('ideasun.admin.equipe.selecionar-repescagem');
+
+// Rotas para gerenciamento de avaliadores
+Route::get('/admin/avaliadores', [AdminController::class, 'gerenciarAvaliadores'])->name('ideasun.admin.gerenciar-avaliadores');
+Route::post('/admin/avaliadores/salvar', [AdminController::class, 'salvarAvaliador'])->name('ideasun.admin.salvar-avaliador');
+Route::get('/admin/avaliadores/alternar-status/{id}', [AdminController::class, 'alternarStatusAvaliador'])->name('ideasun.admin.alternar-status-avaliador');
+Route::delete('/admin/avaliadores/excluir/{id}', [AdminController::class, 'excluirAvaliador'])->name('ideasun.admin.excluir-avaliador');

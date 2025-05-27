@@ -502,4 +502,258 @@ class AdminController extends Controller
                 ->with('error', 'Erro ao reabilitar equipe: ' . $e->getMessage());
         }
     }
+
+    /**
+     * Exibir página de gerenciamento de repescagem
+     */
+    public function repescagem()
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+
+        // Obter todas as equipes não classificadas (expoasa = false)
+        $equipes = Equipe::where('expoasa', false)
+            ->with(['cidade', 'avaliacoes' => function($query) {
+                $query->whereHas('avaliador', function($q) {
+                    $q->where('nivel', 2);
+                });
+            }, 'avaliacoes.avaliador'])
+            ->withCount(['avaliacoes' => function($query) {
+                $query->whereHas('avaliador', function($q) {
+                    $q->where('nivel', 2);
+                });
+            }])
+            ->get();
+        
+        // Calcular a nota média de repescagem para cada equipe
+        foreach ($equipes as $equipe) {
+            $equipe->nota_media_repescagem = $equipe->avaliacoes->avg('nota_total') ?: 0;
+            
+            // Adicionar referência às avaliações de repescagem para uso na view
+            $equipe->avaliacoesRepescagem = $equipe->avaliacoes;
+        }
+        
+        // Ordenar equipes por nota média de repescagem (maior para menor)
+        $equipes = $equipes->sortByDesc('nota_media_repescagem');
+        
+        return view('ideasun.admin.repescagem', compact('equipes'));
+    }
+
+    /**
+     * Selecionar uma equipe de repescagem para a EXPOASA
+     */
+    public function selecionarRepescagem(Request $request)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+
+        $request->validate([
+            'equipe_id' => 'required|exists:equipes,id',
+        ]);
+
+        try {
+            $equipe = Equipe::findOrFail($request->equipe_id);
+            
+            // Atualizar o status da equipe para finalista da EXPOASA
+            $equipe->expoasa = true;
+            $equipe->save();
+            
+            return redirect()->route('ideasun.admin.repescagem')
+                ->with('success', "A equipe {$equipe->nome} foi selecionada na repescagem para participar da EXPOASA!");
+            
+        } catch (\Exception $e) {
+            return redirect()->route('ideasun.admin.repescagem')
+                ->with('error', 'Erro ao selecionar equipe: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Exibir página de gerenciamento de avaliadores
+     */
+    public function gerenciarAvaliadores()
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+
+        // Buscar todos os avaliadores agrupados por nível
+        $avaliadores = \App\Models\Avaliador::with('cidade')
+            ->orderBy('nivel')
+            ->orderBy('nome')
+            ->get()
+            ->groupBy('nivel');
+    
+        // Listar cidades para o formulário de criação
+        $cidades = \App\Models\Cidade::orderBy('nome')->get();
+    
+        return view('ideasun.admin.gerenciar-avaliadores', compact('avaliadores', 'cidades'));
+    }
+
+    /**
+     * Salvar novo avaliador ou atualizar existente
+     */
+    public function salvarAvaliador(Request $request)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+        
+        // Validação de dados
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'cpf' => 'required|string',
+            'telefone' => 'required|string|max:20',
+            'cidade_id' => 'required|exists:cidades,id',
+            'nivel' => 'required|integer|min:1|max:3',
+            'tipo' => 'required|string|in:municipal,regional,repescagem,especial',
+        ]);
+
+        try {
+            // Limpar o CPF (remover pontos, traços, etc.)
+            $cpfLimpo = preg_replace('/[^0-9]/', '', $request->cpf);
+
+            // Se for atualização de avaliador existente
+            if ($request->avaliador_id) {
+                $avaliador = \App\Models\Avaliador::findOrFail($request->avaliador_id);
+                
+                // Validar se o CPF já existe para outro avaliador
+                if ($avaliador->cpf != $cpfLimpo) {
+                    $cpfExistente = \App\Models\Avaliador::where('cpf', $cpfLimpo)
+                        ->where('id', '!=', $avaliador->id)
+                        ->exists();
+                    
+                    if ($cpfExistente) {
+                        return redirect()->back()
+                            ->with('error', 'O CPF informado já está cadastrado para outro avaliador.')
+                            ->withInput();
+                    }
+                }
+                
+                // Atualizar dados do avaliador
+                $avaliador->nome = $request->nome;
+                $avaliador->cpf = $cpfLimpo;
+                $avaliador->telefone = $request->telefone;
+                $avaliador->cidade_id = $request->cidade_id;
+                $avaliador->nivel = $request->nivel;
+                $avaliador->tipo = $request->tipo;
+                $avaliador->ativo = $request->has('ativo') ? 1 : 0;
+                
+                // Redefinir senha apenas se solicitado
+                if ($request->has('resetar_senha')) {
+                    $senha = substr($cpfLimpo, 0, 6);
+                    $avaliador->senha = bcrypt($senha);
+                    $senhaInfo = " Senha redefinida para os 6 primeiros dígitos do CPF ({$senha}).";
+                } else {
+                    $senhaInfo = "";
+                }
+                
+                $avaliador->save();
+                
+                return redirect()->route('ideasun.admin.gerenciar-avaliadores')
+                    ->with('success', "Avaliador {$avaliador->nome} atualizado com sucesso.{$senhaInfo}");
+            } else {
+                // Criação de novo avaliador
+                
+                // Verificar se o CPF já existe
+                $cpfExistente = \App\Models\Avaliador::where('cpf', $cpfLimpo)->exists();
+                if ($cpfExistente) {
+                    return redirect()->back()
+                        ->with('error', 'O CPF informado já está cadastrado no sistema.')
+                        ->withInput();
+                }
+                
+                // Gerar senha (6 primeiros dígitos do CPF)
+                $senha = substr($cpfLimpo, 0, 6);
+                
+                // Criar novo avaliador
+                $avaliador = new \App\Models\Avaliador();
+                $avaliador->nome = $request->nome;
+                $avaliador->cpf = $cpfLimpo;
+                $avaliador->telefone = $request->telefone;
+                $avaliador->senha = bcrypt($senha);
+                $avaliador->cidade_id = $request->cidade_id;
+                $avaliador->nivel = $request->nivel;
+                $avaliador->tipo = $request->tipo;
+                $avaliador->ativo = $request->has('ativo') ? 1 : 0;
+                $avaliador->save();
+                
+                return redirect()->route('ideasun.admin.gerenciar-avaliadores')
+                    ->with('success', "Avaliador {$avaliador->nome} criado com sucesso! Senha inicial: {$senha}");
+            }
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Erro ao salvar avaliador: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Erro ao salvar avaliador: ' . $e->getMessage())
+                ->withInput();
+        }
+    }
+
+    /**
+     * Alternar status do avaliador (ativo/inativo)
+     */
+    public function alternarStatusAvaliador($id)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+    
+        try {
+            $avaliador = \App\Models\Avaliador::findOrFail($id);
+            $avaliador->ativo = !$avaliador->ativo;
+            $avaliador->save();
+        
+            $status = $avaliador->ativo ? 'ativado' : 'desativado';
+        
+            return redirect()->route('ideasun.admin.gerenciar-avaliadores')
+                ->with('success', "Avaliador {$avaliador->nome} {$status} com sucesso.");
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Erro ao alterar status do avaliador: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Excluir avaliador (apenas se não tiver avaliações)
+     */
+    public function excluirAvaliador($id)
+    {
+        // Verificar se o administrador está autenticado
+        if (!Session::has('admin_authenticated')) {
+            return redirect()->route('ideasun.login')
+                ->with('error', 'Acesso restrito. Faça login como administrador.');
+        }
+    
+        try {
+            $avaliador = \App\Models\Avaliador::findOrFail($id);
+        
+            // Verificar se o avaliador já realizou alguma avaliação
+            $temAvaliacoes = \App\Models\Avaliacao::where('avaliador_id', $id)->exists();
+        
+            if ($temAvaliacoes) {
+                return redirect()->back()
+                    ->with('error', "O avaliador {$avaliador->nome} não pode ser excluído pois já realizou avaliações.");
+            }
+        
+            // Excluir avaliador
+            $avaliador->delete();
+        
+            return redirect()->route('ideasun.admin.gerenciar-avaliadores')
+                ->with('success', "Avaliador {$avaliador->nome} excluído com sucesso.");
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Erro ao excluir avaliador: ' . $e->getMessage());
+        }
+    }
 }

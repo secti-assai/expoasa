@@ -52,8 +52,16 @@ class BancaController extends Controller
     {
         $avaliador = $this->getAvaliadorFromSession();
 
-        // Obter a cidade do avaliador
-        $cidade = \App\Models\Cidade::find($avaliador->cidade_id);
+        // Direcionar para dashboard específico baseado no nível
+        if ($avaliador->nivel == 2) {
+            return $this->dashboardRepescagem($avaliador);
+        } elseif ($avaliador->nivel == 3) {
+            // Se você tiver um dashboard especial para nível 3 futuramente
+            // return $this->dashboardEspecial($avaliador);
+        }
+
+        // Dashboard padrão para avaliadores nível 1
+        $cidade = $avaliador->cidade;
 
         // Obter as cidades vinculadas para avaliação
         $cidadesParaAvaliar = \App\Models\Cidade::whereIn('id', function ($query) use ($cidade) {
@@ -76,6 +84,43 @@ class BancaController extends Controller
         }
 
         return view('ideasun.banca.dashboard', compact('avaliador', 'cidade', 'cidadesParaAvaliar'));
+    }
+
+    /**
+     * Dashboard específico para avaliadores de repescagem (nível 2)
+     */
+    private function dashboardRepescagem($avaliador)
+    {
+        // Obter todas as equipes não classificadas (expoasa = false)
+        $equipes = \App\Models\Equipe::where('expoasa', false)
+            ->with(['membros'])
+            ->get();
+        
+        // Verificar quais equipes já foram avaliadas por este avaliador
+        foreach ($equipes as $equipe) {
+            $equipe->ja_avaliada = \Illuminate\Support\Facades\DB::table('avaliacoes')
+                ->where('avaliador_id', $avaliador->id)
+                ->where('equipe_id', $equipe->id)
+                ->exists();
+        }
+        
+        // Filtrar apenas equipes não avaliadas
+        $equipesNaoAvaliadas = $equipes->filter(function($equipe) {
+            return !$equipe->ja_avaliada;
+        });
+        
+        // Obter avaliações já realizadas pelo avaliador
+        $avaliacoes = \Illuminate\Support\Facades\DB::table('avaliacoes')
+            ->where('avaliador_id', $avaliador->id)
+            ->join('equipes', 'avaliacoes.equipe_id', '=', 'equipes.id')
+            ->select(
+                'avaliacoes.*',
+                'equipes.nome as equipe_nome'
+            )
+            ->orderBy('avaliacoes.created_at', 'desc')
+            ->get();
+        
+        return view('ideasun.banca.dashboard-repescagem', compact('avaliador', 'equipesNaoAvaliadas', 'avaliacoes'));
     }
 
     /**

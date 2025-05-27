@@ -248,32 +248,45 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Sidebar -->
-                <div class="col-lg-3 col-xl-2 mb-4">
+                <div class="col-lg-3 col-xl-2">
                     <div class="admin-sidebar">
+                        <div class="sidebar-logo mb-4 text-center">
+                            <img src="/assets/images/ideasun-logo.png" alt="IDEASUN" height="60">
+                        </div>
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#dashboard" data-toggle="tab">
+                                <a class="nav-link active" data-toggle="tab" href="#dashboard">
                                     <i class="fa fa-dashboard"></i> Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#cidades" data-toggle="tab">
+                                <a class="nav-link" data-toggle="tab" href="#cidades">
                                     <i class="fa fa-building"></i> Cidades
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#equipes" data-toggle="tab">
+                                <a class="nav-link" data-toggle="tab" href="#equipes">
                                     <i class="fa fa-users"></i> Equipes
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#calendar-tab" data-toggle="tab">
+                                <a class="nav-link" data-toggle="tab" href="#calendar-tab">
                                     <i class="fa fa-calendar"></i> Calendário
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('ideasun.admin.bancas') }}">
-                                    <i class="fa fa-users"></i> Gerenciar Bancas
+                                    <i class="fa fa-gavel"></i> Gerenciar Bancas
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('ideasun.admin.gerenciar-avaliadores') }}">
+                                    <i class="fa fa-user-circle"></i> Gerenciar Avaliadores
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('ideasun.admin.repescagem') }}">
+                                    <i class="fa fa-refresh"></i> Repescagem
                                 </a>
                             </li>
                             <li class="nav-item mt-5">
@@ -398,6 +411,23 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <!-- ... outros cards existentes ... -->
+                                    
+                                    <div class="col-md-4">
+                                        <div class="admin-stat-card">
+                                            <div class="stat-icon">
+                                                <i class="fa fa-refresh"></i>
+                                            </div>
+                                            <h5>Equipes em Repescagem</h5>
+                                            <p>{{ \App\Models\Equipe::where('expoasa', false)->count() }}</p>
+                                            <a href="{{ route('ideasun.admin.repescagem') }}" class="btn btn-sm btn-outline-primary mt-2">
+                                                Gerenciar <i class="fa fa-arrow-right ml-1"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

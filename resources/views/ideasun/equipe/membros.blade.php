@@ -873,9 +873,9 @@
                                     <div class="alert alert-info">
                                         <i class="fa fa-file-powerpoint-o mr-2"></i> Apresentação atual: 
                                         <strong>{{ basename($equipe->apresentacao_path) }}</strong>
-                                        <div class="mt-2">
+                                        <!-- <div class="mt-2">
                                             <a href="{{ asset($equipe->apresentacao_path) }}" class="btn btn-sm btn-primary" target="_blank">
-                                                <i class="fa fa-download mr-1"></i> Visualizar
+                                                <i class="fa fa-download mr-1"></i> Visualizar 
                                             </a>
                                             
                                             <form action="{{ route('ideasun.equipe.apresentacao.remover', $equipe->id) }}" 
@@ -888,6 +888,7 @@
                                                 </button>
                                             </form>
                                         </div>
+                                    -->
                                     </div>
                                 @else
                                     <div class="upload-section">
