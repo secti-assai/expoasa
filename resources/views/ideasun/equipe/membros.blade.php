@@ -925,7 +925,7 @@
                                     <i class="fa fa-info-circle mr-2"></i>
                                     <strong>Dicas para sua apresentação:</strong>
                                     <ul class="mb-0 mt-2">
-                                        <li>Seu pitch deve ter entre 5-10 slides</li>
+                                        <li>Seu pitch deve ter entre 13-14 slides</li>
                                         <li>Seja claro e objetivo na apresentação do problema e solução</li>
                                         <li>Inclua imagens e esquemas para melhor compreensão</li>
                                         <li>Tamanho máximo do arquivo: 10MB</li>
