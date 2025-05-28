@@ -2272,3 +2272,29 @@ h6 {
         gap: 10px;
     }
 }
+/* ORGANIZADORES */
+.organizers-section .organizer-logo {
+    max-width: 150px; /* Define o tamanho máximo das imagens */
+    height: auto; /* Mantém a proporção */
+    margin: 0 auto 15px; /* Centraliza e adiciona espaçamento inferior */
+    display: block; /* Garante que a imagem seja tratada como bloco */
+}
+
+.organizers-section h4 {
+    font-size: 1rem; /* Tamanho do texto */
+    margin-top: 10px; /* Espaçamento superior */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* PATROCINADORES */
+.sponsors-section .sponsor-logo {
+    max-width: 120px; /* Define o tamanho máximo das imagens */
+    height: auto; /* Mantém a proporção */
+    margin: 10px auto; /* Centraliza e adiciona espaçamento */
+    display: block; /* Garante que a imagem seja tratada como bloco */
+}
+
+.sponsors-section .row {
+    gap: 20px; /* Espaçamento entre os itens */
+    justify-content: center; /* Centraliza os itens */
+}

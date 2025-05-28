@@ -1356,6 +1356,110 @@
         </section>
         -->
 
+        <!-- ORGANIZADORES -->
+        <section class="section organizers-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Organizadores do <span class="accent">Evento</span></h2>
+                    <p>Conheça as instituições responsáveis pela realização da 79ª EXPOASA</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <img src="/assets/img/logo_laca_small.png" alt="LACA" class="organizer-logo">
+                    </div>
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <img src="/assets/images/logos/GOVERNO/brasao_assai.png" alt="Prefeitura Municipal de Assaí" class="organizer-logo">
+                    </div>
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <img src="/assets/images/logos/GOVERNO/sebrae_logo.png" alt="Sebrae PR" class="organizer-logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PATROCINADORES -->
+        <section class="section sponsors-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Patrocinadores <span class="accent">Oficiais</span></h2>
+                    <p>Confira as empresas e instituições que apoiam a realização da 79ª EXPOASA</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/UEL_vertical.png" alt="Patrocinador 1" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/logo_utf.png" alt="Patrocinador 2" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/logo-pucpr-vermelha.png" alt="Patrocinador 3" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/uem-modelo-02.png" alt="Patrocinador 4" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/uenp_logo.png" alt="Patrocinador 5" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/GOVERNO/creapr.png" alt="Patrocinador 6" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/logo-unioeste.png" alt="Patrocinador 7" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/logo-uninga.png" alt="Patrocinador 8" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/logo-unifil.png" alt="Patrocinador 9" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/GOVERNO/logo-senac.png" alt="Patrocinador 10" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/GOVERNO/logo-senai.png" alt="Patrocinador 11" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/UNIVERSIDADES/logo-ufpr.png" alt="Patrocinador 12" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/COOPERATIVAS/logo-integrada.png" alt="Patrocinador 13" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/COOPERATIVAS/sicoob-logo-1.png" alt="Patrocinador 14" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/COOPERATIVAS/sicredi-logo.png" alt="Patrocinador 15" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/MEIS/logo-luciano.png" alt="Patrocinador 16" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/MEIS/logo-yume.png" alt="Patrocinador 16" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/MEIS/logo-donmussi.png" alt="Patrocinador 16" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/MEIS/logo-sophia.png" alt="Patrocinador 16" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/MEIS/logo-tommy.png" alt="Patrocinador 16" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/MEIS/pastelaria-da-duda.jpeg" alt="Patrocinador 16" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/MEIS/sabor-e-saude.jpeg" alt="Patrocinador 16" class="sponsor-logo">
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                        <img src="/assets/images/logos/MEIS/sonia-bolos.jpeg" alt="Patrocinador 16" class="sponsor-logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA -->
         <section class="cta-section">
             <div class="container">
