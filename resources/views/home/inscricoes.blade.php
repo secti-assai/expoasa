@@ -1251,7 +1251,7 @@
                         <div class="card-body">
                             <h3>Inteligente: um guia para o desenvolvimento em Inteligência Artificial</h3>
                             <p class="description">
-                                Detalhes em breve!
+                                Nesta palestra, o professor Robson Parmezan Bonidia, da Universidade Tecnológica Federal do Paraná (UTFPR), apresentará o projeto InteliGente, uma iniciativa educacional criada em 2021 com o objetivo de democratizar o acesso ao conhecimento em Inteligência Artificial (IA) e promover a igualdade de oportunidades educacionais, capacitando estudantes de diferentes contextos socioeconômicos a desenvolver soluções tecnológicas com impacto social.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
@@ -1319,7 +1319,7 @@
                         <div class="card-body">
                             <h3>Engenharia de Prompt com ênfase em Engenharia</h3>
                             <p class="description">
-                                Detalhes em breve!
+                                A palestra aborda princípios básicos da redes Transformes, aprendizado de máquinas mais evoluído, e o I.A. empregada nos chatbots atuais. Focando técnicas de como escrever um bom prompt com objetivo de explorar trilhões de informações. Com exemplos em física, computação, direito, robótica, odontologia entre outros.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
@@ -1421,7 +1421,7 @@
                         <div class="card-body">
                             <h3>A História da Imigração Japonesa no Norte do Paraná</h3>
                             <p class="description">
-                                Professor Doutor Roberto Bondarik - UTFPR Cornélio Procópio
+                                Uma visão histórica da presença japonesa no setentrião do Norte Pioneiro do Paraná, em especial a área cortada pela Ferrovia São Paulo - Paraná e seu entorno. Os japoneses primeiro se estabelecerem em Ribeirão Claro, se fixaram como colônia em Cambará, foram como colonizadores atingindo cada cidade da região. Capitais japoneses e a ação dos imigrantes fez surgir entre os rios Congonhas e Tibagi duas colônias que, transformadas em cidades, seriam as capitais do algodão e do rami: Assa e Uraí.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">

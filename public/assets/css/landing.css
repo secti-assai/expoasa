@@ -44,6 +44,8 @@ h6 {
     padding: 12px 0;
     transition: all 0.3s ease;
     height: auto;
+    position: relative;
+    z-index: 1000;
 }
 
 .navbar .container {
@@ -163,6 +165,8 @@ h6 {
 /* BANNER SECTION */
 .banner {
     position: relative;
+    margin-top: 0; /* Reset any existing margin */
+    padding-top: 70px; /* Add padding to start below navbar - adjust this value as needed */
     min-height: 600px;
     height: 100vh; /* Altura total da viewport */
     max-height: none; /* Removido para maior flexibilidade */
@@ -2153,7 +2157,35 @@ h6 {
     }
 }
 
-/* Adicione este código ao final do arquivo */
+/* Adicione este CSS para padronizar os botões de inscrição na programação */
+.schedule-event .btn-register {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    margin-top: 8px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.schedule-event .btn-register:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-decoration: none;
+}
+
+.schedule-event .btn-register i {
+    font-size: 0.9rem;
+    margin-right: 3px;
+}
 
 /* SCHEDULE IMPROVEMENTS */
 .filter-tabs {
@@ -2571,7 +2603,199 @@ h6 {
     font-size: 0.9rem;
 }
 
-/* Ajuste para melhorar espaçamento nas atividades da programação */
-.schedule-event {
-    padding-bottom: 10px;
+/* PROGRAMAÇÃO SECTION - Mobile Improvements */
+@media (max-width: 767px) {
+    /* Schedule tabs improvements */
+    .schedule-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .schedule-tab {
+        flex: 0 0 auto;
+        width: 30%;
+        min-width: 90px;
+        padding: 10px 5px;
+        text-align: center;
+    }
+
+    .schedule-tab h4 {
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    .schedule-tab span {
+        font-size: 12px;
+    }
+
+    /* Filter buttons improvements */
+    .filter-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .filter-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+        margin: 2px;
+        white-space: nowrap;
+        border-radius: 20px;
+        background-color: #f5f5f5;
+        border: 1px solid #e5e5e5;
+    }
+
+    .filter-btn.active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    /* Schedule content improvements */
+    .schedule-header {
+        display: none; /* Hide header on mobile, use visual hierarchy instead */
+    }
+
+    .schedule-item {
+        display: block;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid var(--primary-color);
+        background-color: #fff;
+        position: relative;
+    }
+
+    .schedule-time {
+        display: inline-block;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--primary-color);
+        background-color: rgba(var(--primary-rgb), 0.1);
+        padding: 3px 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .schedule-event {
+        margin-bottom: 10px;
+    }
+
+    .schedule-event h4 {
+        font-size: 16px;
+        margin-bottom: 5px;
+        line-height: 1.3;
+    }
+
+    .schedule-event p {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .schedule-location {
+        font-size: 12px;
+        color: #777;
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+    }
+
+    .schedule-location i {
+        font-size: 14px;
+        margin-right: 5px;
+        color: #555;
+    }
+
+    /* Registration button enhancements */
+    .schedule-event .btn-register {
+        font-size: 13px;
+        padding: 5px 12px;
+        margin-top: 5px;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Color coding for different venue types */
+    .schedule-item.filter-item.palco {
+        border-left-color: #e74c3c;
+    }
+
+    .schedule-item.filter-item.palestras {
+        border-left-color: #3498db;
+    }
+
+    .schedule-item.filter-item.ideasun {
+        border-left-color: #2ecc71;
+    }
+
+    .schedule-item.filter-item.universidades {
+        border-left-color: #f39c12;
+    }
+
+    .schedule-item.filter-item.arena-cultural {
+        border-left-color: #9b59b6;
+    }
+
+    .schedule-item.filter-item.agro {
+        border-left-color: #1abc9c;
+    }
+
+    /* Highlight featured events */
+    .schedule-item.highlight {
+        background-color: rgba(var(--primary-rgb), 0.05);
+        border: 1px solid rgba(var(--primary-rgb), 0.2);
+    }
+
+    /* Schedule day selection */
+    .schedule-day {
+        padding-top: 10px;
+    }
+
+    /* Schedule info and legend */
+    .schedule-info {
+        padding: 10px;
+    }
+
+    .schedule-legend {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    /* Sticky filter tabs for easier navigation */
+    .filter-tabs-sticky {
+        position: sticky;
+        top: 70px; /* Adjust based on your header height */
+        background-color: #fff;
+        z-index: 10;
+        padding: 8px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Add horizontal scrolling for filter buttons on very small screens */
+@media (max-width: 480px) {
+    .filter-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .filter-tabs::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge */
+    }
+
+    .filter-btn {
+        flex: 0 0 auto;
+    }
 }

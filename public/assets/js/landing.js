@@ -445,3 +445,162 @@ $(document).ready(function () {
         return false;
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Inicializar AOS se estiver disponível
+    if (typeof AOS !== "undefined") {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+        });
+    }
+
+    // Adicionar efeito suave nas imagens dos patrocinadores
+    const sponsorItems = document.querySelectorAll(".sponsor-item");
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        },
+        { threshold: 0.3 }
+    );
+
+    sponsorItems.forEach((item) => {
+        observer.observe(item);
+    });
+});
+
+// Add this to your JavaScript file
+document.addEventListener("DOMContentLoaded", function () {
+    function adjustBannerPosition() {
+        const navbarHeight =
+            document.querySelector(".navbar.main-nav").offsetHeight;
+        document.querySelector(".banner").style.paddingTop =
+            navbarHeight + "px";
+        // If you have other sections that need this adjustment
+        const headerElements = document.querySelectorAll("header.masthead");
+        if (headerElements.length > 0) {
+            headerElements.forEach((header) => {
+                header.style.paddingTop = 4.5 * 16 + navbarHeight + "px"; // 4.5rem + navbar height
+            });
+        }
+    }
+
+    // Run on load and resize
+    adjustBannerPosition();
+    window.addEventListener("resize", adjustBannerPosition);
+});
+
+// Add this to your existing document.addEventListener("DOMContentLoaded", function() { ... });
+
+// Improve mobile schedule experience
+document.addEventListener("DOMContentLoaded", function () {
+    // Make filter tabs sticky on scroll for mobile
+    const filterTabs = document.querySelector(".filter-tabs");
+    if (filterTabs) {
+        const filterTabsPosition = filterTabs.offsetTop;
+
+        window.addEventListener("scroll", function () {
+            if (window.innerWidth <= 767) {
+                if (window.pageYOffset > filterTabsPosition - 70) {
+                    filterTabs.classList.add("filter-tabs-sticky");
+                } else {
+                    filterTabs.classList.remove("filter-tabs-sticky");
+                }
+            }
+        });
+    }
+
+    // Auto-scroll to active tab content when switching tabs on mobile
+    const scheduleTabs = document.querySelectorAll(".schedule-tab");
+    scheduleTabs.forEach((tab) => {
+        tab.addEventListener("click", function () {
+            if (window.innerWidth <= 767) {
+                const scheduleContent =
+                    document.querySelector(".schedule-content");
+                if (scheduleContent) {
+                    setTimeout(() => {
+                        scheduleContent.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                    }, 100);
+                }
+            }
+        });
+    });
+
+    // Add touch-friendly swipe between schedule days
+    const scheduleContent = document.querySelector(".schedule-content");
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (scheduleContent && window.innerWidth <= 767) {
+        scheduleContent.addEventListener(
+            "touchstart",
+            (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            },
+            { passive: true }
+        );
+
+        scheduleContent.addEventListener(
+            "touchend",
+            (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            },
+            { passive: true }
+        );
+    }
+
+    function handleSwipe() {
+        const threshold = 50; // Required min distance for swipe
+        const scheduleTabs = document.querySelectorAll(".schedule-tab");
+        let activeTabIndex = -1;
+
+        // Find current active tab
+        scheduleTabs.forEach((tab, index) => {
+            if (tab.classList.contains("active")) {
+                activeTabIndex = index;
+            }
+        });
+
+        if (activeTabIndex !== -1) {
+            // Left swipe (next day)
+            if (
+                touchEndX < touchStartX - threshold &&
+                activeTabIndex < scheduleTabs.length - 1
+            ) {
+                scheduleTabs[activeTabIndex + 1].click();
+            }
+            // Right swipe (previous day)
+            if (touchEndX > touchStartX + threshold && activeTabIndex > 0) {
+                scheduleTabs[activeTabIndex - 1].click();
+            }
+        }
+    }
+
+    // Add aria accessibility attributes to improve experience
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    filterButtons.forEach((btn) => {
+        btn.setAttribute("role", "button");
+        btn.setAttribute(
+            "aria-pressed",
+            btn.classList.contains("active") ? "true" : "false"
+        );
+    });
+
+    filterButtons.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            filterButtons.forEach((b) =>
+                b.setAttribute("aria-pressed", "false")
+            );
+            this.setAttribute("aria-pressed", "true");
+        });
+    });
+});
