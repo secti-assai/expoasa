@@ -64,4 +64,8 @@ class HomeController extends Controller
         ]);
 
     }
+    public function inscricoes()
+    {
+        return view('home.inscricoes');
+    }
 }

@@ -29,3 +29,7 @@ function getCssClassFromModalidade($modalidade) {
     
     return $classes[$modalidade] ?? 'badge-secondary';
 }
+
+function getModalidadeNome($modalidade) {
+    return getModalidadeName($modalidade);
+}

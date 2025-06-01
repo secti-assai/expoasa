@@ -2287,14 +2287,291 @@ h6 {
 }
 
 /* PATROCINADORES */
-.sponsors-section .sponsor-logo {
-    max-width: 120px; /* Define o tamanho máximo das imagens */
-    height: auto; /* Mantém a proporção */
-    margin: 10px auto; /* Centraliza e adiciona espaçamento */
-    display: block; /* Garante que a imagem seja tratada como bloco */
+.sponsors-section {
+    background-color: #f9f9f9;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
 }
 
-.sponsors-section .row {
-    gap: 20px; /* Espaçamento entre os itens */
-    justify-content: center; /* Centraliza os itens */
+.sponsors-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(
+        90deg,
+        var(--primary-color),
+        var(--secondary-color),
+        var(--primary-color)
+    );
+    opacity: 0.8;
+}
+
+.sponsors-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.sponsors-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.sponsors-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.sponsors-header p {
+    max-width: 700px;
+    margin: 20px auto 0;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.category-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.category-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.category-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.category-title::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--primary-color),
+        transparent
+    );
+}
+
+.category-description {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+.sponsors-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 0 auto;
+}
+
+.sponsor-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    width: 180px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.sponsor-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        var(--primary-color),
+        var(--secondary-color)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sponsor-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(164, 2, 2, 0.2);
+}
+
+.sponsor-item:hover::before {
+    opacity: 1;
+}
+
+.sponsor-logo {
+    max-width: 120px;
+    max-height: 80px;
+    transition: transform 0.4s ease, filter 0.4s ease;
+    filter: grayscale(20%);
+}
+
+.sponsor-item:hover .sponsor-logo {
+    transform: scale(1.08);
+    filter: grayscale(0%);
+}
+
+.divider {
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 0, 0, 0.1),
+        transparent
+    );
+    margin: 20px auto 40px;
+    width: 80%;
+    max-width: 800px;
+}
+
+/* Animação para os itens aparecerem conforme o scroll */
+.sponsor-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.sponsor-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsividade para diferentes tamanhos de tela */
+@media (max-width: 1200px) {
+    .sponsor-item {
+        width: 150px;
+        height: 110px;
+        padding: 20px;
+    }
+
+    .sponsor-logo {
+        max-width: 100px;
+        max-height: 70px;
+    }
+}
+
+@media (max-width: 991px) {
+    .category-container {
+        padding: 30px;
+    }
+
+    .sponsor-item {
+        width: 140px;
+        height: 100px;
+    }
+
+    .sponsor-logo {
+        max-width: 90px;
+        max-height: 60px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sponsors-section {
+        padding: 60px 0;
+    }
+
+    .sponsors-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .category-container {
+        padding: 25px 15px;
+    }
+
+    .category-title {
+        font-size: 1.3rem;
+    }
+
+    .category-description {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+
+    .sponsors-row {
+        gap: 15px;
+    }
+
+    .sponsor-item {
+        width: 120px;
+        height: 90px;
+        padding: 15px;
+    }
+
+    .sponsor-logo {
+        max-width: 80px;
+        max-height: 50px;
+    }
+
+    .divider {
+        margin: 15px auto 30px;
+    }
+}
+
+/* Estilo para o botão de inscrição na programação */
+.schedule-event .btn {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    margin-top: 8px;
+}
+
+.schedule-event .btn:hover {
+    background-color: #8a0202;
+    border-color: #8a0202;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-event .btn i {
+    font-size: 0.9rem;
+}
+
+/* Ajuste para melhorar espaçamento nas atividades da programação */
+.schedule-event {
+    padding-bottom: 10px;
 }

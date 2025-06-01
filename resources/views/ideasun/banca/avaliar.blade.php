@@ -638,8 +638,8 @@
                                             <td>{{ $avaliacao->equipe_nome }}</td>
                                             <td>{{ $avaliacao->cidade_nome }}</td>
                                             <td>
-                                                <span class="badge modalidade-badge modalidade-{{ $avaliacao->modalidade }}">
-                                                    {{ getModalidadeNome($avaliacao->modalidade) }}
+                                                <span class="badge modalidade-badge modalidade-<?php echo e($avaliacao->modalidade); ?>">
+                                                    <?php echo e(getModalidadeName($avaliacao->modalidade)); ?>
                                                 </span>
                                             </td>
                                             <td><strong>{{ $avaliacao->nota_total }}/100</strong></td>

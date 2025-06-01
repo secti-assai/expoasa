@@ -47,6 +47,7 @@ Route::get('/credenciamento', [HomeController::class, 'credenciamento'])->name('
 Route::post('/credenciamento', [HomeController::class, 'create'])->name('create');
 Route::get('/sorteio', [HomeController::class, 'sorteio'])->name('sorteio');
 Route::post('/sorteio', [HomeController::class, 'sortear'])->name('sortear');
+Route::get('/inscricoes', [HomeController::class, 'inscricoes'])->name('inscricoes');
 
 // Rotas para IDEASUN
 Route::prefix('ideasun')->group(function () {

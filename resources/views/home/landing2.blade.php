@@ -17,6 +17,7 @@
         <link href="/plugins/slick/slick-theme.css" rel="stylesheet">
         <link href="/assets/css/landing.css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <link rel="stylesheet" href="style.css?v=1.1">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     </head>
 
@@ -50,9 +51,9 @@
                     <a href="https://sebraepr.com.br" target="_blank">
                         <img src="/assets/img/logos/Logo_Sebrae.png" alt="Sebrae PR" class="logo-sebrae">
                     </a>
-                    <a href="{{ route('ideasun.index') }}" class="ticket">
-                        <img src="/assets/images/icon/ticket.png" alt="IDEASUN">
-                        <span>IDEASUN 2025</span>
+                    <a href="{{ route('inscricoes') }}" class="ticket">
+                        <img src="/assets/images/icon/ticket.png" alt="INSCRIÇÕES">
+                        <span>INSCRIÇÕES</span>
                     </a>
                 </div>
             </div>
@@ -403,198 +404,156 @@
             </div>
         </section>
 
-        <!-- GASTRONOMIA -->
-        <section class="section events-section">
+        <!-- INFO BOXES -->
+        <!-- CORREÇÃO DA SEÇÃO DE INFORMAÇÕES DO EVENTO (COM LOCAL DO EVENTO NA MESMA LINHA) -->
+        <section id="features" class="section info-boxes">
             <div class="container">
                 <div class="section-title">
-                    <h2>Gastronomia <span class="japanese-accent" style="color: #ffcc00; background-color: rgba(0, 0, 0, 0.3); padding: 2px 10px; border-radius: 4px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">料理</span></h2>
-                    <p>Uma experiência única da culinária japonesa e brasileira</p>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col-lg-12">
-                        <div class="event-card">
-                            <div class="event-card-body">
-                                <h3 class="event-card-title">SOBRE A NOSSA RICA GASTRONOMIA</h3>
-                                <p class="event-card-desc">No eixo da gastronomia, a EXPOASA também se destaca. O evento reúne a culinária japonesa, lanches e muito churrasco. Nesta Edição 2025, teremos a renomada culinária da Hachimitsu, trazendo pâtisserie e a gastronomia japonesa para alegrar os mais de 10.000 visitantes previstos para o evento.</p>
-                                <p class="event-card-desc">A LACA não fica para trás! Anualmente, as mulheres da LACA (Fujinkai <span class="japanese-accent" style="color: #ffcc00; background-color: rgba(0, 0, 0, 0.3); padding: 2px 10px; border-radius: 4px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">婦人会</span>) preparam com muito carinho o famoso Udon (<span class="japanese-accent" style="color: #ffcc00; background-color: rgba(0, 0, 0, 0.3); padding: 2px 10px; border-radius: 4px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);">饂飩</span>) – considerado um dos melhores do país. Além destas saborosas culinárias, a Edição 2025 conta com outros 12 colaboradores gastronômicos, distribuídos em lanches e churrasco texano.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h2>Informações do <span class="accent">Evento</span></h2>
+                    <p>Confira as principais informações sobre a 79ª EXPOASA</p>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="event-card">
-                            <div class="event-card-header">
-                                <img src="/assets/images/expo_2024/expo_170.jpg" alt="Concurso Gastronômico">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="info-box">
+                            <div class="info-box-title">
+                                <i class="fa fa-calendar"></i>
+                                <h3>Data da Abertura Oficial</h3>
                             </div>
-                            <div class="event-card-body">
-                                <h3 class="event-card-title">Concurso Gastronômico: RYOTO 2025</h3>
-                                <p class="event-card-desc">Nesta Edição, o evento contará com um concurso gastronômico, denominado RYOTO. Será a primeira edição de um concurso que veio para ficar.</p>
-                                <p class="event-card-desc">A votação será realizada pelos visitantes do evento, durante os três dias. No dia 8 de junho, será computado os votos e gerado a classificação de cada expositor gastronômico. O prato ganhador receberá um prêmio de R$ 1.000,00 (mil reais), além de ser convidado para participar do Festival Gastronômico, em outubro.</p>
-                                <div class="event-meta">
-                                    <i class="fa fa-calendar"></i>
-                                    <span>6-8 de junho</span>
-                                    <i class="fa fa-map-marker"></i>
-                                    <span>Arena Gastronômica</span>
+                            <div class="info-box-content">
+                                <p>A cerimônia de abertura oficial da 79ª EXPOASA acontecerá no dia:</p>
+                                <ul>
+                                    <li>6 de junho de 2025 às 19:00hs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="info-box green">
+                            <div class="info-box-title">
+                                <i class="fa fa-clock-o"></i>
+                                <h3>Horários de Funcionamento</h3>
+                            </div>
+                            <div class="info-box-content">
+                                <p>O evento estará aberto ao público nos seguintes horários:</p>
+                                <ul>
+                                    <li>Dias 6 e 7 de junho: 9:00hs às 00:00hs</li>
+                                    <li>Dia 8 de junho: 9:00hs às 16:00hs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="info-box">
+                            <div class="info-box-title">
+                                <i class="fa fa-users"></i>
+                                <h3>Estimativa de Público</h3>
+                            </div>
+                            <div class="info-box-content">
+                                <p>A expectativa de visitantes para a 79ª edição da EXPOASA é de:</p>
+                                <ul>
+                                    <li>Dias 6 e 7 de junho: 8.000 pessoas</li>
+                                    <li>Dia 8 de junho: 2.000 pessoas</li>
+                                    <li>Total: mais de 10.000 visitantes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 mt-4">
+                        <div class="info-box green">
+                            <div class="info-box-title">
+                                <i class="fa fa-user-circle"></i>
+                                <h3>Público-Alvo</h3>
+                            </div>
+                            <div class="info-box-content">
+                                <p>O evento abrange um público diversificado, incluindo:</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li>Visitantes adeptos da cultura japonesa</li>
+                                            <li>Japoneses da região</li>
+                                            <li>Agricultores da região</li>
+                                            <li>Prefeitos Paranaenses</li>
+                                            <li>Secretários Municipais de Educação</li>
+                                            <li>Autoridades do Governo do Estado do Paraná</li>
+                                            <li>Empresários de Tecnologia e do Agronegócio</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li>Professores e Alunos de 15 cidades</li>
+                                            <li>Alunos de 07 Universidades da região</li>
+                                            <li>Famílias dos alunos das instituições de ensino</li>
+                                            <li>Engenheiros e Agrônomos</li>
+                                            <li>Associados da Integrada</li>
+                                            <li>Associados da Cocamar</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="event-card">
-                            <div class="event-card-header">
-                                <img src="/assets/images/expo_2024/expo_167.jpg" alt="Culinária Japonesa">
+                    <div class="col-lg-6 col-md-6 mt-4">
+                        <div class="info-box" style="background: linear-gradient(135deg, rgba(164, 2, 2, 0.05), rgba(255, 204, 0, 0.1)); border-top: 3px solid var(--primary-color); position: relative; overflow: hidden;">
+                            <div class="info-box-title">
+                                <i class="fa fa-map-marker" style="background-color: rgba(164, 2, 2, 0.1);"></i>
+                                <h3>Local do Evento</h3>
                             </div>
-                            <div class="event-card-body">
-                                <h3 class="event-card-title">Culinária Japonesa Tradicional</h3>
-                                <p class="event-card-desc">Desfrute de pratos tradicionais japoneses preparados com técnicas autênticas e ingredientes de qualidade. A EXPOASA oferece uma oportunidade única de experimentar a verdadeira culinária japonesa sem sair do Brasil.</p>
-                                <p class="event-card-desc">Entre os destaques estão o Udon preparado pelas senhoras da LACA, sushi, temaki, yakisoba, tempurá e muitas outras iguarias que representam o melhor da gastronomia nipônica.</p>
-                                <div class="event-meta">
-                                    <i class="fa fa-calendar"></i>
-                                    <span>6-8 de junho</span>
-                                    <i class="fa fa-map-marker"></i>
-                                    <span>Praça de Alimentação</span>
+                            <div class="info-box-content">
+                                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+                                    <div style="flex: 1; min-width: 250px;">
+                                        <p style="font-weight: 500; color: #444; margin-bottom: 15px;">
+                                            A 79ª EXPOASA será realizada no <span style="color: var(--primary-color); font-weight: 600;">Centro de Eventos Toyosaburo Ikeda</span>, localizado em Assaí, Paraná.
+                                        </p>
+                                        <div style="background-color: #f9f9f9; border-radius: 8px; padding: 15px; border-left: 3px solid var(--primary-color); margin-bottom: 15px;">
+                                            <p style="margin-bottom: 8px; font-size: 0.95rem;"><i class="fa fa-map-pin" style="color: var(--primary-color); margin-right: 8px;"></i> <strong>Endereço:</strong> Avenida Paul Harris, S/N, Assaí, Paraná</p>
+                                            <p style="margin-bottom: 0; font-size: 0.95rem;"><i class="fa fa-tag" style="color: var(--primary-color); margin-right: 8px;"></i> <strong>CEP:</strong> 86220-000</p>
+                                        </div>
+                                        <!-- BOTÃO COMO CHEGAR MODERNIZADO -->
+                                        <div style="margin-top: 15px; display: flex; align-items: center;">
+                                            <a href="https://maps.app.goo.gl/VMiKEB5NxdVM8ni6A" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #a40202, #c41010); color: white; text-decoration: none; padding: 10px 18px; border-radius: 30px; font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(164, 2, 2, 0.3); border: none; text-transform: uppercase; letter-spacing: 0.5px;">
+                                                <i class="fa fa-map-marker" style="font-size: 16px;"></i>
+                                                <span>Como Chegar</span>
+                                            </a>
+                                            <div style="flex-grow: 1; text-align: right; margin-right: 10px;">
+                                                <img src="/assets/images/icon/map-pin.svg" alt="Localização" style="height: 28px; opacity: 0.5;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="flex: 1; min-width: 250px;">
+                                        <p style="font-weight: 500; color: #444; margin-bottom: 12px;">
+                                            O local oferece ampla estrutura para:
+                                        </p>
+                                        <ul style="list-style: none; padding-left: 5px; margin-bottom: 0;">
+                                            <li style="margin-bottom: 8px; display: flex; align-items: flex-start;">
+                                                <span>Recepção de expositores e visitantes</span>
+                                            </li>
+                                            <li style="margin-bottom: 8px; display: flex; align-items: flex-start;">
+                                                <span>Áreas específicas para exposição agrícola</span>
+                                            </li>
+                                            <li style="margin-bottom: 8px; display: flex; align-items: flex-start;">
+                                                <span>Espaços para apresentações culturais</span>
+                                            </li>
+                                            <li style="margin-bottom: 0; display: flex; align-items: flex-start;">
+                                                <span>Praça de gastronomia e muito mais</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CULTURA JAPONESA -->
-        <section class="section bg-light">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Cultura Japonesa <span class="japanese-accent">日本文化</span></h2>
-                    <p>Celebrando as tradições e a herança cultural japonesa</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12 mb-4">
-                        <div class="about-content">
-                            <h3>ARENA CULTURAL</h3>
-                            <p>Nesta Edição, a EXPOASA será sede do Festival Paranaense de Bon Odori, reunindo 800 japoneses para festejar a cultura japonesa. Além disso, teremos cosplay, desfile de K-pop e muitas atividades no mundo Geek.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="info-box">
-                            <div class="info-box-title">
-                                <i class="fa fa-music"></i>
-                                <h3>Bon Odori</h3>
-                            </div>
-                            <div class="info-box-content">
-                                <p>Festival tradicional japonês de dança que honra os ancestrais. Na EXPOASA, o evento reunirá 800 dançarinos em uma celebração vibrante e colorida da cultura japonesa.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="info-box">
-                            <div class="info-box-title">
-                                <i class="fa fa-user-secret"></i>
-                                <h3>Cosplay</h3>
-                            </div>
-                            <div class="info-box-content">
-                                <p>Concurso e desfile de cosplay, reunindo entusiastas de anime, mangá e cultura pop japonesa, com premiações para as melhores caracterizações.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="info-box">
-                            <div class="info-box-title">
-                                <i class="fa fa-star"></i>
-                                <h3>K-Pop</h3>
-                            </div>
-                            <div class="info-box-content">
-                                <p>Apresentações e competições de grupos de K-Pop, com coreografias e músicas que representam um dos maiores fenômenos culturais da Ásia contemporânea.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="info-box">
-                            <div class="info-box-title">
-                                <i class="fa fa-bookmark"></i>
-                                <h3>Taiko</h3>
-                            </div>
-                            <div class="info-box-content">
-                                <p>Apresentações dos tradicionais tambores japoneses, um espetáculo de percussão que combina música, movimento e espírito marcial.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="info-box">
-                            <div class="info-box-title">
-                                <i class="fa fa-paper-plane"></i>
-                                <h3>Origami</h3>
-                            </div>
-                            <div class="info-box-content">
-                                <p>Oficinas de origami para todas as idades, ensinando a arte tradicional japonesa de dobrar papel em diversas formas criativas.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="info-box">
-                            <div class="info-box-title">
-                                <i class="fa fa-language"></i>
-                                <h3>Nihongo</h3>
-                            </div>
-                            <div class="info-box-content">
-                                <p>Oficina de introdução à língua japonesa, com noções básicas de escrita, pronúncia e expressões cotidianas para os visitantes interessados em aprender o idioma.</p>
+                            <!-- Decoração de fundo -->
+                            <div style="position: absolute; right: -15px; bottom: -15px; opacity: 0.1; z-index: 0;">
+                                <i class="fa fa-map-o" style="font-size: 120px; color: var(--primary-color);"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- OBJETIVOS E RESULTADOS - COM BACKGROUND ATUALIZADO E TEXTO BRANCO -->
-        <section class="objetivos-section" style="background: linear-gradient(rgba(10, 75, 15, 0.85), rgba(10, 75, 15, 0.9)), url('/assets/images/arenas/tenda_conhecimento.jpg'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
-            <!-- Camada de desfoque adicional para melhorar o contraste -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(3px); z-index: 0;"></div>
-            
-            <div class="container" style="position: relative; z-index: 1;">
-                <div class="section-title">
-                    <h2 style="color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">Objetivos e <span class="accent" style="color: #ffcc00; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">Resultados</span></h2>
-                    <p style="color: rgba(255, 255, 255, 0.9); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Conheça os propósitos e expectativas da 79ª EXPOASA</p>
-                </div>
-
-                <div class="objetivos-wrapper">
-                    <div class="objetivos-box" style="background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        <h3 style="color: #ffcc00; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);">OBJETIVOS DO EVENTO</h3>
-                        <ul class="objetivos-list" style="color: white; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);">
-                            <li style="color: white;">Promover a vocação da região, demonstrando um novo modelo de desenvolvimento local e regional</li>
-                            <li style="color: white;">Apresentar a cultura japonesa</li>
-                            <li style="color: white;">Promover capacitações, transferindo conhecimento para os residentes da região do Norte Central</li>
-                            <li style="color: white;">Promover o networking entre um público bastante heterogêneo (agricultores, empresários, professores, alunos, startups, autoridades)</li>
-                            <li style="color: white;">Promover as ações de inovação que impulsionaram Assaí para uma das cidades mais inteligentes do mundo, por conta do seu processo educacional de formação e retenção de talentos</li>
-                            <li style="color: white;">Promover o letramento de gestão antecipatória, orientada a impacto social</li>
-                        </ul>
-                    </div>
-
-                    <div class="objetivos-box" style="background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        <h3 style="color: #ffcc00; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);">RESULTADOS ESPERADOS</h3>
-                        <ul class="objetivos-list" style="color: white; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);">
-                            <li style="color: white;">Mais de 10.000 visitantes, durante os três dias de evento</li>
-                            <li style="color: white;">Mais de 20 projetos de extensão das universidades</li>
-                            <li style="color: white;">Diversos cursos de gestão, agronegócios e tecnologia</li>
-                            <li style="color: white;">Movimentação de R$ 500 mil reais no setor gastronômico</li>
-                            <li style="color: white;">Pelo menos, 15 cidades contagiadas por novos métodos de governabilidade</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Substitua a seção de PROGRAMAÇÃO (SCHEDULE) pelo código abaixo -->
 
         <!-- PROGRAMAÇÃO (SCHEDULE) - Reorganizada por horário e categoria -->
         <section id="schedule" class="section schedule-section">
@@ -621,12 +580,11 @@
 
                 <div class="filter-tabs">
                     <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="ideasun">Espaço IDEASUN</button>
                     <button class="filter-btn" data-filter="palco">Palco Principal</button>
-                    <button class="filter-btn" data-filter="arena-cultural">Arena Cultural</button>
-                    <button class="filter-btn" data-filter="arena-geek">Arena Geek</button>
+                    <button class="filter-btn" data-filter="ideasun">Sala de Inovação</button>
                     <button class="filter-btn" data-filter="palestras">Sala de Palestras</button>
                     <button class="filter-btn" data-filter="universidades">Espaço Universidades</button>
+                    <button class="filter-btn" data-filter="arena-cultural">Arena Cultural</button>
                     <button class="filter-btn" data-filter="agro">Espaço Agro</button>
                 </div>
 
@@ -639,118 +597,187 @@
                             <div>Local / Categoria</div>
                         </div>
 
-                        <!-- 09:00 -->
-                        <div class="schedule-item filter-item ideasun">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Abertura do IDEASUN</h4>
-                                <p>Início da maratona de ideias inter-regional do Norte do Paraná</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Quiz Pokémon</h4>
-                                <p>Atividade do Espaço Cultural Imaginação e Ação</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
                         <div class="schedule-item filter-item palco">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
-                                <h4>Abertura da Feira</h4>
-                                <p>Início das atividades e abertura dos estandes</p>
+                                <h4>Abertura da 79° Expoasa</h4>
+                                <p>Início das atividades, abertura dos estandes e início do IDEASUN</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
-                        <!-- 09:30 -->
                         <div class="schedule-item filter-item ideasun">
-                            <div class="schedule-time">09:30</div>
+                            <div class="schedule-time">09 - 13:00</div>
                             <div class="schedule-event">
-                                <h4>Anúncio da Repescagem</h4>
-                                <p>Divulgação dos projetos repescados para a fase final</p>
+                                <h4>Mentorias Ideasun</h4>
+                                <p>Mentorias voltadas para as equipes do Ideasun.</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                                <i class="fa fa-map-marker"></i> Sala de Inovação
                             </div>
                         </div>
 
-                        <!-- 11:00 -->
-                        <div class="schedule-item filter-item ideasun">
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">Manhã</div>
+                            <div class="schedule-event">
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">09 - 10:00</div>
+                            <div class="schedule-event">
+                                <h4>Workshop de Precificação</h4>
+                                <p>Aprenda estratégias práticas para definir preços de forma assertiva.</p>
+                                <a href="https://forms.gle/RkW1aCq6fJ2xkXgg8" target="_blank">
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">10 - 11:00</div>
+                            <div class="schedule-event">
+                                <h4>Gastronomia Afetiva - SENAC</h4>
+                                <p>Apresentação e avaliação dos projetos do Ensino Especial</p>
+                                <a href="https://forms.gle/Ndq8R14WnxXUnhBH6" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">11:00</div>
                             <div class="schedule-event">
-                                <h4>Banca do Ensino Especial</h4>
+                                <h4>Fase Final IDEASUN - Ensino Especial</h4>
                                 <p>Apresentação e avaliação dos projetos do Ensino Especial</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
-                            </div>
-                        </div>
-
-                        <!-- 12:00 -->
-                        <div class="schedule-item filter-item ideasun">
-                            <div class="schedule-time">12:00</div>
-                            <div class="schedule-event">
-                                <h4>Parada para almoço</h4>
-                                <p>Intervalo para alimentação</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
                         <!-- 13:00 -->
-                        <div class="schedule-item filter-item ideasun">
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">Tarde</div>
+                            <div class="schedule-event">
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">13:00</div>
                             <div class="schedule-event">
-                                <h4>Banca do Fundamental I</h4>
+                                <h4>Fase Final IDEASUN - Fundamental I</h4>
                                 <p>Apresentação e avaliação dos projetos do Ensino Fundamental I</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">13 - 14:00</div>
+                            <div class="schedule-event">
+                                <h4>InteliGente: um guia para o desenvolvimento em Inteligência Artificial</h4>
+                                <p>Introdução prática e acessível aos conceitos, ferramentas e aplicações da IA.</p>
+                                <a href="https://forms.gle/jK8pVeViqJ4xE1qS6" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
                             </div>
                         </div>
 
                         <!-- 14:00 -->
-                        <div class="schedule-item filter-item agro">
-                            <div class="schedule-time">14:00</div>
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">14 - 15:00</div>
                             <div class="schedule-event">
-                                <h4>Mostra Agrícola</h4>
-                                <p>Apresentação dos melhores produtos agrícolas da região</p>
+                                <h4>Tecnologia Assistiva na Educação: Caminhos e Possibilidades para a Inclusão</h4>
+                                <p>Recursos, estratégias e práticas que promovem a inclusão na educação.</p>
+                                <a href="https://forms.gle/yLRY6x5C8sHoKR6w6" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço Agro
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">14 - 15:00</div>
+                            <div class="schedule-event">
+                                <h4>Oficina de Compras Públicas</h4>
+                                <p>Descubra como vender para órgãos governamentais.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Inovação
                             </div>
                         </div>
 
                         <!-- 15:00 -->
-                        <div class="schedule-item filter-item ideasun">
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">15:00</div>
                             <div class="schedule-event">
-                                <h4>Banca do Fundamental II</h4>
+                                <h4>Fase Final IDEASUN - Fundamental II</h4>
                                 <p>Apresentação e avaliação dos projetos do Ensino Fundamental II</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">15 - 16:00</div>
+                            <div class="schedule-event">
+                                <h4>Engenharia de Prompt com ênfase em Engenharia</h4>
+                                <p>Abordagem prática para utilizar inteligência artificial de forma eficiente na solução de problemas da engenharia.</p>
+                                <a href="https://forms.gle/HpAh8qnSzie6xqFp6" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">15 - 18:00</div>
+                            <div class="schedule-event">
+                                <h4>Seminário de Crédito</h4>
+                                <p>Apresentação de linhas de crédito e campanhas institucionais</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Inovação
                             </div>
                         </div>
 
                         <!-- 16:00 -->
                         <div class="schedule-item filter-item palestras">
-                            <div class="schedule-time">16:00</div>
+                            <div class="schedule-time">16 - 17:00</div>
                             <div class="schedule-event">
-                                <h4>Workshop de Inovação</h4>
-                                <p>Apresentação de projetos inovadores em parceria com o CREA-PR</p>
+                                <h4>Estudo de Caso sobre o CEEP - Projetek UEL</h4>
+                                <p>Apresentação de um estudo de caso sobre o CEEP.</p>
+                                <a href="https://forms.gle/UmcwRnX4u8og8mgm7" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Sala de Palestras
@@ -758,14 +785,28 @@
                         </div>
 
                         <!-- 17:00 -->
-                        <div class="schedule-item filter-item ideasun">
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">17 - 18:00</div>
+                            <div class="schedule-event">
+                                <h4>Jornada Inovadora da Aintec</h4>
+                                <p>Apresentação da jornada inovadora da AINTEC Agência de Inovação Tecnológica da UEL.</p>
+                                <a href="https://forms.gle/xF8TQamg2aePysvf6" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">17:00</div>
                             <div class="schedule-event">
-                                <h4>Banca do Ensino Médio / Médio-Técnico</h4>
+                                <h4>Fase Final IDEASUN - Ensino Médio / Médio-Técnico</h4>
                                 <p>Apresentação e avaliação dos projetos do Ensino Médio e Médio-Técnico</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
@@ -781,34 +822,26 @@
                             </div>
                         </div>
 
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">18 - 19:00</div>
+                            <div class="schedule-event">
+                                <h4>Empreendedorismo da UFPR</h4>
+                                <p>Apresentação de iniciativas empreendedoras promovidas pela instituição.</p>
+                                <a href="https://forms.gle/LoRcUVKopNToM8bJA" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
                         <!-- 18:30 -->
                         <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">18:30</div>
+                            <div class="schedule-time">17 - 21:00</div>
                             <div class="schedule-event">
-                                <h4>Brincadeiras de Baseball e Atletismo</h4>
-                                <p>Atividades esportivas para todas as idades</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">18:30</div>
-                            <div class="schedule-event">
-                                <h4>Joguinhos Tradicionais - OTEDAMA</h4>
-                                <p>Jogos tradicionais japoneses para toda a família</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">18:30</div>
-                            <div class="schedule-event">
-                                <h4>Escolinha de Origami</h4>
-                                <p>Aprenda a arte tradicional japonesa de dobrar papel</p>
+                                <h4>Brincadeiras de Baseball e Atletismo | Joguinhos Tradicionais - OTEDAMA | Escolinha de Origami</h4>
+                                <p>Atividades para todas as idades</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Arena Cultural
@@ -827,6 +860,17 @@
                             </div>
                         </div>
 
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">Noite</div>
+                            <div class="schedule-event">
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
+                            </div>
+                        </div>
+
                         <div class="schedule-item filter-item arena-cultural">
                             <div class="schedule-time">19:00</div>
                             <div class="schedule-event">
@@ -840,7 +884,7 @@
 
                         <!-- 20:00 -->
                         <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">20:00</div>
+                            <div class="schedule-time">20 - 21:00</div>
                             <div class="schedule-event">
                                 <h4>Troca de Cards e Escola Pokémon</h4>
                                 <p>Atividade do Espaço Cultural Imaginação e Ação</p>
@@ -875,7 +919,7 @@
                         <div class="schedule-item filter-item palco">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
-                                <h4>Abertura da Feira</h4>
+                                <h4>Abertura do 2° dia da 79° Expoasa</h4>
                                 <p>Início das atividades do segundo dia</p>
                             </div>
                             <div class="schedule-location">
@@ -883,8 +927,30 @@
                             </div>
                         </div>
 
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">09 - 13:00</div>
+                            <div class="schedule-event">
+                                <h4>Mentorias Ideasun</h4>
+                                <p>Mentorias voltadas para as equipes do Ideasun.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Inovação
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">Manhã</div>
+                            <div class="schedule-event">
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
+                            </div>
+                        </div>
+
                         <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-time">09 - 17:00</div>
                             <div class="schedule-event">
                                 <h4>Mini Golf</h4>
                                 <p>Diversão para toda a família com mini golfe</p>
@@ -897,48 +963,37 @@
                         <div class="schedule-item filter-item arena-cultural">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
-                                <h4>Joguinhos Tradicionais - OTEDAMA</h4>
-                                <p>Jogos tradicionais japoneses para toda a família</p>
+                                <h4>Brincadeiras de Baseball e Atletismo | Joguinhos Tradicionais - OTEDAMA | Escolinha de Origami</h4>
+                                <p>Atividades para todas as idades</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Arena Cultural
                             </div>
                         </div>
 
-                        <div class="schedule-item filter-item arena-cultural">
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
-                                <h4>Escolinha de Origami</h4>
-                                <p>Aprenda a arte tradicional japonesa de dobrar papel</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Brincadeiras de Baseball e Atletismo</h4>
-                                <p>Atividades esportivas para todas as idades</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item ideasun">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Banca do Ensino Superior</h4>
+                                <h4>Fase Final IDEASUN - Ensino Superior</h4>
                                 <p>Apresentação e avaliação dos projetos do Ensino Superior</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                                <i class="fa fa-map-marker"></i> Palco Principal
                             </div>
                         </div>
 
                         <!-- 10:00 -->
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">10 - 12:00</div>
+                            <div class="schedule-event">
+                                <h4>CREA-PR | Reunião com membros e engenheiros</h4>
+                                <p>Reunião exclusiva do CREA-PR para engenheiros e membros.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
                         <div class="schedule-item filter-item palco">
                             <div class="schedule-time">10:00</div>
                             <div class="schedule-event">
@@ -950,20 +1005,9 @@
                             </div>
                         </div>
 
-                        <div class="schedule-item filter-item palestras">
-                            <div class="schedule-time">10:00</div>
-                            <div class="schedule-event">
-                                <h4>Seminário de Crédito</h4>
-                                <p>Apresentação de linhas de crédito e campanhas institucionais</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Sala de Palestras
-                            </div>
-                        </div>
-
-                        <!-- 11:00 -->
+                        <!-- 12:00 -->
                         <div class="schedule-item filter-item palco">
-                            <div class="schedule-time">11:00</div>
+                            <div class="schedule-time">12:00</div>
                             <div class="schedule-event">
                                 <h4>Dança Japonesa de Palco</h4>
                                 <p>Apresentações de danças tradicionais japonesas</p>
@@ -973,27 +1017,66 @@
                             </div>
                         </div>
 
-                        <!-- 12:00 -->
                         <div class="schedule-item filter-item universidades">
-                            <div class="schedule-time">12:00</div>
+                            <div class="schedule-time">Tarde</div>
                             <div class="schedule-event">
-                                <h4>Banca Ensino Superior</h4>
-                                <p>Apresentação e avaliação dos projetos do Ensino Superior</p>
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Espaço Universidades
                             </div>
                         </div>
 
-                        <!-- 14:00 -->
+                        <!-- 13:00 -->
                         <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">13 - 19:00</div>
+                            <div class="schedule-event">
+                                <h4>Projeto Manna</h4>
+                                <p>Ecossistema de ensino, pesquisa, extensão e inovação em Tecnologias Exponenciais.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Inovação
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">13 - 14:00</div>
+                            <div class="schedule-event">
+                                <h4>Inovação com Propósito</h4>
+                                <p>Ana Paula Cruz compartilha sua trajetória empreendedora à frente da natu.me e da Ecoabea.</p>
+                                <a href="https://forms.gle/FDiUSrvnzrSoCUvT8" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <!-- 14:00 -->
+                        <div class="schedule-item filter-item palco">
                             <div class="schedule-time">14:00</div>
                             <div class="schedule-event">
                                 <h4>Premiação do IDEASUN</h4>
                                 <p>Anúncio dos vencedores do hackathon e entrega dos prêmios</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço IDEASUN
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">14 - 15:00</div>
+                            <div class="schedule-event">
+                                <h4>Os 6 pilares da empregabilidade</h4>
+                                <p>Oferece uma abordagem prática e estratégica para se destacar no mercado atual.</p>
+                                <a href="https://forms.gle/NU1RnCY5F9XwyBKc7" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
                             </div>
                         </div>
 
@@ -1009,6 +1092,20 @@
                             </div>
                         </div>
 
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">15 - 16:00</div>
+                            <div class="schedule-event">
+                                <h4>Impressão 3D - UNOPAR</h4>
+                                <p>Yuri Mendes Mostagi apresenta como a Impressão 3D está transformando o mundo.</p>
+                                <a href="https://forms.gle/wADNRarfRZK3WsJq7" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
                         <!-- 16:00 -->
                         <div class="schedule-item filter-item palco">
                             <div class="schedule-time">16:00</div>
@@ -1021,7 +1118,256 @@
                             </div>
                         </div>
 
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">16 - 17:00</div>
+                            <div class="schedule-event">
+                                <h4>Inteligência Artificial: Ferramentas e Possibilidades - UNOPAR</h4>
+                                <p>Ana Mauriceia Castellani apresenta o conceito de Inteligência Artificial e suas aplicações práticas no cotidiano.</p>
+                                <a href="https://forms.gle/DqQwmpLYX664twmm8" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <!-- 17:00 -->
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">17 - 18:00</div>
+                            <div class="schedule-event">
+                                <h4>Mercado de Trabalho para pessoas 50+ - UNOPAR</h4>
+                                <p>Marcos Tonasse apresenta como o mercado de trabalho tem se transformado para incluir pessoas 50+.</p>
+                                <a href="https://forms.gle/iV7CAgGkvq7ZytP69" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <!-- 18:00 -->
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">18 - 19:00</div>
+                            <div class="schedule-event">
+                                <h4>Metaverso e Vida Artificial - UTFPR-CP</h4>
+                                <p>Professor Doutor Eduardo Filgueiras Damasceno apresentará sobre o Metaverso e a Vida Artificial.</p>
+                                <a href="https://forms.gle/RdaDMebdkt7Ehhy37" target="_blank>
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <!-- Continuar com as outras atividades do dia 1 -->
+                    </div>
+
+                    <!-- DIA 2 (7 de Junho) -->
+                    <div id="day2" class="schedule-day">
+                        <div class="schedule-header">
+                            <div>Horário</div>
+                            <div>Atividade</div>
+                            <div>Local / Categoria</div>
+                        </div>
+
+                        <!-- 09:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Abertura do 2° dia da 79° Expoasa</h4>
+                                <p>Início das atividades do segundo dia</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">09 - 13:00</div>
+                            <div class="schedule-event">
+                                <h4>Mentorias Ideasun</h4>
+                                <p>Mentorias voltadas para as equipes do Ideasun.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Inovação
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">Manhã</div>
+                            <div class="schedule-event">
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09 - 17:00</div>
+                            <div class="schedule-event">
+                                <h4>Mini Golf</h4>
+                                <p>Diversão para toda a família com mini golfe</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Brincadeiras de Baseball e Atletismo | Joguinhos Tradicionais - OTEDAMA | Escolinha de Origami</h4>
+                                <p>Atividades para todas as idades</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-event">
+                                <h4>Fase Final IDEASUN - Ensino Superior</h4>
+                                <p>Apresentação e avaliação dos projetos do Ensino Superior</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <!-- 10:00 -->
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">10 - 12:00</div>
+                            <div class="schedule-event">
+                               
+                            </div>
+                        </div>
+
+                        <!-- 14:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">14:00</div>
+                            <div class="schedule-event">
+                                <h4>Premiação do IDEASUN</h4>
+                                <p>Anúncio dos vencedores do hackathon e entrega dos prêmios</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">14 - 15:00</div>
+                            <div class="schedule-event">
+                                <h4>Os 6 pilares da empregabilidade</h4>
+                                <p>Oferece uma abordagem prática e estratégica para se destacar no mercado atual.</p>
+                                <a href="#">
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <!-- 15:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">15:00</div>
+                            <div class="schedule-event">
+                                <h4>Workshop Taiko Yuji</h4>
+                                <p>Oficina de percussão com tambores japoneses tradicionais</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">15 - 16:00</div>
+                            <div class="schedule-event">
+                                <h4>Impressão 3D - UNOPAR</h4>
+                                <p>Yuri Mendes Mostagi apresenta como a Impressão 3D está transformando o mundo.</p>
+                                <a href="https://forms.gle/wADNRarfRZK3WsJq7" target="_blank">
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <!-- 16:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">16:00</div>
+                            <div class="schedule-event">
+                                <h4>Atividades LACA</h4>
+                                <p>Programação especial promovida pela Liga de Amigos da Colônia Assaiense</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">16 - 17:00</div>
+                            <div class="schedule-event">
+                                <h4>Inteligência Artificial: Ferramentas e Possibilidades - UNOPAR</h4>
+                                <p>Ana Mauriceia Castellani apresenta o conceito de Inteligência Artificial e suas aplicações práticas no cotidiano.</p>
+                                <a href="https://forms.gle/t3tpw54ymmDtYTct8" target="_blank">
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <!-- 17:00 -->
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">17 - 18:00</div>
+                            <div class="schedule-event">
+                                <h4>Mercado de Trabalho para pessoas 50+ - UNOPAR</h4>
+                                <p>Marcos Tonasse apresenta como o mercado de trabalho tem se transformado para incluir pessoas 50+.</p>
+                                <a href="https://forms.gle/iV7CAgGkvq7ZytP69" target="blank">
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <!-- 18:00 -->
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">18 - 19:00</div>
+                            <div class="schedule-event">
+                                <h4>Metaverso e Vida Artificial - UTFPR-CP</h4>
+                                <p>Professor Doutor Eduardo Filgueiras Damasceno apresentará sobre o Metaverso e a Vida Artificial.</p>
+                                <a href="https://forms.gle/iV7CAgGkvq7ZytP69" target="_blank">
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
                         <!-- 19:00 -->
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">Noite</div>
+                            <div class="schedule-event">
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
+                            </div>
+                        </div>
+
                         <div class="schedule-item filter-item arena-cultural">
                             <div class="schedule-time">19:00</div>
                             <div class="schedule-event">
@@ -1058,11 +1404,58 @@
                         <div class="schedule-item filter-item palco">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
-                                <h4>Abertura da Feira</h4>
+                                <h4>Abertura do 3° dia da 79° Expoasa</h4>
                                 <p>Início das atividades do último dia</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">Manhã</div>
+                            <div class="schedule-event">
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">09 - 13:00</div>
+                            <div class="schedule-event">
+                                <h4>Projeto Manna</h4>
+                                <p>Ecossistema de ensino, pesquisa, extensão e inovação em Tecnologias Exponenciais.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Inovação
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item palestras">
+                            <div class="schedule-time">09 - 16:00</div>
+                            <div class="schedule-event">
+                                <h4>Workshop de Cidades</h4>
+                                <p>Capacitação de gestores públicos, profissionais de TI e cidadãos na construção de cidades mais inteligentes.</p>
+                                <a href="https://forms.gle/HefNsEFVKsiAqT7W7" target="_blank">
+                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
+                                </a>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Palestras
+                            </div>
+                        </div>
+
+                        <div class="schedule-item filter-item arena-cultural">
+                            <div class="schedule-time">09 - 12:00</div>
+                            <div class="schedule-event">
+                                <h4>Campeonato Pokémon</h4>
+                                <p>Atividade do Espaço Cultural Imaginação e Ação</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Arena Cultural
                             </div>
                         </div>
 
@@ -1089,7 +1482,7 @@
                         </div>
 
                         <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">09:00</div>
+                            <div class="schedule-time">09 - 12:00</div>
                             <div class="schedule-event">
                                 <h4>Mini Golf</h4>
                                 <p>Diversão para toda a família com mini golfe</p>
@@ -1102,30 +1495,8 @@
                         <div class="schedule-item filter-item arena-cultural">
                             <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
-                                <h4>Joguinhos Tradicionais - OTEDAMA</h4>
-                                <p>Jogos tradicionais japoneses para toda a família</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Escolinha de Origami</h4>
-                                <p>Aprenda a arte tradicional japonesa de dobrar papel</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Brincadeiras de Baseball e Atletismo</h4>
-                                <p>Atividades esportivas para todas as idades</p>
+                                <h4>Brincadeiras de Baseball e Atletismo | Joguinhos Tradicionais - OTEDAMA | Escolinha de Origami</h4>
+                                <p>Atividades para todas as idades</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Arena Cultural
@@ -1157,18 +1528,29 @@
                         </div>
 
                         <!-- 12:00 -->
-                        <div class="schedule-item filter-item palco highlight">
-                            <div class="schedule-time">12:00</div>
+                        <div class="schedule-item filter-item universidades">
+                            <div class="schedule-time">Tarde</div>
                             <div class="schedule-event">
-                                <h4>Premiação RYOTO 2025</h4>
-                                <p>Anúncio dos vencedores do concurso gastronômico e entrega do prêmio</p>
+                                <h4>Expresso Móvel Sicoob</h4>
+                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
                             </div>
                             <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Palco Principal
+                                <i class="fa fa-map-marker"></i> Espaço Universidades
                             </div>
                         </div>
 
                         <!-- 13:00 -->
+                        <div class="schedule-item filter-item ideasun">
+                            <div class="schedule-time">13 - 16:00</div>
+                            <div class="schedule-event">
+                                <h4>Concurso Gastronômico</h4>
+                                <p>Votação que será realizada pela banca qualificada do evento.</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Sala de Inovação
+                            </div>
+                        </div>
+
                         <div class="schedule-item filter-item palco">
                             <div class="schedule-time">13:00</div>
                             <div class="schedule-event">
@@ -1210,6 +1592,18 @@
                             <div class="schedule-event">
                                 <h4>Encerramento Oficial</h4>
                                 <p>Cerimônia de encerramento da 79ª EXPOASA</p>
+                            </div>
+                            <div class="schedule-location">
+                                <i class="fa fa-map-marker"></i> Palco Principal
+                            </div>
+                        </div>
+
+                        <!-- 16:00 -->
+                        <div class="schedule-item filter-item palco">
+                            <div class="schedule-time">16:00</div>
+                            <div class="schedule-event">
+                                <h4>Premiação RYORI 2025</h4>
+                                <p>Anúncio dos vencedores do concurso gastronômico e entrega do prêmio</p>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Palco Principal
@@ -1378,7 +1772,7 @@
             </div>
         </section>
 
-        <!-- PATROCINADORES -->
+        <!-- PATROCINADORES - SEÇÃO ELEGANTE E MODERNA -->
         <section class="section sponsors-section">
             <div class="container">
                 <div class="section-title">
@@ -1386,75 +1780,117 @@
                     <p>Confira as empresas e instituições que apoiam a realização da 79ª EXPOASA</p>
                 </div>
 
-                <div class="row justify-content-center">
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/UEL_vertical.png" alt="Patrocinador 1" class="sponsor-logo">
+                <!-- APOIADORES DO EVENTO -->
+                <div class="category-container">
+                    <h3 class="category-title">Apoiadores do Evento</h3>
+                    <p class="category-description">Empresas e instituições que acreditam no potencial da nossa região e contribuem para o sucesso do evento</p>
+                    
+                    <div class="sponsors-row">
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/COOPERATIVAS/sicoob-logo-1.png" alt="Sicoob" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/COOPERATIVAS/sicredi-logo.png" alt="Sicredi" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/COOPERATIVAS/logo-integrada.png" alt="Integrada" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/GOVERNO/creapr.png" alt="CREA-PR" class="sponsor-logo">
+                        </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/logo_utf.png" alt="Patrocinador 2" class="sponsor-logo">
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- INSTITUIÇÕES DE APOIO -->
+                <div class="category-container">
+                    <h3 class="category-title">Instituições de Apoio</h3>
+                    <p class="category-description">Organizações que oferecem suporte técnico e institucional para o sucesso da EXPOASA</p>
+                    
+                    <div class="sponsors-row">
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/GOVERNO/logo-senac.png" alt="SENAC" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/GOVERNO/logo-senai.png" alt="SENAI" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/GOVERNO/logo_ligga.png" alt="LIGGA" class="sponsor-logo">
+                        </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/logo-pucpr-vermelha.png" alt="Patrocinador 3" class="sponsor-logo">
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- UNIVERSIDADES -->
+                <div class="category-container">
+                    <h3 class="category-title">Universidades</h3>
+                    <p class="category-description">Instituições de ensino superior parceiras que compartilham conhecimento e promovem a inovação</p>
+                    
+                    <div class="sponsors-row">
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/UNIVERSIDADES/UEL_vertical.png" alt="UEL" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/UNIVERSIDADES/logo_utf.png" alt="UTFPR" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/UNIVERSIDADES/uem-modelo-02.png" alt="UEM" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/UNIVERSIDADES/uenp_logo.png" alt="UENP" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/UNIVERSIDADES/logo-ufpr.png" alt="UFPR" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/UNIVERSIDADES/logo-unioeste.png" alt="UNIOESTE" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/UNIVERSIDADES/logo-unifil.png" alt="UNIFIL" class="sponsor-logo">
+                        </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/uem-modelo-02.png" alt="Patrocinador 4" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/uenp_logo.png" alt="Patrocinador 5" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/GOVERNO/creapr.png" alt="Patrocinador 6" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/logo-unioeste.png" alt="Patrocinador 7" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/logo-uninga.png" alt="Patrocinador 8" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/logo-unifil.png" alt="Patrocinador 9" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/GOVERNO/logo-senac.png" alt="Patrocinador 10" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/GOVERNO/logo-senai.png" alt="Patrocinador 11" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/UNIVERSIDADES/logo-ufpr.png" alt="Patrocinador 12" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/COOPERATIVAS/logo-integrada.png" alt="Patrocinador 13" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/COOPERATIVAS/sicoob-logo-1.png" alt="Patrocinador 14" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/COOPERATIVAS/sicredi-logo.png" alt="Patrocinador 15" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/MEIS/logo-luciano.png" alt="Patrocinador 16" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/MEIS/logo-yume.png" alt="Patrocinador 16" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/MEIS/logo-donmussi.png" alt="Patrocinador 16" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/MEIS/logo-sophia.png" alt="Patrocinador 16" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/MEIS/logo-tommy.png" alt="Patrocinador 16" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/MEIS/pastelaria-da-duda.jpeg" alt="Patrocinador 16" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/MEIS/sabor-e-saude.jpeg" alt="Patrocinador 16" class="sponsor-logo">
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 text-center">
-                        <img src="/assets/images/logos/MEIS/sonia-bolos.jpeg" alt="Patrocinador 16" class="sponsor-logo">
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- MEIS -->
+                <div class="category-container">
+                    <h3 class="category-title">Microempreendedores Individuais</h3>
+                    <p class="category-description">Empreendedores locais que trazem sabor, criatividade e inovação para nosso evento</p>
+                    
+                    <div class="sponsors-row">
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/logo-luciano.png" alt="Luciano" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/logo-yume.png" alt="Yume" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/logo-donmussi.png" alt="Don Mussi" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/logo-sophia.png" alt="Sophia" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/logo-tommy.png" alt="Tommy" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/pastelaria-da-duda.jpeg" alt="Pastelaria da Duda" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/sabor-e-saude.jpeg" alt="Sabor e Saúde" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/sonia-bolos.jpeg" alt="Sonia Bolos" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/amigo_monstro.png" alt="Amigo Monstro" class="sponsor-logo">
+                        </div>
+                        <div class="sponsor-item">
+                            <img src="/assets/images/logos/MEIS/akiba_store.png" alt="Akiba Store" class="sponsor-logo">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1510,6 +1946,34 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACeD0S9I3kp8gXgUrczVtA6IBPLaZkzZ0"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script src="/assets/js/landing.js"></script> 
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Inicializar AOS se estiver disponível
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 800,
+                        once: true,
+                        offset: 100
+                    });
+                }
+                
+                // Adicionar efeito suave nas imagens dos patrocinadores
+                const sponsorItems = document.querySelectorAll('.sponsor-item');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.3 });
+                
+                sponsorItems.forEach(item => {
+                    observer.observe(item);
+                });
+            });
+        </script>
     
+        <script src="script.js?v=1.1"></script>
     </body>
 </html>
