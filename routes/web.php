@@ -191,3 +191,53 @@ Route::get('/admin/avaliadores', [AdminController::class, 'gerenciarAvaliadores'
 Route::post('/admin/avaliadores/salvar', [AdminController::class, 'salvarAvaliador'])->name('ideasun.admin.salvar-avaliador');
 Route::get('/admin/avaliadores/alternar-status/{id}', [AdminController::class, 'alternarStatusAvaliador'])->name('ideasun.admin.alternar-status-avaliador');
 Route::delete('/admin/avaliadores/excluir/{id}', [AdminController::class, 'excluirAvaliador'])->name('ideasun.admin.excluir-avaliador');
+
+// Rotas do Concurso Ryori
+Route::prefix('ryori')->name('ryori.')->group(function () {
+    // Rotas públicas
+    Route::get('/', [App\Http\Controllers\RyoriController::class, 'index'])->name('index');
+    Route::get('/sobre', [App\Http\Controllers\RyoriController::class, 'about'])->name('about');
+    Route::get('/regras', [App\Http\Controllers\RyoriController::class, 'rules'])->name('rules');
+    
+    // Pratos
+    Route::get('/pratos', [App\Http\Controllers\DishController::class, 'index'])->name('dishes.index');
+    Route::get('/pratos/{id}', [App\Http\Controllers\DishController::class, 'show'])->name('dishes.show');
+    
+    // Votação
+    Route::get('/votar', [App\Http\Controllers\VoteController::class, 'index'])->name('vote.index');
+    Route::post('/votar', [App\Http\Controllers\VoteController::class, 'store'])->name('vote.store');
+    Route::get('/voto-sucesso', [App\Http\Controllers\VoteController::class, 'success'])->name('vote.success');
+    
+    // Área Administrativa
+    Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\RyoriAdminController::class, 'index'])->name('index');
+        
+        // Gerenciamento de pratos
+        Route::get('/pratos', [App\Http\Controllers\Admin\RyoriAdminController::class, 'dishes'])->name('dishes');
+        Route::get('/pratos/criar', [App\Http\Controllers\Admin\RyoriAdminController::class, 'createDish'])->name('dishes.create');
+        Route::post('/pratos', [App\Http\Controllers\Admin\RyoriAdminController::class, 'storeDish'])->name('dishes.store');
+        Route::get('/pratos/{id}/editar', [App\Http\Controllers\Admin\RyoriAdminController::class, 'editDish'])->name('dishes.edit');
+        Route::put('/pratos/{id}', [App\Http\Controllers\Admin\RyoriAdminController::class, 'updateDish'])->name('dishes.update');
+        Route::delete('/pratos/{id}', [App\Http\Controllers\Admin\RyoriAdminController::class, 'destroyDish'])->name('dishes.destroy');
+        
+        // Gerenciamento de votos
+        Route::get('/votos', [App\Http\Controllers\Admin\RyoriAdminController::class, 'votes'])->name('votes');
+        Route::get('/resultados', [App\Http\Controllers\Admin\RyoriAdminController::class, 'results'])->name('results');
+    });
+});
+
+// Rotas de autenticação
+Route::get('/ryori/admin/login', [App\Http\Controllers\Auth\RyoriAuthController::class, 'showLoginForm'])->name('ryori.auth.login');
+Route::post('/ryori/admin/login', [App\Http\Controllers\Auth\RyoriAuthController::class, 'login']);
+Route::get('/ryori/admin/logout', [App\Http\Controllers\Auth\RyoriAuthController::class, 'logout'])->name('ryori.auth.logout');
+
+// Rotas administrativas protegidas
+Route::middleware(['ryori.admin'])->group(function () {
+    Route::get('/ryori/admin', [App\Http\Controllers\Admin\RyoriAdminController::class, 'index'])->name('ryori.admin.index');
+    Route::get('/ryori/admin/dishes', [App\Http\Controllers\Admin\RyoriAdminController::class, 'dishes'])->name('ryori.admin.dishes');
+    Route::get('/ryori/admin/dishes/create', [App\Http\Controllers\Admin\RyoriAdminController::class, 'createDish'])->name('ryori.admin.dishes.create');
+    Route::post('/ryori/admin/dishes', [App\Http\Controllers\Admin\RyoriAdminController::class, 'storeDish'])->name('ryori.admin.dishes.store');
+    Route::get('/ryori/admin/dishes/{id}/edit', [App\Http\Controllers\Admin\RyoriAdminController::class, 'editDish'])->name('ryori.admin.dishes.edit');
+    Route::put('/ryori/admin/dishes/{id}', [App\Http\Controllers\Admin\RyoriAdminController::class, 'updateDish'])->name('ryori.admin.dishes.update');
+    Route::delete('/ryori/admin/dishes/{id}', [App\Http\Controllers\Admin\RyoriAdminController::class, 'destroyDish'])->name('ryori.admin.dishes.destroy');
+});

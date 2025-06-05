@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'ideasun.qualquer.auth' => \App\Http\Middleware\IdeasunQualquerAuth::class,
         'ideasun.admin' => \App\Http\Middleware\AdminAuth::class,
         'ideasun.banca' => \App\Http\Middleware\BancaAuth::class,
+        'ryori.admin' => \App\Http\Middleware\RyoriAdminMiddleware::class,
     ];
 }

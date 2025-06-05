@@ -434,7 +434,6 @@
                     <button class="filter-btn" data-filter="palestras">Sala de Palestras</button>
                     <button class="filter-btn" data-filter="universidades">Espaço Universidades</button>
                     <button class="filter-btn" data-filter="arena-cultural">Arena Cultural</button>
-                    <button class="filter-btn" data-filter="agro">Espaço Agro</button>
                 </div>
 
                 <div class="schedule-content">
@@ -571,10 +570,13 @@
                         </div>
 
                         <div class="schedule-item filter-item ideasun">
-                            <div class="schedule-time">14h - 15h</div>
+                            <div class="schedule-time">13h - 15h</div>
                             <div class="schedule-event">
                                 <h4>Oficina de Compras Públicas</h4>
                                 <p>Descubra como vender para órgãos governamentais.</p>
+                                <a href="https://forms.gle/kvpaoGSzZ5BphusS9" target="_blank" class="btn-register">
+                                    <i class="fa fa-file-text-o"></i> Inscrever-se
+                                </a>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Sala de Inovação
@@ -844,7 +846,7 @@
                         </div>
 
                         <div class="schedule-item filter-item palco">
-                            <div class="schedule-time">10:00</div>
+                            <div class="schedule-time">09:00</div>
                             <div class="schedule-event">
                                 <h4>Apresentação da Cooperativa Mirim</h4>
                                 <p>Jovens empreendedores apresentam seus projetos e iniciativas</p>
@@ -883,6 +885,9 @@
                             <div class="schedule-event">
                                 <h4>Projeto Manna</h4>
                                 <p>Ecossistema de ensino, pesquisa, extensão e inovação em Tecnologias Exponenciais.</p>
+                                <a href="https://forms.gle/wLf6ZN6gxpvs7hbp7" target="_blank" class="btn-register">
+                                    <i class="fa fa-file-text-o"></i> Inscrever-se
+                                </a>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Sala de Inovação
@@ -972,7 +977,7 @@
                             <div class="schedule-event">
                                 <h4>Inteligência Artificial: Ferramentas e Possibilidades - UNOPAR</h4>
                                 <p>Ana Mauriceia Castellani apresenta o conceito de Inteligência Artificial e suas aplicações práticas no cotidiano.</p>
-                                <a href="https://forms.gle/DqQwmpLYX664twmm8" target="_blank" class="btn-register">
+                                <a href="https://forms.gle/t3tpw54ymmDtYTct8" target="_blank" class="btn-register">
                                     <i class="fa fa-file-text-o"></i> Inscrever-se
                                 </a>
                             </div>
@@ -1002,202 +1007,8 @@
                             <div class="schedule-event">
                                 <h4>Metaverso e Vida Artificial - UTFPR-CP</h4>
                                 <p>Professor Doutor Eduardo Filgueiras Damasceno apresentará sobre o Metaverso e a Vida Artificial.</p>
-                                <a href="https://forms.gle/RdaDMebdkt7Ehhy37" target="_blank" class="btn-register">
+                                <a href="https://forms.gle/iV7CAgGkvq7ZytP69" target="_blank" class="btn-register">
                                     <i class="fa fa-file-text-o"></i> Inscrever-se
-                                </a>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Sala de Palestras
-                            </div>
-                        </div>
-
-                        <!-- Continuar com as outras atividades do dia 1 -->
-                    </div>
-
-                    <!-- DIA 2 (7 de Junho) -->
-                    <div id="day2" class="schedule-day">
-                        <div class="schedule-header">
-                            <div>Horário</div>
-                            <div>Atividade</div>
-                            <div>Local / Categoria</div>
-                        </div>
-
-                        <!-- 09:00 -->
-                        <div class="schedule-item filter-item palco">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Abertura do 2° dia da 79° Expoasa</h4>
-                                <p>Início das atividades do segundo dia</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Palco Principal
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item ideasun">
-                            <div class="schedule-time">09h - 13h</div>
-                            <div class="schedule-event">
-                                <h4>Mentorias Ideasun</h4>
-                                <p>Mentorias voltadas para as equipes do Ideasun.</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Sala de Inovação
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item universidades">
-                            <div class="schedule-time">Manhã</div>
-                            <div class="schedule-event">
-                                <h4>Expresso Móvel Sicoob</h4>
-                                <p>Projeto educacional móvel que oferece cursos profissionalizantes gratuitos.</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Espaço Universidades
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">09h - 17h</div>
-                            <div class="schedule-event">
-                                <h4>Mini Golf</h4>
-                                <p>Diversão para toda a família com mini golfe</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item arena-cultural">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Brincadeiras de Baseball e Atletismo | Joguinhos Tradicionais - OTEDAMA | Escolinha de Origami</h4>
-                                <p>Atividades para todas as idades</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Arena Cultural
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item palco">
-                            <div class="schedule-time">09:00</div>
-                            <div class="schedule-event">
-                                <h4>Fase Final IDEASUN - Ensino Superior</h4>
-                                <p>Apresentação e avaliação dos projetos do Ensino Superior</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Palco Principal
-                            </div>
-                        </div>
-
-                        <!-- 10:00 -->
-                        <div class="schedule-item filter-item palestras">
-                            <div class="schedule-time">10h - 12h</div>
-                            <div class="schedule-event">
-                               
-                            </div>
-                        </div>
-
-                        <!-- 14:00 -->
-                        <div class="schedule-item filter-item palco">
-                            <div class="schedule-time">14:00</div>
-                            <div class="schedule-event">
-                                <h4>Premiação do IDEASUN</h4>
-                                <p>Anúncio dos vencedores do hackathon e entrega dos prêmios</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Palco Principal
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item palestras">
-                            <div class="schedule-time">14h - 15h</div>
-                            <div class="schedule-event">
-                                <h4>Os 6 pilares da empregabilidade</h4>
-                                <p>Oferece uma abordagem prática e estratégica para se destacar no mercado atual.</p>
-                                <a href="#">
-                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
-                                </a>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Sala de Palestras
-                            </div>
-                        </div>
-
-                        <!-- 15:00 -->
-                        <div class="schedule-item filter-item palco">
-                            <div class="schedule-time">15:00</div>
-                            <div class="schedule-event">
-                                <h4>Workshop Taiko Yuji</h4>
-                                <p>Oficina de percussão com tambores japoneses tradicionais</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Palco Principal
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item palestras">
-                            <div class="schedule-time">15h - 16h</div>
-                            <div class="schedule-event">
-                                <h4>Impressão 3D - UNOPAR</h4>
-                                <p>Yuri Mendes Mostagi apresenta como a Impressão 3D está transformando o mundo.</p>
-                                <a href="https://forms.gle/wADNRarfRZK3WsJq7" target="_blank">
-                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
-                                </a>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Sala de Palestras
-                            </div>
-                        </div>
-
-                        <!-- 16:00 -->
-                        <div class="schedule-item filter-item palco">
-                            <div class="schedule-time">16:00</div>
-                            <div class="schedule-event">
-                                <h4>Atividades LACA</h4>
-                                <p>Programação especial promovida pela Liga de Amigos da Colônia Assaiense</p>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Palco Principal
-                            </div>
-                        </div>
-
-                        <div class="schedule-item filter-item palestras">
-                            <div class="schedule-time">16h - 17h</div>
-                            <div class="schedule-event">
-                                <h4>Inteligência Artificial: Ferramentas e Possibilidades - UNOPAR</h4>
-                                <p>Ana Mauriceia Castellani apresenta o conceito de Inteligência Artificial e suas aplicações práticas no cotidiano.</p>
-                                <a href="https://forms.gle/t3tpw54ymmDtYTct8" target="_blank">
-                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
-                                </a>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Sala de Palestras
-                            </div>
-                        </div>
-
-                        <!-- 17:00 -->
-                        <div class="schedule-item filter-item palestras">
-                            <div class="schedule-time">17h - 18h</div>
-                            <div class="schedule-event">
-                                <h4>Mercado de Trabalho para pessoas 50+ - UNOPAR</h4>
-                                <p>Marcos Tonasse apresenta como o mercado de trabalho tem se transformado para incluir pessoas 50+.</p>
-                                <a href="https://forms.gle/iV7CAgGkvq7ZytP69" target="blank">
-                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
-                                </a>
-                            </div>
-                            <div class="schedule-location">
-                                <i class="fa fa-map-marker"></i> Sala de Palestras
-                            </div>
-                        </div>
-
-                        <!-- 18:00 -->
-                        <div class="schedule-item filter-item palestras">
-                            <div class="schedule-time">18h - 19h</div>
-                            <div class="schedule-event">
-                                <h4>Metaverso e Vida Artificial - UTFPR-CP</h4>
-                                <p>Professor Doutor Eduardo Filgueiras Damasceno apresentará sobre o Metaverso e a Vida Artificial.</p>
-                                <a href="https://forms.gle/iV7CAgGkvq7ZytP69" target="_blank">
-                                    <i class="fa fa-pencil-square-o"></i> Inscrever-se
                                 </a>
                             </div>
                             <div class="schedule-location">
@@ -1277,6 +1088,9 @@
                             <div class="schedule-event">
                                 <h4>Projeto Manna</h4>
                                 <p>Ecossistema de ensino, pesquisa, extensão e inovação em Tecnologias Exponenciais.</p>
+                                <a href="https://forms.gle/wLf6ZN6gxpvs7hbp7" target="_blank" class="btn-register">
+                                    <i class="fa fa-file-text-o"></i> Inscrever-se
+                                </a>
                             </div>
                             <div class="schedule-location">
                                 <i class="fa fa-map-marker"></i> Sala de Inovação
@@ -1556,6 +1370,47 @@
                 </div>
             </div>
         </section>
+
+       <!-- CARD DO CONCURSO GASTRONÔMICO RYORI -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="info-box special-feature" style="background: linear-gradient(135deg, rgba(164, 2, 2, 0.05), rgba(255, 204, 0, 0.1)); border-top: 3px solid var(--primary-color);">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-4 text-center mb-4 mb-md-0">
+                            <div class="feature-icon" style="width: 120px; height: 120px; border-radius: 50%; background-color: rgba(164, 2, 2, 0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                <i class="fa fa-cutlery" style="font-size: 48px; color: #a40202;"></i>
+                            </div>
+                            <h3 class="mt-3" style="color: #a40202; font-family: 'Noto Sans JP', sans-serif;">RYORI 2025</h3>
+                            <span class="badge" style="background-color: #a40202; color: white; font-size: 14px;">Concurso Gastronômico</span>
+                        </div>
+                        <div class="col-lg-9 col-md-8">
+                            <div class="info-box-content">
+                                <h4 style="font-size: 1.5rem; margin-bottom: 15px;">Concurso Gastronômico RYORI</h4>
+                                <p>O <strong>RYORI</strong> é o principal concurso gastronômico da <strong>EXPOASA</strong>, reunindo sabores, criatividade e tradição. Em 2025, o concurso traz uma grande diversidade gastronômica, unindo pratos da culinária japonesa, nipo-brasileira e também delícias de outras tradições, como churrascos, lanches, sobremesas e pratos temáticos. Uma verdadeira celebração da gastronomia em todas as suas formas!</p>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <h5><i class="fa fa-calendar mr-2" style="color: #a40202;"></i> Programação</h5>
+                                        <ul>
+                                            <li><strong>06/06:</strong> Votações do público em geral</li>
+                                            <li><strong>07/06:</strong> Votações do público em geral</li>
+                                            <li><strong>08/06:</strong> Votação da Banca Avaliadora + Premiação (15h30)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <a href="{{ route('ryori.index') }}" class="btn btn-outline-primary ml-3">
+                                        <i class="fa fa-pencil-square-o mr-2"></i> Faça sua votação!
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- MAPA / LOCALIZAÇÃO
         <section class="location-section">

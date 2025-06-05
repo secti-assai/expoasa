@@ -1123,7 +1123,6 @@
                 <h2 data-aos="fade-up"><span class="accent">Cursos</span> Disponíveis</h2>
                 <p data-aos="fade-up" data-aos-delay="100">Aprimoramento profissional com certificação para impulsionar sua carreira.</p>
             </div>
-
             <div class="row">
                 <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="activity-card">
@@ -1145,7 +1144,7 @@
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
-                                    <span>09:00 - 17:00</span>
+                                    <span>09:00 - 21:00</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
@@ -1159,6 +1158,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -1175,15 +1175,45 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="activity-card h-100">
                         <div class="img-container">
-                            <img src="/assets/images/logos/GOVERNO/logo-senai.png" alt="Gastronomia Afetiva">
+                            <img src="/assets/images/logos/CURSOS/manna-logo.png" alt="Gastronomia Afetiva">
+                            <div class="badge-container">
+                                <span class="badge badge-secondary">BootCamp</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3>Manna Experience BootCamp</h3>
+                            <p class="description">
+                                Prepare-se para uma experiência imersiva, prática e transformadora! Este bootcamp conecta educação, inovação e tecnologia de forma leve, colaborativa e inspiradora. Aberto a todos os perfis, é o espaço ideal para quem quer aprender, ensinar e inovar com propósito, ciência e criatividade. No Ecossistema Manna, você desenvolve na prática habilidades que vão da Inteligência Artificial à inteligência emocional, ampliando sua visão de futuro e seu potencial de transformação. Vem se conectar, criar e fazer acontecer!
+                            </p>
+                            <div class="info-meta">
+                                <div class="info-item">
+                                    <i class="fa fa-calendar"></i>
+                                    <span>07 e 08 de junho, 2025</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fa fa-map-marker"></i>
+                                    <span>Sala de Inovação</span>
+                                </div>
+                            </div>
+                            <a href="https://forms.gle/RkW1aCq6fJ2xkXgg8" target="_blank" class="card-btn">
+                                <i class="fa fa-external-link me-2"></i> Inscreva-se
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="activity-card h-100">
+                        <div class="img-container">
+                            <img src="/assets/images/logos/GOVERNO/logo-senac.png" alt="Gastronomia Afetiva">
                             <div class="badge-container">
                                 <span class="badge badge-primary">Precificação</span>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h3>Workshop de Precificação</h3>
+                            <h3>Precificação e divulgação de produtos em mídias digitais</h3>
                             <p class="description">
-                                Detalhes em breve!
+                                Estratégias fundamentais para quem atua no setor gastronômico, com foco na definição de preços adequados e na divulgação eficaz de produtos nas mídias digitais. Serão discutidos métodos para calcular preços com base nos custos, concorrência e público-alvo, além de técnicas de marketing digital, como o uso de redes sociais, fotos atrativas, promoções e engajamento online.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
@@ -1215,7 +1245,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <h3>Gastronomia Afetiva</h3>
+                            <h3>Gastronomia afetiva: Construindo e preservando memórias</h3>
                             <p class="description">
                                 Caroline irá compartilhar como a gastronomia vai além do preparo de alimentos e se torna uma poderosa ferramenta de conexão, fortalecimento de vínculos e resgate de memórias afetivas. Através de sua experiência, ela mostra que cada receita carrega uma história e que os momentos à mesa podem transformar relações familiares, criando laços mais fortes e significativos.    
                             </p>
@@ -1268,6 +1298,40 @@
                                 </div>
                             </div>
                             <a href="https://forms.gle/jK8pVeViqJ4xE1qS6" target="_blank" class="card-btn">
+                                <i class="fa fa-external-link me-2"></i> Inscreva-se
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="activity-card h-100">
+                        <div class="img-container">
+                            <img src="/assets/images/logos/GOVERNO/sebrae_logo.png" alt="Inovação com Propósito">
+                            <div class="badge-container">
+                                <span class="badge badge-primary">Compras públicas</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3>Oficina de Compras Públicas</h3>
+                            <p class="description">
+                                A oficina abordará como micro e pequenas empresas podem participar de processos de compras públicas, compreendendo seus direitos, benefícios em licitações e os principais cuidados para evitar problemas. O objetivo é capacitar empreendedores para aproveitar as oportunidades oferecidas pelo setor público, promovendo o acesso a novos mercados de forma segura e eficiente.
+                            </p>
+                            <div class="info-meta">
+                                <div class="info-item">
+                                    <i class="fa fa-calendar"></i>
+                                    <span>06 de junho, 2025</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span>13:00 - 15:00</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fa fa-map-marker"></i>
+                                    <span>Sala de Inovação</span>
+                                </div>
+                            </div>
+                            <a href="https://forms.gle/MkvUAcsWnHBgCsdAA" target="_blank" class="card-btn">
                                 <i class="fa fa-external-link me-2"></i> Inscreva-se
                             </a>
                         </div>
@@ -1387,7 +1451,7 @@
                         <div class="card-body">
                             <h3>Jornada Inovadora da Aintec</h3>
                             <p class="description">
-                                Conheça a trajetória da Agência de Inovação Tecnológica da UEL, transformando conhecimento em soluções e fortalecendo o ecossistema de inovação da região.
+                                Conheça a trajetória da Agência de Inovação Tecnológica da UEL (Aintec), destacando sua atuação na transformação do conhecimento acadêmico em soluções práticas para a sociedade. A palestra apresenta como a Aintec contribui para o fortalecimento do ecossistema de inovação regional, promovendo parcerias, estimulando o empreendedorismo e impulsionando o desenvolvimento tecnológico.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
@@ -1413,65 +1477,31 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="activity-card h-100">
                         <div class="img-container">
-                            <img src="/assets/images/logos/UNIVERSIDADES/logo_utf.png" alt="Inovação com Propósito">
+                            <img src="/assets/images/logos/UNIVERSIDADES/ufpr_1000.jpg" alt="Novidades em Breve!">
                             <div class="badge-container">
-                                <span class="badge badge-accent">Inovação</span>
+                                <span class="badge badge-accent">Empreendedorimo</span>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h3>A História da Imigração Japonesa no Norte do Paraná</h3>
+                            <h3>Empreendedorismo: Desafios e Oportunidades</h3>
                             <p class="description">
-                                Uma visão histórica da presença japonesa no setentrião do Norte Pioneiro do Paraná, em especial a área cortada pela Ferrovia São Paulo - Paraná e seu entorno. Os japoneses primeiro se estabelecerem em Ribeirão Claro, se fixaram como colônia em Cambará, foram como colonizadores atingindo cada cidade da região. Capitais japoneses e a ação dos imigrantes fez surgir entre os rios Congonhas e Tibagi duas colônias que, transformadas em cidades, seriam as capitais do algodão e do rami: Assa e Uraí.
+                                Promovida pela UFPR, esta palestra traz reflexões sobre o papel do empreendedor na transformação da sociedade. Serão abordados os desafios, as tendências e as oportunidades no cenário atual, além de estratégias para tirar ideias do papel e gerar impacto. Uma conversa inspiradora para quem quer empreender com propósito, inovação e sustentabilidade.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>Em breve!</span>
+                                    <span>06 de junho, 2025</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
-                                    <span>Em breve!</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fa fa-map-marker"></i>
-                                    <span>Em breve!</span>
-                                </div>
-                            </div>
-                            <a href="https://forms.gle/npB13iYNnohL9CTs7" target="_blank" class="card-btn">
-                                <i class="fa fa-external-link me-2"></i> Inscreva-se
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="activity-card h-100">
-                        <div class="img-container">
-                            <img src="/assets/images/logos/UNIVERSIDADES/logo_utf.png" alt="Inovação com Propósito">
-                            <div class="badge-container">
-                                <span class="badge badge-accent">Inovação</span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h3>Os seis pilares da empregabilidade</h3>
-                            <p class="description">
-                                Professora Mestra Josieli dos Santos Soares - UTFPR Cornélio Procópio
-                            </p>
-                            <div class="info-meta">
-                                <div class="info-item">
-                                    <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span>Em breve!</span>
+                                    <span>18:00 - 19:00</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
                                     <span>Sala de Palestras</span>
                                 </div>
                             </div>
-                            <a href="https://forms.gle/NU1RnCY5F9XwyBKc7" target="_blank" class="card-btn">
+                            <a href="https://forms.gle/LoRcUVKopNToM8bJA" target="_blank" class="card-btn">
                                 <i class="fa fa-external-link me-2"></i> Inscreva-se
                             </a>
                         </div>
@@ -1489,7 +1519,7 @@
                         <div class="card-body">
                             <h3>Inovação com Propósito</h3>
                             <p class="description">
-                                Ana Paula Cruz compartilha sua trajetória empreendedora à frente da natu.me e da Ecoabea, unindo inovação, sustentabilidade e bem-estar.
+                                Ana Paula Cruz compartilha sua inspiradora jornada à frente da natu.me e da Ecoabea, mostrando como é possível unir inovação, sustentabilidade e bem-estar em negócios de impacto. A palestra destaca os desafios, aprendizados e conquistas de sua trajetória empreendedora, trazendo insights valiosos sobre como transformar propósito em ação no mercado.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
@@ -1515,31 +1545,31 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="activity-card h-100">
                         <div class="img-container">
-                            <img src="/assets/images/logos/GOVERNO/sebrae_logo.png" alt="Inovação com Propósito">
+                            <img src="/assets/images/logos/UNIVERSIDADES/logo_utf.png" alt="Inovação com Propósito">
                             <div class="badge-container">
-                                <span class="badge badge-primary">Compras públicas</span>
+                                <span class="badge badge-accent">Inovação</span>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h3>Oficina de Compras Públicas</h3>
+                            <h3>Os seis pilares da empregabilidade</h3>
                             <p class="description">
-                                Em breve mais detalhes!
+                                A Professora Mestra Josieli dos Santos Soares abordará os principais fatores que influenciam a permanência e o sucesso no mercado de trabalho. Os seis pilares da empregabilidade envolvem atitudes, competências e estratégias que tornam o profissional mais preparado e atrativo para as empresas.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>Em breve!</span>
+                                    <span>07 de junho, 2025</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
-                                    <span>Em breve!</span>
+                                    <span>14:00 - 15:00</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
-                                    <span>Em breve!</span>
+                                    <span>Sala de Palestras</span>
                                 </div>
                             </div>
-                            <a href="https://forms.gle/MkvUAcsWnHBgCsdAA" target="_blank" class="card-btn">
+                            <a href="https://forms.gle/NU1RnCY5F9XwyBKc7" target="_blank" class="card-btn">
                                 <i class="fa fa-external-link me-2"></i> Inscreva-se
                             </a>
                         </div>
@@ -1591,7 +1621,7 @@
                         <div class="card-body">
                             <h3>Inteligência Artificial: Ferramentas e Possibilidades</h3>
                             <p class="description">
-                                Ana Mauriceia Castellani apresenta o conceito de Inteligência Artificial e suas aplicações práticas no cotidiano, com demonstrações acessíveis.
+                                Prepare-se para mergulhar no universo da Inteligência Artificial! Nesta palestra, Ana Mauriceia Castellani explora, de forma prática e descomplicada, como a IA já faz parte do nosso dia a dia e como podemos utilizar suas ferramentas para impulsionar projetos, negócios e soluções criativas. Com demonstrações ao vivo, você vai descobrir como transformar possibilidades em oportunidades, dominando a tecnologia que está moldando o futuro.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
@@ -1604,10 +1634,10 @@
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
-                                    <span>Auditório Principal</span>
+                                    <span>Sala de Palestras</span>
                                 </div>
                             </div>
-                            <a href="https://forms.gle/wADNRarfRZK3WsJq7" target="_blank" class="card-btn">
+                            <a href="https://forms.gle/RiUSsgKDLeriQQEW6    " target="_blank" class="card-btn">
                                 <i class="fa fa-external-link me-2"></i> Inscreva-se
                             </a>
                         </div>
@@ -1625,7 +1655,7 @@
                         <div class="card-body">
                             <h3>Mercado de Trabalho para pessoas 50+</h3>
                             <p class="description">
-                                Marcos Tonasse apresenta como o mercado de trabalho tem se transformado para incluir pessoas 50+, criando ambientes mais diversos com várias gerações interagindo.
+                                O mercado está mudando e a experiência nunca foi tão valorizada. Marcos Tonasse apresenta como empresas estão se reinventando para incluir profissionais 50+, promovendo ambientes mais diversos, colaborativos e multigeracionais. Descubra como transformar sua trajetória em diferencial competitivo e como se posicionar nesse novo cenário que valoriza conhecimento, maturidade e adaptabilidade.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
@@ -1638,7 +1668,7 @@
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
-                                    <span>Auditório Principal</span>
+                                    <span>Sala de Palestras</span>
                                 </div>
                             </div>
                             <a href="https://forms.gle/iV7CAgGkvq7ZytP69" target="_blank" class="card-btn">
@@ -1659,7 +1689,7 @@
                         <div class="card-body">
                             <h3>Metaverso e Vida Artificial</h3>
                             <p class="description">
-                                Professor Doutor Eduardo Filgueiras Damasceno - UTFPR Cornélio Procópio
+                                A palestra irá explorar as conexões entre o metaverso e a vida artificial, abordando como ambientes virtuais imersivos e tecnologias inteligentes estão transformando a forma como interagimos, trabalhamos e vivemos. Serão discutidas as aplicações práticas dessas inovações em diversas áreas, como educação, negócios e entretenimento, além de reflexões sobre os impactos sociais, éticos e futuros desafios dessas tecnologias emergentes.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
@@ -1668,7 +1698,7 @@
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
-                                    <span>Em breve!</span>
+                                    <span>18:00 - 19:00</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
@@ -1685,28 +1715,28 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="activity-card h-100">
                         <div class="img-container">
-                            <img src="/assets/images/logos/UNIVERSIDADES/" alt="Novidades em Breve!">
+                            <img src="/assets/images/logos/PATROCINIOS/logo_faep_senar.png" alt="Novidades em Breve!">
                             <div class="badge-container">
                                 <span class="badge badge-accent">Agro</span>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h3>Sucessão Familiar</h3>
+                            <h3>Sucessão Familiar no Agro: Desafios, Conexões e Futuro no Campo</h3>
                             <p class="description">
-                                (Descrição em breve)
+                                A sucessão familiar é um dos grandes desafios do agronegócio atual. Nesta palestra, especialistas abordam como planejar a continuidade dos negócios rurais, conciliando tradição, inovação e as diferentes gerações da família. Uma conversa essencial para quem busca garantir a sustentabilidade, a prosperidade e a longevidade das propriedades rurais, fortalecendo o campo e preparando líderes para o futuro.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>Em breve!</span>
+                                    <span>07 de junho, 2025</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
-                                    <span>Em breve!</span>
+                                    <span>09:00</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
-                                    <span>Em breve!</span>
+                                    <span>Arena Agro</span>
                                 </div>
                             </div>
                             <a href="https://forms.gle/USr1CNG1NrerbNBM6" target="_blank" class="card-btn">
@@ -1719,7 +1749,7 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="activity-card h-100">
                         <div class="img-container">
-                            <img src="/assets/images/logos/UNIVERSIDADES/" alt="Novidades em Breve!">
+                            <img src="/assets/images/logos/PATROCINIOS/logo_faep_senar.png" alt="Novidades em Breve!">
                             <div class="badge-container">
                                 <span class="badge badge-accent">Agro</span>
                             </div>
@@ -1727,20 +1757,20 @@
                         <div class="card-body">
                             <h3>Nota Fiscal Eletrônica para Produtor Rural</h3>
                             <p class="description">
-                                (Descrição em breve)
+                                A emissão de Nota Fiscal Eletrônica já faz parte da rotina do produtor rural e traz mais segurança, agilidade e profissionalização ao campo. Nesta palestra, entenda de forma prática como funciona a NF-e para produtores, seus benefícios, obrigações legais e os principais passos para se adaptar a essa exigência, evitando erros e fortalecendo seus negócios no mercado.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>Em breve!</span>
+                                    <span>07 de junho, 2025</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
-                                    <span>Em breve!</span>
+                                    <span>14:00</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
-                                    <span>Em breve!</span>
+                                    <span>Arena Agro</span>
                                 </div>
                             </div>
                             <a href="https://forms.gle/JCeXcPZWky6JbXzA9" target="_blank" class="card-btn">
@@ -1753,41 +1783,7 @@
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="activity-card h-100">
                         <div class="img-container">
-                            <img src="/assets/images/logos/UNIVERSIDADES/" alt="Novidades em Breve!">
-                            <div class="badge-container">
-                                <span class="badge badge-accent">Empreendedorimo</span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h3>Empreendedorismo da UFPR</h3>
-                            <p class="description">
-                                (Descrição em breve)
-                            </p>
-                            <div class="info-meta">
-                                <div class="info-item">
-                                    <i class="fa fa-calendar"></i>
-                                    <span>Em breve!</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span>Em breve!</span>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fa fa-map-marker"></i>
-                                    <span>Em breve!</span>
-                                </div>
-                            </div>
-                            <a href="https://forms.gle/LoRcUVKopNToM8bJA" target="_blank" class="card-btn">
-                                <i class="fa fa-external-link me-2"></i> Inscreva-se
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="activity-card h-100">
-                        <div class="img-container">
-                            <img src="/assets/images/logos/UNIVERSIDADES/" alt="Novidades em Breve!">
+                            <img src="/assets/images/logos/PATROCINIOS/logo_VDS.svg" alt="Novidades em Breve!">
                             <div class="badge-container">
                                 <span class="badge badge-accent">Gestão</span>
                             </div>
@@ -1795,20 +1791,20 @@
                         <div class="card-body">
                             <h3>Workshop de Cidades</h3>
                             <p class="description">
-                                (Descrição em breve)
+                                Descubra como impulsionar o desenvolvimento local por meio de ecossistemas de inovação. Este workshop aborda conceitos essenciais sobre cidades inteligentes, governança inovadora e o papel do gestor público na transformação dos territórios. Aprenda como criar e fortalecer ecossistemas de inovação levando em conta as singularidades culturais, econômicas e sociais de cada região. Uma oportunidade para repensar práticas, conectar agentes e construir soluções colaborativas para o desenvolvimento sustentável.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>Em breve!</span>
+                                    <span>08 de junho, 2025</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
-                                    <span>Em breve!</span>
+                                    <span>09:00 - 16:00</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
-                                    <span>Em breve!</span>
+                                    <span>Sala de Palestras</span>
                                 </div>
                             </div>
                             <a href="https://forms.gle/LwUr6hYsW1VeBzmu8" target="_blank" class="card-btn">
