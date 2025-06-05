@@ -12,6 +12,12 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('login');
+        // Verifica se a URL contém 'ryori' para saber se deve redirecionar para o login do RYORI
+        if (str_contains($request->path(), 'ryori')) {
+            return $request->expectsJson() ? null : route('ryori.auth.login');
+        }
+        
+        // Para outras rotas, redireciona para o login do IDEASUN
+        return $request->expectsJson() ? null : route('ideasun.login');
     }
 }

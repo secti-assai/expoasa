@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class RyoriAuthController extends Controller
 {
@@ -14,22 +16,36 @@ class RyoriAuthController extends Controller
     
     public function login(Request $request)
     {
-        // Senha fixa para autenticação simples
-        $adminEmail = 'teste@gmail.com';
-        $adminPassword = 'teste';
-        
-        if ($request->email == $adminEmail && $request->password == $adminPassword) {
-            // Armazenar na sessão que o usuário está autenticado
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials, $request->has('remember'))) {
+            // Regenerate session
+            $request->session()->regenerate();
+            
+            // Definir a sessão personalizada também
             session(['admin_authenticated' => true]);
+            
+            // Set a longer session lifetime (8 hours)
+            config(['session.lifetime' => 480]);
+            
             return redirect()->route('ryori.admin.dishes');
         }
-        
-        return back()->with('error', 'Credenciais inválidas. Tente novamente.');
+
+        return back()->withErrors([
+            'email' => 'Credenciais inválidas.',
+        ])->withInput($request->except('password'));
     }
     
-    public function logout()
+    public function logout(Request $request)
     {
+        Auth::logout();
         session()->forget('admin_authenticated');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
         return redirect()->route('ryori.auth.login');
     }
 }

@@ -1,138 +1,72 @@
 <!-- filepath: /home/kawan/Documents/VDS/expoasa-server/expoasa/resources/views/ryori/admin/dishes/index.blade.php -->
-@extends('ryori.layouts.admin')
+@extends('ryori.admin.layouts.admin')
 
 @section('title', 'Gerenciar Pratos')
 
 @section('content')
-<div class="container py-5">
-    <div class="admin-toolbar mb-4">
-        <div class="row align-items-center">
-            <div class="col-md-6 mb-3 mb-md-0">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="dishSearch" class="form-control" placeholder="Buscar pratos...">
-                </div>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <a href="{{ route('ryori.admin.dishes.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Adicionar Novo Prato
-                </a>
-                <button class="btn btn-outline-secondary ms-2" id="filterBtn">
-                    <i class="fas fa-filter me-2"></i>Filtros
-                </button>
-            </div>
-        </div>
-        
-        <div class="filter-options mt-3" id="filterOptions" style="display: none;">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4 mb-3 mb-md-0">
-                            <label class="form-label">Status</label>
-                            <select class="form-select" id="statusFilter">
-                                <option value="">Todos os status</option>
-                                <option value="active">Ativos</option>
-                                <option value="inactive">Inativos</option>
-                            </select>
-                        </div>
-                        
-                        <div class="col-md-4 d-flex align-items-end">
-                            <button class="btn btn-secondary w-100" id="clearFilters">
-                                <i class="fas fa-times me-2"></i>Limpar Filtros
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="mb-4">
+        <a href="{{ route('ryori.admin.dishes.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i> Novo Prato
+        </a>
     </div>
 
     <div class="card">
-        <div class="card-body p-0">
+        <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                    <thead class="table-light">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <th scope="col" width="80">ID</th>
-                            <th scope="col" width="100">Imagem</th>
-                            <th scope="col">Nome do Prato</th>
-                            <th scope="col">Restaurante</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Votos</th>
-                            <th scope="col">Status</th>
-                            <th scope="col" width="120">Ações</th>
+                            <th>ID</th>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Votos</th>
+                            <th>Status</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($dishes as $dish)
-                        <tr data-category="{{ $dish->category ?? '' }}" data-status="{{ $dish->active ? 'active' : 'inactive' }}">
-                            <td>{{ $dish->id }}</td>
-                            <td>
-                                <div class="dish-thumbnail">
+                            <tr>
+                                <td>{{ $dish->id }}</td>
+                                <td>
                                     @if($dish->image_path)
-                                        <img src="{{ $dish->image_path }}" alt="{{ $dish->name }}">
+                                        <img src="{{ $dish->image_path }}" width="50" height="50" alt="{{ $dish->name }}">
                                     @else
-                                        <div class="no-image">
-                                            <i class="fas fa-image"></i>
-                                        </div>
+                                        <span class="text-muted">Sem imagem</span>
                                     @endif
-                                </div>
-                            </td>
-                            <td>
-                                <div class="dish-name">{{ $dish->name }}</div>
-                                @if($dish->chef_name)
-                                    <small class="text-muted">Chef: {{ $dish->chef_name }}</small>
-                                @endif
-                            </td>
-                            <td>{{ $dish->restaurant_name ?? 'N/A' }}</td>
-                            <td>
-                                @if($dish->category)
-                                    <span class="badge rounded-pill bg-light text-dark">{{ $dish->category }}</span>
-                                @else
-                                    <span class="badge rounded-pill bg-secondary">Sem categoria</span>
-                                @endif
-                            </td>
-                            <td>
-                                <span class="badge bg-primary">{{ $dish->votes_count ?? 0 }}</span>
-                            </td>
-                            <td>
-                                @if($dish->active)
-                                    <span class="badge bg-success">Ativo</span>
-                                @else
-                                    <span class="badge bg-danger">Inativo</span>
-                                @endif
-                            </td>
-                            <td>
-                                <div class="actions">
-                                    <a href="{{ route('ryori.admin.dishes.edit', $dish->id) }}" class="btn btn-sm btn-outline-primary">
+                                </td>
+                                <td>{{ $dish->name }}</td>
+                                <td><span class="badge bg-primary">{{ $dish->votes_count }}</span></td>
+                                <td>
+                                    @if($dish->active)
+                                        <span class="badge bg-success">Ativo</span>
+                                    @else
+                                        <span class="badge bg-secondary">Inativo</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('ryori.admin.dishes.edit', $dish->id) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="{{ route('ryori.dishes.show', $dish->id) }}" class="btn btn-sm btn-outline-info" target="_blank">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
+                                    <form action="{{ route('ryori.admin.dishes.destroy', $dish->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este prato?')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
                         @empty
-                        <tr>
-                            <td colspan="8" class="text-center py-5">
-                                <div class="empty-state">
-                                    <i class="fas fa-utensils fa-3x mb-3"></i>
-                                    <h4>Nenhum prato cadastrado</h4>
-                                    <p>Comece adicionando pratos ao concurso.</p>
-                                    <a href="{{ route('ryori.admin.dishes.create') }}" class="btn btn-primary mt-3">
-                                        <i class="fas fa-plus me-2"></i>Adicionar Prato
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="6" class="text-center">Nenhum prato cadastrado.</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('custom-css')

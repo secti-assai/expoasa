@@ -39,19 +39,13 @@
                             <div class="col-md-4 mb-3">
                                 <div class="p-3 rounded" style="background-color: #FFD700;">
                                     <h4>1º Lugar</h4>
-                                    <p class="mb-0">Troféu de Ouro + R$ 5.000,00</p>
+                                    <p class="mb-0">R$ 1.000,00</p>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <div class="p-3 rounded" style="background-color: #C0C0C0;">
                                     <h4>2º Lugar</h4>
-                                    <p class="mb-0">Troféu de Prata + R$ 3.000,00</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="p-3 rounded" style="background-color: #CD7F32;">
-                                    <h4>3º Lugar</h4>
-                                    <p class="mb-0">Troféu de Bronze + R$ 1.500,00</p>
+                                    <p class="mb-0">R$ 500,00</p>
                                 </div>
                             </div>
                         </div>

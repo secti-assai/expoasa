@@ -233,11 +233,25 @@ Route::get('/ryori/admin/logout', [App\Http\Controllers\Auth\RyoriAuthController
 
 // Rotas administrativas protegidas
 Route::middleware(['ryori.admin'])->group(function () {
+    // Dashboard
     Route::get('/ryori/admin', [App\Http\Controllers\Admin\RyoriAdminController::class, 'index'])->name('ryori.admin.index');
+    
+    // Dish management
     Route::get('/ryori/admin/dishes', [App\Http\Controllers\Admin\RyoriAdminController::class, 'dishes'])->name('ryori.admin.dishes');
     Route::get('/ryori/admin/dishes/create', [App\Http\Controllers\Admin\RyoriAdminController::class, 'createDish'])->name('ryori.admin.dishes.create');
     Route::post('/ryori/admin/dishes', [App\Http\Controllers\Admin\RyoriAdminController::class, 'storeDish'])->name('ryori.admin.dishes.store');
     Route::get('/ryori/admin/dishes/{id}/edit', [App\Http\Controllers\Admin\RyoriAdminController::class, 'editDish'])->name('ryori.admin.dishes.edit');
     Route::put('/ryori/admin/dishes/{id}', [App\Http\Controllers\Admin\RyoriAdminController::class, 'updateDish'])->name('ryori.admin.dishes.update');
     Route::delete('/ryori/admin/dishes/{id}', [App\Http\Controllers\Admin\RyoriAdminController::class, 'destroyDish'])->name('ryori.admin.dishes.destroy');
+    
+    // Results
+    Route::get('/ryori/admin/results', [App\Http\Controllers\Admin\RyoriAdminController::class, 'results'])->name('ryori.admin.results');
+});
+
+// Rota temporária sem autenticação (REMOVA DEPOIS DE USAR!)
+Route::get('/ryori/temp/results', function() {
+    $dishes = \App\Models\Dish::withCount('votes')
+                 ->orderBy('votes_count', 'desc')
+                 ->get();
+    return view('ryori.admin.results', compact('dishes'));
 });
