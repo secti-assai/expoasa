@@ -267,6 +267,18 @@ class BancaController extends Controller
             'updated_at' => now(),
         ]);
 
+        // Atualizar nota_final se avaliador for nível 3
+        if ($avaliador->nivel == 3) {
+            $mediaFinal = \App\Models\Avaliacao::where('equipe_id', $request->equipe_id)
+                ->whereHas('avaliador', function($q) {
+                    $q->where('nivel', 3);
+                })
+                ->avg('nota_total');
+
+            \App\Models\Equipe::where('id', $request->equipe_id)
+                ->update(['nota_final' => $mediaFinal]);
+        }
+
         return redirect()->route('ideasun.banca.dashboard')
             ->with('success', 'Avaliação registrada com sucesso!');
     }
