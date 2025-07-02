@@ -416,6 +416,25 @@
             margin-bottom: 15px;
         }
 
+        /* Ajustes para a seção de download */
+        .download {
+            background-color: rgba(41, 10, 10, 0.28);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid  rgba(10, 10, 240, 0.9);
+        }
+
+        .download h5 {
+            color:rgba(44, 10, 166, 0.73);
+            margin-bottom: 15px;
+        }
+        .download .btn{
+            color: #fff;
+            background-color: rgb(42, 60, 160);
+        }
+
+
         /* Estilos para a nova seção de abas */
         .tab-navigation {
             display: flex;
@@ -611,6 +630,11 @@
                                     <p><strong>Telefone:</strong> {{ $equipe->responsavel_telefone }}</p>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="download">
+                            <h5><i class="fa fa-download mr-2"></i>Certificados para Download</h5>
+                            <button id="downloadBtn" class="btn" onclick="baixarArquivo()"><i class="fa fa-file-pdf-o mr-2"></i>Baixar PDF</button>
                         </div>
 
                         @if(session('error'))
@@ -1314,6 +1338,18 @@ aplicarMascaraTelefone('#telefone');
         // Salvar a aba ativa no localStorage
         localStorage.setItem('activeTab', abaId);
     }
+</script>
+
+<script>
+function baixarArquivo() {
+    const idEquipe = {{ $equipe->id }};
+    const link = document.createElement("a");
+    link.href = `/assets/certificados/Equipe ${idEquipe}.pdf`;
+    link.download = `Equipe ${idEquipe}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 </script>
 </body>
 </html>
