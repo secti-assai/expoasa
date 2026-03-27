@@ -535,8 +535,8 @@
     <script>
         $(document).ready(function() {
             // Configurar o datepicker para mostrar apenas as datas de 28 a 30 de maio
-            var dataMinima = new Date(2025, 4, 28); // Mês é 0-indexed (4 = maio)
-            var dataMaxima = new Date(2025, 4, 30);
+            var dataMinima = new Date(2026, 4, 28); // Mês é 0-indexed (4 = maio)
+            var dataMaxima = new Date(2026, 4, 30);
             /*
             $('#data_banca').datepicker({
                 format: 'yyyy-mm-dd',
@@ -551,7 +551,7 @@
                 <div class="alert alert-info">
                     <i class="fa fa-info-circle mr-2"></i>
                     <strong>Período de Agendamento:</strong> As bancas estão disponíveis apenas
-                    entre os dias 28 e 30 de maio de 2025.
+                    entre os dias 28 e 30 de maio de 2026.
                 </div>
             `);
 

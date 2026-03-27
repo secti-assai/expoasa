@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expoasa 2024</title>
+    <title>Expoasa 2026</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -55,7 +55,7 @@
         <div class="container" style="margin: 150px auto">
             <div class="row">
                 <div class="text-center">
-                    <img src="/assets/img/logo_expoasa.png" alt="78ª Expoasa" class="d-block mx-auto mb-4" style="width: 30%">
+                    <img src="/assets/img/logo_expoasa.png" alt="80ª Expoasa" class="d-block mx-auto mb-4" style="width: 30%">
 
                     <h2>Cadastro de Premiações</h2>
                     <p class="lead">Preencha o Formulário abaixo e concorra a diversos prêmios durante o evento.</p>

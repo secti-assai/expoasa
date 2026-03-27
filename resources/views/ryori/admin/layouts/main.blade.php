@@ -349,7 +349,7 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('ryori.index') }}">
                 <i class="fas fa-utensils me-2"></i>
-                RYORI<span>2025</span>
+                PRATO EXPOASA<span>2026</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="fas fa-bars"></i>
@@ -396,7 +396,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5><i class="fas fa-utensils me-2"></i> RYORI 2025</h5>
+                    <h5><i class="fas fa-utensils me-2"></i> PRATO EXPOASA 2026</h5>
                     <p>O principal concurso gastronômico da EXPOASA, unindo sabores, criatividade e tradição.</p>
                     <div class="mt-3">
                         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>

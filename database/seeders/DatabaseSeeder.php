@@ -12,9 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            CidadesAdicionaisSeeder::class,
+            //CidadesAdicionaisSeeder::class,
             MateriaisSeeder::class,
-            // Removido EquipesSeeder::class,
+            AdminSeeder::class,
+            RyoriAdminSeeder::class,
         ]);
     }
 }

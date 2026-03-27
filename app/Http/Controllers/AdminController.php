@@ -37,7 +37,7 @@ class AdminController extends Controller
         // Se não existirem admins no banco, use as credenciais do .env (temporariamente)
         if (\App\Models\Admin::count() === 0) {
             $adminUsuario = env('ADMIN_USER', 'admin');
-            $adminSenha = env('ADMIN_PASSWORD', 'expoasa2025');
+            $adminSenha = env('ADMIN_PASSWORD', 'expoasa2026');
 
             if ($request->usuario === $adminUsuario && $request->senha === $adminSenha) {
                 Session::put('admin_authenticated', true);

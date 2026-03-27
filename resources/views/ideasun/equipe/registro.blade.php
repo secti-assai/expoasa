@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Equipe - IDEASUN 2025</title>
+    <title>Registro de Equipe - IDEASUN 2026</title>
     
     <!-- PLUGINS CSS STYLE -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -246,7 +246,7 @@
                         
                         <div class="alert alert-info">
                             <h5 class="mb-2"><i class="fa fa-info-circle mr-2"></i>Informações Importantes</h5>
-                            <p>Você está registrando uma equipe para representar sua instituição de ensino no IDEASUN 2025.</p>
+                            <p>Você está registrando uma equipe para representar sua instituição de ensino no IDEASUN 2026.</p>
                         </div>
                         
                         @if(session('error'))

@@ -14,7 +14,7 @@ class TreinamentoService
     public function getDatasDisponiveis(): array
     {
         // Período: 21/05 a 23/05 (incluindo ambos)
-        return $this->gerarDatasNoPeriodo('2025-05-21', '2025-05-23');
+        return $this->gerarDatasNoPeriodo('2026-05-21', '2026-05-23');
     }
     
     /**

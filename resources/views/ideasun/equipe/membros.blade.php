@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Equipe - IDEASUN 2025</title>
+    <title>Gerenciar Equipe - IDEASUN 2026</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -599,7 +599,7 @@
                     <div class="membros-card animate-fadeInUp">
                         <div class="membros-header">
                             <h2>Gerenciamento da Equipe</h2>
-                            <p class="lead text-muted">Complete sua equipe para participar do IDEASUN 2025</p>
+                            <p class="lead text-muted">Complete sua equipe para participar do IDEASUN 2026</p>
                         </div>
 
                         <div class="equipe-info">

@@ -950,11 +950,11 @@ class IdeasunController extends Controller
         $cidade_id = Session::get('cidade_id');
         $cidade = Cidade::with('equipes')->findOrFail($cidade_id);
 
-        // Atualizar para mostrar apenas 28, 29 e 30 de maio de 2025
+        // Atualizar para mostrar apenas 28, 29 e 30 de maio de 2026
         $diasDisponiveis = [
-            '2025-05-28' => 'Quarta, 28 de Maio de 2025',
-            '2025-05-29' => 'Quinta, 29 de Maio de 2025',
-            '2025-05-30' => 'Sexta, 30 de Maio de 2025',
+            '2026-05-28' => 'Quinta, 28 de Maio de 2026',
+            '2026-05-29' => 'Sexta, 29 de Maio de 2026',
+            '2026-05-30' => 'Sábado, 30 de Maio de 2026',
         ];
 
         return view('ideasun.cidade.agendar-banca', compact('cidade', 'diasDisponiveis'));
@@ -977,17 +977,17 @@ class IdeasunController extends Controller
 
             // Garantir que os horários estão definidos para TODAS as datas
             $horariosPorDia = [
-                '2025-05-28' => [
+                '2026-05-28' => [
                     ['horario' => '09:00 às 12:00', 'periodo' => 'Manhã', 'max_bancas' => 2],
                     ['horario' => '14:00 às 17:00', 'periodo' => 'Tarde', 'max_bancas' => 2],
                     ['horario' => '19:00 às 22:00', 'periodo' => 'Noite', 'max_bancas' => 2]
                 ],
-                '2025-05-29' => [
+                '2026-05-29' => [
                     ['horario' => '09:00 às 12:00', 'periodo' => 'Manhã', 'max_bancas' => 2],
                     ['horario' => '14:00 às 17:00', 'periodo' => 'Tarde', 'max_bancas' => 2],
                     ['horario' => '19:00 às 22:00', 'periodo' => 'Noite', 'max_bancas' => 2]
                 ],
-                '2025-05-30' => [
+                '2026-05-30' => [
                     ['horario' => '09:00 às 12:00', 'periodo' => 'Manhã', 'max_bancas' => 2],
                     ['horario' => '14:00 às 17:00', 'periodo' => 'Tarde', 'max_bancas' => 2],
                     ['horario' => '19:00 às 22:00', 'periodo' => 'Noite', 'max_bancas' => 2]
@@ -1233,15 +1233,15 @@ class IdeasunController extends Controller
 
         $data = $request->input('data');
 
-        // Verificar se a data está dentro do período permitido (28 a 30 de maio de 2025)
+        // Verificar se a data está dentro do período permitido (28 a 30 de maio de 2026)
         $dataObj = \Carbon\Carbon::parse($data);
-        $dataInicio = \Carbon\Carbon::parse('2025-05-28');
-        $dataFim = \Carbon\Carbon::parse('2025-05-30');
+        $dataInicio = \Carbon\Carbon::parse('2026-05-28');
+        $dataFim = \Carbon\Carbon::parse('2026-05-30');
 
         if ($dataObj->lt($dataInicio) || $dataObj->gt($dataFim)) {
             return response()->json([
                 'success' => false,
-                'error' => 'A data selecionada está fora do período permitido (28 a 30 de maio de 2025).'
+                'error' => 'A data selecionada está fora do período permitido (28 a 30 de maio de 2026).'
             ], 400);
         }
 

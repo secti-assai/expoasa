@@ -154,7 +154,7 @@
                         <div class="sucesso-header">
                             <i class="fa fa-check-circle check-icon"></i>
                             <h2>Registro Concluído com Sucesso!</h2>
-                            <p>Parabéns! Sua cidade está registrada para o IDEASUN 2025. Abaixo estão os detalhes do seu registro.</p>
+                            <p>Parabéns! Sua cidade está registrada para o IDEASUN 2026. Abaixo estão os detalhes do seu registro.</p>
                         </div>
                         
                         <h4><i class="fa fa-building mr-2"></i>Cidade Registrada</h4>

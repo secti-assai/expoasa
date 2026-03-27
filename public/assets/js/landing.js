@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // Contador regressivo
     function updateCountdown() {
-        const eventDate = new Date("June 6, 2025 09:00:00").getTime();
+        const eventDate = new Date("June 12, 2026 19:00:00").getTime();
         const now = new Date().getTime();
         const distance = eventDate - now;
 
@@ -394,7 +394,7 @@ function updateCountdown() {
         $("#countdown-minutes").length &&
         $("#countdown-seconds").length
     ) {
-        const eventDate = new Date("June 6, 2025 09:00:00").getTime();
+        const eventDate = new Date("June 12, 2026 19:00:00").getTime();
         const now = new Date().getTime();
         const distance = eventDate - now;
 

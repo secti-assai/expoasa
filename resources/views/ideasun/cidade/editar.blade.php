@@ -251,7 +251,7 @@
                     <div class="cadastro-card animate-fadeInUp">
                         <div class="cadastro-header">
                             <h2>Atualizar Dados da Cidade</h2>
-                            <p>Edite as informações da sua cidade para o IDEASUN 2025.</p>
+                            <p>Edite as informações da sua cidade para o IDEASUN 2026.</p>
                         </div>
                         
                         @if(session('error'))

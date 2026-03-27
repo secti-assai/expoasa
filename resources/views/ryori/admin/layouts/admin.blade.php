@@ -26,6 +26,9 @@
                     <a href="{{ route('ryori.admin.results') }}" class="{{ request()->routeIs('ryori.admin.results') ? 'active' : '' }}">
                         <i class="fas fa-chart-bar me-2"></i> Resultados
                     </a>
+                    <a href="{{ route('ryori.admin.voting_period.form') }}" class="{{ request()->routeIs('ryori.admin.voting_period.*') ? 'active' : '' }}">
+                        <i class="fas fa-clock me-2"></i> Período de Votação
+                    </a>
                     <a href="{{ route('ryori.auth.logout') }}">
                         <i class="fas fa-sign-out-alt me-2"></i> Sair
                     </a>

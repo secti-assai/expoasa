@@ -1,9 +1,9 @@
 <footer class="footer-main">
     <div class="container text-center">
-        <h5>IDEASUN 2025</h5>
+        <h5>IDEASUN 2026</h5>
         <p class="footer-description">Primeiro Ideathon Inter-regional do Paraná - Cultivando ideias inovadoras para um futuro sustentável.</p>
         <div class="copyright">
-            <p>© 2025 IDEASUN - Todos os direitos reservados</p>
+            <p>© 2026 IDEASUN - Todos os direitos reservados</p>
         </div>
     </div>
 </footer>

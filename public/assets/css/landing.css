@@ -212,11 +212,15 @@ h6 {
 }
 
 .banner-logo {
-    width: auto; /* Alterar de tamanho fixo para auto */
-    max-width: 300px; /* Tamanho máximo */
-    height: auto; /* Manter proporção */
+    width: 100% !important;
+    max-width: 700px !important;
+    min-width: 200px !important;
+    height: auto !important;
     margin-bottom: 30px;
     animation: float 6s ease-in-out infinite;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @keyframes float {
@@ -1501,7 +1505,9 @@ h6 {
     }
 
     .banner-logo {
-        width: 200px;
+        width: 100% !important;
+        max-width: 700px !important;
+        min-width: 200px !important;
     }
 
     .banner-title {
@@ -2019,7 +2025,9 @@ h6 {
 
     /* Ajuste no container do banner logo */
     .banner-logo {
-        width: 180px;
+        width: 100% !important;
+        max-width: 420px !important;
+        min-width: 120px !important;
         margin-bottom: 20px;
     }
 
@@ -2479,6 +2487,23 @@ h6 {
 .sponsor-item:hover .sponsor-logo {
     transform: scale(1.08);
     filter: grayscale(0%);
+}
+
+.sponsor-item.fallback {
+    border-style: dashed;
+    border-color: rgba(164, 2, 2, 0.3);
+    background: linear-gradient(135deg, rgba(164, 2, 2, 0.03), rgba(164, 2, 2, 0.08));
+}
+
+.sponsor-fallback-name {
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: var(--primary-color);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 0 6px;
 }
 
 .divider {

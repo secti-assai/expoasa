@@ -1,6 +1,6 @@
 @extends('ryori.layouts.main')
 
-@section('title', 'Votação RYORI 2025')
+@section('title', 'Votação Prato Expoasa 2026')
 
 @section('custom-css')
 /* Estilos aprimorados para a página de votação */
@@ -108,7 +108,7 @@
     top: 0;
     width: 35px;
     height: 35px;
-    background: var(--ryori-gradient);
+    background: linear-gradient(135deg, var(--ryori-primary), var(--ryori-dark));
     color: white;
     border-radius: 50%;
     display: flex;
@@ -118,14 +118,10 @@
     box-shadow: 0 3px 10px rgba(191, 0, 0, 0.2);
 }
 
-/* Seleção de pratos - MELHORADO */
+/* Seleção de pratos - LAYOUT EM GRID APLICADO */
 .dish-options {
     padding: 0;
-}
-
-.dish-option {
-    margin-bottom: 25px;
-    list-style: none;
+    margin: 0;
 }
 
 .dish-radio-card {
@@ -136,6 +132,10 @@
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 .dish-radio-card:hover {
@@ -171,39 +171,45 @@
 .form-check-input:checked + .form-check-label .dish-selection-indicator {
     background-color: #BF0000;
     color: white;
+    transform: scale(1.1);
 }
 
+/* CORREÇÃO DO CORTE DA IMAGEM */
 .dish-image-container {
-    height: 220px;
-    overflow: hidden;
+    height: 200px;
     position: relative;
+    overflow: hidden;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
 }
 
 .dish-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s ease;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    transition: transform 0.5s ease;
 }
 
-.dish-image-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.1));
+.dish-radio-card:hover .dish-image-container img {
+    transform: scale(1.05);
 }
 
 .dish-content {
     padding: 20px;
     position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .dish-title {
     font-size: 1.15rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 8px;
     color: #333;
 }
@@ -213,6 +219,7 @@
     font-size: 0.9rem;
     margin-bottom: 12px;
     line-height: 1.5;
+    flex-grow: 1;
 }
 
 .dish-meta {
@@ -220,6 +227,9 @@
     align-items: center;
     color: #888;
     font-size: 0.85rem;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
 }
 
 .dish-meta i {
@@ -231,7 +241,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background: rgba(191, 0, 0, 0.8);
+    background: rgba(191, 0, 0, 0.9);
     color: white;
     font-weight: 500;
     font-size: 0.75rem;
@@ -283,29 +293,27 @@
     z-index: -1;
 }
 
-.btn-ryori:hover {
+.btn-ryori:hover:not(:disabled) {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(191, 0, 0, 0.4);
     color: white;
 }
 
-.btn-ryori:hover::before {
+.btn-ryori:hover:not(:disabled)::before {
     left: 100%;
 }
 
 .btn-ryori:disabled {
-    background: #cccccc;
+    background: #e0e0e0;
+    color: #888;
     cursor: not-allowed;
     box-shadow: none;
-}
-.btn-ryori:disabled:hover {
-    transform: none;
 }
 
 /* Animações e efeitos */
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.02); }
     100% { transform: scale(1); }
 }
 
@@ -315,12 +323,13 @@
 
 .selected-dish-info {
     display: none;
-    padding: 10px 15px;
-    border-radius: 8px;
+    padding: 15px 20px;
+    border-radius: 10px;
     background-color: #FFF9F9;
-    border-left: 4px solid #BF0000;
-    margin-bottom: 20px;
+    border-left: 5px solid #BF0000;
+    margin-bottom: 25px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
 @media (max-width: 767px) {
@@ -339,11 +348,10 @@
 @endsection
 
 @section('content')
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1 class="hero-title display-4 mb-3">Vote no Melhor Prato RYORI</h1>
-            <p class="hero-subtitle">Participe do concurso gastronômico oficial da EXPOASA 2025 e escolha o seu prato favorito</p>
+            <h1 class="hero-title display-4 mb-3">Vote no Melhor Prato Expoasa 2026</h1>
+            <p class="hero-subtitle">Participe do concurso gastronômico oficial da EXPOASA 2026 e escolha o seu prato favorito</p>
         </div>
     </section>
 
@@ -357,7 +365,6 @@
                     </div>
                 @endif
                 
-                <!-- Processo de Votação -->
                 <div class="card card-ryori">
                     <div class="card-body vote-process-card">
                         <h3 class="text-center mb-5">Como funciona a votação</h3>
@@ -375,70 +382,67 @@
                             
                             <div class="voting-step">
                                 <h5>Confirme seu voto</h5>
-                                <p>Revise suas informações, envie seu voto e faça parte da escolha do melhor prato RYORI 2025.</p>
+                                <p>Revise suas informações, envie seu voto e faça parte da escolha do melhor prato Prato Expoasa 2026.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Formulário de Votação -->
                 <form action="{{ route('ryori.vote.store') }}" method="POST" class="needs-validation" id="voteForm" novalidate>
                     @csrf
                     
-                    <!-- Informações do Votante -->
                     <div class="card card-ryori">
                         <div class="card-header bg-primary text-white p-3">
-                            <h4 class="mb-0"><i class="fas fa-user-circle me-2"></i> Seus dados</h4>
+                            <h4 class="mb-0"><i class="fas fa-user-circle me-2"></i> 1. Seus dados</h4>
                         </div>
                         <div class="card-body p-4">
                             <div class="row">
                                 <div class="col-md-6 mb-4 mb-md-0">
-                                    <label for="name" class="form-label">Nome completo</label>
+                                    <label for="name" class="form-label fw-bold">Nome completo</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Digite seu nome completo" required>
                                         @error('name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback d-block text-danger fw-bold"><i class="fas fa-exclamation-circle me-1"></i> {{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="cpf" class="form-label">CPF</label>
+                                    <label for="cpf" class="form-label fw-bold">CPF</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                                         <input type="text" class="form-control @error('cpf') is-invalid @enderror" id="cpf" name="cpf" value="{{ old('cpf') }}" maxlength="14" placeholder="000.000.000-00" required onkeyup="maskCPF(this)">
                                         @error('cpf')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback d-block text-danger fw-bold"><i class="fas fa-exclamation-circle me-1"></i> {{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <small class="text-muted mt-1 d-block">Você só pode votar uma vez com o mesmo CPF</small>
+                                    <small class="text-muted mt-1 d-block"><i class="fas fa-lock me-1"></i> Você só pode votar uma vez com o mesmo CPF</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Seleção de Pratos com design melhorado -->
                     <div class="card card-ryori">
                         <div class="card-header bg-primary text-white p-3">
-                            <h4 class="mb-0"><i class="fas fa-utensils me-2"></i> Escolha seu prato favorito</h4>
+                            <h4 class="mb-0"><i class="fas fa-utensils me-2"></i> 2. Escolha seu prato favorito</h4>
                         </div>
                         <div class="card-body p-4">
-                            <div class="selected-dish-info mb-4" id="selectedDishInfo">
+                            <div class="selected-dish-info" id="selectedDishInfo">
                                 <i class="fas fa-check-circle me-2 text-success"></i> 
-                                Você selecionou: <strong id="selectedDishName"></strong>
+                                Você selecionou: <strong id="selectedDishName" class="text-danger"></strong>
                             </div>
                             
-                            <ul class="dish-options">
+                            <div class="row dish-options">
                                 @forelse($dishes as $dish)
-                                    <li class="dish-option">
-                                        <div class="form-check">
+                                    <div class="col-md-6 col-lg-4 mb-4">
+                                        <div class="form-check p-0 h-100">
                                             <input class="form-check-input visually-hidden dish-radio" 
                                                 type="radio" name="dish_id" id="dish{{ $dish->id }}" 
                                                 value="{{ $dish->id }}" 
                                                 {{ old('dish_id') == $dish->id ? 'checked' : '' }} 
                                                 required>
-                                            <label class="form-check-label w-100" for="dish{{ $dish->id }}">
+                                            <label class="form-check-label w-100 h-100" for="dish{{ $dish->id }}">
                                                 <div class="dish-radio-card">
                                                     <div class="dish-selection-indicator">
                                                         <i class="fas fa-check"></i>
@@ -458,7 +462,7 @@
                                                     
                                                     <div class="dish-content">
                                                         <h5 class="dish-title">{{ $dish->name }}</h5>
-                                                        <p class="dish-description">{{ Str::limit($dish->description, 120) }}</p>
+                                                        <p class="dish-description">{{ Str::limit($dish->description, 100) }}</p>
                                                         
                                                         @if($dish->restaurant_name)
                                                             <div class="dish-meta">
@@ -470,38 +474,41 @@
                                                 </div>
                                             </label>
                                         </div>
-                                    </li>
+                                    </div>
                                 @empty
-                                    <div class="alert alert-info p-4 text-center">
-                                        <i class="fas fa-info-circle fa-2x mb-3"></i>
-                                        <h5>Nenhum prato disponível</h5>
-                                        <p class="mb-0">Os pratos participantes serão adicionados em breve. Volte mais tarde!</p>
+                                    <div class="col-12">
+                                        <div class="alert alert-info p-4 text-center">
+                                            <i class="fas fa-info-circle fa-2x mb-3"></i>
+                                            <h5>Nenhum prato disponível</h5>
+                                            <p class="mb-0">Os pratos participantes serão adicionados em breve. Volte mais tarde!</p>
+                                        </div>
                                     </div>
                                 @endforelse
-                            </ul>
+                            </div>
                             
                             @error('dish_id')
-                                <div class="alert alert-danger mt-3">
-                                    <i class="fas fa-exclamation-circle me-2"></i> {{ $message }}
-                                </div>
+                                <div class="alert alert-danger mt-3 fw-bold"><i class="fas fa-exclamation-circle me-1"></i> {{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                     
-                    <!-- Seção de confirmação destacada -->
                     <div class="confirmation-section" id="confirmationSection">
-                        <div class="text-center mb-3 d-none" id="voteReadyAlert">
-                            <div class="alert alert-success">
-                                <i class="fas fa-check-circle me-2"></i> Tudo pronto! Agora é só confirmar seu voto.
+                        @if(isset(
+                        $votingOpen) && !$votingOpen)
+                            <div class="alert alert-warning text-center mb-3">
+                                <i class="fas fa-clock me-2"></i>
+                                A votação não está disponível neste momento.
+                                @if(isset($votingPeriod) && $votingPeriod)
+                                    <br>
+                                    <small>Período definido: {{ $votingPeriod->start_datetime ? \Carbon\Carbon::parse($votingPeriod->start_datetime)->format('d/m/Y H:i') : '?' }} até {{ $votingPeriod->end_datetime ? \Carbon\Carbon::parse($votingPeriod->end_datetime)->format('d/m/Y H:i') : '?' }}</small>
+                                @endif
                             </div>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-ryori" id="submitVoteBtn">
-                            <i class="fas fa-check-circle me-2"></i> Confirmar Meu Voto
+                        @endif
+                        <button type="submit" class="btn btn-ryori" id="submitVoteBtn" @if(isset($votingOpen) && !$votingOpen) disabled @endif>
+                            <i class="fas fa-paper-plane me-2"></i> Confirmar Meu Voto
                         </button>
-                        
                         <div class="text-center mt-3">
-                            <small class="text-muted">Ao votar, você concorda com os <a href="{{ route('ryori.about') }}">termos do concurso</a> RYORI 2025.</small>
+                            <small class="text-muted">Ao votar, você concorda com os <a href="{{ route('ryori.about') }}" class="text-danger">termos do concurso</a> Prato Expoasa 2026.</small>
                         </div>
                     </div>
                 </form>
@@ -525,7 +532,7 @@
         input.value = value;
     }
     
-    // Form validation melhorado
+    // Controle Inteligente do Formulário
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('voteForm');
         const radios = document.querySelectorAll('.dish-radio');
@@ -536,21 +543,50 @@
         const voteReadyAlert = document.getElementById('voteReadyAlert');
         const submitBtn = document.getElementById('submitVoteBtn');
         
-        // Verificar estado inicial
+        // Função que verifica se tudo foi preenchido e libera o botão
+        function updateFormState() {
+            let formValid = true;
+            let dishSelected = false;
+            
+            // Checa Nome
+            if (nameInput.value.trim().length < 3) formValid = false;
+            
+            // Checa CPF (11 números = 14 caracteres com máscara)
+            if (cpfInput.value.length !== 14) formValid = false;
+            
+            // Checa Rádio
+            radios.forEach(radio => {
+                if (radio.checked) dishSelected = true;
+            });
+            
+            if (!dishSelected) formValid = false;
+            
+            // Habilita ou desabilita o botão
+            if (formValid) {
+                submitBtn.removeAttribute('disabled');
+                submitBtn.classList.add('pulse');
+                voteReadyAlert.classList.remove('d-none');
+            } else {
+                submitBtn.setAttribute('disabled', 'true');
+                submitBtn.classList.remove('pulse');
+                voteReadyAlert.classList.add('d-none');
+            }
+        }
+        
+        // Verifica no carregamento (caso volte a página com dados salvos)
         updateFormState();
         
-        // Adicionar listeners para os radios
+        // Eventos de clique nas opções de pratos
         radios.forEach(radio => {
+            // Se já vier marcado (erro de validação do Laravel)
             if (radio.checked) {
                 const label = radio.nextElementSibling;
                 const title = label.querySelector('.dish-title');
-                
                 selectedDishName.textContent = title ? title.textContent : 'Prato selecionado';
                 selectedDishInfo.style.display = 'block';
             }
             
             radio.addEventListener('change', function() {
-                // Mostrar qual prato foi selecionado
                 const label = this.nextElementSibling;
                 const title = label.querySelector('.dish-title');
                 
@@ -559,87 +595,28 @@
                 
                 updateFormState();
                 
-                // Scroll suave até o botão de confirmação
-                document.getElementById('confirmationSection').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center' 
-                });
+                // Rola a página suavemente para o botão se já tiver preenchido nome e CPF
+                if(nameInput.value.length > 2 && cpfInput.value.length === 14) {
+                    document.getElementById('confirmationSection').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }
             });
         });
         
-        // Listeners para os inputs de texto
+        // Ouve a digitação nos campos de texto
         nameInput.addEventListener('input', updateFormState);
         cpfInput.addEventListener('input', updateFormState);
         
-        // Validação do formulário
+        // Força validação visual ao tentar submeter
         form.addEventListener('submit', function(event) {
             if (!form.checkValidity()) {
                 event.preventDefault();
                 event.stopPropagation();
-                
-                // Destacar campos inválidos
-                if (!nameInput.checkValidity()) {
-                    nameInput.parentNode.classList.add('has-error');
-                }
-                
-                if (!cpfInput.checkValidity()) {
-                    cpfInput.parentNode.classList.add('has-error');
-                }
-                
-                // Verificar se algum prato foi selecionado
-                let dishSelected = false;
-                radios.forEach(radio => {
-                    if (radio.checked) dishSelected = true;
-                });
-                
-                if (!dishSelected) {
-                    document.querySelector('.card-ryori:nth-child(3)').scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                    
-                    // Mostrar alerta
-                    if (!document.getElementById('dishAlert')) {
-                        const alert = document.createElement('div');
-                        alert.id = 'dishAlert';
-                        alert.className = 'alert alert-danger mt-3';
-                        alert.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Por favor, selecione um prato para votar.';
-                        document.querySelector('.dish-options').before(alert);
-                        
-                        setTimeout(() => {
-                            alert.remove();
-                        }, 5000);
-                    }
-                }
             }
-            
             form.classList.add('was-validated');
         });
-        
-        function updateFormState() {
-            let formValid = true;
-            let dishSelected = false;
-            
-            // Verificar se os campos obrigatórios estão preenchidos
-            if (!nameInput.value.trim()) formValid = false;
-            if (!cpfInput.value.trim() || cpfInput.value.replace(/\D/g, '').length !== 11) formValid = false;
-            
-            // Verificar se algum prato foi selecionado
-            radios.forEach(radio => {
-                if (radio.checked) dishSelected = true;
-            });
-            
-            if (!dishSelected) formValid = false;
-            
-            // Atualizar estado do botão e mensagem
-            if (formValid) {
-                submitBtn.classList.add('pulse');
-                voteReadyAlert.classList.remove('d-none');
-            } else {
-                submitBtn.classList.remove('pulse');
-                voteReadyAlert.classList.add('d-none');
-            }
-        }
     });
 </script>
 @endsection

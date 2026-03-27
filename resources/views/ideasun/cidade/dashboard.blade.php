@@ -366,7 +366,7 @@
                     <div class="dashboard-card">
                         <div class="dashboard-header">
                             <h2>Dashboard da Cidade</h2>
-                            <p>Seja bem-vindo ao seu painel de controle do IDEASUN 2025.</p>
+                            <p>Seja bem-vindo ao seu painel de controle do IDEASUN 2026.</p>
                         </div>
                         
                         <div class="cidade-info">
