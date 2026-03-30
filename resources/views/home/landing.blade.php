@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>79ª EXPOASA - Exposição Regional de Assaí</title>
+    <title>80ª EXPOASA - Exposição Regional de Assaí</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -1151,7 +1151,7 @@
                 </a>
                 {{-- <a href="{{ route('ideasun.index') }}" class="ticket">
                     <img src="/assets/images/icon/ticket.png" alt="IDEASUN">
-                    <span>IDEASUN 2025</span>
+                    <span>IDEASUN 2026</span>
                 </a> --}}
             </div>
         </div>
@@ -1160,7 +1160,7 @@
     <!-- BANNER -->
     <section class="banner" style="background-image: url('/assets/img/expoasa_bg.jpg');">
         <div class="banner-content">
-            <img src="/assets/img/expoasa.png" alt="79ª Expoasa" class="banner-logo">
+            <img src="/assets/img/expoasa.png" alt="80ª Expoasa" class="banner-logo">
 
             <div class="countdown-wrapper">
                 <div class="countdown-item">
@@ -1213,7 +1213,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p><a href="#">LACA</a> &copy; 2025 Todos os direitos reservados.</p>
+                        <p><a href="#">LACA</a> &copy; 2026 Todos os direitos reservados.</p>
                     </div>
 
                     <div class="col-md-6 text-right">
@@ -1237,7 +1237,7 @@
         $(document).ready(function() {
             // Contador regressivo
             function updateCountdown() {
-                const eventDate = new Date('2025-06-06T08:00:00');
+                const eventDate = new Date('2026-06-12T19:00:00');
                 const now = new Date();
                 const diff = eventDate - now;
 

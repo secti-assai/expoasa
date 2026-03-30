@@ -65,12 +65,12 @@
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div class="stats-info">
-                        <h3>{{ now()->diffInDays(now()->setDate(2025, 6, 8)) }}</h3>
+                        <h3>{{ now()->diffInDays(now()->setDate(2026, 6, 14)) }}</h3>
                         <p>Dias Restantes</p>
                     </div>
                 </div>
                 <div class="stats-card-footer">
-                    <span>Encerramento: 08/06/2025</span>
+                    <span>Encerramento: 14/06/2026</span>
                 </div>
             </div>
         </div>
@@ -237,12 +237,12 @@
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div class="stats-info">
-                        <h3>{{ now()->diffInDays(now()->setDate(2025, 6, 8)) }}</h3>
+                        <h3>{{ now()->diffInDays(now()->setDate(2026, 6, 14)) }}</h3>
                         <p>Dias Restantes</p>
                     </div>
                 </div>
                 <div class="stats-card-footer">
-                    <span>Encerramento: 08/06/2025</span>
+                    <span>Encerramento: 14/06/2026</span>
                 </div>
             </div>
         </div>

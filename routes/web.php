@@ -255,3 +255,7 @@ Route::get('/ryori/temp/results', function() {
                  ->get();
     return view('ryori.admin.results', compact('dishes'));
 });
+
+// Período de votação
+Route::get('/ryori/admin/voting-period', [App\Http\Controllers\Admin\RyoriAdminController::class, 'votingPeriodForm'])->name('ryori.admin.voting_period.form');
+Route::put('/ryori/admin/voting-period', [App\Http\Controllers\Admin\RyoriAdminController::class, 'updateVotingPeriod'])->name('ryori.admin.voting_period.update');

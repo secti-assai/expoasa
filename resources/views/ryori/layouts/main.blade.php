@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') - RYORI 2025 | EXPOASA</title>
+    <title>@yield('title') - PRATO EXPOASA 2026 | EXPOASA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -141,7 +141,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-ryori">
         <div class="container">
             <a class="navbar-brand" href="{{ route('ryori.index') }}">
-                <i class="fa fa-cutlery me-2"></i> RYORI 2025
+                <i class="fa fa-cutlery me-2"></i> PRATO EXPOASA 2026
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRyori">
                 <span class="navbar-toggler-icon"></span>
@@ -180,7 +180,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h5><i class="fa fa-cutlery me-2"></i> RYORI 2025</h5>
+                    <h5><i class="fa fa-cutlery me-2"></i> PRATO EXPOASA 2026</h5>
                     <p>O principal concurso gastronômico da EXPOASA, unindo sabores, criatividade e tradição.</p>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0">
@@ -203,7 +203,7 @@
             </div>
             <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
             <div class="text-center">
-                <p class="mb-0">© 2025 EXPOASA - Todos os direitos reservados</p>
+                <p class="mb-0">© 2026 EXPOASA - Todos os direitos reservados</p>
             </div>
         </div>
     </footer>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FOTOS DA 78ª EXPOASA</title>
+    <title>GALERIA HISTÓRICA - 78ª EXPOASA</title>
 
     <!-- PLUGINS CSS STYLE -->
     <!-- Bootstrap -->
@@ -45,7 +45,7 @@
                 <img src="/assets/images/horizontal_preferencial.png" alt="Logo Lei Paulo Gustavo" style="width: 50%;">
             </a>
 
-            <a href="https://www.sympla.com.br/evento/exposicao-agricola-regional-de-assai-expoasa-2024/2486970?_gl=1*1vpac80*_gcl_au*MTc0MTkwOTgxLjE3MTY2Nzk4NTc.*_ga*MTkxODgyOTQ5MC4xNzE2Njc5ODU4*_ga_KXH10SQTZF*MTcxNjg1MTUxMy4yLjEuMTcxNjg1NTU0MC40OS4wLjE5MzI1NjY2MTg.&share_id=copiarlink"
+            <a href="/inscricoes"
                 target="_blank" class="ticket" style="width: 50%;">
                 <img src="/assets/images/icon/ticket.png"
                     alt="Ingressos para Tenda do Conhecimento"><span>Inscrição</span>
@@ -90,8 +90,8 @@
                 <div class="col-12">
                     <!-- Section Title -->
                     <div class="section-title white">
-                        <h3>Fotos da 78ª Expoasa</h3>
-                        <p>CONFIRA AQUI AS FOTOS DO DIA 08/06/2024 DA 78ª EXPOASA</p>
+                        <h3>Galeria Histórica — 78ª Expoasa</h3>
+                        <p>ACERVO FOTOGRÁFICO DO DIA 08/06/2024 DA 78ª EXPOASA</p>
                     </div>
                 </div>
             </div>
@@ -4976,7 +4976,7 @@
                     </div>
                     <!-- Title -->
                     <div class="sponsor-title text-center">
-                        <h5>Patrocinadores Platinum</h5>
+                        <h5>Patrocinadores Bronze</h5>
                     </div>
                     <div class="block text-center">
                         <!-- Sponsors image list -->
@@ -5080,7 +5080,7 @@
                 <div class="col-md-12">
                     <div class="block text-center">
                         <div class="footer-logo">
-                            <img src="/assets/images/logo_footer_expoasa.png" alt="78ª Expoasa" class="img-fluid">
+                            <img src="/assets/images/logo_footer_expoasa.png" alt="EXPOASA" class="img-fluid">
                         </div>
                         <ul class="social-links-footer list-inline">
                             <li class="list-inline-item">
@@ -5101,7 +5101,7 @@
             <div class="row">
                 <div class="col-md-6 align-self-center">
                     <div class="copyright-text">
-                        <p><a href="#">LACA</a> &#169; 2024 Todos os direitos reservados.</p>
+                        <p><a href="#">LACA</a> &#169; 2026 Todos os direitos reservados.</p>
                     </div>
                 </div>
                 <div class="col-md-6">

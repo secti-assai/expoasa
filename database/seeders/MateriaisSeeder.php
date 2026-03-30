@@ -13,7 +13,7 @@ class MateriaisSeeder extends Seeder
     public function run(): void
     {
         Material::create([
-            'titulo' => 'Regulamento Oficial IDEASUN 2025',
+            'titulo' => 'Regulamento Oficial IDEASUN 2026',
             'descricao' => 'Regulamento completo com todas as regras da competição.',
             'url' => '/assets/materials/regulamento-ideasun-2025.pdf',
             'categoria' => 'guia',
@@ -24,7 +24,7 @@ class MateriaisSeeder extends Seeder
 
         Material::create([
             'titulo' => 'Declaração de Desistência',
-            'descricao' => 'Documento utilizado para formalizar a decisão de uma pessoa em desistir voluntariamente de sua participação na Ideasun 2025.',
+            'descricao' => 'Documento utilizado para formalizar a decisão de uma pessoa em desistir voluntariamente de sua participação na Ideasun 2026.',
             'url' => '/assets/materials/DECLARACAO_DE_DESISTENCIA.pdf',
             'categoria' => 'template',
             'tags' => 'desistência,documentos',
@@ -96,7 +96,7 @@ class MateriaisSeeder extends Seeder
         
         Material::create([
             'titulo' => 'Agendamento de Banca',
-            'descricao' => 'Guia completo sobre como realizar o agendamento de bancas avaliadoras para a Ideasun 2025, incluindo datas disponíveis e procedimentos.',
+            'descricao' => 'Guia completo sobre como realizar o agendamento de bancas avaliadoras para a Ideasun 2026, incluindo datas disponíveis e procedimentos.',
             'url' => '/assets/materials/Agendamento_de_Banca_de_Avaliação.pdf',
             'categoria' => 'guia',
             'tags' => 'banca,avaliação,agendamento,guia',
@@ -106,7 +106,7 @@ class MateriaisSeeder extends Seeder
 
         Material::create([
             'titulo' => 'Cadastro de Equipes',
-            'descricao' => 'Instruções passo a passo para cadastrar equipes na plataforma Ideasun 2025, incluindo os requisitos para cada modalidade.',
+            'descricao' => 'Instruções passo a passo para cadastrar equipes na plataforma Ideasun 2026, incluindo os requisitos para cada modalidade.',
             'url' => '/assets/materials/Cadastro_de_Equipes_Ideasun-1.pdf',
             'categoria' => 'guia',
             'tags' => 'cadastro,equipes,inscrição,guia',
@@ -126,7 +126,7 @@ class MateriaisSeeder extends Seeder
 
         Material::create([
             'titulo' => 'Treinamento Ideasun',
-            'descricao' => 'Guia completo sobre o treinamento oferecido às cidades participantes do Ideasun 2025, incluindo conteúdo programático e metodologia.',
+            'descricao' => 'Guia completo sobre o treinamento oferecido às cidades participantes do Ideasun 2026, incluindo conteúdo programático e metodologia.',
             'url' => '/assets/materials/Treinamento_Ideasun_2025.pdf',
             'categoria' => 'guia',
             'tags' => 'treinamento,capacitação,mentor,guia',

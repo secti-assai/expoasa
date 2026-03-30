@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>79ª EXPOASA - Exposição Regional de Assaí</title>
+    <title>80ª EXPOASA - Exposição Regional de Assaí</title>
 
     <!-- PLUGINS CSS STYLE -->
     <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -1186,7 +1186,7 @@
             <div class="navbar-actions">
                 <a href="{{ route('ideasun.index') }}" class="ticket">
                     <img src="/assets/images/icon/ticket.png" alt="IDEASUN">
-                    <span>IDEASUN 2025</span>
+                    <span>IDEASUN 2026</span>
                 </a>
             </div>
         </div>
@@ -1195,7 +1195,7 @@
     <!-- BANNER -->
     <section class="banner" style="background-image: url('/assets/img/expoasa_bg.jpg');">
         <div class="banner-content">
-            <img src="/assets/img/expoasa.png" alt="79ª Expoasa" class="banner-logo">
+            <img src="/assets/img/expoasa.png" alt="80ª Expoasa" class="banner-logo">
             
             <div class="countdown-wrapper">
                 <div class="countdown-item">
@@ -1220,7 +1220,7 @@
             </div>
             
             <div class="banner-actions">
-                <a href="{{ route('ideasun.index') }}" class="btn btn-primary">INSCREVA-SE AGORA NO IDEASUN 2025</a>
+                <a href="{{ route('ideasun.index') }}" class="btn btn-primary">INSCREVA-SE AGORA NO IDEASUN 2026</a>
             </div>
         </div>
     </section>
@@ -1263,7 +1263,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Grandes Arenas</h2>
-                <p>Conheça os espaços especiais da 79ª EXPOASA</p>
+                <p>Conheça os espaços especiais da 80ª EXPOASA</p>
             </div>
             
             <div class="row">
@@ -1341,17 +1341,17 @@
             <div class="schedule-tabs" id="schedule-tabs">
                 <div class="schedule-tab active" data-tab="day-1">
                     <h4>Dia 1</h4>
-                    <span>07 de junho 2025</span>
+                    <span>12 de junho 2026</span>
                 </div>
                 
                 <div class="schedule-tab" data-tab="day-2">
                     <h4>Dia 2</h4>
-                    <span>08 de junho 2025</span>
+                    <span>13 de junho 2026</span>
                 </div>
                 
                 <div class="schedule-tab" data-tab="day-3">
                     <h4>Dia 3</h4>
-                    <span>09 de junho 2025</span>
+                    <span>14 de junho 2026</span>
                 </div>
             </div>
             
@@ -1451,9 +1451,9 @@
                         
                         <div class="info-box">
                             <h4><i class="fa fa-clock-o"></i>HORÁRIO DE FUNCIONAMENTO DA ARENA DO CONHECIMENTO</h4>
-                            <p>- 06/06 (sexta-feira): das 09h às 20h</p>
-                            <p>- 07/06 (sábado): das 09h às 20h</p>
-                            <p class="mb-0">- 08/06 (domingo): das 09h às 16h</p>
+                            <p>- 12/06 (sexta-feira): das 09h às 19h</p>
+                            <p>- 13/06 (sábado): das 09h às 19h</p>
+                            <p class="mb-0">- 14/06 (domingo): das 09h às 16h</p>
                         </div>
                     </div>
                 </div>
@@ -1506,7 +1506,7 @@
                             <img src="/assets/images/projects/ideasun.jpg" alt="IDEASUN">
                         </div>
                         <div class="project-content">
-                            <h3>IDEASUN 2025</h3>
+                            <h3>IDEASUN 2026</h3>
                             <p>Maratona de Inovação para Ideação de Soluções Criativas para desafios reais.</p>
                             <div class="project-actions">
                                 <a href="{{ route('ideasun') }}" class="btn btn-primary btn-sm">Inscreva-se</a>
@@ -1575,7 +1575,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-logo">
-                <img src="/assets/img/logo-expoasa.png" alt="79ª Expoasa">
+                <img src="/assets/img/logo-expoasa.png" alt="80ª Expoasa">
                 
                 <div class="social-links">
                     <a href="https://www.instagram.com/expoasa_assai/" class="social-link" target="_blank">
@@ -1597,7 +1597,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p><a href="#">LACA</a> &copy; 2025 Todos os direitos reservados.</p>
+                        <p><a href="#">LACA</a> &copy; 2026 Todos os direitos reservados.</p>
                     </div>
                     
                     <div class="col-md-6 text-right">
@@ -1621,7 +1621,7 @@
         $(document).ready(function() {
             // Contador regressivo
             function updateCountdown() {
-                const eventDate = new Date('2025-06-06T08:00:00');
+                const eventDate = new Date('2026-06-12T19:00:00');
                 const now = new Date();
                 const diff = eventDate - now;
                 

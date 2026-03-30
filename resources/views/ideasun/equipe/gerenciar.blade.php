@@ -197,7 +197,7 @@
                     <div class="gerenciar-card">
                         <div class="gerenciar-header">
                             <h2>Gerenciar Equipes</h2>
-                            <p>Crie e gerencie suas equipes para o IDEASUN 2025</p>
+                            <p>Crie e gerencie suas equipes para o IDEASUN 2026</p>
                         </div>
                         
                         @if(session('success'))

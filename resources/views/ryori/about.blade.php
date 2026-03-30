@@ -6,14 +6,14 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h2 class="text-center mb-4" style="color: var(--primary-color);">Sobre o RYORI</h2>
+                <h2 class="text-center mb-4" style="color: var(--primary-color);">Sobre o Prato Expoasa 2026</h2>
                 
                 <div class="card card-ryori mb-5">
                     <div class="card-body">
                         <h3 class="mb-3">A História do Concurso</h3>
-                        <p>O <strong>RYORI</strong> (料理), que significa "culinária" em japonês, é o principal concurso gastronômico da <strong>EXPOASA</strong>, surgido da rica tradição culinária japonesa presente em Assaí desde a chegada dos primeiros imigrantes à região.</p>
+                        <p>O <strong>Prato Expoasa 2026</strong> é o concurso gastronômico da exposição regional, em que cada estande gastronômico apresenta um prato para concorrer à premiação.</p>
                         
-                        <p>Em 2025, o concurso celebra sua 1ª edição com uma grande diversidade gastronômica, unindo pratos da culinária japonesa, nipo-brasileira e também delícias de outras tradições, como churrascos, lanches, sobremesas e pratos temáticos.</p>
+                        <p>A votação é realizada pelos visitantes por meio do aplicativo do evento, e no dia 14 de junho (domingo) é anunciado o ganhador do Prato Expoasa 2026.</p>
                     </div>
                 </div>
                 
@@ -33,7 +33,7 @@
                 <div class="card card-ryori mb-5">
                     <div class="card-body">
                         <h3 class="mb-3">Premiação</h3>
-                        <p>O RYORI 2025 oferece as seguintes premiações:</p>
+                        <p>O Prato Expoasa 2026 oferece as seguintes premiações:</p>
                         
                         <div class="row text-center">
                             <div class="col-md-4 mb-3">

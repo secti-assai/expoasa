@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
+use App\Models\VotingPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,19 +37,20 @@ class RyoriAdminController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
         ]);
-        
-        $data = $request->only(['name']);
+
+        $data = $request->only(['name', 'description']);
         $data['active'] = $request->has('active') ? 1 : 0;
-        
+
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public/dishes');
             $data['image_path'] = Storage::url($path);
         }
-        
+
         Dish::create($data);
-        
+
         return redirect()->route('ryori.admin.dishes')->with('success', 'Prato criado com sucesso!');
     }
     
@@ -64,23 +66,23 @@ class RyoriAdminController extends Controller
         
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
         ]);
-        
-        $data = $request->only(['name']);
+
+        $data = $request->only(['name', 'description']);
         $data['active'] = $request->has('active') ? 1 : 0;
-        
+
         if ($request->hasFile('image')) {
             if ($dish->image_path && Storage::exists(str_replace('/storage', 'public', $dish->image_path))) {
                 Storage::delete(str_replace('/storage', 'public', $dish->image_path));
             }
-            
             $path = $request->file('image')->store('public/dishes');
             $data['image_path'] = Storage::url($path);
         }
-        
+
         $dish->update($data);
-        
+
         return redirect()->route('ryori.admin.dishes')->with('success', 'Prato atualizado com sucesso!');
     }
     
@@ -105,5 +107,31 @@ class RyoriAdminController extends Controller
                     ->paginate(10); // Add pagination
                      
         return view('ryori.admin.results', compact('dishes'));
+    }
+
+    public function votingPeriodForm()
+    {
+        $votingPeriod = VotingPeriod::first();
+        if ($votingPeriod) {
+            $votingPeriod->start_datetime = $votingPeriod->start_datetime ? \Carbon\Carbon::parse($votingPeriod->start_datetime) : null;
+            $votingPeriod->end_datetime = $votingPeriod->end_datetime ? \Carbon\Carbon::parse($votingPeriod->end_datetime) : null;
+        }
+        return view('ryori.admin.voting_period', compact('votingPeriod'));
+    }
+
+    public function updateVotingPeriod(Request $request)
+    {
+        $request->validate([
+            'start_datetime' => 'required|date',
+            'end_datetime' => 'required|date|after:start_datetime',
+        ]);
+        $votingPeriod = VotingPeriod::first();
+        if (!$votingPeriod) {
+            $votingPeriod = new VotingPeriod();
+        }
+        $votingPeriod->start_datetime = $request->start_datetime;
+        $votingPeriod->end_datetime = $request->end_datetime;
+        $votingPeriod->save();
+        return redirect()->route('ryori.admin.voting_period.form')->with('success', 'Período de votação atualizado com sucesso!');
     }
 }

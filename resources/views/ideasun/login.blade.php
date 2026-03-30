@@ -302,8 +302,8 @@
                 <div class="col-md-10 col-lg-8 col-xl-6">
                     <div class="login-card">
                         <div class="login-logo">
-                            <img src="/assets/img/logo-expoasa.png" alt="IDEASUN 2025">
-                            <div class="ideasun-year">IDEASUN 2025</div>
+                            <img src="/assets/img/logo-expoasa.png" alt="IDEASUN 2026">
+                            <div class="ideasun-year">IDEASUN 2026</div>
                             <h1 class="login-heading">Acesso à Plataforma</h1>
                         </div>
                         

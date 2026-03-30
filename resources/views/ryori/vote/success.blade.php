@@ -179,8 +179,8 @@
                         
                         <h2 class="mb-4" style="color: var(--primary-color);">Voto Registrado com Sucesso!</h2>
                         
-                        <p class="lead mb-4">Obrigado por participar do concurso gastronômico RYORI 2025!</p>
-                        <p class="mb-5">Seu voto foi registrado e será contabilizado na apuração final. Aguarde os resultados na cerimônia de premiação que acontecerá no dia 22 de agosto.</p>
+                        <p class="lead mb-4">Obrigado por participar do concurso gastronômico Prato Expoasa 2026!</p>
+                        <p class="mb-5">Seu voto foi registrado e será contabilizado na apuração final. O anúncio do ganhador será no dia 14 de junho de 2026.</p>
                         
                         <div class="d-grid gap-3 d-md-flex justify-content-md-center">
                             <a href="{{ route('ryori.index') }}" class="btn btn-ryori">

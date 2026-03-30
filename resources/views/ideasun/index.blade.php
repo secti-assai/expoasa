@@ -612,12 +612,12 @@
             
             <div class="row">
                 <div class="col-md-6">
-                    <p>O <strong>IDEASUN – Edição 2025</strong> é o primeiro <strong>Ideathon Inter-Regional do Paraná</strong>, uma maratona de ideias que nasceu como evolução do HACKASUN 2024. Reunimos estudantes, professores e gestores educacionais das cidades da região do Sebrae PR, Núcleo de Cornélio Procópio, em um ambiente de criatividade e colaboração.</p>
+                    <p>O <strong>IDEASUN – Edição 2026</strong> é o primeiro <strong>Ideathon Inter-Regional do Paraná</strong>, uma maratona de ideias que nasceu como evolução do HACKASUN 2024. Reunimos estudantes, professores e gestores educacionais das cidades da região do Sebrae PR, Núcleo de Cornélio Procópio, em um ambiente de criatividade e colaboração.</p>
                     <p>Nosso objetivo é fomentar a cultura da inovação e do empreendedorismo, desenvolvendo soluções criativas para desafios reais das comunidades locais, alinhadas aos <strong>17 Objetivos de Desenvolvimento Sustentável (ODS)</strong> da ONU.</p>
                 </div>
                 <div class="col-md-6">
                     <p>O evento promove competências essenciais como pensamento crítico, criatividade, trabalho em equipe e compromisso social entre os participantes de todas as idades e níveis educacionais.</p>
-                    <p>Composto por etapas de pré-seleção regional e uma grande final durante a <strong>Exposição Regional de Assaí (EXPOASA)</strong>, nos dias 6 e 7 de junho de 2025, o IDEASUN premia as melhores ideias e oferece visibilidade aos projetos, contribuindo diretamente para o desenvolvimento sustentável das cidades envolvidas.</p>
+                    <p>Composto por etapas de pré-seleção regional e uma grande final durante a <strong>Exposição Regional de Assaí (EXPOASA)</strong>, nos dias 12 e 13 de junho de 2026, o IDEASUN premia as melhores ideias e oferece visibilidade aos projetos, contribuindo diretamente para o desenvolvimento sustentável das cidades envolvidas.</p>
                 </div>
             </div>
         </div>
@@ -703,7 +703,7 @@
             <div class="row">
                 <div class="col-12 text-center mb-5">
                     <h2>Calendário de Atividades</h2>
-                    <p class="lead">Acompanhe as etapas do IDEASUN 2025 e prepare-se para transformar ideias em realidade</p>
+                    <p class="lead">Acompanhe as etapas do IDEASUN 2026 e prepare-se para transformar ideias em realidade</p>
                 </div>
             </div>
             
@@ -719,27 +719,27 @@
                             <tbody>
                                 <tr>
                                     <td><strong>Habilitação das cidades</strong> no site do IDEASUN</td>
-                                    <td>17 a 20 de maio de 2025</td>
+                                    <td>17 a 20 de maio de 2026</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Reunião online</strong> para esclarecimentos com dirigentes e professores</td>
-                                    <td>19 de maio de 2025</td>
+                                    <td>19 de maio de 2026</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Treinamento presencial</strong> das cidades habilitadas</td>
-                                    <td>21 a 23 de maio de 2025</td>
+                                    <td>21 a 23 de maio de 2026</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Cadastro das equipes</strong> e submissão das ideias no portal</td>
-                                    <td>21 a 27 de maio de 2025</td>
+                                    <td>21 a 27 de maio de 2026</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Bancas Regionais</strong> para apresentação dos projetos e pré-seleção das equipes <em>(presencial no CEEP Assaí)</em></td>
-                                    <td>28 a 30 de maio de 2025</td>
+                                    <td>28 a 30 de maio de 2026</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Anúncio das equipes pré-selecionadas</strong>, por cidade e por categoria</td>
-                                    <td>02 de junho de 2025</td>
+                                    <td>02 de junho de 2026</td>
                                 </tr>
                             </tbody>
                             <thead class="thead-dark">
@@ -750,26 +750,26 @@
                             <tbody>
                                 <tr>
                                     <td><strong>Reunião online de alinhamento</strong> para a etapa final com dirigentes e líderes das equipes</td>
-                                    <td>05 de junho de 2025</td>
+                                    <td>05 de junho de 2026</td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>06 de junho (manhã):</strong><br>
+                                        <strong>12 de junho (manhã):</strong><br>
                                         • Anúncio das equipes repescadas<br>
                                         • <strong>Maratona de Ideias – Etapa Final Presencial</strong> para as equipes da Educação Básica na EXPOASA
                                     </td>
-                                    <td>06 de junho de 2025</td>
+                                    <td>12 de junho de 2026</td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <strong>07 de junho (manhã):</strong><br>
+                                        <strong>13 de junho (manhã):</strong><br>
                                         • <strong>Maratona de Ideias – Etapa Final Presencial</strong> para Ensino Técnico e Ensino Superior na EXPOASA
                                     </td>
-                                    <td>07 de junho de 2025</td>
+                                    <td>13 de junho de 2026</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Cerimônia de Premiação</strong> no palco principal da EXPOASA</td>
-                                    <td>07 de junho de 2025 (11h)</td>
+                                    <td>13 de junho de 2026 (11h)</td>
                                 </tr>
                             </tbody>
                         </table>

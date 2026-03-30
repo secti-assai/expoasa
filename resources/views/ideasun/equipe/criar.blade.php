@@ -173,7 +173,7 @@
                         
                         <div class="alert alert-info">
                             <h5 class="mb-2"><i class="fa fa-info-circle mr-2"></i>Informações Importantes</h5>
-                            <p>Você está registrando uma equipe para representar sua instituição de ensino no IDEASUN 2025.</p>
+                            <p>Você está registrando uma equipe para representar sua instituição de ensino no IDEASUN 2026.</p>
                         </div>
                         
                         @if(session('error'))

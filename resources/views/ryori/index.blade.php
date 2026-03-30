@@ -8,8 +8,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7 hero-content">
-                    <span class="hero-tag">Concurso Gastronômico 2025</span>
-                    <h1 class="hero-title">RYORI <span class="year-badge">2025</span></h1>
+                    <span class="hero-tag">Concurso Gastronômico 2026</span>
+                    <h1 class="hero-title">PRATO EXPOASA <span class="year-badge">2026</span></h1>
                     <p class="hero-subtitle">Tradição e Sabor no maior evento gastronômico da EXPOASA</p>
                     <div class="hero-actions">
                         <a href="{{ route('ryori.vote.index') }}" class="btn btn-vote-primary">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-lg-5 d-none d-lg-block">
                     <div class="hero-image-container">
-                        <img src="/assets/images/ryori/ryori.png" alt="Pratos RYORI" class="hero-image">
+                        <img src="/assets/images/ryori/ryori.png" alt="Pratos Prato Expoasa 2026" class="hero-image">
                     </div>
                 </div>
             </div>
@@ -38,18 +38,18 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="about-image-wrapper">
-                        <img src="/assets/images/expo_2024/expo_185.jpg" alt="RYORI 2025" class="about-image">
+                        <img src="/assets/images/expo_2024/expo_185.jpg" alt="Prato Expoasa 2026" class="about-image">
                         <div class="about-image-accent"></div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="section-header">
                         <span class="section-subtitle">Sobre o Evento</span>
-                        <h2 class="section-title">O que é o RYORI?</h2>
+                        <h2 class="section-title">O que é o Prato Expoasa?</h2>
                     </div>
-                    <p class="lead-text">O <strong>RYORI</strong> é o principal concurso gastronômico da <strong>EXPOASA</strong>, reunindo sabores, criatividade e tradição.</p>
+                    <p class="lead-text">O <strong>Prato Expoasa 2026</strong> é o concurso gastronômico oficial da <strong>EXPOASA</strong>, reunindo sabores, criatividade e tradição.</p>
                     
-                    <p class="about-description">Em 2025, o concurso celebra a diversidade gastronômica, unindo pratos da culinária japonesa, nipo-brasileira e também delícias de outras tradições. Uma verdadeira festa de sabores e experiências culinárias.</p>
+                    <p class="about-description">Cada estande gastronômico coloca um prato para concorrer à premiação. A votação é realizada pelos visitantes no aplicativo do evento e o ganhador é anunciado no dia 14 de junho.</p>
                     
                     <div class="about-features">
                         <div class="feature-item">
@@ -193,7 +193,7 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-date">
-                        <span class="date">06</span>
+                        <span class="date">12</span>
                         <span class="month">JUN</span>
                     </div>
                     <div class="timeline-content">
@@ -201,13 +201,13 @@
                             <i class="fas fa-flag-checkered"></i>
                         </div>
                         <h3>Abertura</h3>
-                        <p>Abertura do concurso e votação do público em geral</p>
+                        <p>Abertura do concurso e início da votação dos visitantes</p>
                     </div>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-date">
-                        <span class="date">06-08</span>
+                        <span class="date">12-14</span>
                         <span class="month">JUN</span>
                     </div>
                     <div class="timeline-content">
@@ -215,27 +215,27 @@
                             <i class="fas fa-utensils"></i>
                         </div>
                         <h3>Degustação e Votação</h3>
-                        <p>Período de degustação e votação do público</p>
+                        <p>Período de degustação e votação dos visitantes pelo aplicativo</p>
                     </div>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-date">
-                        <span class="date">08</span>
+                        <span class="date">14</span>
                         <span class="month">JUN</span>
                     </div>
                     <div class="timeline-content">
                         <div class="timeline-icon">
                             <i class="fas fa-clipboard-list"></i>
                         </div>
-                        <h3>Contagem dos Votos e Avaliação Final</h3>
-                        <p>Contagem final dos votos, apuração dos resultados e avaliação final.</p>
+                        <h3>Apuração Final</h3>
+                        <p>Consolidação da votação dos visitantes e definição do prato vencedor.</p>
                     </div>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-date">
-                        <span class="date">08</span>
+                        <span class="date">14</span>
                         <span class="month">JUN</span>
                     </div>
                     <div class="timeline-content">
@@ -243,7 +243,7 @@
                             <i class="fas fa-trophy"></i>
                         </div>
                         <h3>Premiação</h3>
-                        <p>Cerimônia de premiação e encerramento do evento</p>
+                        <p>Anúncio do ganhador do Prato Expoasa 2026</p>
                     </div>
                 </div>
             </div>
@@ -256,7 +256,7 @@
             <div class="cta-wrapper">
                 <div class="cta-content">
                     <h2>Seu voto é decisivo!</h2>
-                    <p>Participe do RYORI 2025 e ajude a escolher os melhores pratos da região. Uma experiência gastronômica que você não pode perder!</p>
+                    <p>Participe do Prato Expoasa 2026 e ajude a escolher o prato vencedor da exposição regional.</p>
                 </div>
                 <div class="cta-action">
                     <a href="{{ route('ryori.vote.index') }}" class="btn btn-vote-primary btn-lg">
@@ -553,15 +553,22 @@
 }
 
 .dish-image {
-    height: 220px;
+    height: 220px; /* Aumentei um pouquinho (de 220 para 250) para fotos verticais ficarem melhores */
     position: relative;
     overflow: hidden;
+    background-color: #f4f4f4; /* Um fundo cinza bem clarinho para preencher as laterais vazias */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; /* Dá uma borda de respiro */
 }
 
 .dish-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
     transition: transform 0.5s ease;
 }
 

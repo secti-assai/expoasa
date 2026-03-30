@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>79ª Edição da EXPOASA</title>
+        <title>80ª Edição da EXPOASA</title>
 
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
@@ -70,9 +70,9 @@
             <div class="container">
                 <div class="row">
                     <div class="mt-4 badge text-wrap fs-2" style="font-family: Roboto; background-color:#006400; width: 20rem; margin:0 auto;">
-                        NESTA EDIÇÃO 2024
+                        NESTA EDIÇÃO 2026
                       </div>
-                    {{-- <h3 class="mt-5 text-center fw-bold">NESTA EDIÇÃO 2024</h3> --}}
+                    {{-- <h3 class="mt-5 text-center fw-bold">NESTA EDIÇÃO 2026</h3> --}}
                 </div>
             </div>
         </section>
@@ -162,8 +162,8 @@
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-3">
                             <div class="mb-2"><i class="bi-award fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">HackaSUN <br />Agro</h3>
-                            <p class="text-muted mb-0">Uma maratona de inovação, realizada nos dias 8 e 9, produzindo soluções inovadoras para o agronegócio.</p>
+                            <h3 class="h4 mb-2">Hackasun <br />Agro</h3>
+                            <p class="text-muted mb-0">Uma maratona de inovação integrada à programação da EXPOASA 2026, produzindo soluções para o agronegócio.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
@@ -252,7 +252,7 @@
         <section class="page-section mb-5" id="botoes">
             <div class="container px-4 px-lg-5 text-center">
                 <div class="row gx-4 gx-lg-5">
-                    <a class="btn btn-primary btn-xl mb-4" href="https://www.sympla.com.br/evento/exposicao-agricola-regional-de-assai-expoasa-2024/2486970?_gl=1*1vpac80*_gcl_au*MTc0MTkwOTgxLjE3MTY2Nzk4NTc.*_ga*MTkxODgyOTQ5MC4xNzE2Njc5ODU4*_ga_KXH10SQTZF*MTcxNjg1MTUxMy4yLjEuMTcxNjg1NTU0MC40OS4wLjE5MzI1NjY2MTg.&share_id=copiarlink" target="_blank">Inscreva-se nos Seminários Técnicos</a>
+                    <a class="btn btn-primary btn-xl mb-4" href="/inscricoes" target="_blank">Inscreva-se nas atividades da EXPOASA 2026</a>
                 </div>
             </div>
         </section>
@@ -263,7 +263,7 @@
                 <h2 class="mb-4 text-dark">História da Expoasa</h2>
                 <hr class="divider divider-black" />
                 <p class="text-dark">A EXPOASA – Exposição Agrícola Regional de Assaí é um evento voltado para o agronegócio, sendo a sua primeira edição realizada no ano de 1935. Esta exposição agrícola é considerada a mais antiga da América Latina, surgindo do esforço dos primeiros imigrantes japoneses, que colonizaram a região de Assaí em 1930.</p>
-                <p class="text-dark">Durante todos os anos de realização, a EXPOASA movimentou milhares de pessoas, reunindo um público de mais de 15 cidades, tornando-se parte da cultura de Assaí e região. É um momento de encontro, onde, além dos agricultores exporem o fruto do seu trabalho, os visitantes podem se confraternizar e ver as novidades da indústria, da agropecuária e do comércio regional. Ademais, a exposição é rica em atrações culturais, trazendo o Bon Odori, Taikô, Ikebana, Matsuri Dance e o Cosplay. A praça de alimentação também é um espaço de destaque da Exposição, contemplando comidas típicas da cultura japonesa e brasileira. A EXPOASA é uma excelente demonstração dos laços de união, parceria e amizade entre as comunidades japonesa e brasileira, principalmente no Estado do Paraná.</p>
+                <p class="text-dark">Durante todos os anos de realização, a EXPOASA movimentou milhares de pessoas, reunindo um público de mais de 26 cidades, tornando-se parte da cultura de Assaí e região. É um momento de encontro, onde, além dos agricultores exporem o fruto do seu trabalho, os visitantes podem se confraternizar e ver as novidades da indústria, da agropecuária e do comércio regional. Ademais, a exposição é rica em atrações culturais, trazendo o Bon Odori, Taikô, Ikebana, Matsuri Dance e o Cosplay. A praça de alimentação também é um espaço de destaque da Exposição, contemplando comidas típicas da cultura japonesa e brasileira. A EXPOASA é uma excelente demonstração dos laços de união, parceria e amizade entre as comunidades japonesa e brasileira, principalmente no Estado do Paraná.</p>
             </div>
         </section>
         <!-- Contact-->
@@ -281,7 +281,7 @@
                     <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"></path>
                     </svg>
                 </a>
-                <div class="small text-center text-muted mt-2">Copyright &copy; 2024 - Exposição Agrícola Regional de Assaí</div>
+                <div class="small text-center text-muted mt-2">Copyright &copy; 2026 - Exposição Agrícola Regional de Assaí</div>
             </div>
         </footer>
         <!-- Bootstrap core JS-->

@@ -11,14 +11,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- CSS Libraries -->
     <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/plugins/font-awsome/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="/assets/css/landing.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
-    
+
     <style>
         :root {
             --primary-color: #a40202;
@@ -83,7 +83,8 @@
             transition: var(--transition);
         }
 
-        .nav-link:hover, .nav-link:focus {
+        .nav-link:hover,
+        .nav-link:focus {
             color: var(--primary-color);
         }
 
@@ -94,8 +95,8 @@
         /* Hero Banner */
         .hero-banner {
             position: relative;
-            background: linear-gradient(rgba(164, 2, 2, 0.85), rgba(164, 2, 2, 0.85)), 
-                        url('/assets/images/expo_2024/expo_197.jpg');
+            background: linear-gradient(rgba(164, 2, 2, 0.85), rgba(164, 2, 2, 0.85)),
+                url('/assets/images/expo_2024/expo_197.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -269,7 +270,8 @@
             height: 180px;
             overflow: hidden;
             position: relative;
-            background-color: transparent; /* Removido o fundo branco */
+            background-color: transparent;
+            /* Removido o fundo branco */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -291,9 +293,12 @@
             max-width: 70%;
             object-fit: contain;
             transition: var(--transition);
-            background-color: transparent; /* Removido o fundo branco */
-            padding: 0; /* Removido o padding que estava criando espaço branco */
-            border-radius: 0; /* Removido o border-radius */
+            background-color: transparent;
+            /* Removido o fundo branco */
+            padding: 0;
+            /* Removido o padding que estava criando espaço branco */
+            border-radius: 0;
+            /* Removido o border-radius */
         }
 
         /* Tratamento para a logo da UTFPR que tem fundo preto e precisa de espaço */
@@ -581,12 +586,12 @@
             .activity-card h3 {
                 font-size: 1.2rem;
             }
-            
+
             .footer-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .footer-links {
                 margin-top: 25px;
                 margin-bottom: 25px;
@@ -614,7 +619,7 @@
             .logos-container img {
                 height: 50px;
             }
-            
+
             .footer-links {
                 flex-direction: column;
                 gap: 10px;
@@ -633,7 +638,7 @@
             .hero-subtitle {
                 font-size: 1rem;
             }
-            
+
             .hero-btn {
                 display: block;
                 width: 100%;
@@ -647,7 +652,7 @@
             .section-title h2 {
                 font-size: 1.8rem;
             }
-            
+
             .back-to-top {
                 bottom: 20px;
                 right: 20px;
@@ -655,62 +660,66 @@
                 height: 40px;
             }
         }
-        
+
         /* Animation Classes */
         .zoom-in {
             animation: zoomIn 1s forwards;
         }
-        
+
         .fade-in-up {
             animation: fadeInUp 0.8s forwards;
         }
-        
+
         .fade-in-left {
             animation: fadeInLeft 0.8s forwards;
         }
-        
+
         .fade-in-right {
             animation: fadeInRight 0.8s forwards;
         }
-        
+
         @keyframes zoomIn {
             from {
                 opacity: 0;
                 transform: scale(0.8);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
             }
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
                 transform: translateX(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        
+
         @keyframes fadeInRight {
             from {
                 opacity: 0;
                 transform: translateX(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -921,12 +930,12 @@
             .activity-card h3 {
                 font-size: 1.2rem;
             }
-            
+
             .footer-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .footer-links {
                 margin-top: 25px;
                 margin-bottom: 25px;
@@ -954,7 +963,7 @@
             .logos-container img {
                 height: 50px;
             }
-            
+
             .footer-links {
                 flex-direction: column;
                 gap: 10px;
@@ -973,7 +982,7 @@
             .hero-subtitle {
                 font-size: 1rem;
             }
-            
+
             .hero-btn {
                 display: block;
                 width: 100%;
@@ -987,7 +996,7 @@
             .section-title h2 {
                 font-size: 1.8rem;
             }
-            
+
             .back-to-top {
                 bottom: 20px;
                 right: 20px;
@@ -995,62 +1004,66 @@
                 height: 40px;
             }
         }
-        
+
         /* Animation Classes */
         .zoom-in {
             animation: zoomIn 1s forwards;
         }
-        
+
         .fade-in-up {
             animation: fadeInUp 0.8s forwards;
         }
-        
+
         .fade-in-left {
             animation: fadeInLeft 0.8s forwards;
         }
-        
+
         .fade-in-right {
             animation: fadeInRight 0.8s forwards;
         }
-        
+
         @keyframes zoomIn {
             from {
                 opacity: 0;
                 transform: scale(0.8);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
             }
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
                 transform: translateX(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        
+
         @keyframes fadeInRight {
             from {
                 opacity: 0;
                 transform: translateX(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -1069,7 +1082,7 @@
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="/assets/img/logo-expoasa.png" alt="EXPOASA 2025">
+                <img src="/assets/images/logos/logo-expoasa.png" alt="EXPOASA 2026">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -1086,7 +1099,7 @@
                         <a class="nav-link active" href="{{ route('inscricoes') }}">Inscrições</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('ideasun.index') }}">IDEASUN</a>
+                        {{-- <a class="nav-link" href="{{ route('ideasun.index') }}">IDEASUN</a>--}}
                     </li>
                 </ul>
             </div>
@@ -1100,7 +1113,7 @@
                 <div class="col-lg-10 text-center hero-content">
                     <h1 class="hero-title" data-aos="zoom-in">Amplie seus Conhecimentos na EXPOASA</h1>
                     <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-                        Participe das palestras e cursos exclusivos da 79ª EXPOASA e conecte-se com especialistas, 
+                        Participe das palestras e cursos exclusivos da 80ª EXPOASA e conecte-se com especialistas,
                         novas ideias e oportunidades incríveis!
                     </p>
                     <div data-aos="fade-up" data-aos-delay="400">
@@ -1140,7 +1153,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 a 08 de junho, 2025</span>
+                                    <span>12 a 14 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1188,7 +1201,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 e 08 de junho, 2025</span>
+                                    <span>13 e 14 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-map-marker"></i>
@@ -1218,7 +1231,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1247,12 +1260,12 @@
                         <div class="card-body">
                             <h3>Gastronomia afetiva: Construindo e preservando memórias</h3>
                             <p class="description">
-                                Caroline irá compartilhar como a gastronomia vai além do preparo de alimentos e se torna uma poderosa ferramenta de conexão, fortalecimento de vínculos e resgate de memórias afetivas. Através de sua experiência, ela mostra que cada receita carrega uma história e que os momentos à mesa podem transformar relações familiares, criando laços mais fortes e significativos.    
+                                Caroline irá compartilhar como a gastronomia vai além do preparo de alimentos e se torna uma poderosa ferramenta de conexão, fortalecimento de vínculos e resgate de memórias afetivas. Através de sua experiência, ela mostra que cada receita carrega uma história e que os momentos à mesa podem transformar relações familiares, criando laços mais fortes e significativos.
                             </p>
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1286,7 +1299,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1320,7 +1333,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1354,7 +1367,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1388,7 +1401,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1422,7 +1435,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1456,7 +1469,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1490,7 +1503,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>06 de junho, 2025</span>
+                                    <span>12 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1524,7 +1537,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
+                                    <span>13 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1558,7 +1571,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
+                                    <span>13 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1592,7 +1605,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
+                                    <span>13 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1626,7 +1639,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
+                                    <span>13 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1660,7 +1673,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
+                                    <span>13 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1677,7 +1690,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="activity-card h-100">
                         <div class="img-container">
@@ -1694,7 +1707,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
+                                    <span>13 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1728,7 +1741,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
+                                    <span>13 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1762,7 +1775,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>07 de junho, 2025</span>
+                                    <span>13 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1796,7 +1809,7 @@
                             <div class="info-meta">
                                 <div class="info-item">
                                     <i class="fa fa-calendar"></i>
-                                    <span>08 de junho, 2025</span>
+                                    <span>14 de junho, 2026</span>
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-clock-o"></i>
@@ -1825,7 +1838,7 @@
                 <div class="col-12">
                     <h2 class="cta-title">Não perca essa oportunidade!</h2>
                     <p class="cta-text">
-                        Todas as atividades são gratuitas, mas as vagas são limitadas. 
+                        Todas as atividades são gratuitas, mas as vagas são limitadas.
                         Garanta já a sua participação!
                     </p>
                     <a href="#cursos" class="cta-btn">
@@ -1900,7 +1913,7 @@
         });
 
         // Mobile menu closing when clicking on a menu item
-        $('.navbar-nav>li>a').on('click', function(){
+        $('.navbar-nav>li>a').on('click', function() {
             $('.navbar-collapse').collapse('hide');
         });
     </script>
