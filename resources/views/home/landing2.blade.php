@@ -28,13 +28,13 @@
             <div class="navbar-logos-wrapper">
                 <div class="navbar-logos">
                     <a class="navbar-brand" href="/">
-                        <img src="/assets/images/logo_laca.png" alt="LACA" class="logo-main desktop-only">
+                        <img src="/assets/images/logos/logo_laca.png" alt="LACA" class="logo-main desktop-only">
                     </a>
                     <!-- Apenas na versão desktop -->
                     <img src="/assets/images/logos/brasil_japao.png" alt="130 Anos de Amizade Brasil & Japão" class="logo-brasil-japao desktop-only">
                     <!-- Apenas na versão mobile -->
                     <span class="mobile-only jp-friendship">
-                        <img src="/assets/img/logo_laca_small.png" alt="LACA" class="mobile-logo">
+                        <img src="/assets/images/logos/logo_laca.png" alt="LACA" class="mobile-logo">
                         80ª EXPOASA
                     </span>
                 </div>
@@ -104,7 +104,7 @@
             <div class="row align-items-center about-row">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="about-image">
-                        <img src="/assets/images/logos/expo80.jpeg" alt="EXPOASA" class="img-fluid">
+                        <img src="/assets/images/logos/expoasa.png" alt="EXPOASA" class="img-fluid">
                         <div class="image-caption">
                             <i class="fa fa-camera"></i>
                             80ª Exposição Agrícola Regional de Assaí
