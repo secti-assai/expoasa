@@ -1,3 +1,9 @@
+/* Garantir tamanho máximo da logo principal na navbar */
+.logo-main {
+    max-height: 60px;
+    height: auto;
+    width: auto;
+}
 :root {
     --primary-color: #a40202;
     --primary-light: #c41010;
@@ -2008,7 +2014,11 @@ h6 {
         display: inline-block !important;
     }
 
+
     .logo-main {
+        max-height: 60px;
+        height: auto;
+        width: auto;
         display: none;
     }
 
