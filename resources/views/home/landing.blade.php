@@ -48,20 +48,33 @@
 
         /* HEADER & NAVBAR - Versão Corrigida */
         .navbar.main-nav {
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-            padding: 12px 0;
-            transition: all 0.3s ease;
+            background-color: transparent;
+            box-shadow: none;
+            padding: 20px 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             height: auto;
-            border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
 
         .navbar.main-nav.nav-scrolled {
-            padding: 8px 0;
-            background-color: rgba(255, 255, 255, 0.94);
-            box-shadow: 0 14px 34px rgba(14, 21, 31, 0.15);
+            padding: 12px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .navbar.main-nav .site-nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .navbar.main-nav.nav-scrolled .site-nav-links a {
+            color: #1a202c;
         }
 
         .navbar .container {
@@ -1148,10 +1161,97 @@
 
         .event-section {
             padding: 46px 0;
+            position: relative;
+            isolation: isolate;
         }
 
         .event-section.event-soft-bg {
             background: linear-gradient(180deg, #f5f8f9 0%, #edf2f4 100%);
+        }
+
+        .event-section.event-color-cream {
+            background: linear-gradient(180deg, #fff8ec 0%, #fffefb 100%);
+        }
+
+        .event-section.event-color-mint {
+            background: linear-gradient(180deg, #ecf8f1 0%, #f9fffc 100%);
+        }
+
+        .event-section.event-color-ice {
+            background: linear-gradient(180deg, #eff6fb 0%, #f9fcff 100%);
+        }
+
+        .event-section.event-section-photo {
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .event-section.event-section-photo::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(9, 16, 24, 0.74), rgba(19, 39, 36, 0.57));
+            z-index: -1;
+        }
+
+        .event-photo-lantern {
+            background-image: url('/assets/images/fotos/Expoasa%20(2).jpg');
+        }
+
+        .event-photo-harvest {
+            background-image: url('/assets/images/fotos/expo_458.jpg');
+        }
+
+        .event-photo-taiko {
+            background-image: url('/assets/images/fotos/expo_444.jpg');
+        }
+
+        .event-section.event-section-photo .event-kicker,
+        .event-section.event-section-photo .event-title,
+        .event-section.event-section-photo .event-lead {
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .event-section.event-section-photo .event-shell {
+            background-color: rgba(255, 255, 255, 0.93);
+            border-color: rgba(255, 255, 255, 0.34);
+        }
+
+        .event-photo-strip {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .event-photo-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            min-height: 180px;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+        }
+
+        .event-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .event-photo-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(8, 13, 23, 0.4), rgba(8, 13, 23, 0.05));
+        }
+
+        .event-photo-card:hover img {
+            transform: scale(1.04);
         }
 
         .event-header {
@@ -1536,6 +1636,15 @@
                 padding: 60px 0;
             }
 
+            .event-photo-strip {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .event-photo-card {
+                min-height: 220px;
+            }
+
             .event-title {
                 font-size: 2.15rem;
             }
@@ -1580,6 +1689,10 @@
         @media (min-width: 1100px) {
             .event-section {
                 padding: 70px 0;
+            }
+
+            .event-photo-card {
+                min-height: 250px;
             }
 
             .metric-grid {
@@ -1802,6 +1915,517 @@
         .event-cta-banner h2 {
             font-size: 1.42rem;
         }
+
+        .event-photo-card {
+            min-height: 150px;
+        }
+    }
+
+    /* EXPERIENCIA PREMIUM - HEADER + HERO */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    :root {
+        --header-offset: 116px;
+    }
+
+    body {
+        background: #f3f7f9;
+        scroll-snap-type: y proximity;
+        scroll-padding-top: var(--header-offset);
+    }
+
+    .site-header.navbar.main-nav {
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+        padding: 18px 0;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .site-header.navbar.main-nav.nav-scrolled {
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .site-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .site-nav-links {
+        display: none;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .site-nav-links a {
+        display: inline-flex;
+        align-items: center;
+        padding: 9px 16px;
+        border-radius: 999px;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-scrolled .site-nav-links a {
+        color: #1a2b3c;
+        text-shadow: none;
+    }
+
+    .site-nav-links a:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+    }
+
+    .nav-scrolled .site-nav-links a:hover {
+        background: rgba(16, 69, 45, 0.06);
+        color: #0c5d3a;
+    }
+
+    .site-partners {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .site-partners .btn {
+        white-space: nowrap;
+        padding: 10px 16px;
+        font-size: 0.84rem;
+    }
+
+    .site-header .navbar-actions {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 12px;
+        left: 12px;
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(177, 191, 204, 0.52);
+        box-shadow: 0 20px 30px rgba(6, 18, 30, 0.12);
+        border-radius: 14px;
+        padding: 12px;
+        backdrop-filter: blur(8px);
+    }
+
+    .site-header .navbar-actions.show {
+        display: flex;
+    }
+
+    .mobile-nav-link {
+        border: 1px solid #e1e8ee;
+        border-radius: 10px;
+        padding: 10px 12px;
+        color: #152634;
+        font-weight: 600;
+        text-decoration: none;
+        background: #ffffff;
+    }
+
+    .hero-panel {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        padding: calc(var(--header-offset) + 18px) 0 38px;
+        overflow: hidden;
+        color: #ffffff;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .hero-kenburns {
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+    }
+
+    .hero-layer {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        opacity: 1;
+    }
+
+    .hero-layer-a {
+        background-image: url('/assets/2026/fundo.png');
+        background-size: cover;
+        background-position: center center;
+        background-color: #0a1513;
+    }
+
+    .hero-layer-b {
+        display: none;
+    }
+
+    .hero-layer-c {
+        display: none;
+    }
+
+    .hero-gradient {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 18% 22%, rgba(255, 197, 73, 0.22), transparent 44%),
+            radial-gradient(circle at 84% 18%, rgba(10, 102, 66, 0.32), transparent 42%),
+            linear-gradient(180deg, rgba(9, 15, 23, 0.45) 0%, rgba(9, 15, 23, 0.74) 62%, rgba(9, 15, 23, 0.9) 100%);
+        z-index: -2;
+    }
+
+    .hero-brand-container {
+        position: relative;
+        z-index: 5;
+        text-align: center;
+        width: 100%;
+        margin-top: -60px; /* Sobe a logo e o conteúdo central */
+    }
+
+    .hero-main-logo {
+        max-width: 240px;
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0 15px 45px rgba(0,0,0,0.6));
+    }
+
+    .hero-brand-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-countdown {
+        display: flex !important;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 25px;
+        position: relative;
+        z-index: 20;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .countdown-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 65px;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 10px 4px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .countdown-value {
+        font-size: 1.6rem;
+        font-weight: 800;
+        line-height: 1;
+        color: #ffffff;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .countdown-label {
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 600;
+    }
+
+    @media (min-width: 992px) {
+        .hero-main-logo {
+            max-width: 540px;
+        }
+        .hero-countdown {
+            gap: 20px;
+            margin-top: 45px;
+        }
+        .countdown-item {
+            min-width: 110px;
+            padding: 18px 10px;
+        }
+        .countdown-value {
+            font-size: 2.8rem;
+        }
+        .countdown-label {
+            font-size: 0.75rem;
+        }
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 980px;
+    }
+
+    .hero-eyebrow {
+        margin: 0 0 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-title {
+        margin: 0;
+        color: #ffffff;
+        font-size: clamp(2rem, 6.2vw, 4.7rem);
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        max-width: 12ch;
+        text-wrap: balance;
+        text-shadow: 0 6px 26px rgba(0, 0, 0, 0.34);
+    }
+
+    .hero-subtitle {
+        margin: 16px 0 0;
+        max-width: 64ch;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: clamp(0.98rem, 2.1vw, 1.2rem);
+        line-height: 1.65;
+    }
+
+    .hero-actions {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .hero-actions .btn {
+        min-width: 190px;
+    }
+
+    .hero-schedule-glass {
+        background: rgba(15, 23, 42, 0.3);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-schedule-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .hero-schedule-header h2 {
+        font-size: 1.8rem;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+
+    .hero-schedule-header p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+    }
+
+    .hero-schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .hero-schedule-item {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .hero-schedule-item:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .hsi-day {
+        display: block;
+        font-weight: 700;
+        color: #fff;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+
+    .hsi-date {
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .hsi-time {
+        display: inline-block;
+        background: rgba(164, 2, 2, 0.8);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .hero-scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        text-decoration: none;
+        z-index: 10;
+        transition: opacity 0.3s;
+    }
+
+    .hero-scroll-indicator:hover {
+        opacity: 0.8;
+        color: #fff;
+    }
+
+    .hsi-text {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+        opacity: 0.9;
+    }
+
+    .hsi-icon {
+        font-size: 22px;
+        animation: heroBounce 2s infinite;
+    }
+
+    @keyframes heroBounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(-10px);}
+        60% {transform: translateY(-5px);}
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 767px) {
+        .hero-schedule-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .hero-schedule-glass {
+            padding: 25px;
+            margin: 0 15px;
+        }
+        .hero-schedule-header h2 {
+            font-size: 1.4rem;
+        }
+    }
+
+    .expo-page {
+        scroll-snap-type: y proximity;
+    }
+
+    .event-section {
+        min-height: 100svh;
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
+        display: flex;
+        align-items: center;
+    }
+
+    .event-section > .container {
+        width: 100%;
+    }
+
+
+    @keyframes cueBounce {
+        0%, 100% {
+            transform: translateY(0);
+            opacity: 0.78;
+        }
+        50% {
+            transform: translateY(5px);
+            opacity: 1;
+        }
+    }
+
+    @media (min-width: 1100px) {
+        .site-nav-links {
+            display: flex;
+        }
+
+        .site-header .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 1099px) {
+        .site-partners .btn {
+            display: none;
+        }
+
+        .site-header .navbar-toggler {
+            display: inline-flex;
+            margin-left: 6px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .hero-panel {
+            min-height: 95svh;
+            padding-top: calc(var(--header-offset) + 12px);
+        }
+
+        .hero-actions .btn {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .hero-countdown {
+            margin-top: 18px;
+            padding: 13px;
+        }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1825,16 +2449,24 @@
 
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar main-nav fixed-top navbar-expand-lg">
+    <nav class="navbar main-nav site-header fixed-top navbar-expand-lg">
         <div class="container">
-            <div class="navbar-logos-wrapper">
-                <div class="navbar-logos">
-                    <a class="navbar-brand" href="/">
+            <div class="site-brand">
+                <a class="navbar-brand" href="#topo" aria-label="Voltar ao topo">
                         <img src="/assets/images/logos/Logo_laca.png" alt="LACA" class="logo-laca">
-                    </a>
+                </a>
+            </div>
 
-                    <img src="/assets/images/logos/brasil_japao.png" alt="130 Anos de Amizade Brasil & Japão" class="logo-brasil-japao">
-                </div>
+            <div class="site-nav-links" aria-label="Navegacao principal">
+                <a href="#horarios">Horários</a>
+                <a href="#historia">História</a>
+                <a href="#localizacao">Localização</a>
+            </div>
+
+            <div class="site-partners">
+                <a href="https://assai.pr.gov.br" target="_blank" rel="noopener noreferrer" aria-label="Prefeitura de Assai">
+                    <img src="/assets/images/logos/GOVERNO/brasao_assai.png" alt="Prefeitura Municipal de Assaí" class="logo-prefeitura">
+                </a>
             </div>
 
             <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
@@ -1842,65 +2474,62 @@
             </button>
 
             <div class="navbar-actions">
-                <a href="https://assai.pr.gov.br" target="_blank">
-                    <img src="/assets/images/logos/GOVERNO/brasao_assai.png" alt="Prefeitura Municipal de Assaí" class="logo-prefeitura">
-                </a>
-                <a href="https://sebraepr.com.br" target="_blank">
-                    <img src="/assets/images/logos/GOVERNO/sebrae_logo.png" alt="Sebrae PR" class="logo-sebrae">
-                </a>
-                {{-- <a href="{{ route('ideasun.index') }}" class="ticket">
-                    <img src="/assets/images/icon/ticket.png" alt="IDEASUN">
-                    <span>IDEASUN 2026</span>
-                </a> --}}
+                <a href="#horarios" class="mobile-nav-link">Horários</a>
+                <a href="#historia" class="mobile-nav-link">História</a>
+                <a href="#localizacao" class="mobile-nav-link">Localização</a>
+                <a href="{{ route('credenciamento') }}" class="btn btn-primary">Credenciamento</a>
             </div>
         </div>
     </nav>
 
-    <!-- BANNER -->
-    <section class="banner" aria-label="Cover Expoasa 2026"></section>
-
-    <section class="countdown-section" aria-label="Contagem regressiva para a Expoasa 2026">
-        <div class="container">
-            <div class="countdown-panel">
-                <p class="countdown-title">Contagem regressiva para a Expoasa 2026</p>
-
-                <div class="countdown-wrapper">
+    <!-- HERO -->
+    <section id="topo" class="hero-panel" aria-label="Hero da Expoasa 2026">
+        <div class="hero-kenburns" aria-hidden="true">
+            <div class="hero-layer hero-layer-a"></div>
+        </div>
+        <div class="hero-gradient" aria-hidden="true"></div>
+ 
+        <div class="container hero-brand-container">
+            <div class="hero-brand-wrapper">
+                <img src="/assets/2026/logo_ap.png" alt="80ª EXPOASA" class="hero-main-logo">
+                
+                <div class="hero-countdown" aria-label="Contador regressivo para o evento">
                     <div class="countdown-item">
-                        <div class="countdown-value" id="countdown-days">00</div>
-                        <div class="countdown-label">Dias</div>
+                        <span id="countdown-days" class="countdown-value">00</span>
+                        <span class="countdown-label">Dias</span>
                     </div>
-
                     <div class="countdown-item">
-                        <div class="countdown-value" id="countdown-hours">00</div>
-                        <div class="countdown-label">Horas</div>
+                        <span id="countdown-hours" class="countdown-value">00</span>
+                        <span class="countdown-label">Horas</span>
                     </div>
-
                     <div class="countdown-item">
-                        <div class="countdown-value" id="countdown-minutes">00</div>
-                        <div class="countdown-label">Minutos</div>
+                        <span id="countdown-minutes" class="countdown-value">00</span>
+                        <span class="countdown-label">Min</span>
                     </div>
-
                     <div class="countdown-item">
-                        <div class="countdown-value" id="countdown-seconds">00</div>
-                        <div class="countdown-label">Segundos</div>
+                        <span id="countdown-seconds" class="countdown-value">00</span>
+                        <span class="countdown-label">Seg</span>
                     </div>
                 </div>
-
             </div>
         </div>
+
+        <a href="#proximo" class="hero-scroll-indicator">
+            <span class="hsi-text">Explore o Evento</span>
+            <i class="fa fa-angle-down hsi-icon" aria-hidden="true"></i>
+        </a>
     </section>
 
-    <main class="expo-page">
-        <section class="event-section">
+    <main class="expo-page" id="proximo">
+        <section class="event-section event-color-cream">
             <div class="container">
                 <div class="event-intro-grid">
                     <article class="event-shell">
                         <header class="event-header">
-                            <p class="event-kicker">80a EXPOASA - Exposicao Regional de Assai</p>
-                            <h2 class="event-title">O encontro mais tradicional do agro brasileiro, agora com mais tecnologia, cultura e inovacao</h2>
+                            <p class="event-kicker">80ª EXPOASA - Proposta Técnica</p>
+                            <h2 class="event-title">Exposição Agrícola Regional de Assaí</h2>
                             <p class="event-lead">
-                                Realizada desde 1935, a EXPOASA e considerada a exposicao agricola mais antiga do Brasil e um simbolo dos lacos entre as comunidades japonesa e brasileira no Parana.
-                                Em 2026, o evento amplia seus espacos para conectar produtor, empreendedor, estudante, cooperativas e familias em torno do futuro do agronegocio.
+                                A EXPOASA é um evento voltado para o agronegócio, sendo a sua primeira edição realizada no ano de 1935. Considerada a mais antiga do Brasil, surge do esforço dos primeiros imigrantes japoneses que colonizaram Assaí em 1930.
                             </p>
                         </header>
 
@@ -1911,23 +2540,23 @@
                     </article>
 
                     <aside class="event-shell">
-                        <h3>Informacoes rapidas</h3>
+                        <h3>Informações Principais</h3>
                         <ul class="event-fact-list">
                             <li>
-                                <strong>Data</strong>
-                                12, 13 e 14 de junho de 2026
+                                <strong>Data Oficial</strong>
+                                12 a 14 de Junho de 2026
                             </li>
                             <li>
-                                <strong>Local</strong>
-                                Centro de Eventos Toyosaburo Ikeda, Assai/PR
+                                <strong>Localização</strong>
+                                Centro de Eventos Toyosaburo Ikeda, Assaí/PR
                             </li>
                             <li>
-                                <strong>Publico estimado</strong>
-                                7.000 pessoas
+                                <strong>Público Estimado</strong>
+                                7.000 pessoas (Agricultores e Visitantes)
                             </li>
                             <li>
-                                <strong>Area total</strong>
-                                40.000 m2 de estrutura para eventos
+                                <strong>Infraestrutura</strong>
+                                40.000 m² de área total para eventos
                             </li>
                         </ul>
                     </aside>
@@ -1936,112 +2565,106 @@
                 <div class="metric-grid" style="margin-top: 14px;">
                     <div class="metric-card">
                         <span class="metric-value">1935</span>
-                        <span class="metric-label">Primeira edicao da EXPOASA</span>
+                        <span class="metric-label">Primeira edição realizada</span>
                     </div>
                     <div class="metric-card">
                         <span class="metric-value">R$ 650 mi+</span>
-                        <span class="metric-label">VBP regional (DERAL 2025)</span>
+                        <span class="metric-label">VBP Agropecuário Regional</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">1.000 m2</span>
-                        <span class="metric-label">Exposicao de produtos agro e agroindustria</span>
+                        <span class="metric-value">1.000 m²</span>
+                        <span class="metric-label">Área para produtos agrícolas e hortifrúti</span>
                     </div>
                     <div class="metric-card">
                         <span class="metric-value">19 cidades</span>
-                        <span class="metric-label">Abrangencia regional</span>
+                        <span class="metric-label">Abrangência Regional</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">5.000/dia</span>
-                        <span class="metric-label">Publico medio em 2025</span>
+                        <span class="metric-value">5.000+</span>
+                        <span class="metric-label">Pessoas/dia na 79ª edição</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">80a</span>
-                        <span class="metric-label">Edicao da EXPOASA em 2026</span>
+                        <span class="metric-value">80ª</span>
+                        <span class="metric-label">Edição em 2026</span>
                     </div>
+                </div>
+
+                <div class="event-photo-strip">
+                    <figure class="event-photo-card">
+                        <img src="/assets/images/fotos/Expoasa%20(2).jpg" alt="Bon Odori na EXPOASA">
+                    </figure>
+                    <figure class="event-photo-card">
+                        <img src="/assets/images/fotos/Expoasa%20(1).jpg" alt="Mostra de produtos agricolas na EXPOASA">
+                    </figure>
+                    <figure class="event-photo-card">
+                        <img src="/assets/images/fotos/Expoasa%20(3).jpg" alt="Apresentacao de Taiko na EXPOASA">
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <section id="programacao" class="event-section event-soft-bg">
+        <section id="horarios" class="event-section event-section-photo event-photo-lantern">
             <div class="container">
                 <header class="event-header">
-                    <p class="event-kicker">Programacao oficial</p>
-                    <h2 class="event-title">Tres dias de experiencias tecnicas, culturais e de conexao com o agro</h2>
+                    <p class="event-kicker">Horários de Funcionamento</p>
+                    <h2 class="event-title">Acompanhe a 80ª EXPOASA em Assaí</h2>
                 </header>
 
                 <div class="event-program-grid">
                     <article class="event-shell program-card">
-                        <p class="program-day">Sexta-feira</p>
-                        <p class="program-time">12/06 - 18h as 00h</p>
-                        <ul class="event-list">
-                            <li>Abertura oficial da 80a EXPOASA</li>
-                            <li>Exposicao de produtos agricolas e agroindustria regional</li>
-                            <li>Inicio das apresentacoes culturais no palco LED</li>
-                            <li>Praca de alimentacao com gastronomia japonesa e brasileira</li>
-                        </ul>
+                        <p class="program-day">Dia 12/06</p>
+                        <p class="program-time">18h às 00h</p>
                     </article>
 
                     <article class="event-shell program-card">
-                        <p class="program-day">Sabado</p>
-                        <p class="program-time">13/06 - 09h as 00h</p>
-                        <ul class="event-list">
-                            <li>Oficinas no auditorio tematico</li>
-                            <li>Feira do empreendedor rural e rodadas de negocio</li>
-                            <li>Paineis sobre agricultura de precisao e agricultura digital</li>
-                            <li>HackaSUN, casos de sucesso e programacao cultural</li>
-                        </ul>
+                        <p class="program-day">Dia 13/06</p>
+                        <p class="program-time">09h às 00h</p>
                     </article>
 
                     <article class="event-shell program-card">
-                        <p class="program-day">Domingo</p>
-                        <p class="program-time">14/06 - 09h as 16h</p>
-                        <ul class="event-list">
-                            <li>Mostra de inovacoes para o agronegocio</li>
-                            <li>Atividades com escolas e ecossistema Vale do Sol</li>
-                            <li>Exposicao de cultivos alternativos e sustentabilidade</li>
-                            <li>Encerramento institucional da 80a edicao</li>
-                        </ul>
+                        <p class="program-day">Dia 14/06</p>
+                        <p class="program-time">09h às 16h</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="event-section">
+        <section class="event-section event-color-mint">
             <div class="container">
                 <header class="event-header">
                     <p class="event-kicker">Destaques 2026</p>
-                    <h2 class="event-title">Novos espacos para gerar oportunidades no campo e na cidade</h2>
+                    <h2 class="event-title">Novos espaços temáticos e infraestrutura expandida</h2>
                 </header>
 
                 <div class="event-attractions-grid">
                     <article class="event-shell attraction-card">
-                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        <h3>Auditorio de oficinas</h3>
-                        <p>Capacitacoes praticas sobre diversificacao de cultivos, orgânicos, agricultura de precisao e agricultura digital.</p>
+                        <i class="fa fa-television" aria-hidden="true"></i>
+                        <h3>TV Web e Palco LED</h3>
+                        <p>Cobertura por TV Web e palco com painéis de LED para apresentação da cultura japonesa, palestras temáticas e telão exclusivo para a Copa do Mundo.</p>
                     </article>
 
                     <article class="event-shell attraction-card">
-                        <i class="fa fa-briefcase" aria-hidden="true"></i>
-                        <h3>Feira do empreendedor rural</h3>
-                        <p>Espaco para conexao entre produtores, cooperativas, instituicoes financeiras e novos negocios do agro.</p>
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        <h3>Auditório de Oficinas</h3>
+                        <p>Novo espaço temático dedicado para oficinas e capacitação técnica de produtores rurais.</p>
                     </article>
 
                     <article class="event-shell attraction-card">
                         <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-                        <h3>Inovacao e desafios ODS</h3>
-                        <p>Etapa de ideacao com apoio do ONU-Habitat, universidades e Secretaria de Ciencia, Tecnologia e Inovacao.</p>
+                        <h3>HackaSUN e ODS</h3>
+                        <p>Apresentação de soluções inovadoras (HackaSUN) e Etapa de Ideação da Jornada dos Desafios ODS com apoio da ONU-Habitat.</p>
                     </article>
 
                     <article class="event-shell attraction-card">
                         <i class="fa fa-cutlery" aria-hidden="true"></i>
-                        <h3>Gastronomia e cultura</h3>
-                        <p>Apresentacoes de Bon Odori, Taiko, Ikebana, Matsuri Dance, Cosplay e culinaria japonesa e brasileira.</p>
+                        <h3>Cultura e Gastronomia</h3>
+                        <p>Atrações culturais como Bon Odori, Taikô, Ikebana, Matsuri Dance e Cosplay. Ambiente dedicado para expor a gastronomia japonesa e brasileira.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="event-section event-soft-bg">
+        <section class="event-section event-section-photo event-photo-harvest">
             <div class="container">
                 <header class="event-header">
                     <p class="event-kicker">Dados da exposicao</p>
@@ -2050,21 +2673,20 @@
 
                 <div class="event-data-grid">
                     <article class="event-shell">
-                        <h3>Estrutura e local</h3>
-                        <p>A EXPOASA 2026 sera realizada no Centro de Eventos Toyosaburo Ikeda, com 40.000 m2 de area total e espaco dedicado para exposicoes agro, cooperativas, tecnologia e servicos.</p>
+                        <h3>Estrutura e Local</h3>
+                        <p>A EXPOASA 2026 será realizada no Centro de Eventos Toyosaburo Ikeda (40.000 m²). Mil metros quadrados estão reservados para a exposição de produtos agrícolas, hortifrutigranjeiros e da agroindústria regional, incluindo a divulgação de cultivos alternativos (bambu) e polpas de frutas.</p>
                         <div class="event-chip-list" style="margin-top: 12px;">
-                            <span class="event-chip">Produtos agricolas</span>
-                            <span class="event-chip">Hortifrutigranjeiros</span>
-                            <span class="event-chip">Agroindustria regional</span>
-                            <span class="event-chip">Maquinario e servicos</span>
-                            <span class="event-chip">Cultivos alternativos</span>
+                            <span class="event-chip">Cooperativas Agrícolas</span>
+                            <span class="event-chip">Cooperativas Financeiras</span>
+                            <span class="event-chip">Setor do Agronegócio</span>
+                            <span class="event-chip">Maquinário Pesado</span>
+                            <span class="event-chip">Soluções Escolares</span>
                         </div>
                     </article>
 
                     <article class="event-shell">
-                        <h3>Abrangencia regional</h3>
-                        <p>A EXPOASA atende Assai e municipios do Norte do Parana, incluindo Nova America da Colina, Jataizinho, Cornelio Procopio, Urai, Londrina, Ibipora, Rolandia, Cambe e outras cidades da regiao.</p>
-                        <p>Uma agenda pensada para agricultores familiares, medios e grandes produtores, estudantes, empreendedores e visitantes em geral.</p>
+                        <h3>Abrangência Regional</h3>
+                        <p>O evento reúne as cidades de Assaí, Nova América da Colina, Jataizinho, São Sebastião da Amoreira, Santa Cecília do Pavão, Santo Antônio do Paraíso, Nova Santa Bárbara, Cornélio Procópio, Congonhinhas, Nova Fátima, Sertaneja, Rancho Alegre, Uraí, São Jerônimo da Serra, Sapopema, Londrina, Ibiporã, Rolândia e Cambé.</p>
                     </article>
                 </div>
             </div>
@@ -2075,11 +2697,11 @@
                 <div class="event-goal-grid">
                     <article class="event-shell">
                         <header class="event-header" style="margin-bottom: 12px;">
-                            <p class="event-kicker">Publico esperado</p>
-                            <h2 class="event-title" style="font-size: 1.5rem; margin-bottom: 0;">Perfil estimado para 2026</h2>
+                            <p class="event-kicker">Público Estimado</p>
+                            <h2 class="event-title" style="font-size: 1.5rem; margin-bottom: 0;">Perfil esperado para 2026</h2>
                         </header>
 
-                        <p class="event-audience-title">Meta total: 7.000 participantes</p>
+                        <p class="event-audience-title">Público total: 7.000 pessoas</p>
                         <div class="audience-bars">
                             <div>
                                 <div class="audience-item-head">
@@ -2090,14 +2712,14 @@
                             </div>
                             <div>
                                 <div class="audience-item-head">
-                                    <strong>Medios e grandes produtores</strong>
+                                    <strong>Médios e grandes produtores</strong>
                                     <span>500</span>
                                 </div>
                                 <div class="audience-track"><div class="audience-fill" style="width: 7.1%;"></div></div>
                             </div>
                             <div>
                                 <div class="audience-item-head">
-                                    <strong>Visitantes em geral</strong>
+                                    <strong>Visitantes</strong>
                                     <span>5.000</span>
                                 </div>
                                 <div class="audience-track"><div class="audience-fill" style="width: 71.5%;"></div></div>
@@ -2107,39 +2729,39 @@
 
                     <article class="event-shell">
                         <header class="event-header" style="margin-bottom: 12px;">
-                            <p class="event-kicker">Objetivos da exposicao</p>
-                            <h2 class="event-title" style="font-size: 1.5rem; margin-bottom: 0;">Fortalecer o agro com conhecimento, credito e inovacao</h2>
+                            <p class="event-kicker">Objetivos Oficiais</p>
+                            <h2 class="event-title" style="font-size: 1.5rem; margin-bottom: 0;">Fortalecer o agronegócio regional</h2>
                         </header>
 
                         <p class="event-goal-summary">
-                            Objetivo geral: fortalecer o agronegocio regional apresentando inovacoes, incentivando novos empreendedores e valorizando os talentos da regiao.
+                            Fortalecer o agronegócio da região apresentando inovações, divulgando a qualidade dos cultivos, incentivando novos empreendedores e apresentando os talentos intelectuais.
                         </p>
                         <ul class="event-list check-list">
-                            <li>Diversificacao de cultivos com foco em novas oportunidades de renda.</li>
-                            <li>Fomento a cultura de orgânicos e sustentabilidade ambiental.</li>
-                            <li>Capacitacao em agricultura de precisao e agricultura digital.</li>
-                            <li>Conexao com cooperativas financeiras para acesso a credito e investimento.</li>
-                            <li>Debates sobre combate a pragas e uso responsavel de defensivos.</li>
+                            <li>Abordar com mais ênfase o tema da “diversificação de cultivos”.</li>
+                            <li>Abordar a cultura dos orgânicos.</li>
+                            <li>Capacitar os agricultores para o uso da Agricultura de Precisão e Agricultura Digital.</li>
+                            <li>Viabilizar capacidade financeira para o investimento em tecnologia.</li>
+                            <li>Promover debates para combate às pragas e uso responsável de defensivos agrícolas.</li>
                         </ul>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="event-section event-soft-bg">
+        <section id="historia" class="event-section event-section-photo event-photo-taiko">
             <div class="container">
                 <div class="event-history-grid">
                     <article class="event-shell">
                         <header class="event-header" style="margin-bottom: 12px;">
-                            <p class="event-kicker">Historia e identidade</p>
-                            <h2 class="event-title" style="font-size: 1.56rem;">Conheca a historia da colonizacao e das associacoes nipo-brasileiras</h2>
+                            <p class="event-kicker">História e Identidade</p>
+                            <h2 class="event-title" style="font-size: 1.56rem;">O Papel das Associações Nipo-Brasileiras</h2>
                         </header>
 
                         <p>
-                            A formacao de Assai e do Norte do Parana foi marcada pela imigracao japonesa, pelo cooperativismo e pelo espirito associativo. Com pequenas propriedades, trabalho coletivo e foco em educacao, essa comunidade construiu um legado economico e cultural que segue vivo na EXPOASA.
+                            A história de Assaí é vinculada às ações da BRATAC - companhia colonizadora de capital japonês que, na década de 1930, adquiriu a "Colônia Três Barras". Imigrantes japoneses, em sua maioria residentes em São Paulo, adquiriram pequenos lotes para iniciar uma nova etapa de trabalho.
                         </p>
                         <p>
-                            A LACA e outras entidades locais preservam tradicoes, fortalecem o esporte e a cultura e renovam os lacos entre geracoes, conectando passado, presente e futuro do territorio.
+                            Foram fundadas associações focadas na união de pessoas e famílias para concretizar sonhos. Hoje, estas associações estão vinculadas à LACA (Liga das Associações Culturais de Assaí) e à SAMA (Sociedade de Amigos de Assaí), preservando tradições como o Taikô, Ikebana, Bon Odori e esportes como o Beisebol e Gateball.
                         </p>
 
                         <div class="event-actions">
@@ -2148,23 +2770,23 @@
                     </article>
 
                     <article class="event-shell">
-                        <h3>Linha do tempo resumida</h3>
+                        <h3>Fatos Históricos</h3>
                         <ul class="event-timeline">
                             <li>
-                                <span class="event-timeline-year">1930-1935</span>
-                                <p>Chegada dos imigrantes japoneses na regiao de Assai e realizacao da primeira EXPOASA.</p>
+                                <span class="event-timeline-year">1930</span>
+                                <p>Início da colonização da região de Assaí pelos primeiros imigrantes japoneses.</p>
                             </li>
                             <li>
-                                <span class="event-timeline-year">1930-1965</span>
-                                <p>Consolidacao das associacoes nipo-brasileiras, cooperativas e redes de ajuda mutua no campo.</p>
+                                <span class="event-timeline-year">1935</span>
+                                <p>Realização da primeira edição da EXPOASA, a exposição agrícola mais antiga do Brasil.</p>
                             </li>
                             <li>
-                                <span class="event-timeline-year">2020-2022</span>
-                                <p>Interrupcao do evento por conta da pandemia da COVID-19.</p>
+                                <span class="event-timeline-year">1934-1965</span>
+                                <p>Funcionamento da Cooperativa Agrícola Três Barras, baseada na ideologia GAT ("Gozar a Terra").</p>
                             </li>
                             <li>
-                                <span class="event-timeline-year">2023-2026</span>
-                                <p>Retomada com foco em inovacao, agricultura digital, hackathons e crescimento de publico.</p>
+                                <span class="event-timeline-year">2023</span>
+                                <p>Retomada do evento após interrupção devido à pandemia, com foco em agricultura digital.</p>
                             </li>
                         </ul>
                     </article>
@@ -2172,7 +2794,7 @@
             </div>
         </section>
 
-        <section class="event-section" id="localizacao">
+        <section class="event-section event-color-ice" id="localizacao">
             <div class="container">
                 <header class="event-header">
                     <p class="event-kicker">Como chegar</p>
@@ -2260,6 +2882,8 @@
     <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="/plugins/smoothscroll/SmoothScroll.min.js"></script>
     <script src="/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACeD0S9I3kp8gXgUrczVtA6IBPLaZkzZ0"></script>
 
     <script>
@@ -2289,21 +2913,17 @@
                 $('#countdown-seconds').text(seconds < 10 ? '0' + seconds : seconds);
             }
 
+            // Controle do Navbar no scroll
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar.main-nav').addClass('nav-scrolled');
+                } else {
+                    $('.navbar.main-nav').removeClass('nav-scrolled');
+                }
+            });
+
             setInterval(updateCountdown, 1000);
             updateCountdown();
-
-            // Abas da programação
-            if ($('.schedule-tab').length) {
-                $('.schedule-tab').click(function() {
-                    const tabId = $(this).data('tab');
-
-                    $('.schedule-tab').removeClass('active');
-                    $(this).addClass('active');
-
-                    $('.schedule-day').hide();
-                    $('#' + tabId).fadeIn();
-                });
-            }
 
             // Popup para imagens
             if ($('.arena-image').length) {
@@ -2368,65 +2988,111 @@
     </script>
 
     <script>
-        // Menu hamburger e responsividade
         document.addEventListener('DOMContentLoaded', function() {
             const navbarToggler = document.querySelector('.navbar-toggler');
             const navbarActions = document.querySelector('.navbar-actions');
             const navbar = document.querySelector('.navbar.main-nav');
 
+            function syncHeaderOffset() {
+                if (!navbar) {
+                    return;
+                }
+
+                const currentHeight = Math.ceil(navbar.getBoundingClientRect().height);
+                document.documentElement.style.setProperty('--header-offset', currentHeight + 'px');
+            }
+
             if (navbarToggler && navbarActions) {
                 navbarToggler.addEventListener('click', function() {
                     this.classList.toggle('active');
                     navbarActions.classList.toggle('show');
+                    syncHeaderOffset();
                 });
             }
 
-            // Navbar sticky com acabamento institucional
             function updateNavbarState() {
                 if (!navbar) {
                     return;
                 }
 
-                if (window.scrollY > 32) {
+                if (window.scrollY > 30) {
                     navbar.classList.add('nav-scrolled');
                 } else {
                     navbar.classList.remove('nav-scrolled');
                 }
             }
 
+            syncHeaderOffset();
             updateNavbarState();
-            window.addEventListener('scroll', updateNavbarState);
+            window.addEventListener('scroll', updateNavbarState, { passive: true });
+            window.addEventListener('resize', syncHeaderOffset);
 
-            // Revela secoes e cards de forma progressiva
-            const revealTargets = document.querySelectorAll('.countdown-panel, .event-section, .event-shell, .event-cta-banner');
+            if (window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                gsap.registerPlugin(ScrollTrigger);
 
-            revealTargets.forEach(function(el, index) {
-                el.classList.add('reveal-on-scroll');
-                el.style.setProperty('--reveal-delay', Math.min((index % 6) * 70, 280) + 'ms');
-            });
+                const revealNodes = gsap.utils.toArray('.hero-scroll-indicator, .event-header, .event-shell, .metric-card, .event-photo-card, .event-cta-banner, .event-map-canvas');
 
-            if (!('IntersectionObserver' in window)) {
-                revealTargets.forEach(function(el) {
-                    el.classList.add('is-visible');
+                gsap.from('.hero-main-logo', {
+                    y: 20,
+                    autoAlpha: 0,
+                    duration: 1,
+                    ease: 'power2.out'
                 });
-                return;
-            }
 
-            const revealObserver = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
+                gsap.from('.hero-countdown', {
+                    y: 20,
+                    autoAlpha: 0,
+                    duration: 1,
+                    delay: 0.3,
+                    ease: 'power2.out'
+                });
+
+                gsap.from(revealNodes.slice(0, 1), {
+                    y: 28,
+                    autoAlpha: 0,
+                    duration: 0.9,
+                    ease: 'power3.out',
+                    stagger: 0.1
+                });
+
+                revealNodes.slice(2).forEach(function(el) {
+                    gsap.from(el, {
+                        y: 36,
+                        autoAlpha: 0,
+                        duration: 0.85,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 84%',
+                            once: true,
+                            fastScrollEnd: true
+                        }
+                    });
+                });
+
+                gsap.to('.hero-layer-a', {
+                    scale: 1.18,
+                    yPercent: -6,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '#topo',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1.2
                     }
                 });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -40px 0px'
-            });
 
-            revealTargets.forEach(function(el) {
-                revealObserver.observe(el);
-            });
+                gsap.to('.hero-content', {
+                    yPercent: -10,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '#topo',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 0.7
+                    }
+                });
+            }
         });
     </script>
 </body>
