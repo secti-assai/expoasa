@@ -14,7 +14,7 @@ class HomeController extends Controller
     }
 
     public function landing2() {
-        return view('home.landing2');
+        return view('home.landing');
     }
 
     public function teste() {
