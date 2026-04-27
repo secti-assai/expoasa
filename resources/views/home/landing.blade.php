@@ -2181,18 +2181,21 @@
 
     @media (min-width: 992px) {
         .hero-main-logo {
-            max-width: 540px;
+            max-width: min(85vw, 540px);
+            max-height: 50vh;
+            width: auto;
+            object-fit: contain;
         }
         .hero-countdown {
             gap: 20px;
-            margin-top: 45px;
+            margin-top: clamp(20px, 4vh, 45px);
         }
         .countdown-item {
-            min-width: 110px;
-            padding: 18px 10px;
+            min-width: clamp(80px, 8vw, 110px);
+            padding: clamp(10px, 1.5vh, 18px) 10px;
         }
         .countdown-value {
-            font-size: 2.8rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
         }
         .countdown-label {
             font-size: 0.75rem;
@@ -2200,6 +2203,29 @@
         .metric-grid {
             grid-template-columns: repeat(6, 1fr);
             gap: 20px;
+        }
+    }
+
+    /* Ajustes específicos para telas de baixa altura (Laptops 768p) */
+    @media (min-width: 992px) and (max-height: 820px) {
+        .hero-main-logo {
+            max-width: 380px;
+        }
+        .hero-countdown {
+            margin-top: 15px;
+        }
+        .countdown-item {
+            min-width: 85px;
+            padding: 8px 5px;
+        }
+        .countdown-value {
+            font-size: 1.8rem;
+        }
+        .hero-brand-container {
+            margin-bottom: 10px;
+        }
+        .hero-scroll-indicator {
+            bottom: 20px;
         }
     }
 
