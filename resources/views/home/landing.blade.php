@@ -24,6 +24,9 @@
             --primary-light: #c41010;
             --primary-dark: #8a0202;
             --secondary-color: #0a4b0f;
+            --green-expoasa-400: #2d6a4f;
+            --green-expoasa-500: #1b4332;
+            --green-expoasa-600: #081c15;
             --text-color: #333333;
             --text-light: #666666;
             --bg-light: #f8f9fa;
@@ -38,6 +41,14 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
+            position: relative;
+            background-color: #081c15; /* Prevent white flashes on mobile transitions */
+        }
+        
+        html {
+            overflow-x: hidden;
+            width: 100%;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -46,36 +57,7 @@
             color: var(--text-color);
         }
 
-        /* HEADER & NAVBAR - Versão Corrigida */
-        .navbar.main-nav {
-            background-color: transparent;
-            box-shadow: none;
-            padding: 20px 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            height: auto;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-        }
-
-        .navbar.main-nav.nav-scrolled {
-            padding: 12px 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .navbar.main-nav .site-nav-links a {
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .navbar.main-nav.nav-scrolled .site-nav-links a {
-            color: #1a202c;
-        }
+        /* HEADER & NAVBAR - Estilos movidos para o bloco principal de design */
 
         .navbar .container {
             display: flex;
@@ -105,75 +87,6 @@
 
         .navbar-brand:hover {
             transform: translateY(-2px);
-        }
-
-        .navbar-actions {
-            display: flex;
-            align-items: center;
-        }
-
-        .ticket {
-            display: flex;
-            align-items: center;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .ticket:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(164, 2, 2, 0.3);
-            color: var(--white);
-        }
-
-        .ticket img {
-            height: 20px;
-            margin-right: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        /* Botão de Menu Hamburger */
-        .navbar-toggler {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            outline: none;
-        }
-
-        .navbar-toggler-icon {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background-color: var(--primary-color);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-toggler-icon::before,
-        .navbar-toggler-icon::after {
-            content: '';
-            position: absolute;
-            width: 22px;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: transform 0.3s ease;
-        }
-
-        .navbar-toggler-icon::before {
-            top: -7px;
-        }
-
-        .navbar-toggler-icon::after {
-            bottom: -7px;
         }
 
         /* Responsividade aprimorada */
@@ -1036,21 +949,32 @@
         }
 
         .back-to-top {
-            background-color: var(--primary-color);
-            color: #fff;
-            width: 40px;
-            height: 40px;
+            background-color: var(--green-expoasa-500, #1b4332);
+            color: #ffffff !important;
+            width: 46px;
+            height: 46px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 5px;
+            border-radius: 50%;
             float: right;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .back-to-top i {
+            color: #ffffff !important;
+            font-size: 1.4rem;
+            display: block;
         }
 
         .back-to-top:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-3px);
-            color: var(--white);
+            background-color: var(--green-expoasa-400, #2d6a4f);
+            transform: translateY(-5px);
+            color: #ffffff !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
         /* BOTÕES */
@@ -1294,6 +1218,14 @@
         .event-map-layout {
             display: grid;
             grid-template-columns: 1fr;
+            gap: 20px;
+            align-items: start;
+            width: 100%;
+        }
+
+        .event-map-layout {
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 14px;
         }
 
@@ -1347,6 +1279,12 @@
             display: block;
             color: #111827;
             font-size: 0.95rem;
+        }
+
+        .event-metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
         .metric-grid {
@@ -1651,30 +1589,30 @@
 
             .event-intro-grid {
                 grid-template-columns: 1.25fr 0.75fr;
-                gap: 18px;
+                gap: 30px;
             }
 
-            .metric-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 12px;
-            }
-
-            .event-program-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 14px;
+            .event-program-grid,
+            .event-photo-strip {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
             }
 
             .event-attractions-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 14px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
 
             .event-data-grid,
             .event-goal-grid,
             .event-history-grid,
             .event-map-layout {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 16px;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .metric-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
             }
 
             .event-cta-banner {
@@ -1709,19 +1647,24 @@
         }
 
     .logo-laca {
-        height: 80px;
-        max-height: 80px;
-        transition: height 0.25s ease;
-    }
-    .logo-brasil-japao {
-        height: 80px;
-        max-height: 80px;
-        transition: height 0.25s ease;
+        height: 70px;
+        width: auto;
+        max-width: 100%;
+        flex-shrink: 1;
+        transition: var(--nav-transition);
+        filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
     }
     .logo-prefeitura {
-        height: 80px;
-        max-height: 80px;
-        transition: height 0.25s ease;
+        height: 70px;
+        width: auto;
+        max-width: 100%;
+        flex-shrink: 1;
+        transition: var(--nav-transition);
+    }
+
+    .nav-scrolled .logo-laca,
+    .nav-scrolled .logo-prefeitura {
+        height: 52px;
     }
     .logo-sebrae {
         height: 50px;
@@ -1784,54 +1727,7 @@
         transform: translateY(0);
     }
 
-    @media (max-width: 991px) {
-        .navbar.main-nav.nav-scrolled .logo-laca,
-        .navbar.main-nav.nav-scrolled .logo-brasil-japao,
-        .navbar.main-nav.nav-scrolled .logo-prefeitura {
-            height: 72px;
-        }
-
-        .navbar.main-nav.nav-scrolled .logo-sebrae {
-            height: 46px;
-        }
-    }
-
-    @media (max-width: 575px) {
-        .logo-laca,
-        .logo-brasil-japao,
-        .logo-prefeitura {
-            height: 62px;
-            max-height: 62px;
-        }
-
-        .logo-sebrae {
-            height: 38px;
-            max-height: 38px;
-        }
-    }
-
-    @media (max-width: 390px) {
-        .navbar .container {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        .navbar-logos {
-            gap: 6px;
-        }
-
-        .logo-laca,
-        .logo-brasil-japao,
-        .logo-prefeitura {
-            height: 52px;
-            max-height: 52px;
-        }
-
-        .logo-sebrae {
-            height: 32px;
-            max-height: 32px;
-            margin-left: 6px;
-        }
+        /* Legacy Mobile Media Queries Removed */
 
         .countdown-panel {
             padding: 14px 12px 16px;
@@ -1879,12 +1775,18 @@
         }
 
         .event-shell {
-            padding: 16px;
+            padding: 18px;
             border-radius: 14px;
+            width: 100%;
+            min-width: 0;
+            overflow: hidden;
         }
 
         .event-actions {
-            gap: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 100%;
         }
 
         .event-actions .btn {
@@ -1895,7 +1797,14 @@
         }
 
         .metric-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        @media (max-width: 400px) {
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .program-time {
@@ -1903,8 +1812,10 @@
         }
 
         .event-map-canvas,
-        .event-map-canvas #map {
-            min-height: 240px;
+        .event-map-canvas #map,
+        .event-map-container {
+            min-height: 350px;
+            height: 100%;
         }
 
         .event-cta-banner {
@@ -1927,62 +1838,204 @@
     }
 
     :root {
-        --header-offset: 116px;
+        --header-offset: 100px;
+        --green-expoasa: #1B4332;
+        --green-expoasa-950: #081C15;
+        --green-expoasa-400: #74C69D;
+        --nav-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     body {
         background: #f3f7f9;
-        scroll-snap-type: y proximity;
         scroll-padding-top: var(--header-offset);
     }
 
+    /* GLASSMORPHISM NAVBAR */
     .site-header.navbar.main-nav {
-        background: rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 24px 0;
+        transition: var(--nav-transition);
         box-shadow: none;
-        padding: 18px 0;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+        left: 0;
+        right: 0;
     }
 
     .site-header.navbar.main-nav.nav-scrolled {
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        padding: 10px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(8, 28, 21, 0.92); /* Green 950 */
+        padding: 12px 0;
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
 
-    .site-brand {
+    /* RESTRUCTURED NAVBAR LAYOUT */
+    .nav-left {
         display: flex;
         align-items: center;
-        gap: 10px;
-        min-width: 0;
+        gap: 20px;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+    }
+
+    @media (max-width: 991px) {
+        .nav-left {
+            gap: 12px;
+        }
+        
+        .site-header .container {
+            justify-content: center; /* Centraliza os logos no mobile */
+        }
     }
 
     .site-nav-links {
-        display: none;
+        display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
     }
 
     .site-nav-links a {
-        display: inline-flex;
-        align-items: center;
-        padding: 9px 16px;
-        border-radius: 999px;
+        position: relative;
+        padding: 10px 18px;
         color: #ffffff;
         text-decoration: none;
-        font-size: 0.88rem;
-        font-weight: 700;
+        font-size: 0.95rem;
+        font-weight: 600;
         letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        transition: var(--nav-transition);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
-    .nav-scrolled .site-nav-links a {
-        color: #1a2b3c;
-        text-shadow: none;
+    /* EXPANDING UNDERLINE EFFECT */
+    .site-nav-links a span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .site-nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--green-expoasa-400);
+        transition: var(--nav-transition);
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+
+    .site-nav-links a:hover::after {
+        width: 60%;
+    }
+
+    .site-nav-links a:hover {
+        color: var(--green-expoasa-400);
+    }
+
+    /* MOBILE BOTTOM NAVIGATION */
+    .mobile-bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(8, 28, 21, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        display: flex;
+        justify-content: space-around;
+        padding: 12px 5px;
+        z-index: 1000;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .mobile-bottom-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        gap: 5px;
+        transition: var(--nav-transition);
+        min-width: 60px;
+    }
+
+    .mobile-bottom-item i {
+        font-size: 1.4rem;
+        margin-bottom: 2px;
+    }
+
+    .mobile-bottom-item:hover, .mobile-bottom-item.active {
+        color: var(--green-expoasa-400);
+    }
+
+    /* MOBILE DRAWER MENU */
+    .mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 400px;
+        height: 100%;
+        background: var(--green-expoasa-950);
+        z-index: 2000;
+        transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 100px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .mobile-drawer.active {
+        right: 0;
+    }
+
+    /* BODY SPACING FOR BOTTOM NAV */
+    @media (max-width: 991px) {
+        body {
+            padding-bottom: 80px;
+        }
+    }
+
+    .drawer-link {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .drawer-link:hover {
+        color: var(--green-expoasa-400);
+    }
+
+    .drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(8px);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+    }
+
+    .drawer-overlay.active {
+        opacity: 1;
+        visibility: visible;
     }
 
     .site-nav-links a:hover {
@@ -2007,36 +2060,7 @@
         font-size: 0.84rem;
     }
 
-    .site-header .navbar-actions {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-        position: absolute;
-        top: calc(100% + 8px);
-        right: 12px;
-        left: 12px;
-        background: rgba(255, 255, 255, 0.94);
-        border: 1px solid rgba(177, 191, 204, 0.52);
-        box-shadow: 0 20px 30px rgba(6, 18, 30, 0.12);
-        border-radius: 14px;
-        padding: 12px;
-        backdrop-filter: blur(8px);
-    }
-
-    .site-header .navbar-actions.show {
-        display: flex;
-    }
-
-    .mobile-nav-link {
-        border: 1px solid #e1e8ee;
-        border-radius: 10px;
-        padding: 10px 12px;
-        color: #152634;
-        font-weight: 600;
-        text-decoration: none;
-        background: #ffffff;
-    }
+    /* Legacy Navbar Actions Removed */
 
     .hero-panel {
         position: relative;
@@ -2172,6 +2196,10 @@
         }
         .countdown-label {
             font-size: 0.75rem;
+        }
+        .metric-grid {
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
         }
     }
 
@@ -2362,15 +2390,14 @@
     }
 
     .expo-page {
-        scroll-snap-type: y proximity;
+        /* scroll-snap removido para navegação mais fluida */
     }
 
     .event-section {
-        min-height: 100svh;
-        scroll-snap-align: start;
-        scroll-snap-stop: normal;
+        padding: 90px 0;
         display: flex;
         align-items: center;
+        position: relative;
     }
 
     .event-section > .container {
@@ -2400,20 +2427,24 @@
     }
 
     @media (max-width: 1099px) {
-        .site-partners .btn {
+        .nav-center {
             display: none;
         }
-
-        .site-header .navbar-toggler {
-            display: inline-flex;
-            margin-left: 6px;
+        .logo-laca, .logo-prefeitura {
+            height: 48px;
         }
     }
 
     @media (max-width: 767px) {
         .hero-panel {
-            min-height: 95svh;
+            height: calc(100svh - 65px);
+            min-height: 520px;
             padding-top: calc(var(--header-offset) + 12px);
+            margin-bottom: 0;
+        }
+
+        .event-section {
+            padding: 55px 0;
         }
 
         .hero-actions .btn {
@@ -2448,39 +2479,63 @@
 </head>
 
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar main-nav site-header fixed-top navbar-expand-lg">
-        <div class="container">
-            <div class="site-brand">
-                <a class="navbar-brand" href="#topo" aria-label="Voltar ao topo">
-                        <img src="/assets/images/logos/Logo_laca.png" alt="LACA" class="logo-laca">
+    <nav class="navbar main-nav site-header fixed-top" role="banner">
+        <div class="container d-flex align-items-center">
+            
+            <!-- COLUNA ESQUERDA: LOGOS AGRUPADOS -->
+            <div class="nav-left">
+                <a class="navbar-brand p-0 m-0" href="#topo" aria-label="Voltar ao topo">
+                    <img src="/assets/images/logos/Logo_laca.png" alt="LACA" class="logo-laca">
                 </a>
+                <img src="/assets/images/logos/GOVERNO/brasao_assai.png" alt="Prefeitura de Assaí" class="logo-prefeitura">
             </div>
 
-            <div class="site-nav-links" aria-label="Navegacao principal">
-                <a href="#horarios">Horários</a>
-                <a href="#historia">História</a>
-                <a href="#localizacao">Localização</a>
-            </div>
-
-            <div class="site-partners">
-                <a href="https://assai.pr.gov.br" target="_blank" rel="noopener noreferrer" aria-label="Prefeitura de Assai">
-                    <img src="/assets/images/logos/GOVERNO/brasao_assai.png" alt="Prefeitura Municipal de Assaí" class="logo-prefeitura">
-                </a>
-            </div>
-
-            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="navbar-actions">
-                <a href="#horarios" class="mobile-nav-link">Horários</a>
-                <a href="#historia" class="mobile-nav-link">História</a>
-                <a href="#localizacao" class="mobile-nav-link">Localização</a>
-                <a href="{{ route('credenciamento') }}" class="btn btn-primary">Credenciamento</a>
+            <!-- COLUNA DIREITA: NAVEGAÇÃO (Desktop) -->
+            <div class="nav-right d-none d-lg-flex">
+                <div class="site-nav-links" role="navigation" aria-label="Menu Principal">
+                    <a href="#horarios"><span>Horários</span></a>
+                    <a href="#historia"><span>História</span></a>
+                    <a href="#localizacao"><span>Localização</span></a>
+                    <a href="javascript:void(0)" class="open-credenciamento-popup"><span>Credenciamento</span></a>
+                </div>
             </div>
         </div>
     </nav>
+
+    <!-- MOBILE BOTTOM NAVIGATION (App-like UX) -->
+    <div class="mobile-bottom-nav d-lg-none">
+        <a href="#topo" class="mobile-bottom-item">
+            <i class="fa fa-home"></i>
+            <span>Início</span>
+        </a>
+        <a href="#horarios" class="mobile-bottom-item">
+            <i class="fa fa-clock-o"></i>
+            <span>Horários</span>
+        </a>
+        <a href="#localizacao" class="mobile-bottom-item">
+            <i class="fa fa-map-marker"></i>
+            <span>Mapa</span>
+        </a>
+        <a href="javascript:void(0)" class="mobile-bottom-item" id="mobile-menu-open">
+            <i class="fa fa-bars"></i>
+            <span>Menu</span>
+        </a>
+    </div>
+
+    <!-- MOBILE DRAWER -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="mobile-drawer" id="mobile-drawer">
+        <h2 style="color: var(--green-expoasa-400); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Menu</h2>
+        <a href="#topo" class="drawer-link">Início</a>
+        <a href="#horarios" class="drawer-link">Horários</a>
+        <a href="#historia" class="drawer-link">História</a>
+        <a href="#localizacao" class="drawer-link">Localização</a>
+        <a href="javascript:void(0)" class="drawer-link open-credenciamento-popup" style="color: var(--green-expoasa-400)">Credenciamento</a>
+        
+        <div style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.8rem;">80ª EXPOASA © 2026</p>
+        </div>
+    </div>
 
     <!-- HERO -->
     <section id="topo" class="hero-panel" aria-label="Hero da Expoasa 2026">
@@ -2753,8 +2808,8 @@
                 <div class="event-history-grid">
                     <article class="event-shell">
                         <header class="event-header" style="margin-bottom: 12px;">
-                            <p class="event-kicker">História e Identidade</p>
-                            <h2 class="event-title" style="font-size: 1.56rem;">O Papel das Associações Nipo-Brasileiras</h2>
+                            <p class="event-kicker" style="color: #000000;">História e Identidade</p>
+                            <h2 class="event-title" style="font-size: 1.56rem; color: #000000;">O Papel das Associações Nipo-Brasileiras</h2>
                         </header>
 
                         <p>
@@ -2803,7 +2858,17 @@
 
                 <div class="event-map-layout">
                     <div class="event-map-canvas" aria-label="Mapa da localizacao do evento">
-                        <div id="map"></div>
+                        <div id="map" class="event-map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3659.7121!2d-50.8499!3d-23.3774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ebf10d54f590f7%3A0xc66085a86a635848!2sCentro%20de%20Eventos%20Toyosaburo%20Ikeda!5e0!3m2!1spt-BR!2sbr!4v1714151000000!5m2!1spt-BR!2sbr" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; border-radius: 12px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
                     </div>
 
                     <article class="event-shell event-map-card">
@@ -2821,7 +2886,7 @@
             </div>
         </section>
 
-        <section class="event-section" style="padding-top: 0;">
+        <section class="event-section" style="padding-top: 0; padding-bottom: 45px;">
             <div class="container">
                 <article class="event-cta-banner">
                     <p class="event-kicker event-kicker-light">Participe da 80a EXPOASA</p>
@@ -2841,25 +2906,6 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">
-
-                <div class="social-links">
-                    <a href="https://www.instagram.com/expoasa_assai/" class="social-link" target="_blank">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-
-                    <a href="https://www.facebook.com/expoasa" class="social-link" target="_blank">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-
-                    <a href="#" class="social-link" target="_blank">
-                        <i class="fa fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
         <div class="subfooter">
             <div class="container">
                 <div class="row">
@@ -2946,41 +2992,13 @@
                 $('html, body').animate({scrollTop: 0}, 800);
             });
 
-            // Inicializar mapa
+            // Fallback para mapa (uso via Iframe mantido no HTML)
             function initMap() {
                 const mapElement = document.getElementById('map');
                 if (!mapElement) {
+                    console.warn('Elemento de mapa nao encontrado.');
                     return;
                 }
-
-                const location = {lat: -23.3693, lng: -50.8456};
-                const map = new google.maps.Map(mapElement, {
-                    center: location,
-                    zoom: 15,
-                    styles: [
-                        {
-                            "featureType": "all",
-                            "elementType": "labels.text.fill",
-                            "stylers": [{"color": "#333333"}, {"lightness": 40}]
-                        },
-                        {
-                            "featureType": "all",
-                            "elementType": "labels.text.stroke",
-                            "stylers": [{"visibility": "on"}, {"color": "#ffffff"}, {"lightness": 16}]
-                        },
-                        {
-                            "featureType": "administrative",
-                            "elementType": "geometry.fill",
-                            "stylers": [{"color": "#fefefe"}]
-                        }
-                    ]
-                });
-
-                const marker = new google.maps.Marker({
-                    position: location,
-                    map: map,
-                    title: 'Centro de Eventos Toyosaburo Ikeda'
-                });
             }
 
             initMap();
@@ -3010,19 +3028,38 @@
                 });
             }
 
-            function updateNavbarState() {
-                if (!navbar) {
-                    return;
-                }
+            const mobileMenuOpen = document.getElementById('mobile-menu-open');
+            const mobileMenuTrigger = document.getElementById('mobile-menu-trigger');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerOverlay = document.getElementById('drawer-overlay');
+            const drawerLinks = document.querySelectorAll('.drawer-link');
 
-                if (window.scrollY > 30) {
+            function toggleDrawer() {
+                mobileDrawer.classList.toggle('active');
+                drawerOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileDrawer.classList.contains('active') ? 'hidden' : '';
+            }
+
+            if (mobileMenuOpen) mobileMenuOpen.addEventListener('click', toggleDrawer);
+            if (mobileMenuTrigger) mobileMenuTrigger.addEventListener('click', toggleDrawer);
+            if (drawerOverlay) drawerOverlay.addEventListener('click', toggleDrawer);
+            
+            drawerLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleDrawer();
+                });
+            });
+
+            function updateNavbarState() {
+                if (!navbar) return;
+
+                if (window.scrollY > 80) {
                     navbar.classList.add('nav-scrolled');
                 } else {
                     navbar.classList.remove('nav-scrolled');
                 }
             }
 
-            syncHeaderOffset();
             updateNavbarState();
             window.addEventListener('scroll', updateNavbarState, { passive: true });
             window.addEventListener('resize', syncHeaderOffset);
@@ -3082,7 +3119,7 @@
                     }
                 });
 
-                gsap.to('.hero-content', {
+                gsap.to('.hero-brand-container', {
                     yPercent: -10,
                     ease: 'none',
                     scrollTrigger: {
@@ -3093,6 +3130,29 @@
                     }
                 });
             }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const credBtns = document.querySelectorAll('a[href*="credenciamento"], .open-credenciamento-popup');
+            
+            credBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Credenciamento 2026',
+                        text: 'O link para o credenciamento oficial será divulgado em breve. Fique atento às nossas redes sociais!',
+                        icon: 'info',
+                        confirmButtonColor: '#1B4332',
+                        confirmButtonText: 'Entendido',
+                        background: '#ffffff',
+                        customClass: {
+                            popup: 'premium-popup'
+                        }
+                    });
+                });
+            });
         });
     </script>
 </body>
