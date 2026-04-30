@@ -892,60 +892,96 @@
 
         /* FOOTER */
         .footer {
-            background-color: #FFF;
-            color: var(--white);
-            padding: 60px 0 0;
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 35%),
+                linear-gradient(180deg, #04110d 0%, #081c15 52%, #020604 100%);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0;
         }
 
-        .footer-logo {
-            text-align: center;
-            margin-bottom: 30px;
+        .footer-surface {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            padding: 42px 0 28px;
         }
 
-        .footer-logo img {
-            height: 60px;
-            margin-bottom: 20px;
+        .footer-brand,
+        .footer-links,
+        .footer-contact {
+            min-width: 0;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
+        .footer-brand img {
+            height: 64px;
+            width: auto;
+            margin-bottom: 16px;
         }
 
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: red;
-            border-radius: 50%;
-            color: var(--white);
-            transition: all var(--transition-speed);
-        }
-
-        .social-link:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-5px);
-            color: var(--white);
-        }
-
-        .subfooter {
-            background-color: #fff;
-            padding: 20px 0;
-            margin-top: 60px;
-        }
-
-        .subfooter p {
-            color: black;
+        .footer-brand p {
             margin-bottom: 0;
-            font-size: 12px;
+            max-width: 34ch;
+            color: rgba(255, 255, 255, 0.76);
         }
 
-        .subfooter a {
-            color: var(--primary-color);
+        .footer-heading {
+            margin: 0 0 14px;
+            color: #fff;
+            font-size: 0.98rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .footer-nav,
+        .footer-social {
+            display: grid;
+            gap: 10px;
+        }
+
+        .footer-nav a,
+        .footer-social a {
+            color: rgba(255, 255, 255, 0.84);
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .footer-nav a:hover,
+        .footer-social a:hover {
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+
+        .footer-social a i {
+            width: 18px;
+            text-align: center;
+            margin-right: 10px;
+            color: #9ae6b4;
+        }
+
+        .footer-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 0 24px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.92rem;
+        }
+
+        .footer-meta a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer-meta a:hover {
+            color: #9ae6b4;
+        }
+
+        .footer-back {
+            float: none;
+            margin-left: auto;
         }
 
         .back-to-top {
@@ -975,6 +1011,22 @@
             transform: translateY(-5px);
             color: #ffffff !important;
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        @media (min-width: 768px) {
+            .footer-surface {
+                grid-template-columns: 1.25fr 0.75fr 1fr;
+                gap: 36px;
+                padding: 52px 0 34px;
+            }
+
+            .footer-brand img {
+                height: 74px;
+            }
+
+            .footer-meta {
+                font-size: 0.95rem;
+            }
         }
 
         /* BOTÕES */
@@ -1647,7 +1699,7 @@
         }
 
     .logo-laca {
-        height: 70px;
+        height: 88px;
         width: auto;
         max-width: 100%;
         flex-shrink: 1;
@@ -1655,16 +1707,19 @@
         filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
     }
     .logo-prefeitura {
-        height: 70px;
+        height: 72px;
         width: auto;
         max-width: 100%;
         flex-shrink: 1;
         transition: var(--nav-transition);
     }
 
-    .nav-scrolled .logo-laca,
+    .nav-scrolled .logo-laca {
+        height: 94px;
+    }
+
     .nav-scrolled .logo-prefeitura {
-        height: 52px;
+        height: 72px;
     }
     .logo-sebrae {
         height: 50px;
@@ -1674,9 +1729,12 @@
     }
 
     .navbar.main-nav.nav-scrolled .logo-laca,
-    .navbar.main-nav.nav-scrolled .logo-brasil-japao,
+    .navbar.main-nav.nav-scrolled .logo-brasil-japao {
+        height: 94px;
+    }
+
     .navbar.main-nav.nav-scrolled .logo-prefeitura {
-        height: 68px;
+        height: 72px;
     }
 
     .navbar.main-nav.nav-scrolled .logo-sebrae {
@@ -2456,8 +2514,20 @@
         .nav-center {
             display: none;
         }
-        .logo-laca, .logo-prefeitura {
-            height: 48px;
+        .logo-laca {
+            height: 62px;
+        }
+
+        .navbar.main-nav.nav-scrolled .logo-laca {
+            height: 68px;
+        }
+
+        .logo-prefeitura {
+            height: 54px;
+        }
+
+        .navbar.main-nav.nav-scrolled .logo-prefeitura {
+            height: 54px;
         }
     }
 
@@ -2501,6 +2571,30 @@
             opacity: 1 !important;
         }
     }
+            /* Mobile-first program grid and cards */
+            .event-program-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+                align-items: start;
+                margin-top: 18px;
+            }
+
+            .program-card {
+                padding: 18px;
+                border-radius: 12px;
+                background: rgba(255,255,255,0.02);
+                border: 1px solid rgba(255,255,255,0.04);
+                box-shadow: 0 12px 30px rgba(2,6,23,0.28);
+                color: var(--white);
+            }
+
+            .program-card .program-day { font-weight: 700; margin-bottom: 6px; }
+            .program-card .program-time { font-size: 0.98rem; margin-bottom: 8px; }
+
+            @media (min-width: 768px) {
+                .event-program-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+            }
     </style>
 </head>
 
@@ -2522,7 +2616,7 @@
                     <a href="#horarios"><span>Horários</span></a>
                     <a href="#historia"><span>História</span></a>
                     <a href="#localizacao"><span>Localização</span></a>
-                    <a href="javascript:void(0)" class="open-credenciamento-popup"><span>Credenciamento</span></a>
+                    
                 </div>
             </div>
         </div>
@@ -2556,7 +2650,7 @@
         <a href="#horarios" class="drawer-link">Horários</a>
         <a href="#historia" class="drawer-link">História</a>
         <a href="#localizacao" class="drawer-link">Localização</a>
-        <a href="javascript:void(0)" class="drawer-link open-credenciamento-popup" style="color: var(--green-expoasa-400)">Credenciamento</a>
+        
         
         <div style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
             <p style="color: rgba(255,255,255,0.5); font-size: 0.8rem;">80ª EXPOASA © 2026</p>
@@ -2615,8 +2709,7 @@
                         </header>
 
                         <div class="event-actions">
-                            <a href="{{ route('credenciamento') }}" class="btn btn-primary">Quero me credenciar</a>
-                            <a href="#programacao" class="btn btn-outline">Ver programacao</a>
+                            <a href="#horarios" class="btn btn-outline">Ver programacao</a>
                         </div>
                     </article>
 
@@ -2690,21 +2783,37 @@
                     <p class="event-kicker">Horários de Funcionamento</p>
                     <h2 class="event-title">Acompanhe a 80ª EXPOASA em Assaí</h2>
                 </header>
-
                 <div class="event-program-grid">
                     <article class="event-shell program-card">
-                        <p class="program-day">Dia 12/06</p>
-                        <p class="program-time">18h às 00h</p>
+                        <p class="program-day">12 de junho | Sexta-feira</p>
+                        <p class="program-time">Das 13h às 24h00</p>
+                        <p>- Exposição Agrícola<br>
+                        - Rodadas e promoção de negócios<br>
+                        - Palestras<br>
+                        A partir das 17h: Agenda Cultural; Praça de Alimentação Japão; Praça de Alimentação Agro.</p>
                     </article>
 
                     <article class="event-shell program-card">
-                        <p class="program-day">Dia 13/06</p>
-                        <p class="program-time">09h às 00h</p>
+                        <p class="program-day">13 de junho | Sábado</p>
+                        <p class="program-time">Das 09h às 24h00</p>
+                        <p>- Exposição Agrícola e de Negócios<br>
+                        - Agenda Cultural<br>
+                        - Bon Odori<br>
+                        - Maratona Ideasun<br>
+                        - Palestras<br>
+                        - Praça de Alimentação Japão<br>
+                        - Praça de Alimentação Agro</p>
+                        <p><strong>Ato Solene do Evento:</strong> Dia 13 de junho de 2026 às 17:00hs</p>
                     </article>
 
                     <article class="event-shell program-card">
-                        <p class="program-day">Dia 14/06</p>
-                        <p class="program-time">09h às 16h</p>
+                        <p class="program-day">14 de junho | Domingo</p>
+                        <p class="program-time">Das 09h às 16h</p>
+                        <p>- Exposição Agrícola e de Negócios<br>
+                        - Agenda Cultural<br>
+                        - Palestras<br>
+                        - Praça de Alimentação Japão<br>
+                        - Praça de Alimentação Agro</p>
                     </article>
                 </div>
             </div>
@@ -2714,32 +2823,32 @@
             <div class="container">
                 <header class="event-header">
                     <p class="event-kicker">Destaques 2026</p>
-                    <h2 class="event-title">Novos espaços temáticos e infraestrutura expandida</h2>
+                    <h2 class="event-title">Exposição Agrícola e Atividades Temáticas</h2>
                 </header>
 
                 <div class="event-attractions-grid">
                     <article class="event-shell attraction-card">
-                        <i class="fa fa-television" aria-hidden="true"></i>
-                        <h3>TV Web e Palco LED</h3>
-                        <p>Cobertura por TV Web e palco com painéis de LED para apresentação da cultura japonesa, palestras temáticas e telão exclusivo para a Copa do Mundo.</p>
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                        <h3>Negócios e Exposição</h3>
+                        <p>Exposição agrícola completa com rodadas de negócios e promoção do setor produtivo durante todos os dias do evento.</p>
                     </article>
 
                     <article class="event-shell attraction-card">
-                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        <h3>Auditório de Oficinas</h3>
-                        <p>Novo espaço temático dedicado para oficinas e capacitação técnica de produtores rurais.</p>
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <h3>Agenda Cultural</h3>
+                        <p>Apresentações culturais diárias com destaque para o tradicional Bon Odori, celebrando a integração e a cultura japonesa.</p>
                     </article>
 
                     <article class="event-shell attraction-card">
                         <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-                        <h3>HackaSUN e ODS</h3>
-                        <p>Apresentação de soluções inovadoras (HackaSUN) e Etapa de Ideação da Jornada dos Desafios ODS com apoio da ONU-Habitat.</p>
+                        <h3>Inovação e Conhecimento</h3>
+                        <p>Ciclo de palestras técnicas para produtores e a realização da Maratona Ideasun, focada em soluções para o setor.</p>
                     </article>
 
                     <article class="event-shell attraction-card">
                         <i class="fa fa-cutlery" aria-hidden="true"></i>
-                        <h3>Cultura e Gastronomia</h3>
-                        <p>Atrações culturais como Bon Odori, Taikô, Ikebana, Matsuri Dance e Cosplay. Ambiente dedicado para expor a gastronomia japonesa e brasileira.</p>
+                        <h3>Gastronomia Integrada</h3>
+                        <p>Duas praças de alimentação exclusivas oferecendo o melhor da culinária japonesa e o sabor da culinária agro brasileira.</p>
                     </article>
                 </div>
             </div>
@@ -2749,7 +2858,7 @@
             <div class="container">
                 <header class="event-header">
                     <p class="event-kicker">Dados da exposicao</p>
-                    <h2 class="event-title">Estrutura, abrangencia e perfil de publico da 80a EXPOASA</h2>
+                    <h2 class="event-title">Estrutura, abrangencia e perfil de publico da 80ª EXPOASA</h2>
                 </header>
 
                 <div class="event-data-grid">
@@ -2915,13 +3024,12 @@
         <section class="event-section" style="padding-top: 0; padding-bottom: 45px;">
             <div class="container">
                 <article class="event-cta-banner">
-                    <p class="event-kicker event-kicker-light">Participe da 80a EXPOASA</p>
+                    <p class="event-kicker event-kicker-light">Participe da 80ª EXPOASA</p>
                     <h2>Prepare sua visita e conecte-se ao que move o agro regional</h2>
                     <p>
-                        Garanta seu credenciamento e acompanhe as atualizacoes da programacao para viver uma experiencia completa de tecnologia, cultura e desenvolvimento regional.
+                        Acompanhe as atualizações da programação e nossas redes sociais para informações sobre inscrições e convites.
                     </p>
                     <div class="event-actions" style="margin-top: 18px;">
-                        <a href="{{ route('credenciamento') }}" class="btn btn-light">Credenciamento</a>
                         <a href="https://www.instagram.com/expoasa_assai/" target="_blank" class="btn event-btn-outline-light">Instagram oficial</a>
                     </div>
                 </article>
@@ -2932,19 +3040,49 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="subfooter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p><a href="#">LACA</a> &copy; 2026 Todos os direitos reservados.</p>
-                    </div>
+        <div class="container">
+            <div class="footer-surface">
+                <div class="footer-brand">
+                    <img src="/assets/images/logos/Logo_laca.png" alt="LACA">
+                    <p>
+                        A 80ª EXPOASA celebra tradição, inovação e o agronegócio regional com uma programação completa para visitantes, expositores e parceiros.
+                    </p>
+                </div>
 
-                    <div class="col-md-6 text-right">
-                        <a href="#" class="back-to-top">
-                            <i class="fa fa-angle-up"></i>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Atalhos</h3>
+                    <nav class="footer-nav" aria-label="Atalhos do rodapé">
+                        <a href="#horarios">Horários de Funcionamento</a>
+                        <a href="#localizacao">Localização</a>
+                        <a href="#historia">História</a>
+                    </nav>
+                </div>
+
+                <div class="footer-contact">
+                    <h3 class="footer-heading">Redes oficiais</h3>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/expoasa_assai/" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            Instagram da Expoasa
+                        </a>
+                        <a href="https://maps.google.com/?q=Centro+de+Eventos+Toyosaburo+Ikeda+Assai" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            Como chegar
+                        </a>
+                        <a href="#topo">
+                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                            Voltar ao topo
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <div class="footer-meta">
+                <p>© 2026 EXPOASA. Todos os direitos reservados.</p>
+                <p>Evento realizado em Assaí - Paraná.</p>
+                <a href="#topo" class="footer-back back-to-top" aria-label="Voltar ao topo">
+                    <i class="fa fa-angle-up"></i>
+                </a>
             </div>
         </div>
     </footer>
@@ -3158,28 +3296,6 @@
             }
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const credBtns = document.querySelectorAll('a[href*="credenciamento"], .open-credenciamento-popup');
-            
-            credBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    Swal.fire({
-                        title: 'Credenciamento 2026',
-                        text: 'O link para o credenciamento oficial será divulgado em breve. Fique atento às nossas redes sociais!',
-                        icon: 'info',
-                        confirmButtonColor: '#1B4332',
-                        confirmButtonText: 'Entendido',
-                        background: '#ffffff',
-                        customClass: {
-                            popup: 'premium-popup'
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+    
 </body>
 </html>

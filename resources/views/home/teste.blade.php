@@ -1372,7 +1372,7 @@
                     
                     <div class="schedule-row">
                         <div class="time-block">08:00</div>
-                        <div class="speaker-block">CREDENCIAMENTO</div>
+                        <div class="speaker-block"></div>
                         <div>SEMINÁRIO TÉCNICO SOBRE ABACATICULTURA</div>
                     </div>
                     
@@ -1393,7 +1393,7 @@
                     
                     <div class="schedule-row">
                         <div class="time-block">13:00</div>
-                        <div class="speaker-block">CREDENCIAMENTO</div>
+                        <div class="speaker-block"></div>
                         <div>SEMINÁRIO TÉCNICO SOBRE CITRICULTURA</div>
                     </div>
                 </div>

@@ -38,7 +38,7 @@
             <div class="container-fluid p-0">
 
                 <!-- logo -->
-                <a class="navbar-brand" href="/credenciamento">
+                <a class="navbar-brand" href="/">
                     <img src="/assets/img/logo_laca.png" alt="Liga das Associações Culturais de Assaí - LACA">
                 </a>
 
